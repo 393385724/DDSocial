@@ -11,42 +11,42 @@ Pod::Spec.new do |s|
   s.requires_arc = true 
 
   s.subspec 'Core' do |core|
-    core.source_files  = 'DDSocialShare/Core/*.{h,m}'
+    core.source_files  = 'DDSocial/Core/*.{h,m}'
     core.frameworks    = 'Foundation', 'UIKit'
   end
 
   s.subspec 'Tencent' do |tencent|
-    tencent.source_files = 'DDSocialShare/Tencent/Handler/*.{h,m}'
-    tencent.ios.vendored_frameworks = 'DDSocialShare/Tencent/TencentSDK/*.framework'
-    tencent.resource = "DDSocialShare/Tencent/TencentSDK/*.bundle"
+    tencent.source_files = 'DDSocial/Tencent/Handler/*.{h,m}'
+    tencent.ios.vendored_frameworks = 'DDSocial/Tencent/TencentSDK/*.framework'
+    tencent.resource = "DDSocial/Tencent/TencentSDK/*.bundle"
     tencent.libraries = 'z', 'sqlite3','stdc++','iconv'  
     tencent.frameworks = 'SystemConfiguration','CoreGraphics', 'CoreTelephony', 'Security'
     tencent.dependency 'DDSocial/Core'
   end
 
   s.subspec 'Wechat' do |wechat|
-    wechat.source_files = 'DDSocialShare/Wechat/Handler/*.{h,m}','DDSocialShare/Wechat/WeChatSDK/*.h'
-    wechat.ios.vendored_libraries = 'DDSocialShare/Wechat/WeChatSDK/*.a'
+    wechat.source_files = 'DDSocial/Wechat/Handler/*.{h,m}','DDSocial/Wechat/WeChatSDK/*.h'
+    wechat.ios.vendored_libraries = 'DDSocial/Wechat/WeChatSDK/*.a'
     wechat.libraries = 'z', 'sqlite3','stdc++'
     wechat.frameworks = 'SystemConfiguration','CoreTelephony'
     wechat.dependency 'DDSocial/Core'
   end
 
   s.subspec 'Sina' do |sina|
-    sina.source_files = 'DDSocialShare/Sina/*.{h,m}'
+    sina.source_files = 'DDSocial/Sina/*.{h,m}'
     sina.dependency 'WeiboSDK', '~> 3.1.3'   
     sina.dependency 'DDSocial/Core'
   end
 
   s.subspec 'Facebook' do |facebook|
-    facebook.source_files = 'DDSocialShare/Facebook/*.{h,m}'
+    facebook.source_files = 'DDSocial/Facebook/*.{h,m}'
     facebook.dependency 'FBSDKLoginKit', '~> 4.10.0'
     facebook.dependency 'FBSDKShareKit', '~> 4.10.0'
     facebook.dependency 'DDSocial/Core'
   end
 
   s.subspec 'Twitter' do |twitter|
-    twitter.source_files = 'DDSocialShare/Twitter/*.{h,m}'
+    twitter.source_files = 'DDSocial/Twitter/*.{h,m}'
     twitter.dependency 'TwitterKit','~> 1.15.1'
     twitter.dependency 'DDSocial/Core'
   end
@@ -56,7 +56,7 @@ Pod::Spec.new do |s|
   end
   
   s.subspec 'Share' do |share|
-    share.source_files  = 'DDSocialShare/Handler/*.{h,m}' 
+    share.source_files  = 'DDSocial/Handler/DDSocialShareHandler.{h,m}' 
     share.dependency 'DDSocial/Tencent'
     share.dependency 'DDSocial/Wechat'
     share.dependency 'DDSocial/Sina'
@@ -65,7 +65,7 @@ Pod::Spec.new do |s|
   end
 
   s.subspec 'Auth' do |auth|
-    auth.source_files = 'DDSocialAuth/*.{h,m}'
+    auth.source_files = 'DDSocial/Handler/DDSocialAuthHandler.{h,m}'
     auth.dependency 'DDSocial/MI'
     auth.dependency 'DDSocial/Share'
   end
