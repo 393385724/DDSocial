@@ -10,8 +10,16 @@
 
 @implementation DDAuthItem
 
+- (instancetype)init{
+    self = [super init];
+    if (self) {
+        self.isCodeAuth = YES;
+    }
+    return self;
+}
+
 - (NSString *)description{
-    return  [NSString stringWithFormat:@"thirdToken:%@\nthirdId:%@\nthirdTokenId:%@\n",self.thirdToken,self.thirdId,self.thirdTokenId];
+    return  [NSString stringWithFormat:@"thirdToken:%@\nthirdId:%@\nthirdTokenId:%@\nisCodeAuth:%@\n",self.thirdToken,self.thirdId,self.thirdTokenId,self.isCodeAuth ? @"YES":@"NO"];
 }
 
 @end

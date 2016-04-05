@@ -74,7 +74,7 @@
         return [[DDSocialShareHandler sharedInstance] authWithPlatform:authPlatform authMode:authMode controller:viewController handler:^(DDSSPlatform platform, DDSSAuthState state, id result, NSError *error) {
             DDAuthItem *authItem = nil;
             if (state == DDSSAuthStateSuccess) {
-                authItem = [self authItemWithResult:result platform:platform authMode:authMode];
+                authItem = [self authItemWithResult:result platform:platform];
             }
             authHandler(authPlatform, state, authItem, error);
         }];
@@ -83,7 +83,7 @@
 
 #pragma mark - Private Methods
 
-- (DDAuthItem *)authItemWithResult:(id)result platform:(DDSSPlatform)platform authMode:(DDSSAuthMode)mode{
+- (DDAuthItem *)authItemWithResult:(id)result platform:(DDSSPlatform)platform{
     DDAuthItem *authItem = [[DDAuthItem alloc] init];
     switch (platform) {
         case DDSSPlatformWeChat: {
@@ -102,6 +102,7 @@
             FBSDKAccessToken *token = (FBSDKAccessToken *)result;
             authItem.thirdToken = token.tokenString;
             authItem.thirdId = token.userID;
+            authItem.isCodeAuth = NO;
             break;
         }
         case DDSSPlatformTwitter: {

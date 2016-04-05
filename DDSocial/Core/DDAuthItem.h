@@ -11,6 +11,11 @@
 @interface DDAuthItem : NSObject
 
 /**
+ *  @brief 是不是code授权，defult YES (授权分为code授权和token授权)
+ */
+@property (nonatomic, assign) BOOL isCodeAuth;
+
+/**
  *  @brief 第三方获取的code或者token
  */
 @property (nonatomic, copy) NSString *thirdToken;
