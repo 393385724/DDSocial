@@ -133,6 +133,14 @@ const CGFloat DDFacebookImageDataMaxSize = 12 * 1024 * 1024;
 }
 
 - (BOOL)shareImageWithProtocol:(id<DDSocialShareImageProtocol>)protocol{
+    if (![[self class] isFacebookInstalled] && self.shareScene != DDSSSceneFBSession){
+        if (self.shareEventHandler) {
+            NSError *error = [NSError errorWithDomain:@"未安装Facebook客户端" code:-1 userInfo:@{NSLocalizedDescriptionKey:@"未安装Facebook客户端无法分享图片"}];
+            self.shareEventHandler(DDSSPlatformFacebook, self.shareScene, DDSSShareStateFail, error);
+            self.shareEventHandler = nil;
+        }
+        return NO;
+    }
     FBSDKSharePhoto *photo = [[FBSDKSharePhoto alloc] init];
     photo.image = [UIImage imageWithImageData:[protocol ddShareImageWithImageData] maxBytes:DDFacebookImageDataMaxSize];
     photo.userGenerated = YES;

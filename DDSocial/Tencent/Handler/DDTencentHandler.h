@@ -1,5 +1,5 @@
 //
-//  DDWeChatHandler.h
+//  DDTencentHandler.h
 //  DDSocialDemo
 //
 //  Created by lilingang on 16/1/4.
@@ -7,55 +7,52 @@
 //
 
 #import <Foundation/Foundation.h>
-#import "DDSocialShareEventDefs.h"
+#import "DDSocialEventDefs.h"
 
 @protocol DDSocialShareContentProtocol;
-@class UIViewController;
 
-@interface DDWeChatHandler : NSObject
+@interface DDTencentHandler : NSObject
 
 /**
- *  @brief  判断微信客户端是否安装
+ *  @brief  判断用户手机上是否安装手机QQ
  *
  *  @return YES ? 已经安装 : 未安装
  */
-+ (BOOL)isWeChatInstalled;
++ (BOOL)isQQInstalled;
 
 /**
- *  @brief 向微信终端程序注册第三方应用
+ *  @brief 向QQ终端程序注册第三方应用
  * 需要在每次启动第三方应用程序时调用。第一次调用后，会在微信的可用应用列表中出现。
  *
- *  @param appid 微信开发者ID
- *  @param appDescription 应用附加信息，长度不超过1024字节
+ *  @param appid Tencent开发者ID
  *
  *  @return YES ? 成功 : 失败
  */
-- (BOOL)registerApp:(NSString *)appid withDescription:(NSString *)appDescription;
+- (BOOL)registerApp:(NSString *)appid;
+
 
 /**
- *  @brief  处理微信通过URL启动App时传递的数据
+ *  @brief  处理QQ通过URL启动App时传递的数据
  *
- *  @param url 微信启动第三方应用时传递过来的URL
+ *  @param url QQ启动第三方应用时传递过来的URL
  *
  *  @return YES ? 成功返回 : 失败返回
  */
 - (BOOL)handleOpenURL:(NSURL *)url;
 
 /**
- *  @brief  微信授权
+ *  @brief  QQ授权
  *
  *  @param mode           授权的形式
- *  @param viewController 当前ViewController
  *  @param handler        回调方法
  *
  *  @return YES ? 唤起成功 : 唤起失败
  */
 - (BOOL)authWithMode:(DDSSAuthMode)mode
-          controller:(UIViewController *)viewController
              handler:(DDSSAuthEventHandler)handler;
 
 /**
- *  @brief  微信分享
+ *  @brief  分享内容
  *
  *  @param protocol       数据组装协议
  *  @param shareScene     分享场景
@@ -68,18 +65,5 @@
                shareScene:(DDSSScene)shareScene
               contentType:(DDSSContentType)contentType
                   handler:(DDSSShareEventHandler)handler;
-
-/**
- *  @brief  第三方通知微信，打开指定微信号profile页面
- *
- *  @param extMsg      如果用户加了该公众号为好友，extMsg会上传到服务器
- *  @param userName    跳转到该公众号的profile
- *  @param profileType 跳转的公众号类型
- *
- *  @return YES ? 成功 ： 失败
- */
-- (BOOL)JumpToBizProfileWithExtMsg:(NSString *)extMsg
-                          username:(NSString *)userName
-                       profileType:(int)profileType;
 
 @end

@@ -7,7 +7,7 @@
 //
 
 #import <Foundation/Foundation.h>
-#import "DDSocialShareEventDefs.h"
+#import "DDSocialEventDefs.h"
 
 @protocol DDSocialShareContentProtocol;
 @class UIViewController;

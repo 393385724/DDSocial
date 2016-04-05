@@ -7,7 +7,7 @@
 //
 
 #import <Foundation/Foundation.h>
-#import "DDSocialShareTypeDefs.h"
+#import "DDSocialTypeDefs.h"
 
 @class UIImage;
 

@@ -1,14 +1,14 @@
 //
-//  DDSocialShareEventDefs.h
+//  DDSocialEventDefs.h
 //  DDSocialDemo
 //
 //  Created by lilingang on 16/1/4.
 //  Copyright © 2016年 LiLingang. All rights reserved.
 //
 
-#ifndef DDSocialShareEventDefs_h
-#define DDSocialShareEventDefs_h
-#import "DDSocialShareTypeDefs.h"
+#ifndef DDSocialEventDefs_h
+#define DDSocialEventDefs_h
+#import "DDSocialTypeDefs.h"
 
 /**
  *  @brief  授权事件处理器
@@ -30,4 +30,4 @@ typedef void(^DDSSAuthEventHandler) (DDSSPlatform platform, DDSSAuthState state,
  */
 typedef void(^DDSSShareEventHandler) (DDSSPlatform platform, DDSSScene scene, DDSSShareState state, NSError *error);
 
-#endif /* DDSocialShareEventDefs_h */
+#endif /* DDSocialEventDefs_h */

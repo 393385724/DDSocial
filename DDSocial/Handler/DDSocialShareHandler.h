@@ -7,7 +7,7 @@
 //
 
 #import <Foundation/Foundation.h>
-#import "DDSocialShareEventDefs.h"
+#import "DDSocialEventDefs.h"
 #import "DDSocialShareContentProtocol.h"
 #import "DDLinkupItem.h"
 

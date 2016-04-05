@@ -7,20 +7,23 @@
 //
 
 #import <Foundation/Foundation.h>
-#import "DDSocialAuthDefs.h"
+#import "DDSocialTypeDefs.h"
+#import "DDSocialEventDefs.h"
 #import "DDAuthItem.h"
 
 @class UIViewController;
 
+/**
+ *  @brief 授权类
+ */
 @interface DDSocialAuthHandler : NSObject
 
 + (DDSocialAuthHandler *)sharedInstance;
 
-- (void)registerPlatform:(DDAuthPlatform)platform
-             redirectURL:(NSString *)redirectURL;
+- (void)registerMIApp:(NSString *)appid
+          redirectURL:(NSString *)redirectURL;
 
-- (BOOL)authWithPlatform:(DDAuthPlatform)authPlatform
-                    mode:(DDAuthMode)mode
+- (BOOL)authWithPlatform:(DDSSPlatform)authPlatform
               controller:(UIViewController *)viewController
-             authHandler:(DDAuthEventHandler)authHandler;
+             authHandler:(DDSSAuthEventHandler)authHandler;
 @end

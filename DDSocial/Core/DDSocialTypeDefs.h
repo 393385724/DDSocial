@@ -1,13 +1,13 @@
 //
-//  DDSocialShareTypeDefs.h.h
+//  DDSocialTypeDefs.h.h
 //  DDSocialDemo
 //
 //  Created by lilingang on 16/1/4.
 //  Copyright © 2016年 LiLingang. All rights reserved.
 //
 
-#ifndef DDSocialShareTypeDefs_h
-#define DDSocialShareTypeDefs_h
+#ifndef DDSocialTypeDefs_h
+#define DDSocialTypeDefs_h
 
 /**
  *  @brief  定义了第三方平台
@@ -17,6 +17,7 @@ typedef NS_ENUM(NSUInteger, DDSSPlatform) {
     DDSSPlatformWeChat,       //**< 微信      */
     DDSSPlatformQQ,           //**< QQ客户端   */
     DDSSPlatformSina,         //**< 新浪微博   */
+    DDSSPlatformMI,           //**< 小米       */
     DDSSPlatformFacebook,     //**< Facebook  */
     DDSSPlatformTwitter,      //**< Twitter   */
 };
@@ -38,7 +39,6 @@ typedef NS_ENUM(NSUInteger, DDSSAuthState) {
     DDSSAuthStateFail,        /**< 失败 */
     DDSSAuthStateCancel,      /**< 取消 */
 };
-
 
 
 /**
@@ -75,4 +75,4 @@ typedef NS_ENUM(NSUInteger, DDSSShareState) {
 };
 
 
-#endif /* DDSocialShareTypeDefs_h */
+#endif /* DDSocialTypeDefs_h */
