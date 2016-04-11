@@ -1,7 +1,7 @@
 Pod::Spec.new do |s|  
   s.name             = "DDSocial"  
-  s.version          = "1.0.1"  
-  s.summary          = "A share auth wheels based on the official library content wecaht sina tencent facebook twitter mi"  
+  s.version          = "1.1.0"  
+  s.summary          = "A share auth wheels based on the official library content wecaht sina tencent facebook twitter google mi"  
   s.homepage         = "https://github.com/393385724/DDSocial"  
   s.license          = 'MIT'  
   s.author           = { "llg" => "393385724@qq.com" }  
@@ -54,6 +54,10 @@ Pod::Spec.new do |s|
   s.subspec 'MI' do |mi|
     mi.dependency 'DDMISDK', '~> 1.0.1' 
   end
+
+  s.subspec 'Google' do |google|
+    google.dependency 'Google/SignIn', '~> 2.0.3' 
+  end
   
   s.subspec 'Share' do |share|
     share.source_files  = 'DDSocial/Handler/DDSocialShareHandler.{h,m}' 
@@ -68,5 +72,6 @@ Pod::Spec.new do |s|
     auth.source_files = 'DDSocial/Handler/DDSocialAuthHandler.{h,m}'
     auth.dependency 'DDSocial/MI'
     auth.dependency 'DDSocial/Share'
+    auth.dependency 'DDSocial/Google'
   end
 end  

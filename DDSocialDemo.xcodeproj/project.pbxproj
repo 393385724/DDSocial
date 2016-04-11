@@ -19,6 +19,7 @@
 		9077C9581CB3757F00B8CC4D /* DDShareTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9077C9561CB3757F00B8CC4D /* DDShareTableViewController.m */; };
 		9077C9591CB3757F00B8CC4D /* DDShareTableViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9077C9571CB3757F00B8CC4D /* DDShareTableViewController.xib */; };
 		9077C95C1CB380BE00B8CC4D /* IMG_5644.JPG in Resources */ = {isa = PBXBuildFile; fileRef = 9077C95B1CB380BE00B8CC4D /* IMG_5644.JPG */; };
+		90EEC2B91CBB42EC002B5BC2 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 90EEC2B81CBB42EC002B5BC2 /* GoogleService-Info.plist */; };
 		A5EABFEA4CFAB378EA57F1A1 /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 36C6F1FA94852589A67D9F80 /* libPods.a */; };
 /* End PBXBuildFile section */
 
@@ -43,6 +44,7 @@
 		9077C9561CB3757F00B8CC4D /* DDShareTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DDShareTableViewController.m; sourceTree = "<group>"; };
 		9077C9571CB3757F00B8CC4D /* DDShareTableViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = DDShareTableViewController.xib; sourceTree = "<group>"; };
 		9077C95B1CB380BE00B8CC4D /* IMG_5644.JPG */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = IMG_5644.JPG; sourceTree = "<group>"; };
+		90EEC2B81CBB42EC002B5BC2 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		E8E8E54F171DC7DC0FEFA021 /* Pods.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.release.xcconfig; path = "Pods/Target Support Files/Pods/Pods.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -102,6 +104,7 @@
 				9077C8A71CB3630300B8CC4D /* Main.storyboard */,
 				9077C8AA1CB3630300B8CC4D /* Assets.xcassets */,
 				9077C8AC1CB3630300B8CC4D /* LaunchScreen.storyboard */,
+				90EEC2B81CBB42EC002B5BC2 /* GoogleService-Info.plist */,
 				9077C8AF1CB3630300B8CC4D /* Info.plist */,
 				9077C89E1CB3630300B8CC4D /* Supporting Files */,
 			);
@@ -186,6 +189,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				9077C8AE1CB3630300B8CC4D /* LaunchScreen.storyboard in Resources */,
+				90EEC2B91CBB42EC002B5BC2 /* GoogleService-Info.plist in Resources */,
 				9077C8AB1CB3630300B8CC4D /* Assets.xcassets in Resources */,
 				9077C8A91CB3630300B8CC4D /* Main.storyboard in Resources */,
 				9077C9591CB3757F00B8CC4D /* DDShareTableViewController.xib in Resources */,
@@ -368,7 +372,7 @@
 				ENABLE_BITCODE = NO;
 				INFOPLIST_FILE = DDSocialDemo/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = DD.DDSocialDemo;
+				PRODUCT_BUNDLE_IDENTIFIER = com.huami.DDSocial;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};
 			name = Debug;
@@ -381,7 +385,7 @@
 				ENABLE_BITCODE = NO;
 				INFOPLIST_FILE = DDSocialDemo/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = DD.DDSocialDemo;
+				PRODUCT_BUNDLE_IDENTIFIER = com.huami.DDSocial;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};
 			name = Release;
