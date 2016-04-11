@@ -9,6 +9,8 @@
 #import "DDSocialAuthHandler.h"
 #import "DDSocialShareHandler.h"
 #import <FBSDKCoreKit/FBSDKAccessToken.h>
+#import <GoogleSignIn/GIDGoogleUser.h>
+#import <GoogleSignIn/GIDAuthentication.h>
 
 #import "DDMIHandler.h"
 
@@ -107,6 +109,13 @@
         }
         case DDSSPlatformTwitter: {
             
+            break;
+        }
+        case DDSSPlatformGoogle:{
+            GIDGoogleUser *googleUser = (GIDGoogleUser *)result;
+            authItem.thirdToken = googleUser.authentication.accessToken;
+            authItem.isCodeAuth = NO;
+            authItem.thirdId = googleUser.userID;
             break;
         }
         default: {

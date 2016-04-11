@@ -42,11 +42,12 @@
 
 - (BOOL)authWithViewController:(UIViewController *)viewController
                        handler:(DDSSAuthEventHandler)handler{
-    if (handler) {
+    if (!handler) {
         return NO;
     }
+    self.viewController = viewController;
     self.authEventHandler = handler;
-    
+    self.authEventHandler(DDSSPlatformGoogle, DDSSAuthStateBegan, nil, nil);
     [GIDSignIn sharedInstance].delegate = self;
     [GIDSignIn sharedInstance].uiDelegate = self;
     [[GIDSignIn sharedInstance] signIn];
@@ -58,43 +59,40 @@
 - (void)signIn:(GIDSignIn *)signIn
 didSignInForUser:(GIDGoogleUser *)user
      withError:(NSError *)error {
-    // Perform any operations on signed in user here.
-    NSString *userId = user.userID;                  // For client-side use only!
-    NSString *idToken = user.authentication.idToken; // Safe to send to the server
-    NSString *fullName = user.profile.name;
-    NSString *givenName = user.profile.givenName;
-    NSString *familyName = user.profile.familyName;
-    NSString *email = user.profile.email;
-    // ...
+    if (self.authEventHandler) {
+        if (error) {
+            if (error.code == kGIDSignInErrorCodeCanceled) {
+                self.authEventHandler(DDSSPlatformGoogle, DDSSAuthStateCancel, nil, nil);
+            } else {
+                self.authEventHandler(DDSSPlatformGoogle, DDSSAuthStateFail, nil, error);
+            }
+        } else {
+            self.authEventHandler(DDSSPlatformGoogle, DDSSAuthStateSuccess, user, nil);
+        }
+    }
+    self.authEventHandler = nil;
 }
 
 - (void)signIn:(GIDSignIn *)signIn
 didDisconnectWithUser:(GIDGoogleUser *)user
      withError:(NSError *)error {
-    // Perform any operations when the user disconnects from app here.
-    // ...
+    if (self.authEventHandler) {
+        self.authEventHandler(DDSSPlatformGoogle, DDSSAuthStateFail, user, error);
+        self.authEventHandler = nil;
+    }
 }
 
 #pragma mark - GIDSignInUIDelegate
 
-// The sign-in flow has finished selecting how to proceed, and the UI should no longer display
-// a spinner or other "please wait" element.
 - (void)signInWillDispatch:(GIDSignIn *)signIn error:(NSError *)error{
-    
 }
 
-// If implemented, this method will be invoked when sign in needs to display a view controller.
-// The view controller should be displayed modally (via UIViewController's |presentViewController|
-// method, and not pushed unto a navigation controller's stack.
 - (void)signIn:(GIDSignIn *)signIn presentViewController:(UIViewController *)viewController{
     [self.viewController presentViewController:viewController animated:YES completion:^{
         
     }];
 }
 
-// If implemented, this method will be invoked when sign in needs to dismiss a view controller.
-// Typically, this should be implemented by calling |dismissViewController| on the passed
-// view controller.
 - (void)signIn:(GIDSignIn *)signIn dismissViewController:(UIViewController *)viewController{
     [self.viewController dismissViewControllerAnimated:YES completion:^{
         

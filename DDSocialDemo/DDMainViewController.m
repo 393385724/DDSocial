@@ -26,8 +26,4 @@
     [self.navigationController pushViewController:viewController animated:YES];
 }
 
-- (IBAction)googleLoginButtonAction:(id)sender {
-
-    
-}
 @end

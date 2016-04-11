@@ -29,12 +29,12 @@
 
     [[DDSocialAuthHandler sharedInstance] registerMIApp:@"2882303761517373163" redirectURL:@"http://xiaomi.com"];
     
-    [[DDSocialShareHandler sharedInstance] registerPlatform:DDSSPlatformMI appKey:@"2882303761517373163" appSecret:@"" redirectURL:@"http://xiaomi.com" appDescription:@""];
-    [[DDSocialShareHandler sharedInstance] registerPlatform:DDSSPlatformWeChat appKey:@"wxd930ea5d5a258f4f" appSecret:@"" redirectURL:@"" appDescription:@""];
-    [[DDSocialShareHandler sharedInstance] registerPlatform:DDSSPlatformSina appKey:@"2045436852" appSecret:@"" redirectURL:@"" appDescription:@""];
-    [[DDSocialShareHandler sharedInstance] registerPlatform:DDSSPlatformQQ appKey:@"222222" appSecret:@"" redirectURL:@"" appDescription:@""];
-    [[DDSocialShareHandler sharedInstance] registerPlatform:DDSSPlatformFacebook appKey:@"125938537776820" appSecret:@"" redirectURL:@"" appDescription:@""];
-    [[DDSocialShareHandler sharedInstance] registerPlatform:DDSSPlatformGoogle appKey:@"" appSecret:@"" redirectURL:@"" appDescription:@""];
+    [[DDSocialShareHandler sharedInstance] registerPlatform:DDSSPlatformMI appKey:@"2882303761517373163"redirectURL:@"http://xiaomi.com"];
+    [[DDSocialShareHandler sharedInstance] registerPlatform:DDSSPlatformWeChat appKey:@"wxd930ea5d5a258f4f"];
+    [[DDSocialShareHandler sharedInstance] registerPlatform:DDSSPlatformSina appKey:@"2045436852"];
+    [[DDSocialShareHandler sharedInstance] registerPlatform:DDSSPlatformQQ appKey:@"222222"];
+    [[DDSocialShareHandler sharedInstance] registerPlatform:DDSSPlatformFacebook appKey:@"125938537776820"];
+    [[DDSocialShareHandler sharedInstance] registerPlatform:DDSSPlatformGoogle appKey:@""];
     
     return YES;
 }

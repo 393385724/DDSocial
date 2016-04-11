@@ -35,28 +35,15 @@
                         <action selector="authButtonAction:" destination="-1" eventType="touchUpInside" id="A2g-qN-fUa"/>
                     </connections>
                 </button>
-                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="HAU-Zb-i0E">
-                    <rect key="frame" x="40" y="420" width="295" height="44"/>
-                    <constraints>
-                        <constraint firstAttribute="height" constant="44" id="OWF-dF-cg3"/>
-                    </constraints>
-                    <state key="normal" title="Google Login"/>
-                    <connections>
-                        <action selector="googleLoginButtonAction:" destination="-1" eventType="touchUpInside" id="lb2-ra-LgW"/>
-                    </connections>
-                </button>
             </subviews>
             <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
             <constraints>
                 <constraint firstAttribute="trailing" secondItem="9qJ-15-LvH" secondAttribute="trailing" constant="40" id="6Ko-D6-ahS"/>
-                <constraint firstItem="HAU-Zb-i0E" firstAttribute="top" secondItem="duO-yS-dYK" secondAttribute="bottom" constant="60" id="Szz-vD-tfc"/>
-                <constraint firstItem="HAU-Zb-i0E" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" constant="40" id="XuU-Rz-akj"/>
                 <constraint firstItem="duO-yS-dYK" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" constant="40" id="g0B-Im-w2b"/>
                 <constraint firstAttribute="trailing" secondItem="duO-yS-dYK" secondAttribute="trailing" constant="40" id="ijV-40-hXb"/>
                 <constraint firstItem="9qJ-15-LvH" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" constant="40" id="lqe-D0-E4X"/>
                 <constraint firstItem="9qJ-15-LvH" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" constant="160" id="mXm-w0-yxN"/>
                 <constraint firstItem="duO-yS-dYK" firstAttribute="top" secondItem="9qJ-15-LvH" secondAttribute="bottom" constant="100" id="pHq-7L-d5f"/>
-                <constraint firstAttribute="trailing" secondItem="HAU-Zb-i0E" secondAttribute="trailing" constant="40" id="y53-g8-Lsh"/>
             </constraints>
             <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina47"/>
             <point key="canvasLocation" x="388.5" y="265.5"/>

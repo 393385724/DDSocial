@@ -146,6 +146,8 @@
         return [self.tencentHandler authWithMode:authMode handler:handler];
     } else if (platform == DDSSPlatformFacebook){
         return [self.facebookHandler authWithMode:authMode controller:viewController handler:handler];
+    } else if (platform == DDSSPlatformGoogle){
+        return [self.googleHandler authWithViewController:viewController handler:handler];
     }
     return YES;
 }

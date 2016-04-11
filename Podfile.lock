@@ -83,13 +83,13 @@ EXTERNAL SOURCES:
 
 CHECKOUT OPTIONS:
   DDSocial:
-    :commit: cf0d257a97c25b4ecd801ca404d9c6d294a7c7fd
+    :commit: 9da4f17c34ef1de163272b553c19065ffb7e3503
     :git: https://github.com/393385724/DDSocial.git
 
 SPEC CHECKSUMS:
   Bolts: a0058fa3b331c5a1e4402d534f2dae36dbff31e4
   DDMISDK: 3e10670cd7847c85a3c8a52be6e02e64145a9134
-  DDSocial: 403e57538631e91befe75d68a778768327feee2a
+  DDSocial: 99a18117a0377c12fe5f3c0711829c73ea82682e
   Fabric: caf7580c725e64db144f610ac65cd60956911dc7
   FBSDKCoreKit: d2aaed5e9ab7d8d6301c533376a1fbff1cf3deb5
   FBSDKLoginKit: 699ff169080e3072de4b9b0faca90bf23dc36deb
