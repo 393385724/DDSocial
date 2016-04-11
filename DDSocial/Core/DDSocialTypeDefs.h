@@ -20,6 +20,7 @@ typedef NS_ENUM(NSUInteger, DDSSPlatform) {
     DDSSPlatformMI,           //**< 小米       */
     DDSSPlatformFacebook,     //**< Facebook  */
     DDSSPlatformTwitter,      //**< Twitter   */
+    DDSSPlatformGoogle,       //**< Google    */
 };
 
 /**

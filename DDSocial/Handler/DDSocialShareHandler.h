@@ -45,6 +45,31 @@
  */
 + (BOOL)canShareToScence:(DDSSScene)scene;
 
+/**
+ *  @brief  在app启动的时候调用,完成第三方应用的注册
+ *  @code
+ - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
+ *  @endcode
+ *
+ *  @param platform    各应用平台
+ *  @param appKey      线下申请的appKey,必传参数
+ */
+- (void)registerPlatform:(DDSSPlatform)platform
+                  appKey:(NSString *)appKey;
+
+/**
+ *  @brief  在app启动的时候调用,完成第三方应用的注册
+ *  @code
+ - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
+ *  @endcode
+ *
+ *  @param platform    各应用平台
+ *  @param appKey      线下申请的appKey,必传参数
+ *  @param redirectURL 线下填写的redirectURL,没有则不传
+ */
+- (void)registerPlatform:(DDSSPlatform)platform
+                  appKey:(NSString *)appKey
+             redirectURL:(NSString *)redirectURL;
 
 /**
  *  @brief  在app启动的时候调用,完成第三方应用的注册
@@ -63,6 +88,7 @@
                appSecret:(NSString *)appSecret
              redirectURL:(NSString *)redirectURL
           appDescription:(NSString *)appDescription;
+
 
 /**
  *  @brief  处理请求打开链接,如果集成新浪微博(SSO)、Facebook(SSO)、微信、QQ分享功能需要加入此方法

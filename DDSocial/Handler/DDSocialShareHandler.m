@@ -13,6 +13,7 @@
 #import "DDSinaHandler.h"
 #import "DDTencentHandler.h"
 #import "DDFacebookHandler.h"
+#import "DDGoogleHandler.h"
 
 @interface DDSocialShareHandler ()
 
@@ -20,6 +21,7 @@
 @property (nonatomic, strong) DDSinaHandler     *sinaHandler;
 @property (nonatomic, strong) DDTencentHandler  *tencentHandler;
 @property (nonatomic, strong) DDFacebookHandler *facebookHandler;
+@property (nonatomic, strong) DDGoogleHandler   *googleHandler;
 @end
 
 @implementation DDSocialShareHandler
@@ -65,6 +67,19 @@
     }
 }
 
+
+
+- (void)registerPlatform:(DDSSPlatform)platform
+                  appKey:(NSString *)appKey{
+    [self registerPlatform:platform appKey:appKey appSecret:@"" redirectURL:@"" appDescription:@""];
+}
+
+- (void)registerPlatform:(DDSSPlatform)platform
+                  appKey:(NSString *)appKey
+             redirectURL:(NSString *)redirectURL{
+    [self registerPlatform:platform appKey:appKey appSecret:@"" redirectURL:redirectURL appDescription:@""];
+}
+
 - (void)registerPlatform:(DDSSPlatform)platform
                   appKey:(NSString *)appKey
                appSecret:(NSString *)appSecret
@@ -78,6 +93,8 @@
         [self.tencentHandler registerApp:appKey];
     } else if (platform == DDSSPlatformFacebook){
         [self.facebookHandler registerApp];
+    } else if (platform == DDSSPlatformGoogle){
+        [self.googleHandler registerApp];
     }
 }
 
@@ -101,6 +118,10 @@
     if (canFacebookOpen) {
         return YES;
     }
+    BOOL canGooleOpen = [self.googleHandler application:application handleOpenURL:url sourceApplication:sourceApplication annotation:annotation];
+    if (canGooleOpen) {
+        return YES;
+    }
     return NO;
 }
 
@@ -108,7 +129,8 @@
             openURL:(NSURL *)url
             options:(NSDictionary<NSString *,id> *)options{
     NSString *sourceApplicationKey = options[UIApplicationOpenURLOptionsSourceApplicationKey];
-    return [self application:app handleOpenURL:url sourceApplication:sourceApplicationKey annotation:nil];
+    id annotationApplicationKey = options[UIApplicationOpenURLOptionsAnnotationKey];
+    return [self application:app handleOpenURL:url sourceApplication:sourceApplicationKey annotation:annotationApplicationKey];
 }
 
 
@@ -232,5 +254,12 @@
         _facebookHandler = [[DDFacebookHandler alloc] init];
     }
     return _facebookHandler;
+}
+
+- (DDGoogleHandler *)googleHandler{
+    if (!_googleHandler) {
+        _googleHandler = [[DDGoogleHandler alloc] init];
+    }
+    return _googleHandler;
 }
 @end

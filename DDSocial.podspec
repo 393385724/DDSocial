@@ -51,12 +51,12 @@ Pod::Spec.new do |s|
     twitter.dependency 'DDSocial/Core'
   end
   
+  s.subspec 'Google' do |google|
+    google.source_files = 'DDSocial/Google/*.{h,m}'
+    google.dependency 'Google/SignIn', '~> 2.0.3' 
+  end
   s.subspec 'MI' do |mi|
     mi.dependency 'DDMISDK', '~> 1.0.1' 
-  end
-
-  s.subspec 'Google' do |google|
-    google.dependency 'Google/SignIn', '~> 2.0.3' 
   end
   
   s.subspec 'Share' do |share|
