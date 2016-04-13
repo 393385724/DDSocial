@@ -8,7 +8,6 @@
 
 #import "DDTencentHandler.h"
 #import <TencentOpenAPI/TencentOAuth.h>
-#import <TencentOpenAPI/TencentApiInterface.h>
 #import <TencentOpenAPI/QQApiInterface.h>
 
 #import "DDSocialShareContentProtocol.h"
@@ -51,7 +50,7 @@ const CGFloat DDTencentImageDataMaxSize = 5 * 1024.0 * 1024.0;
     if ([TencentOAuth CanHandleOpenURL:url]) {
         return [TencentOAuth HandleOpenURL:url];
     } else {
-        return [TencentApiInterface handleOpenURL:url delegate:self];
+        return [QQApiInterface handleOpenURL:url delegate:self];
     }
 }
 

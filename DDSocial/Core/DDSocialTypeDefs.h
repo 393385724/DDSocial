@@ -18,6 +18,7 @@ typedef NS_ENUM(NSUInteger, DDSSPlatform) {
     DDSSPlatformQQ,           //**< QQ客户端   */
     DDSSPlatformSina,         //**< 新浪微博   */
     DDSSPlatformMI,           //**< 小米       */
+    DDSSPlatformMiLiao,       //**< 米聊       */
     DDSSPlatformFacebook,     //**< Facebook  */
     DDSSPlatformTwitter,      //**< Twitter   */
     DDSSPlatformGoogle,       //**< Google    */
@@ -51,6 +52,8 @@ typedef NS_ENUM(NSUInteger, DDSSScene) {
     DDSSSceneQQFrined,      /**< QQ好友      */
     DDSSSceneQZone,         /**< QQ空间      */
     DDSSSceneSina,          /**< 新浪微博     */
+    DDSSSceneMiLiaoSession, /**< 米聊聊天界面  */
+    DDSSSceneMiLiaoTimeline,/**< 米聊朋友圈    */
     DDSSSceneFBSession,     /**< Facebook聊天页面  */
     DDSSSceneFBTimeline,    /**< Facebook朋友圈   */
     DDSSSceneTwitter,       /**< Twitter    */

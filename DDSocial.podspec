@@ -51,6 +51,12 @@ Pod::Spec.new do |s|
     twitter.dependency 'DDSocial/Core'
   end
   
+  s.subspec 'MiLiao' do |miliao|
+    miliao.source_files = 'DDSocial/MiLiao/Handler/*.{h,m}'
+    miliao.ios.vendored_frameworks = 'DDSocial/MiLiao/MiLiaoSDK/*.framework'
+    miliao.dependency 'DDSocial/Core'
+  end
+  
   s.subspec 'Google' do |google|
     google.source_files = 'DDSocial/Google/*.{h,m}'
     google.dependency 'Google/SignIn', '~> 2.0.3' 
@@ -66,6 +72,7 @@ Pod::Spec.new do |s|
     share.dependency 'DDSocial/Sina'
     share.dependency 'DDSocial/Facebook'
     share.dependency 'DDSocial/Twitter'
+    share.dependency 'DDSocial/MiLiao'
   end
 
   s.subspec 'Auth' do |auth|

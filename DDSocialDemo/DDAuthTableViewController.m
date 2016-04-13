@@ -19,7 +19,7 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    _dataSource = @[@"微信",@"小米",@"Facebook",@"Google"];
+    _dataSource = @[@"微信",@"小米",@"QQ",@"Sina",@"Facebook",@"Google",@"Twitter"];
 }
 
 #pragma mark - Table view data source
@@ -51,9 +51,15 @@
     } else if (indexPath.row == 1){
         platform = DDSSPlatformMI;
     } else if (indexPath.row == 2){
-        platform = DDSSPlatformFacebook;
+        platform = DDSSPlatformQQ;
     } else if (indexPath.row == 3){
+        platform = DDSSPlatformSina;
+    } else if (indexPath.row == 4){
+        platform = DDSSPlatformFacebook;
+    } else if (indexPath.row == 5){
         platform = DDSSPlatformGoogle;
+    } else if (indexPath.row == 6){
+        platform = DDSSPlatformTwitter;
     }
     [[DDSocialAuthHandler sharedInstance] authWithPlatform:platform controller:self authHandler:^(DDSSPlatform platform, DDSSAuthState state, id result, NSError *error) {
         switch (state) {

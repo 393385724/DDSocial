@@ -14,6 +14,8 @@
 #import "DDTencentHandler.h"
 #import "DDFacebookHandler.h"
 #import "DDGoogleHandler.h"
+#import "DDTwitterHandler.h"
+#import "DDMiLiaoHandler.h"
 
 @interface DDSocialShareHandler ()
 
@@ -22,6 +24,9 @@
 @property (nonatomic, strong) DDTencentHandler  *tencentHandler;
 @property (nonatomic, strong) DDFacebookHandler *facebookHandler;
 @property (nonatomic, strong) DDGoogleHandler   *googleHandler;
+@property (nonatomic, strong) DDTwitterHandler  *twitterHandler;
+@property (nonatomic, strong) DDMiLiaoHandler   *miliaoHandler;
+
 @end
 
 @implementation DDSocialShareHandler
@@ -46,8 +51,11 @@
         return [DDTencentHandler isQQInstalled];
     } else if (platform == DDSSPlatformFacebook){
         return [DDFacebookHandler isFacebookInstalled];
+    } else if (platform == DDSSPlatformTwitter){
+        return [DDTwitterHandler isTwitterInstalled];
+    } else if (platform == DDSSPlatformMiLiao){
+        return [DDMiLiaoHandler isMiLiaoInstalled];
     }
-
     return YES;
 }
 
@@ -62,12 +70,14 @@
         return [DDFacebookHandler isMessengerInstalled];
     } else if (scene == DDSSSceneFBTimeline){
         return [self isInstalledPlatform:DDSSPlatformFacebook];
+    } else if (scene == DDSSSceneTwitter){
+        return [self isInstalledPlatform:DDSSPlatformTwitter];
+    } else if (scene == DDSSSceneMiLiaoSession || scene == DDSSSceneMiLiaoTimeline){
+        return [self isInstalledPlatform:DDSSPlatformMiLiao];
     } else {
         return NO;
     }
 }
-
-
 
 - (void)registerPlatform:(DDSSPlatform)platform
                   appKey:(NSString *)appKey{
@@ -95,6 +105,10 @@
         [self.facebookHandler registerApp];
     } else if (platform == DDSSPlatformGoogle){
         [self.googleHandler registerApp];
+    } else if (platform == DDSSPlatformTwitter){
+
+    } else if (platform == DDSSPlatformMiLiao){
+        [self.miliaoHandler registerApp];
     }
 }
 
@@ -120,6 +134,11 @@
     }
     BOOL canGooleOpen = [self.googleHandler application:application handleOpenURL:url sourceApplication:sourceApplication annotation:annotation];
     if (canGooleOpen) {
+        return YES;
+    }
+    
+    BOOL canMiliaoOpen = [self.miliaoHandler handleOpenURL:url];
+    if (canMiliaoOpen) {
         return YES;
     }
     return NO;
@@ -170,6 +189,10 @@
         return [self.tencentHandler shareWithProtocol:protocol shareScene:shareScene contentType:contentType handler:handler];
     } else if (platform == DDSSPlatformFacebook){
         return [self.facebookHandler shareWithViewController:viewController protocol:protocol shareScene:shareScene contentType:contentType handler:handler];
+    } else if (platform == DDSSPlatformTwitter){
+        return [self.twitterHandler shareWithViewController:viewController protocol:protocol contentType:contentType handler:handler];
+    } else if (platform == DDSSPlatformMiLiao){
+        return [self.miliaoHandler shareWithProtocol:protocol shareScene:shareScene contentType:contentType handler:handler];
     }
     return YES;
 }
@@ -263,5 +286,19 @@
         _googleHandler = [[DDGoogleHandler alloc] init];
     }
     return _googleHandler;
+}
+
+- (DDTwitterHandler *)twitterHandler{
+    if (!_twitterHandler) {
+        _twitterHandler = [[DDTwitterHandler alloc] init];
+    }
+    return _twitterHandler;
+}
+
+- (DDMiLiaoHandler *)miliaoHandler{
+    if (!_miliaoHandler) {
+        _miliaoHandler = [[DDMiLiaoHandler alloc] init];
+    }
+    return _miliaoHandler;
 }
 @end
