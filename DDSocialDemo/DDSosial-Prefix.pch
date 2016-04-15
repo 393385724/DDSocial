@@ -1,0 +1,16 @@
+//
+//  DDSosial-Prefix.pch
+//  DDSocialDemo
+//
+//  Created by lilingang on 16/4/15.
+//  Copyright © 2016年 LiLingang. All rights reserved.
+//
+
+#ifndef DDSosial_Prefix_pch
+#define DDSosial_Prefix_pch
+
+#import <UIKit/UIKit.h>
+#import <Foundation/Foundation.h>
+#import <QuartzCore/QuartzCore.h>
+
+#endif /* DDSosial_Prefix_pch */

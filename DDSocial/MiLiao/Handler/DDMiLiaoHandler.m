@@ -125,9 +125,9 @@ CGFloat const DDMiLiaoImageDataMaxSize = 200 * 1024.0;
 - (BOOL)sendWithText:(NSString *)text
         mediaMessage:(MLMediaMessage *)message{
     int scene = SceneType_Chat;
-    if (self.shareScene == DDSSShareSceneMiLiaoSession) {
+    if (self.shareScene == DDSSSceneMiLiaoSession) {
         scene = SceneType_Chat;
-    } else if (self.shareScene == DDSSShareSceneMiLiaoTimeline){
+    } else if (self.shareScene == DDSSSceneMiLiaoTimeline){
         scene = SceneType_Wall;
     }
     MLMessageRequest *messageToMiLiaoReq = [[MLMessageRequest alloc] initWithUuid:nil targetMiliaoId:nil];

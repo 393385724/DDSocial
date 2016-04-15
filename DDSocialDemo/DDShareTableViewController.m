@@ -22,8 +22,8 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     [self.tableView registerClass:[UITableViewCell class] forCellReuseIdentifier:@"UITableViewCell"];
-    self.sectionArray = @[@"WechatTimeline",@"WechatSession",@"sina",@"QQFriend",@"QZone",@"fbSession",@"fbTimeline",@"TwitterTimeline"];
-    self.shareContentArray = @[@"share text",@"share image",@"share webpage"];
+    self.sectionArray = @[@"微信朋友圈",@"微信好友",@"新浪",@"QQ好友",@"QQ空间",@"Facebook好友",@"Facebook朋友圈",@"Twitter",@"米聊好友",@"米聊朋友圈"];
+    self.shareContentArray = @[@"纯文本",@"图片",@"网页"];
 }
 
 #pragma mark - Table view data source
@@ -87,6 +87,8 @@
         return DDSSPlatformFacebook;
     } else if(section == 7){
         return DDSSPlatformTwitter;
+    } else if (section == 8 || section == 9){
+        return DDSSPlatformMiLiao;
     }
     return DDSSPlatformWeChat;
 }
@@ -108,6 +110,10 @@
         return DDSSSceneFBTimeline;
     } else if (section == 7){
         return DDSSSceneTwitter;
+    } else if (section == 8){
+        return DDSSSceneMiLiaoSession;
+    } else if (section == 9){
+        return DDSSSceneMiLiaoTimeline;
     } else {
         return DDSSSceneWXTimeline;
     }

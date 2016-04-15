@@ -17,7 +17,7 @@
 const CGFloat DDTencentThumbnailDataMaxSize = 1 * 1024.0 * 1024.0;
 const CGFloat DDTencentImageDataMaxSize = 5 * 1024.0 * 1024.0;
 
-@interface DDTencentHandler ()<TencentSessionDelegate,TencentApiInterfaceDelegate>
+@interface DDTencentHandler ()<TencentSessionDelegate,QQApiInterfaceDelegate>
 
 @property (nonatomic, strong) TencentOAuth *tencentOAuth;
 
