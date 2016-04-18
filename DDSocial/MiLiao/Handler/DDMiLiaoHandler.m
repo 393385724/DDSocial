@@ -17,6 +17,7 @@
 #import <MiLiaoAppSDK/MLAppErrorDefine.h>
 
 #import "DDSocialShareContentProtocol.h"
+#import "DDSocialHandlerProtocol.h"
 #import "UIImage+Zoom.h"
 
 CGFloat const DDMiLiaoThumbnailDataMaxSize = 15 * 1024.0;
@@ -30,48 +31,6 @@ CGFloat const DDMiLiaoImageDataMaxSize = 200 * 1024.0;
 @end
 
 @implementation DDMiLiaoHandler
-
-+ (BOOL)isMiLiaoInstalled{
-    return [MLAppApi isMLAppInstalled];
-}
-
-- (BOOL)registerApp{
-    NSString *appKey = [MLAppApi generateAppId:[[NSBundle mainBundle] bundleIdentifier]];
-    return [MLAppApi registerApp:appKey];
-}
-
-- (BOOL)handleOpenURL:(NSURL *)url{
-    return [MLAppApi handOpenUrl:url withDelegate:self];
-}
-
-
-- (BOOL)shareWithProtocol:(id<DDSocialShareContentProtocol>)protocol
-               shareScene:(DDSSScene)shareScene
-              contentType:(DDSSContentType)contentType
-                  handler:(DDSSShareEventHandler)handler{
-    self.shareScene = shareScene;
-    self.shareEventHandler = handler;
-    if (self.shareEventHandler) {
-        self.shareEventHandler(DDSSPlatformMiLiao, self.shareScene, DDSSShareStateBegan, nil);
-    }
-    
-    if (contentType == DDSSContentTypeText && [protocol conformsToProtocol:@protocol(DDSocialShareTextProtocol)]) {
-        return [self shareTextWithProtocol:(id<DDSocialShareTextProtocol>)protocol];
-    } else if (contentType == DDSSContentTypeImage && [protocol conformsToProtocol:@protocol(DDSocialShareImageProtocol)]){
-        return [self shareImageWithProtocol:(id<DDSocialShareImageProtocol>)protocol];
-    } else if (contentType == DDSSContentTypeWebPage && [protocol conformsToProtocol:@protocol(DDSocialShareWebPageProtocol)]){
-        return [self shareWebPageWithProtocol:(id<DDSocialShareWebPageProtocol>)protocol];
-    } else {
-        if (self.shareEventHandler) {
-            NSString *errorDescription = [NSString stringWithFormat:@"share format error:%@ shareType:%lu",NSStringFromClass([protocol class]),(unsigned long)contentType];
-            NSError *error = [NSError errorWithDomain:@"MiLiao Local Share Error" code:-1 userInfo:@{NSLocalizedDescriptionKey:errorDescription}];
-            self.shareEventHandler(DDSSPlatformMiLiao, self.shareScene, DDSSShareStateFail, error);
-            self.shareEventHandler = nil;
-        }
-        return NO;
-    }
-}
-
 
 #pragma mark - Private Methods
 
@@ -158,3 +117,70 @@ CGFloat const DDMiLiaoImageDataMaxSize = 200 * 1024.0;
     }
 }
 @end
+
+@implementation DDMiLiaoHandler (DDSocialHandlerProtocol)
+
++ (BOOL)isInstalled {
+    return [MLAppApi isMLAppInstalled];
+}
+
++ (BOOL)canShare {
+    return [MLAppApi isMLAppInstalled];
+}
+
+- (BOOL)registerWithAppKey:(NSString *)appKey
+                 appSecret:(NSString *)appSecret
+               redirectURL:(NSString *)redirectURL
+            appDescription:(NSString *)appDescription {
+    return [MLAppApi registerApp:[MLAppApi generateAppId:[[NSBundle mainBundle] bundleIdentifier]]];
+}
+
+- (BOOL)application:(UIApplication *)application
+      handleOpenURL:(NSURL *)url
+  sourceApplication:(NSString *)sourceApplication
+         annotation:(id)annotation {
+    return [MLAppApi handOpenUrl:url withDelegate:self];
+}
+
+// MARK: TODO
+- (BOOL)authWithMode:(DDSSAuthMode)mode
+          controller:(UIViewController *)viewController
+             handler:(DDSSAuthEventHandler)handler {
+    return NO;
+}
+
+- (BOOL)shareWithController:(UIViewController *)viewController
+                 shareScene:(DDSSScene)shareScene
+                contentType:(DDSSContentType)contentType
+                   protocol:(id<DDSocialShareContentProtocol>)protocol
+                    handler:(DDSSShareEventHandler)handler {
+    self.shareScene = shareScene;
+    self.shareEventHandler = handler;
+    if (self.shareEventHandler) {
+        self.shareEventHandler(DDSSPlatformMiLiao, self.shareScene, DDSSShareStateBegan, nil);
+    }
+    
+    if (contentType == DDSSContentTypeText && [protocol conformsToProtocol:@protocol(DDSocialShareTextProtocol)]) {
+        return [self shareTextWithProtocol:(id<DDSocialShareTextProtocol>)protocol];
+    } else if (contentType == DDSSContentTypeImage && [protocol conformsToProtocol:@protocol(DDSocialShareImageProtocol)]){
+        return [self shareImageWithProtocol:(id<DDSocialShareImageProtocol>)protocol];
+    } else if (contentType == DDSSContentTypeWebPage && [protocol conformsToProtocol:@protocol(DDSocialShareWebPageProtocol)]){
+        return [self shareWebPageWithProtocol:(id<DDSocialShareWebPageProtocol>)protocol];
+    } else {
+        if (self.shareEventHandler) {
+            NSString *errorDescription = [NSString stringWithFormat:@"share format error:%@ shareType:%lu",NSStringFromClass([protocol class]),(unsigned long)contentType];
+            NSError *error = [NSError errorWithDomain:@"MiLiao Local Share Error" code:-1 userInfo:@{NSLocalizedDescriptionKey:errorDescription}];
+            self.shareEventHandler(DDSSPlatformMiLiao, self.shareScene, DDSSShareStateFail, error);
+            self.shareEventHandler = nil;
+        }
+        return NO;
+    }
+}
+
+- (BOOL)linkupWithPlatform:(DDSSPlatform)platform
+                      item:(DDLinkupItem *)linkupItem {
+    return NO;
+}
+
+@end
+

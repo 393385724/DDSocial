@@ -10,6 +10,7 @@
 #import "DDSocialEventDefs.h"
 
 @protocol DDSocialShareContentProtocol;
+@protocol DDSocialHandlerProtocol;
 
 @interface DDMiLiaoHandler : NSObject
 

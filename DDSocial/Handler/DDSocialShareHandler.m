@@ -7,25 +7,18 @@
 //
 
 #import "DDSocialShareHandler.h"
+#import "DDSocialHandlerProtocol.h"
 #import <UIKit/UIKit.h>
-
-#import "DDWeChatHandler.h"
-#import "DDSinaHandler.h"
-#import "DDTencentHandler.h"
-#import "DDFacebookHandler.h"
-#import "DDGoogleHandler.h"
-#import "DDTwitterHandler.h"
-#import "DDMiLiaoHandler.h"
 
 @interface DDSocialShareHandler ()
 
-@property (nonatomic, strong) DDWeChatHandler   *wechatHandler;
-@property (nonatomic, strong) DDSinaHandler     *sinaHandler;
-@property (nonatomic, strong) DDTencentHandler  *tencentHandler;
-@property (nonatomic, strong) DDFacebookHandler *facebookHandler;
-@property (nonatomic, strong) DDGoogleHandler   *googleHandler;
-@property (nonatomic, strong) DDTwitterHandler  *twitterHandler;
-@property (nonatomic, strong) DDMiLiaoHandler   *miliaoHandler;
+@property (nonatomic, strong) id<DDSocialHandlerProtocol> wechatHandler;
+@property (nonatomic, strong) id<DDSocialHandlerProtocol> sinaHandler;
+@property (nonatomic, strong) id<DDSocialHandlerProtocol> tencentHandler;
+@property (nonatomic, strong) id<DDSocialHandlerProtocol> facebookHandler;
+@property (nonatomic, strong) id<DDSocialHandlerProtocol> googleHandler;
+@property (nonatomic, strong) id<DDSocialHandlerProtocol> twitterHandler;
+@property (nonatomic, strong) id<DDSocialHandlerProtocol> miliaoHandler;
 
 @end
 
@@ -43,45 +36,64 @@
 #pragma mark - Public Methods
 
 + (BOOL)isInstalledPlatform:(DDSSPlatform)platform{
+    Class class = nil;
     if (platform == DDSSPlatformWeChat) {
-        return [DDWeChatHandler isWeChatInstalled];
+        class = NSClassFromString(@"DDWeChatHandler");
     } else if (platform == DDSSPlatformSina){
-        return [DDSinaHandler isSinaInstalled];
+        class = NSClassFromString(@"DDSinaHandler");
     } else if (platform == DDSSPlatformQQ){
-        return [DDTencentHandler isQQInstalled];
+        class = NSClassFromString(@"DDTencentHandler");
     } else if (platform == DDSSPlatformFacebook){
-        return [DDFacebookHandler isFacebookInstalled];
+        class = NSClassFromString(@"DDFacebookHandler");
     } else if (platform == DDSSPlatformTwitter){
-        return [DDTwitterHandler isTwitterInstalled];
+        class = NSClassFromString(@"DDTwitterHandler");
+    } else if (platform == DDSSPlatformGoogle){
+        class = NSClassFromString(@"DDGoogleHandler");
     } else if (platform == DDSSPlatformMiLiao){
-        return [DDMiLiaoHandler isMiLiaoInstalled];
+        class = NSClassFromString(@"DDMiLiaoHandler");
     }
-    return YES;
-}
-
-+ (BOOL)canShareToScence:(DDSSScene)scene{
-    if (scene == DDSSSceneQQFrined || scene == DDSSSceneQZone) {
-        return [self isInstalledPlatform:DDSSPlatformQQ];
-    } else if (scene == DDSSSceneWXSession || scene == DDSSSceneWXTimeline){
-        return [self isInstalledPlatform:DDSSPlatformWeChat];
-    } else if (scene == DDSSSceneSina){
-        return [self isInstalledPlatform:DDSSPlatformSina];
-    } else if (scene == DDSSSceneFBSession){
-        return [DDFacebookHandler isMessengerInstalled];
-    } else if (scene == DDSSSceneFBTimeline){
-        return [self isInstalledPlatform:DDSSPlatformFacebook];
-    } else if (scene == DDSSSceneTwitter){
-        return [self isInstalledPlatform:DDSSPlatformTwitter];
-    } else if (scene == DDSSSceneMiLiaoSession || scene == DDSSSceneMiLiaoTimeline){
-        return [self isInstalledPlatform:DDSSPlatformMiLiao];
+    if (class) {
+        return [class isInstalled];
     } else {
         return NO;
     }
 }
 
++ (BOOL)canShareToScence:(DDSSScene)scene{
+    Class class = nil;
+    if (scene == DDSSSceneWXSession || scene == DDSSSceneWXTimeline) {
+        class = NSClassFromString(@"DDWeChatHandler");
+    } else if (scene == DDSSSceneSina){
+        class = NSClassFromString(@"DDSinaHandler");
+    } else if (scene == DDSSSceneQQFrined || scene == DDSSSceneQZone){
+        class = NSClassFromString(@"DDTencentHandler");
+    } else if (scene == DDSSSceneFBSession){
+        class = NSClassFromString(@"DDFacebookHandler");
+    } else if (scene == DDSSSceneTwitter){
+        class = NSClassFromString(@"DDTwitterHandler");
+    } else if (scene == DDSSSceneMiLiaoSession || scene == DDSSSceneMiLiaoTimeline){
+        class = NSClassFromString(@"DDMiLiaoHandler");
+    }
+    if (class) {
+        return [class canShare];
+    } else {
+        return NO;
+    }
+}
+
+- (void)registerPlatform:(DDSSPlatform)platform {
+    [self registerPlatform:platform appKey:@"" appSecret:@"" redirectURL:@"" appDescription:@""];
+}
+
 - (void)registerPlatform:(DDSSPlatform)platform
                   appKey:(NSString *)appKey{
     [self registerPlatform:platform appKey:appKey appSecret:@"" redirectURL:@"" appDescription:@""];
+}
+
+- (void)registerPlatform:(DDSSPlatform)platform
+                  appKey:(NSString *)appKey
+               appSecret:(NSString *)appSecret {
+    [self registerPlatform:platform appKey:appKey appSecret:appSecret redirectURL:@"" appDescription:@""];
 }
 
 - (void)registerPlatform:(DDSSPlatform)platform
@@ -94,21 +106,21 @@
                   appKey:(NSString *)appKey
                appSecret:(NSString *)appSecret
              redirectURL:(NSString *)redirectURL
-          appDescription:(NSString *)appDescription{
+          appDescription:(NSString *)appDescription {
     if (platform == DDSSPlatformWeChat) {
-        [self.wechatHandler registerApp:appKey withDescription:appDescription];
+        [self.wechatHandler registerWithAppKey:appKey appSecret:appSecret redirectURL:redirectURL appDescription:appDescription];
     } else if (platform == DDSSPlatformSina){
-        [self.sinaHandler registerApp:appKey withRedirectURI:redirectURL];
+        [self.sinaHandler registerWithAppKey:appKey appSecret:appSecret redirectURL:redirectURL appDescription:appDescription];
     } else if (platform == DDSSPlatformQQ){
-        [self.tencentHandler registerApp:appKey];
+        [self.tencentHandler registerWithAppKey:appKey appSecret:appSecret redirectURL:redirectURL appDescription:appDescription];
     } else if (platform == DDSSPlatformFacebook){
-        [self.facebookHandler registerApp];
+        [self.facebookHandler registerWithAppKey:appKey appSecret:appSecret redirectURL:redirectURL appDescription:appDescription];
     } else if (platform == DDSSPlatformGoogle){
-        [self.googleHandler registerApp];
+        [self.googleHandler registerWithAppKey:appKey appSecret:appSecret redirectURL:redirectURL appDescription:appDescription];
     } else if (platform == DDSSPlatformTwitter){
-
+        [self.twitterHandler registerWithAppKey:appKey appSecret:appSecret redirectURL:redirectURL appDescription:appDescription];
     } else if (platform == DDSSPlatformMiLiao){
-        [self.miliaoHandler registerApp];
+        [self.miliaoHandler registerWithAppKey:appKey appSecret:appSecret redirectURL:redirectURL appDescription:appDescription];
     }
 }
 
@@ -116,15 +128,15 @@
       handleOpenURL:(NSURL *)url
   sourceApplication:(NSString *)sourceApplication
          annotation:(id)annotation{
-    BOOL canWeChatOpen = [self.wechatHandler handleOpenURL:url];
+    BOOL canWeChatOpen = [self.wechatHandler application:application handleOpenURL:url sourceApplication:sourceApplication annotation:annotation];
     if (canWeChatOpen) {
         return YES;
     }
-    BOOL canSinaOpen = [self.sinaHandler handleOpenURL:url];
+    BOOL canSinaOpen = [self.sinaHandler application:application handleOpenURL:url sourceApplication:sourceApplication annotation:annotation];
     if (canSinaOpen) {
         return YES;
     }
-    BOOL canQQOpen = [self.tencentHandler handleOpenURL:url];
+    BOOL canQQOpen = [self.tencentHandler application:application handleOpenURL:url sourceApplication:sourceApplication annotation:annotation];
     if (canQQOpen) {
         return YES;
     }
@@ -132,12 +144,15 @@
     if (canFacebookOpen) {
         return YES;
     }
+    BOOL canTwitterOpen = [self.twitterHandler application:application handleOpenURL:url sourceApplication:sourceApplication annotation:annotation];
+    if (canTwitterOpen) {
+        return YES;
+    }
     BOOL canGooleOpen = [self.googleHandler application:application handleOpenURL:url sourceApplication:sourceApplication annotation:annotation];
     if (canGooleOpen) {
         return YES;
     }
-    
-    BOOL canMiliaoOpen = [self.miliaoHandler handleOpenURL:url];
+    BOOL canMiliaoOpen = [self.miliaoHandler application:application handleOpenURL:url sourceApplication:sourceApplication annotation:annotation];
     if (canMiliaoOpen) {
         return YES;
     }
@@ -152,7 +167,6 @@
     return [self application:app handleOpenURL:url sourceApplication:sourceApplicationKey annotation:annotationApplicationKey];
 }
 
-
 - (BOOL)authWithPlatform:(DDSSPlatform)platform
                 authMode:(DDSSAuthMode)authMode
               controller:(UIViewController *)viewController
@@ -160,15 +174,19 @@
     if (platform == DDSSPlatformWeChat) {
         return [self.wechatHandler authWithMode:authMode controller:viewController handler:handler];
     } else if (platform == DDSSPlatformSina){
-        return [self.sinaHandler authWithMode:authMode handler:handler];
+        return [self.sinaHandler authWithMode:authMode controller:viewController handler:handler];
     } else if (platform == DDSSPlatformQQ){
-        return [self.tencentHandler authWithMode:authMode handler:handler];
+        return [self.tencentHandler authWithMode:authMode controller:viewController handler:handler];
     } else if (platform == DDSSPlatformFacebook){
         return [self.facebookHandler authWithMode:authMode controller:viewController handler:handler];
+    } else if (platform == DDSSPlatformTwitter){
+        return [self.twitterHandler authWithMode:authMode controller:viewController handler:handler];
     } else if (platform == DDSSPlatformGoogle){
-        return [self.googleHandler authWithViewController:viewController handler:handler];
+        return [self.googleHandler authWithMode:authMode controller:viewController handler:handler];
+    } else if (platform == DDSSPlatformMiLiao){
+        return [self.miliaoHandler authWithMode:authMode controller:viewController handler:handler];
     }
-    return YES;
+    return NO;
 }
 
 
@@ -182,25 +200,39 @@
         return NO;
     }
     if (platform == DDSSPlatformWeChat) {
-       return [self.wechatHandler shareWithProtocol:protocol shareScene:shareScene contentType:contentType handler:handler];
+       return [self.wechatHandler shareWithController:viewController shareScene:shareScene contentType:contentType protocol:protocol handler:handler];
     } else if (platform == DDSSPlatformSina){
-        return [self.sinaHandler shareWithProtocol:protocol contentType:contentType handler:handler];
+        return [self.sinaHandler shareWithController:viewController shareScene:shareScene contentType:contentType protocol:protocol handler:handler];
     } else if (platform == DDSSPlatformQQ){
-        return [self.tencentHandler shareWithProtocol:protocol shareScene:shareScene contentType:contentType handler:handler];
+        return [self.tencentHandler shareWithController:viewController shareScene:shareScene contentType:contentType protocol:protocol handler:handler];
     } else if (platform == DDSSPlatformFacebook){
-        return [self.facebookHandler shareWithViewController:viewController protocol:protocol shareScene:shareScene contentType:contentType handler:handler];
+        return [self.facebookHandler shareWithController:viewController shareScene:shareScene contentType:contentType protocol:protocol handler:handler];
     } else if (platform == DDSSPlatformTwitter){
-        return [self.twitterHandler shareWithViewController:viewController protocol:protocol contentType:contentType handler:handler];
+        return [self.twitterHandler shareWithController:viewController shareScene:shareScene contentType:contentType protocol:protocol handler:handler];
+    } else if (platform == DDSSPlatformGoogle){
+        return [self.googleHandler shareWithController:viewController shareScene:shareScene contentType:contentType protocol:protocol handler:handler];
     } else if (platform == DDSSPlatformMiLiao){
-        return [self.miliaoHandler shareWithProtocol:protocol shareScene:shareScene contentType:contentType handler:handler];
+        return [self.miliaoHandler shareWithController:viewController shareScene:shareScene contentType:contentType protocol:protocol handler:handler];
     }
-    return YES;
+    return NO;
 }
 
 - (BOOL)linkupWithPlatform:(DDSSPlatform)platform
                       item:(DDLinkupItem *)linkupItem{
     if (platform == DDSSPlatformWeChat) {
-        return [self.wechatHandler JumpToBizProfileWithExtMsg:linkupItem.extMsg username:linkupItem.username profileType:linkupItem.linkupType];
+        return [self.wechatHandler linkupWithItem:linkupItem];
+    } else if (platform == DDSSPlatformSina){
+        return [self.sinaHandler linkupWithItem:linkupItem];
+    } else if (platform == DDSSPlatformQQ){
+        return [self.tencentHandler linkupWithItem:linkupItem];
+    } else if (platform == DDSSPlatformFacebook){
+        return [self.facebookHandler linkupWithItem:linkupItem];
+    } else if (platform == DDSSPlatformTwitter){
+        return [self.twitterHandler linkupWithItem:linkupItem];
+    } else if (platform == DDSSPlatformGoogle){
+        return [self.googleHandler linkupWithItem:linkupItem];
+    } else if (platform == DDSSPlatformMiLiao){
+        return [self.miliaoHandler linkupWithItem:linkupItem];
     }
     return NO;
 }
@@ -253,51 +285,51 @@
 
 #pragma mark - Getter and Setter
 
-- (DDWeChatHandler *)wechatHandler{
+- (id<DDSocialHandlerProtocol>)wechatHandler{
     if (!_wechatHandler) {
-        _wechatHandler = [[DDWeChatHandler alloc] init];
+        _wechatHandler = [NSClassFromString(@"DDWeChatHandler") new];
     }
     return _wechatHandler;
 }
 
-- (DDSinaHandler *)sinaHandler{
+- (id<DDSocialHandlerProtocol>)sinaHandler{
     if (!_sinaHandler) {
-        _sinaHandler = [[DDSinaHandler alloc] init];
+        _sinaHandler = [NSClassFromString(@"DDSinaHandler") new];
     }
     return _sinaHandler;
 }
 
-- (DDTencentHandler *)tencentHandler{
+- (id<DDSocialHandlerProtocol>)tencentHandler{
     if (!_tencentHandler) {
-        _tencentHandler = [[DDTencentHandler alloc] init];
+        _tencentHandler = [NSClassFromString(@"DDTencentHandler") new];
     }
     return _tencentHandler;
 }
 
-- (DDFacebookHandler *)facebookHandler{
+- (id<DDSocialHandlerProtocol>)facebookHandler{
     if (!_facebookHandler) {
-        _facebookHandler = [[DDFacebookHandler alloc] init];
+        _facebookHandler = [NSClassFromString(@"DDFacebookHandler") new];
     }
     return _facebookHandler;
 }
 
-- (DDGoogleHandler *)googleHandler{
+- (id<DDSocialHandlerProtocol>)googleHandler{
     if (!_googleHandler) {
-        _googleHandler = [[DDGoogleHandler alloc] init];
+        _googleHandler = [NSClassFromString(@"DDGoogleHandler") new];
     }
     return _googleHandler;
 }
 
-- (DDTwitterHandler *)twitterHandler{
+- (id<DDSocialHandlerProtocol>)twitterHandler{
     if (!_twitterHandler) {
-        _twitterHandler = [[DDTwitterHandler alloc] init];
+        _twitterHandler = [NSClassFromString(@"DDTwitterHandler") new];
     }
     return _twitterHandler;
 }
 
-- (DDMiLiaoHandler *)miliaoHandler{
+- (id<DDSocialHandlerProtocol>)miliaoHandler{
     if (!_miliaoHandler) {
-        _miliaoHandler = [[DDMiLiaoHandler alloc] init];
+        _miliaoHandler = [NSClassFromString(@"DDMiLiaoHandler") new];
     }
     return _miliaoHandler;
 }

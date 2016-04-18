@@ -12,6 +12,8 @@
 #import <FBSDKShareKit/FBSDKShareKit.h>
 
 #import "DDSocialShareContentProtocol.h"
+#import "DDSocialHandlerProtocol.h"
+#import "DDAuthItem.h"
 
 #import "UIImage+Zoom.h"
 
@@ -33,94 +35,6 @@ const CGFloat DDFacebookImageDataMaxSize = 12 * 1024 * 1024;
     [[NSNotificationCenter defaultCenter] removeObserver:self];
 }
 
-+ (BOOL)isFacebookInstalled{
-    return [[UIApplication sharedApplication] canOpenURL:[NSURL URLWithString:@"fbauth2:/"]];
-}
-
-+ (BOOL)isMessengerInstalled{
-    return [[UIApplication sharedApplication] canOpenURL:[NSURL URLWithString:@"fb-messenger-api:/"]];
-}
-
-- (void)registerApp{
-    [FBSDKProfile enableUpdatesOnAccessTokenChange:YES];
-    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(applicationDidFinishLaunchingNotification:) name:UIApplicationDidFinishLaunchingNotification object:nil];
-    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(applicationDidBecomeActiveNotification:) name:UIApplicationDidBecomeActiveNotification object:nil];
-}
-
-
-- (BOOL)application:(UIApplication *)application
-      handleOpenURL:(NSURL *)url
-  sourceApplication:(NSString *)sourceApplication
-         annotation:(id)annotation{
-    return [[FBSDKApplicationDelegate sharedInstance] application:application
-                                                          openURL:url
-                                                sourceApplication:sourceApplication
-                                                       annotation:annotation];
-}
-
-- (BOOL)authWithMode:(DDSSAuthMode)mode
-          controller:(UIViewController *)viewController
-             handler:(DDSSAuthEventHandler)handler{
-    if (handler) {
-        handler(DDSSPlatformFacebook, DDSSAuthStateBegan, nil, nil);
-    }
-    NSArray *permissions = @[@"email",
-                             @"user_friends",
-                             @"public_profile"];
-    if (self.fbLoginManager) {
-        //try fix bug com.facebook.sdk.login code = 308 使用相同的fbsdkloginmanager实例直到登出，然后创建一个新的实例
-        [self.fbLoginManager logOut];
-    }
-    self.fbLoginManager = [[FBSDKLoginManager alloc] init];
-    [self.fbLoginManager logInWithReadPermissions:permissions
-                               fromViewController:viewController
-                                          handler:^(FBSDKLoginManagerLoginResult *result, NSError *error) {
-                                           if (error) {
-                                               if (handler) {
-                                                   handler(DDSSPlatformFacebook, DDSSAuthStateFail, nil, error);
-                                               }
-                                           } else if (result.isCancelled){
-                                               if (handler) {
-                                                   handler(DDSSPlatformFacebook, DDSSAuthStateFail, nil, error);
-                                               }
-                                           } else {
-                                               if (handler) {
-                                                   handler(DDSSPlatformFacebook, DDSSAuthStateSuccess, result.token, nil);
-                                               }
-                                           }
-                                          }];
-    return YES;
-}
-
-- (BOOL)shareWithViewController:(UIViewController *)viewController
-                       protocol:(id<DDSocialShareContentProtocol>)protocol
-                     shareScene:(DDSSScene)shareScene
-                    contentType:(DDSSContentType)contentType
-                        handler:(DDSSShareEventHandler)handler{
-    self.viewController = viewController;
-    self.shareScene = shareScene;
-    self.shareEventHandler = handler;
-    
-    if (self.shareEventHandler) {
-        self.shareEventHandler(DDSSPlatformFacebook, self.shareScene, DDSSShareStateBegan, nil);
-    }
-    if (contentType == DDSSContentTypeText && [protocol conformsToProtocol:@protocol(DDSocialShareTextProtocol)]) {
-        return [self shareTextWithProtocol:(id<DDSocialShareTextProtocol>)protocol];
-    } else if (contentType == DDSSContentTypeImage && [protocol conformsToProtocol:@protocol(DDSocialShareImageProtocol)]){
-        return [self shareImageWithProtocol:(id<DDSocialShareImageProtocol>)protocol];
-    } else if (contentType == DDSSContentTypeWebPage && [protocol conformsToProtocol:@protocol(DDSocialShareWebPageProtocol)]){
-        return [self shareWebPageWithProtocol:(id<DDSocialShareWebPageProtocol>)protocol];
-    } else {
-        if (self.shareEventHandler) {
-            NSString *errorDescription = [NSString stringWithFormat:@"分享格式错误:%@ shareType:%lu",NSStringFromClass([protocol class]),(unsigned long)contentType];
-            NSError *error = [NSError errorWithDomain:@"Facebook Share Error" code:-1 userInfo:@{NSLocalizedDescriptionKey:errorDescription}];
-            self.shareEventHandler(DDSSPlatformFacebook, self.shareScene, DDSSShareStateFail, error);
-            self.shareEventHandler = nil;
-        }
-        return NO;
-    }
-}
-
 #pragma mark - Private Methods
 
 - (BOOL)shareTextWithProtocol:(id<DDSocialShareTextProtocol>)protocol{
@@ -133,7 +47,7 @@ const CGFloat DDFacebookImageDataMaxSize = 12 * 1024 * 1024;
 }
 
 - (BOOL)shareImageWithProtocol:(id<DDSocialShareImageProtocol>)protocol{
-    if (![[self class] isFacebookInstalled] && self.shareScene != DDSSSceneFBSession){
+    if (![[self class] isInstalled] && self.shareScene != DDSSSceneFBSession){
         if (self.shareEventHandler) {
             NSError *error = [NSError errorWithDomain:@"未安装Facebook客户端" code:-1 userInfo:@{NSLocalizedDescriptionKey:@"未安装Facebook客户端无法分享图片"}];
             self.shareEventHandler(DDSSPlatformFacebook, self.shareScene, DDSSShareStateFail, error);
@@ -166,7 +80,7 @@ const CGFloat DDFacebookImageDataMaxSize = 12 * 1024 * 1024;
     } else {
         FBSDKShareDialog *dialog = [[FBSDKShareDialog alloc] init];
         //fix bug FBSDKShareDialog of Facebook SDK is not working on iOS9? http://www.basedb.net/Index/detail/id/537586.html
-        if ([[self class] isFacebookInstalled]){
+        if ([[self class] isInstalled]){
             dialog.mode = FBSDKShareDialogModeNative;
         } else {
             dialog.mode = FBSDKShareDialogModeBrowser;
@@ -218,6 +132,110 @@ const CGFloat DDFacebookImageDataMaxSize = 12 * 1024 * 1024;
 
 - (void)applicationDidBecomeActiveNotification:(NSNotification *)notification{
     [FBSDKAppEvents activateApp];
+}
+
+@end
+
+@implementation DDFacebookHandler (DDSocialHandlerProtocol)
+
++ (BOOL)isInstalled {
+    return [[UIApplication sharedApplication] canOpenURL:[NSURL URLWithString:@"fbauth2:/"]];
+}
+
++ (BOOL)canShare {
+    return [[UIApplication sharedApplication] canOpenURL:[NSURL URLWithString:@"fb-messenger-api:/"]];
+}
+
+- (BOOL)registerWithAppKey:(NSString *)appKey
+                 appSecret:(NSString *)appSecret
+               redirectURL:(NSString *)redirectURL
+            appDescription:(NSString *)appDescription {
+    [FBSDKProfile enableUpdatesOnAccessTokenChange:YES];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(applicationDidFinishLaunchingNotification:) name:UIApplicationDidFinishLaunchingNotification object:nil];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(applicationDidBecomeActiveNotification:) name:UIApplicationDidBecomeActiveNotification object:nil];
+    return YES;
+}
+
+- (BOOL)application:(UIApplication *)application
+      handleOpenURL:(NSURL *)url
+  sourceApplication:(NSString *)sourceApplication
+         annotation:(id)annotation {
+    return [[FBSDKApplicationDelegate sharedInstance] application:application
+                                                          openURL:url
+                                                sourceApplication:sourceApplication
+                                                       annotation:annotation];
+}
+
+- (BOOL)authWithMode:(DDSSAuthMode)mode
+          controller:(UIViewController *)viewController
+             handler:(DDSSAuthEventHandler)handler {
+    if (handler) {
+        handler(DDSSPlatformFacebook, DDSSAuthStateBegan, nil, nil);
+    }
+    NSArray *permissions = @[@"email",
+                             @"user_friends",
+                             @"public_profile"];
+    if (self.fbLoginManager) {
+        //try fix bug com.facebook.sdk.login code = 308 使用相同的fbsdkloginmanager实例直到登出，然后创建一个新的实例
+        [self.fbLoginManager logOut];
+    }
+    self.fbLoginManager = [[FBSDKLoginManager alloc] init];
+    [self.fbLoginManager logInWithReadPermissions:permissions
+                               fromViewController:viewController
+                                          handler:^(FBSDKLoginManagerLoginResult *result, NSError *error) {
+                                              if (error) {
+                                                  if (handler) {
+                                                      handler(DDSSPlatformFacebook, DDSSAuthStateFail, nil, error);
+                                                  }
+                                              } else if (result.isCancelled){
+                                                  if (handler) {
+                                                      handler(DDSSPlatformFacebook, DDSSAuthStateFail, nil, error);
+                                                  }
+                                              } else {
+                                                  if (handler) {
+                                                      DDAuthItem *authItem = [DDAuthItem new];
+                                                      authItem.thirdToken = result.token.tokenString;
+                                                      authItem.thirdId = result.token.userID;
+                                                      authItem.userInfo = result;
+                                                      handler(DDSSPlatformFacebook, DDSSAuthStateSuccess, authItem, nil);
+                                                  }
+                                              }
+                                          }];
+    return YES;
+}
+
+- (BOOL)shareWithController:(UIViewController *)viewController
+                 shareScene:(DDSSScene)shareScene
+                contentType:(DDSSContentType)contentType
+                   protocol:(id<DDSocialShareContentProtocol>)protocol
+                    handler:(DDSSShareEventHandler)handler {
+    self.viewController = viewController;
+    self.shareScene = shareScene;
+    self.shareEventHandler = handler;
+    
+    if (self.shareEventHandler) {
+        self.shareEventHandler(DDSSPlatformFacebook, self.shareScene, DDSSShareStateBegan, nil);
+    }
+    if (contentType == DDSSContentTypeText && [protocol conformsToProtocol:@protocol(DDSocialShareTextProtocol)]) {
+        return [self shareTextWithProtocol:(id<DDSocialShareTextProtocol>)protocol];
+    } else if (contentType == DDSSContentTypeImage && [protocol conformsToProtocol:@protocol(DDSocialShareImageProtocol)]){
+        return [self shareImageWithProtocol:(id<DDSocialShareImageProtocol>)protocol];
+    } else if (contentType == DDSSContentTypeWebPage && [protocol conformsToProtocol:@protocol(DDSocialShareWebPageProtocol)]){
+        return [self shareWebPageWithProtocol:(id<DDSocialShareWebPageProtocol>)protocol];
+    } else {
+        if (self.shareEventHandler) {
+            NSString *errorDescription = [NSString stringWithFormat:@"分享格式错误:%@ shareType:%lu",NSStringFromClass([protocol class]),(unsigned long)contentType];
+            NSError *error = [NSError errorWithDomain:@"Facebook Share Error" code:-1 userInfo:@{NSLocalizedDescriptionKey:errorDescription}];
+            self.shareEventHandler(DDSSPlatformFacebook, self.shareScene, DDSSShareStateFail, error);
+            self.shareEventHandler = nil;
+        }
+        return NO;
+    }
+}
+
+- (BOOL)linkupWithPlatform:(DDSSPlatform)platform
+                      item:(DDLinkupItem *)linkupItem {
+    return NO;
 }
 
 @end

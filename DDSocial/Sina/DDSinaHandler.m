@@ -10,6 +10,8 @@
 #import <WeiboSDK/WeiboSDK.h>
 
 #import "DDSocialShareContentProtocol.h"
+#import "DDSocialHandlerProtocol.h"
+#import "DDAuthItem.h"
 
 #import "UIImage+Zoom.h"
 
@@ -28,65 +30,6 @@ const CGFloat DDSinaImageDataMaxSize = 5 * 1024 * 1024;
 @end
 
 @implementation DDSinaHandler
-
-#pragma mark -判断新浪客户端是否安装
-+ (BOOL)isSinaInstalled{
-    return [WeiboSDK isWeiboAppInstalled];
-}
-
-#pragma mark -向新浪终端程序注册第三方应用
-- (BOOL)registerApp:(NSString *)appid withRedirectURI:(NSString *)redirectURI{
-    self.redirectURI = redirectURI;
-    return [WeiboSDK registerApp:appid];
-}
-
-#pragma mark -处理新浪通过URL启动App时传递的数据
-- (BOOL)handleOpenURL:(NSURL *)url{
-    return [WeiboSDK handleOpenURL:url delegate:self];
-}
-
-#pragma mark -新浪授权逻辑
-- (BOOL)authWithMode:(DDSSAuthMode)mode
-             handler:(DDSSAuthEventHandler)handler{
-    self.authMode = mode;
-    self.authEventHandler = handler;
-    
-    if (self.authEventHandler) {
-        self.authEventHandler(DDSSPlatformSina, DDSSAuthStateBegan, nil, nil);
-    }
-    
-    WBAuthorizeRequest *request = [WBAuthorizeRequest request];
-    request.redirectURI = self.redirectURI;
-    request.shouldOpenWeiboAppInstallPageIfNotInstalled = NO;
-    request.scope = @"all";
-    return [WeiboSDK sendRequest:request];
-}
-
-#pragma mark -新浪分享
-- (BOOL)shareWithProtocol:(id<DDSocialShareContentProtocol>)protocol
-              contentType:(DDSSContentType)contentType
-                  handler:(DDSSShareEventHandler)handler{
-    if (!handler) {
-        return NO;
-    }
-    self.shareEventHandler = handler;
-    
-    self.shareEventHandler(DDSSPlatformSina, DDSSSceneSina, DDSSShareStateBegan, nil);
-    
-    if (contentType == DDSSContentTypeText && [protocol conformsToProtocol:@protocol(DDSocialShareTextProtocol)]) {
-        return [self shareTextWithProtocol:(id<DDSocialShareTextProtocol>)protocol];
-    } else if (contentType == DDSSContentTypeImage && [protocol conformsToProtocol:@protocol(DDSocialShareImageProtocol)]){
-        return [self shareImageWithProtocol:(id<DDSocialShareImageProtocol>)protocol];
-    } else if (contentType == DDSSContentTypeWebPage && [protocol conformsToProtocol:@protocol(DDSocialShareWebPageProtocol)]){
-        return [self shareWebPageWithProtocol:(id<DDSocialShareWebPageProtocol>)protocol];
-    } else {
-        NSString *errorDescription = [NSString stringWithFormat:@"分享格式错误:%@ shareType:%lu",NSStringFromClass([protocol class]),(unsigned long)contentType];
-        NSError *error = [NSError errorWithDomain:@"Sina Share Error" code:-1 userInfo:@{NSLocalizedDescriptionKey:errorDescription}];
-        self.shareEventHandler(DDSSPlatformSina, DDSSSceneSina, DDSSShareStateFail, error);
-        self.shareEventHandler = nil;
-        return NO;
-    }
-}
 
 #pragma mark - Private Methods
 
@@ -187,7 +130,12 @@ const CGFloat DDSinaImageDataMaxSize = 5 * 1024 * 1024;
         switch (statusCode) {
             case WeiboSDKResponseStatusCodeSuccess: {
                 if (self.authEventHandler) {
-                    self.authEventHandler(DDSSPlatformSina, DDSSAuthStateSuccess, response, nil);
+                    NSDictionary *userInfo = response.userInfo;
+                    DDAuthItem *authItem = [DDAuthItem new];
+                    authItem.thirdToken = userInfo[@"access_token"];
+                    authItem.thirdId = userInfo[@"uid"];
+                    authItem.userInfo = response.userInfo;
+                    self.authEventHandler(DDSSPlatformSina, DDSSAuthStateSuccess, authItem, nil);
                 }
                 break;
             }
@@ -248,6 +196,82 @@ const CGFloat DDSinaImageDataMaxSize = 5 * 1024 * 1024;
 
 - (void)didReceiveWeiboRequest:(WBBaseRequest *)request{
     //没用吧 防止警告
+}
+
+@end
+
+@implementation DDSinaHandler (DDSocialHandlerProtocol)
+
++ (BOOL)isInstalled {
+    return [WeiboSDK isWeiboAppInstalled];
+}
+
++ (BOOL)canShare {
+    return [WeiboSDK isWeiboAppInstalled];
+}
+
+- (BOOL)registerWithAppKey:(NSString *)appKey
+                 appSecret:(NSString *)appSecret
+               redirectURL:(NSString *)redirectURL
+            appDescription:(NSString *)appDescription {
+    self.redirectURI = redirectURL;
+    return [WeiboSDK registerApp:appKey];
+}
+
+- (BOOL)application:(UIApplication *)application
+      handleOpenURL:(NSURL *)url
+  sourceApplication:(NSString *)sourceApplication
+         annotation:(id)annotation {
+    return [WeiboSDK handleOpenURL:url delegate:self];
+}
+
+- (BOOL)authWithMode:(DDSSAuthMode)mode
+          controller:(UIViewController *)viewController
+             handler:(DDSSAuthEventHandler)handler {
+    self.authMode = mode;
+    self.authEventHandler = handler;
+    
+    if (self.authEventHandler) {
+        self.authEventHandler(DDSSPlatformSina, DDSSAuthStateBegan, nil, nil);
+    }
+    
+    WBAuthorizeRequest *request = [WBAuthorizeRequest request];
+    request.redirectURI = self.redirectURI;
+    request.shouldOpenWeiboAppInstallPageIfNotInstalled = NO;
+    request.scope = @"all";
+    return [WeiboSDK sendRequest:request];
+}
+
+- (BOOL)shareWithController:(UIViewController *)viewController
+                 shareScene:(DDSSScene)shareScene
+                contentType:(DDSSContentType)contentType
+                   protocol:(id<DDSocialShareContentProtocol>)protocol
+                    handler:(DDSSShareEventHandler)handler {
+    if (!handler) {
+        return NO;
+    }
+    self.shareEventHandler = handler;
+    
+    self.shareEventHandler(DDSSPlatformSina, DDSSSceneSina, DDSSShareStateBegan, nil);
+    
+    if (contentType == DDSSContentTypeText && [protocol conformsToProtocol:@protocol(DDSocialShareTextProtocol)]) {
+        return [self shareTextWithProtocol:(id<DDSocialShareTextProtocol>)protocol];
+    } else if (contentType == DDSSContentTypeImage && [protocol conformsToProtocol:@protocol(DDSocialShareImageProtocol)]){
+        return [self shareImageWithProtocol:(id<DDSocialShareImageProtocol>)protocol];
+    } else if (contentType == DDSSContentTypeWebPage && [protocol conformsToProtocol:@protocol(DDSocialShareWebPageProtocol)]){
+        return [self shareWebPageWithProtocol:(id<DDSocialShareWebPageProtocol>)protocol];
+    } else {
+        NSString *errorDescription = [NSString stringWithFormat:@"分享格式错误:%@ shareType:%lu",NSStringFromClass([protocol class]),(unsigned long)contentType];
+        NSError *error = [NSError errorWithDomain:@"Sina Share Error" code:-1 userInfo:@{NSLocalizedDescriptionKey:errorDescription}];
+        self.shareEventHandler(DDSSPlatformSina, DDSSSceneSina, DDSSShareStateFail, error);
+        self.shareEventHandler = nil;
+        return NO;
+    }
+}
+
+- (BOOL)linkupWithPlatform:(DDSSPlatform)platform
+                      item:(DDLinkupItem *)linkupItem {
+    return NO;
 }
 
 @end

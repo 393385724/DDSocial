@@ -9,7 +9,10 @@
 #import "DDWeChatHandler.h"
 #import "WXApi.h"
 
+#import "DDLinkupItem.h"
 #import "DDSocialShareContentProtocol.h"
+#import "DDSocialHandlerProtocol.h"
+#import "DDAuthItem.h"
 
 #import "UIImage+Zoom.h"
 
@@ -29,82 +32,6 @@ const CGFloat DDWeChatImageDataMaxSize = 10 * 1024.0 * 1024.0;
 @end
 
 @implementation DDWeChatHandler
-
-#pragma mark - Public Methods
-
-#pragma mark -判断微信客户端是否安装
-+ (BOOL)isWeChatInstalled{
-    return [WXApi isWXAppInstalled];
-}
-
-#pragma mark -向微信终端程序注册第三方应用
-- (BOOL)registerApp:(NSString *)appid withDescription:(NSString *)appDescription{
-    return [WXApi registerApp:appid withDescription:appDescription];
-}
-
-#pragma mark -处理微信通过URL启动App时传递的数据
-- (BOOL)handleOpenURL:(NSURL *)url{
-    return [WXApi handleOpenURL:url delegate:self];
-}
-
-
-#pragma mark -微信授权逻辑
-- (BOOL)authWithMode:(DDSSAuthMode)mode
-          controller:(UIViewController *)viewController
-             handler:(DDSSAuthEventHandler)handler{
-    self.authMode = mode;
-    self.authEventHandler = handler;
-    
-    if (self.authEventHandler) {
-        self.authEventHandler(DDSSPlatformWeChat,DDSSAuthStateBegan, nil, nil);
-    }
-    
-    SendAuthReq* authReq =[[SendAuthReq alloc ] init ];
-    authReq.scope = @"snsapi_userinfo" ;
-    authReq.state = @"1990" ;
-    return [WXApi sendAuthReq:authReq viewController:viewController delegate:self];
-}
-
-#pragma mark -微信分享
-- (BOOL)shareWithProtocol:(id<DDSocialShareContentProtocol>)protocol
-               shareScene:(DDSSScene)shareScene
-              contentType:(DDSSContentType)contentType
-                  handler:(DDSSShareEventHandler)handler{
-    self.shareScene = shareScene;
-    self.shareEventHandler = handler;
-    
-    if (self.shareEventHandler) {
-        self.shareEventHandler(DDSSPlatformWeChat, self.shareScene, DDSSShareStateBegan, nil);
-    }
-    if (contentType == DDSSContentTypeText && [protocol conformsToProtocol:@protocol(DDSocialShareTextProtocol)]) {
-        return [self shareTextWithProtocol:(id<DDSocialShareTextProtocol>)protocol];
-    } else if (contentType == DDSSContentTypeImage && [protocol conformsToProtocol:@protocol(DDSocialShareImageProtocol)]){
-        return [self shareImageWithProtocol:(id<DDSocialShareImageProtocol>)protocol];
-    } else if (contentType == DDSSContentTypeWebPage && [protocol conformsToProtocol:@protocol(DDSocialShareWebPageProtocol)]){
-        return [self shareWebPageWithProtocol:(id<DDSocialShareWebPageProtocol>)protocol];
-    } else {
-        if (self.shareEventHandler) {
-            NSString *errorDescription = [NSString stringWithFormat:@"share format error:%@ shareType:%lu",NSStringFromClass([protocol class]),(unsigned long)contentType];
-            NSError *error = [NSError errorWithDomain:@"WeChat Local Share Error" code:-1 userInfo:@{NSLocalizedDescriptionKey:errorDescription}];
-            self.shareEventHandler(DDSSPlatformWeChat, self.shareScene, DDSSShareStateFail, error);
-            self.shareEventHandler = nil;
-        }
-        return NO;
-    }
-}
-
-#pragma mark -第三方通知微信，打开指定微信号profile页面
-- (BOOL)JumpToBizProfileWithExtMsg:(NSString *)extMsg username:(NSString *)userName profileType:(int)profileType{
-    JumpToBizProfileReq *bizProfile = [[JumpToBizProfileReq alloc]init];
-    bizProfile.extMsg = extMsg;
-    bizProfile.profileType = profileType;
-    bizProfile.username = userName;
-    BOOL ret = [WXApi sendReq:bizProfile];
-    if (!ret) {
-        NSLog(@"JumpToBizProfileReq failed");
-    }
-    return ret;
-}
 
 #pragma mark - Private Methods
 
@@ -184,7 +111,9 @@ const CGFloat DDWeChatImageDataMaxSize = 10 * 1024.0 * 1024.0;
         if (resp.errCode == WXSuccess) {
             if (self.authEventHandler) {
                 SendAuthResp *authResp = (SendAuthResp *)resp;
-                self.authEventHandler(DDSSPlatformWeChat,DDSSAuthStateSuccess, authResp.code, nil);
+                DDAuthItem *authItem = [DDAuthItem new];
+                authItem.thirdToken = authResp.code;
+                self.authEventHandler(DDSSPlatformWeChat,DDSSAuthStateSuccess, authItem, nil);
             }
         } else if (resp.errCode == WXErrCodeUserCancel){
             if (self.authEventHandler) {
@@ -217,6 +146,89 @@ const CGFloat DDWeChatImageDataMaxSize = 10 * 1024.0 * 1024.0;
         }
         self.shareEventHandler = nil;
     }
+}
+
+@end
+
+@implementation DDWeChatHandler (DDSocialHandlerProtocol)
+
++ (BOOL)isInstalled {
+    return [WXApi isWXAppInstalled];
+}
+
++ (BOOL)canShare {
+    return [WXApi isWXAppInstalled];
+}
+
+- (BOOL)registerWithAppKey:(NSString *)appKey
+                 appSecret:(NSString *)appSecret
+               redirectURL:(NSString *)redirectURL
+            appDescription:(NSString *)appDescription {
+    return [WXApi registerApp:appKey withDescription:appDescription];
+}
+
+- (BOOL)application:(UIApplication *)application
+      handleOpenURL:(NSURL *)url
+  sourceApplication:(NSString *)sourceApplication
+         annotation:(id)annotation {
+    return [WXApi handleOpenURL:url delegate:self];
+}
+
+- (BOOL)authWithMode:(DDSSAuthMode)mode
+          controller:(UIViewController *)viewController
+             handler:(DDSSAuthEventHandler)handler {
+    self.authMode = mode;
+    self.authEventHandler = handler;
+    
+    if (self.authEventHandler) {
+        self.authEventHandler(DDSSPlatformWeChat,DDSSAuthStateBegan, nil, nil);
+    }
+    
+    SendAuthReq* authReq =[[SendAuthReq alloc ] init ];
+    authReq.scope = @"snsapi_userinfo" ;
+    authReq.state = @"1990" ;
+    return [WXApi sendAuthReq:authReq viewController:viewController delegate:self];
+}
+
+- (BOOL)shareWithController:(UIViewController *)viewController
+                 shareScene:(DDSSScene)shareScene
+                contentType:(DDSSContentType)contentType
+                   protocol:(id<DDSocialShareContentProtocol>)protocol
+                    handler:(DDSSShareEventHandler)handler {
+    self.shareScene = shareScene;
+    self.shareEventHandler = handler;
+    
+    if (self.shareEventHandler) {
+        self.shareEventHandler(DDSSPlatformWeChat, self.shareScene, DDSSShareStateBegan, nil);
+    }
+    if (contentType == DDSSContentTypeText && [protocol conformsToProtocol:@protocol(DDSocialShareTextProtocol)]) {
+        return [self shareTextWithProtocol:(id<DDSocialShareTextProtocol>)protocol];
+    } else if (contentType == DDSSContentTypeImage && [protocol conformsToProtocol:@protocol(DDSocialShareImageProtocol)]){
+        return [self shareImageWithProtocol:(id<DDSocialShareImageProtocol>)protocol];
+    } else if (contentType == DDSSContentTypeWebPage && [protocol conformsToProtocol:@protocol(DDSocialShareWebPageProtocol)]){
+        return [self shareWebPageWithProtocol:(id<DDSocialShareWebPageProtocol>)protocol];
+    } else {
+        if (self.shareEventHandler) {
+            NSString *errorDescription = [NSString stringWithFormat:@"share format error:%@ shareType:%lu",NSStringFromClass([protocol class]),(unsigned long)contentType];
+            NSError *error = [NSError errorWithDomain:@"WeChat Local Share Error" code:-1 userInfo:@{NSLocalizedDescriptionKey:errorDescription}];
+            self.shareEventHandler(DDSSPlatformWeChat, self.shareScene, DDSSShareStateFail, error);
+            self.shareEventHandler = nil;
+        }
+        return NO;
+    }
+}
+
+- (BOOL)linkupWithPlatform:(DDSSPlatform)platform
+                      item:(DDLinkupItem *)linkupItem {
+    JumpToBizProfileReq *bizProfile = [[JumpToBizProfileReq alloc]init];
+    bizProfile.extMsg = linkupItem.extMsg;
+    bizProfile.profileType = linkupItem.linkupType;
+    bizProfile.username = linkupItem.username;
+    BOOL ret = [WXApi sendReq:bizProfile];
+    if (!ret) {
+        NSLog(@"JumpToBizProfileReq failed");
+    }
+    return ret;
 }
 
 @end

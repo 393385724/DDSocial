@@ -26,8 +26,8 @@
 @property (nonatomic, copy) NSString *thirdId;
 
 /**
- *  @brief 小米授权返回的mac_key
+ *  @brief 其他信息
  */
-@property (nonatomic, copy) NSString *thirdTokenId;
+@property (nonatomic, strong) id userInfo;
 
 @end
