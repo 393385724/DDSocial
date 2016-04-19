@@ -10,6 +10,8 @@
 #define DDSocialEventDefs_h
 #import "DDSocialTypeDefs.h"
 
+@class DDAuthItem;
+
 /**
  *  @brief  授权事件处理器
  *
@@ -18,7 +20,7 @@
  *  @param result   返回结果
  *  @param error    授权错误信息
  */
-typedef void(^DDSSAuthEventHandler) (DDSSPlatform platform, DDSSAuthState state, id result, NSError *error);
+typedef void(^DDSSAuthEventHandler) (DDSSPlatform platform, DDSSAuthState state, DDAuthItem *authItem, NSError *error);
 
 /**
  *	@brief	分享内容事件处理器

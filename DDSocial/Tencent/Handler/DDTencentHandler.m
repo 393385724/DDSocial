@@ -11,6 +11,8 @@
 #import <TencentOpenAPI/QQApiInterface.h>
 
 #import "DDSocialShareContentProtocol.h"
+#import "DDSocialHandlerProtocol.h"
+#import "DDAuthItem.h"
 
 #import "UIImage+Zoom.h"
 
@@ -30,86 +32,6 @@ const CGFloat DDTencentImageDataMaxSize = 5 * 1024.0 * 1024.0;
 @end
 
 @implementation DDTencentHandler
-
-#pragma mark -判断QQ客户端是否安装
-+ (BOOL)isQQInstalled{
-    return [TencentOAuth iphoneQQInstalled];
-}
-
-#pragma mark -向QQ终端程序注册第三方应用
-- (BOOL)registerApp:(NSString *)appid{
-    if (![appid length]) {
-        return NO;
-    }
-    self.tencentOAuth = [[TencentOAuth alloc] initWithAppId:appid andDelegate:self];
-    return YES;
-}
-
-#pragma mark -处理QQ通过URL启动App时传递的数据
-- (BOOL)handleOpenURL:(NSURL *)url{
-    if ([TencentOAuth CanHandleOpenURL:url]) {
-        return [TencentOAuth HandleOpenURL:url];
-    } else {
-        return [QQApiInterface handleOpenURL:url delegate:self];
-    }
-}
-
-#pragma mark -QQ授权逻辑
-- (BOOL)authWithMode:(DDSSAuthMode)mode
-             handler:(DDSSAuthEventHandler)handler{
-    self.authMode = mode;
-    self.authEventHandler = handler;
-    if (self.authEventHandler) {
-        self.authEventHandler(DDSSPlatformQQ, DDSSAuthStateBegan, nil, nil);
-    }
-    NSArray *permissions = @[kOPEN_PERMISSION_ADD_TOPIC,
-                             kOPEN_PERMISSION_ADD_ONE_BLOG,
-                             kOPEN_PERMISSION_ADD_ALBUM,
-                             kOPEN_PERMISSION_UPLOAD_PIC,
-                             kOPEN_PERMISSION_LIST_ALBUM,
-                             kOPEN_PERMISSION_ADD_SHARE,
-                             kOPEN_PERMISSION_CHECK_PAGE_FANS,
-                             kOPEN_PERMISSION_GET_INFO,
-                             kOPEN_PERMISSION_GET_OTHER_INFO,
-                             kOPEN_PERMISSION_GET_VIP_INFO,
-                             kOPEN_PERMISSION_GET_VIP_RICH_INFO,
-                             kOPEN_PERMISSION_GET_USER_INFO,
-                             kOPEN_PERMISSION_GET_SIMPLE_USER_INFO];
-    
-    if ([TencentOAuth iphoneQQInstalled] && [TencentOAuth iphoneQQSupportSSOLogin]) {
-        return [self.tencentOAuth authorize:permissions inSafari:NO];
-    } else {
-        return [self.tencentOAuth authorize:permissions inSafari:YES];
-    }
-}
-
-#pragma mark -QQ分享
-- (BOOL)shareWithProtocol:(id<DDSocialShareContentProtocol>)protocol
-               shareScene:(DDSSScene)shareScene
-              contentType:(DDSSContentType)contentType
-                  handler:(DDSSShareEventHandler)handler{
-    self.shareScene = shareScene;
-    self.shareEventHandler = handler;
-    if (self.shareEventHandler) {
-        self.shareEventHandler(DDSSPlatformQQ, self.shareScene, DDSSShareStateBegan, nil);
-    }
-
-    if (contentType == DDSSContentTypeText && [protocol conformsToProtocol:@protocol(DDSocialShareTextProtocol)]) {
-        return [self shareTextWithProtocol:(id<DDSocialShareTextProtocol>)protocol];
-    } else if (contentType == DDSSContentTypeImage && [protocol conformsToProtocol:@protocol(DDSocialShareImageProtocol)]){
-        return [self shareImageWithProtocol:(id<DDSocialShareImageProtocol>)protocol];
-    } else if (contentType == DDSSContentTypeWebPage && [protocol conformsToProtocol:@protocol(DDSocialShareWebPageProtocol)]){
-        return [self shareWebPageWithProtocol:(id<DDSocialShareWebPageProtocol>)protocol];
-    } else {
-        if (self.shareEventHandler) {
-            NSString *errorDescription = [NSString stringWithFormat:@"share format error:%@ shareType:%lu",NSStringFromClass([protocol class]),(unsigned long)contentType];
-            NSError *error = [NSError errorWithDomain:@"QQ Local Share Error" code:-1 userInfo:@{NSLocalizedDescriptionKey:errorDescription}];
-            self.shareEventHandler(DDSSPlatformQQ, self.shareScene, DDSSShareStateFail, error);
-            self.shareEventHandler = nil;
-        }
-        return NO;
-    }
-}
 
 #pragma mark - Private Methods
 
@@ -228,7 +150,11 @@ const CGFloat DDTencentImageDataMaxSize = 5 * 1024.0 * 1024.0;
  */
 - (void)tencentDidLogin{
     if (self.authEventHandler) {
-        self.authEventHandler(DDSSPlatformQQ, DDSSAuthStateSuccess, self.tencentOAuth, nil);
+        DDAuthItem *authItem = [DDAuthItem new];
+        authItem.thirdId = [self.tencentOAuth getUserOpenID];
+        authItem.thirdToken = [self.tencentOAuth accessToken];
+        authItem.userInfo = self.tencentOAuth;
+        self.authEventHandler(DDSSPlatformQQ, DDSSAuthStateSuccess, authItem, nil);
         self.authEventHandler = nil;
     }
 }
@@ -292,6 +218,102 @@ const CGFloat DDTencentImageDataMaxSize = 5 * 1024.0 * 1024.0;
  */
 - (void)isOnlineResponse:(NSDictionary *)response{
     //只是为了消除警告
+}
+
+@end
+
+@implementation DDTencentHandler (DDSocialHandlerProtocol)
+
++ (BOOL)isInstalled {
+    return [TencentOAuth iphoneQQInstalled];
+}
+
++ (BOOL)canShare {
+    return [TencentOAuth iphoneQQInstalled];
+}
+
+- (BOOL)registerWithAppKey:(NSString *)appKey
+                 appSecret:(NSString *)appSecret
+               redirectURL:(NSString *)redirectURL
+            appDescription:(NSString *)appDescription {
+    if (![appKey length]) {
+        return NO;
+    }
+    self.tencentOAuth = [[TencentOAuth alloc] initWithAppId:appKey andDelegate:self];
+    return YES;
+}
+
+- (BOOL)application:(UIApplication *)application
+      handleOpenURL:(NSURL *)url
+  sourceApplication:(NSString *)sourceApplication
+         annotation:(id)annotation {
+    if ([TencentOAuth CanHandleOpenURL:url]) {
+        return [TencentOAuth HandleOpenURL:url];
+    } else {
+        return [QQApiInterface handleOpenURL:url delegate:self];
+    }
+}
+
+- (BOOL)authWithMode:(DDSSAuthMode)mode
+          controller:(UIViewController *)viewController
+             handler:(DDSSAuthEventHandler)handler {
+    self.authMode = mode;
+    self.authEventHandler = handler;
+    if (self.authEventHandler) {
+        self.authEventHandler(DDSSPlatformQQ, DDSSAuthStateBegan, nil, nil);
+    }
+    NSArray *permissions = @[kOPEN_PERMISSION_ADD_TOPIC,
+                             kOPEN_PERMISSION_ADD_ONE_BLOG,
+                             kOPEN_PERMISSION_ADD_ALBUM,
+                             kOPEN_PERMISSION_UPLOAD_PIC,
+                             kOPEN_PERMISSION_LIST_ALBUM,
+                             kOPEN_PERMISSION_ADD_SHARE,
+                             kOPEN_PERMISSION_CHECK_PAGE_FANS,
+                             kOPEN_PERMISSION_GET_INFO,
+                             kOPEN_PERMISSION_GET_OTHER_INFO,
+                             kOPEN_PERMISSION_GET_VIP_INFO,
+                             kOPEN_PERMISSION_GET_VIP_RICH_INFO,
+                             kOPEN_PERMISSION_GET_USER_INFO,
+                             kOPEN_PERMISSION_GET_SIMPLE_USER_INFO];
+    
+    if ([TencentOAuth iphoneQQInstalled] && [TencentOAuth iphoneQQSupportSSOLogin]) {
+        return [self.tencentOAuth authorize:permissions inSafari:NO];
+    } else {
+        return [self.tencentOAuth authorize:permissions inSafari:YES];
+    }
+}
+
+- (BOOL)shareWithController:(UIViewController *)viewController
+                 shareScene:(DDSSScene)shareScene
+                contentType:(DDSSContentType)contentType
+                   protocol:(id<DDSocialShareContentProtocol>)protocol
+                    handler:(DDSSShareEventHandler)handler {
+    self.shareScene = shareScene;
+    self.shareEventHandler = handler;
+    if (self.shareEventHandler) {
+        self.shareEventHandler(DDSSPlatformQQ, self.shareScene, DDSSShareStateBegan, nil);
+    }
+    
+    if (contentType == DDSSContentTypeText && [protocol conformsToProtocol:@protocol(DDSocialShareTextProtocol)]) {
+        return [self shareTextWithProtocol:(id<DDSocialShareTextProtocol>)protocol];
+    } else if (contentType == DDSSContentTypeImage && [protocol conformsToProtocol:@protocol(DDSocialShareImageProtocol)]){
+        return [self shareImageWithProtocol:(id<DDSocialShareImageProtocol>)protocol];
+    } else if (contentType == DDSSContentTypeWebPage && [protocol conformsToProtocol:@protocol(DDSocialShareWebPageProtocol)]){
+        return [self shareWebPageWithProtocol:(id<DDSocialShareWebPageProtocol>)protocol];
+    } else {
+        if (self.shareEventHandler) {
+            NSString *errorDescription = [NSString stringWithFormat:@"share format error:%@ shareType:%lu",NSStringFromClass([protocol class]),(unsigned long)contentType];
+            NSError *error = [NSError errorWithDomain:@"QQ Local Share Error" code:-1 userInfo:@{NSLocalizedDescriptionKey:errorDescription}];
+            self.shareEventHandler(DDSSPlatformQQ, self.shareScene, DDSSShareStateFail, error);
+            self.shareEventHandler = nil;
+        }
+        return NO;
+    }
+}
+
+- (BOOL)linkupWithPlatform:(DDSSPlatform)platform
+                      item:(DDLinkupItem *)linkupItem {
+    return NO;
 }
 
 @end

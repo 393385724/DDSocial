@@ -52,10 +52,34 @@
  *  @endcode
  *
  *  @param platform    各应用平台
+ */
+- (void)registerPlatform:(DDSSPlatform)platform;
+
+/**
+ *  @brief  在app启动的时候调用,完成第三方应用的注册
+ *  @code
+ - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
+ *  @endcode
+ *
+ *  @param platform    各应用平台
  *  @param appKey      线下申请的appKey,必传参数
  */
 - (void)registerPlatform:(DDSSPlatform)platform
                   appKey:(NSString *)appKey;
+
+/**
+ *  @brief  在app启动的时候调用,完成第三方应用的注册
+ *  @code
+ - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
+ *  @endcode
+ *
+ *  @param platform    各应用平台
+ *  @param appKey      线下申请的appKey,必传参数
+ *  @param appSecret   线下申请的appSecret,没有则不传
+ */
+- (void)registerPlatform:(DDSSPlatform)platform
+                  appKey:(NSString *)appKey
+               appSecret:(NSString *)appSecret;
 
 /**
  *  @brief  在app启动的时候调用,完成第三方应用的注册

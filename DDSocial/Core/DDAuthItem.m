@@ -19,7 +19,7 @@
 }
 
 - (NSString *)description{
-    return  [NSString stringWithFormat:@"thirdToken:%@\nthirdId:%@\nthirdTokenId:%@\nisCodeAuth:%@\n",self.thirdToken,self.thirdId,self.thirdTokenId,self.isCodeAuth ? @"YES":@"NO"];
+    return  [NSString stringWithFormat:@"thirdToken:%@\nthirdId:%@\nisCodeAuth:%@\n%@\n",self.thirdToken,self.thirdId,self.isCodeAuth ? @"YES":@"NO",self.userInfo];
 }
 
 @end
