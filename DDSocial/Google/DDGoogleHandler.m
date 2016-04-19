@@ -40,7 +40,7 @@ didSignInForUser:(GIDGoogleUser *)user
             DDAuthItem *authItem = [DDAuthItem new];
             authItem.thirdId = user.userID;
             authItem.thirdToken = user.authentication.accessToken;
-            authItem.userInfo = user;
+            authItem.rawObject = user;
             self.authEventHandler(DDSSPlatformGoogle, DDSSAuthStateSuccess, authItem, nil);
         }
     }
@@ -133,8 +133,7 @@ didDisconnectWithUser:(GIDGoogleUser *)user
     return NO;
 }
 
-- (BOOL)linkupWithPlatform:(DDSSPlatform)platform
-                      item:(DDLinkupItem *)linkupItem {
+- (BOOL)linkupWithItem:(DDLinkupItem *)linkupItem{
     return NO;
 }
 

@@ -10,10 +10,9 @@
 #import "WXApi.h"
 
 #import "DDLinkupItem.h"
-#import "DDSocialShareContentProtocol.h"
-#import "DDSocialHandlerProtocol.h"
 #import "DDAuthItem.h"
 
+#import "DDSocialShareContentProtocol.h"
 #import "UIImage+Zoom.h"
 
 const CGFloat DDWeChatThumbnailDataMaxSize = 32 * 1024.0;
@@ -113,6 +112,7 @@ const CGFloat DDWeChatImageDataMaxSize = 10 * 1024.0 * 1024.0;
                 SendAuthResp *authResp = (SendAuthResp *)resp;
                 DDAuthItem *authItem = [DDAuthItem new];
                 authItem.thirdToken = authResp.code;
+                authItem.rawObject = authResp;
                 self.authEventHandler(DDSSPlatformWeChat,DDSSAuthStateSuccess, authItem, nil);
             }
         } else if (resp.errCode == WXErrCodeUserCancel){
@@ -153,10 +153,6 @@ const CGFloat DDWeChatImageDataMaxSize = 10 * 1024.0 * 1024.0;
 @implementation DDWeChatHandler (DDSocialHandlerProtocol)
 
 + (BOOL)isInstalled {
-    return [WXApi isWXAppInstalled];
-}
-
-+ (BOOL)canShare {
     return [WXApi isWXAppInstalled];
 }
 
@@ -218,8 +214,7 @@ const CGFloat DDWeChatImageDataMaxSize = 10 * 1024.0 * 1024.0;
     }
 }
 
-- (BOOL)linkupWithPlatform:(DDSSPlatform)platform
-                      item:(DDLinkupItem *)linkupItem {
+- (BOOL)linkupWithItem:(DDLinkupItem *)linkupItem{
     JumpToBizProfileReq *bizProfile = [[JumpToBizProfileReq alloc]init];
     bizProfile.extMsg = linkupItem.extMsg;
     bizProfile.profileType = linkupItem.linkupType;

@@ -47,14 +47,6 @@ const CGFloat DDFacebookImageDataMaxSize = 12 * 1024 * 1024;
 }
 
 - (BOOL)shareImageWithProtocol:(id<DDSocialShareImageProtocol>)protocol{
-    if (![[self class] isInstalled] && self.shareScene != DDSSSceneFBSession){
-        if (self.shareEventHandler) {
-            NSError *error = [NSError errorWithDomain:@"未安装Facebook客户端" code:-1 userInfo:@{NSLocalizedDescriptionKey:@"未安装Facebook客户端无法分享图片"}];
-            self.shareEventHandler(DDSSPlatformFacebook, self.shareScene, DDSSShareStateFail, error);
-            self.shareEventHandler = nil;
-        }
-        return NO;
-    }
     FBSDKSharePhoto *photo = [[FBSDKSharePhoto alloc] init];
     photo.image = [UIImage imageWithImageData:[protocol ddShareImageWithImageData] maxBytes:DDFacebookImageDataMaxSize];
     photo.userGenerated = YES;
@@ -75,21 +67,17 @@ const CGFloat DDFacebookImageDataMaxSize = 12 * 1024 * 1024;
 }
 
 - (BOOL)sendWithContent:(id<FBSDKSharingContent>)sharingContent{
-    if (self.shareScene == DDSSSceneFBSession) {
-        [FBSDKMessageDialog showWithContent:sharingContent delegate:self];
+    FBSDKShareDialog *dialog = [[FBSDKShareDialog alloc] init];
+    //fix bug FBSDKShareDialog of Facebook SDK is not working on iOS9? http://www.basedb.net/Index/detail/id/537586.html
+    if ([[self class] isInstalled]){
+        dialog.mode = FBSDKShareDialogModeNative;
     } else {
-        FBSDKShareDialog *dialog = [[FBSDKShareDialog alloc] init];
-        //fix bug FBSDKShareDialog of Facebook SDK is not working on iOS9? http://www.basedb.net/Index/detail/id/537586.html
-        if ([[self class] isInstalled]){
-            dialog.mode = FBSDKShareDialogModeNative;
-        } else {
-            dialog.mode = FBSDKShareDialogModeBrowser;
-        }
-        dialog.shareContent = sharingContent;
-        dialog.delegate = self;
-        dialog.fromViewController = self.viewController;
-        [dialog show];
+        dialog.mode = FBSDKShareDialogModeBrowser;
     }
+    dialog.shareContent = sharingContent;
+    dialog.delegate = self;
+    dialog.fromViewController = self.viewController;
+    [dialog show];
     return YES;
 }
 
@@ -142,9 +130,9 @@ const CGFloat DDFacebookImageDataMaxSize = 12 * 1024 * 1024;
     return [[UIApplication sharedApplication] canOpenURL:[NSURL URLWithString:@"fbauth2:/"]];
 }
 
-+ (BOOL)canShare {
-    return [[UIApplication sharedApplication] canOpenURL:[NSURL URLWithString:@"fb-messenger-api:/"]];
-}
+//+ (BOOL)canShare {
+//    return [[UIApplication sharedApplication] canOpenURL:[NSURL URLWithString:@"fb-messenger-api:/"]];
+//}
 
 - (BOOL)registerWithAppKey:(NSString *)appKey
                  appSecret:(NSString *)appSecret
@@ -196,7 +184,7 @@ const CGFloat DDFacebookImageDataMaxSize = 12 * 1024 * 1024;
                                                       DDAuthItem *authItem = [DDAuthItem new];
                                                       authItem.thirdToken = result.token.tokenString;
                                                       authItem.thirdId = result.token.userID;
-                                                      authItem.userInfo = result;
+                                                      authItem.rawObject = result;
                                                       handler(DDSSPlatformFacebook, DDSSAuthStateSuccess, authItem, nil);
                                                   }
                                               }
@@ -231,11 +219,6 @@ const CGFloat DDFacebookImageDataMaxSize = 12 * 1024 * 1024;
         }
         return NO;
     }
-}
-
-- (BOOL)linkupWithPlatform:(DDSSPlatform)platform
-                      item:(DDLinkupItem *)linkupItem {
-    return NO;
 }
 
 @end

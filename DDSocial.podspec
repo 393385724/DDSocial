@@ -25,8 +25,10 @@ Pod::Spec.new do |s|
   end
 
   s.subspec 'Wechat' do |wechat|
-    wechat.source_files = 'DDSocial/Wechat/*.{h,m}'
-    wechat.dependency 'libWeChatSDK'
+    wechat.source_files = 'DDSocial/Wechat/Handler/*.{h,m}','DDSocial/Wechat/WeChatSDK/*.h'
+    wechat.ios.vendored_libraries = 'DDSocial/Wechat/WeChatSDK/*.a'
+    wechat.libraries = 'z', 'sqlite3','stdc++'
+    wechat.frameworks = 'SystemConfiguration','CoreTelephony'
     wechat.dependency 'DDSocial/Core'
   end
 
@@ -47,7 +49,6 @@ Pod::Spec.new do |s|
     twitter.source_files = 'DDSocial/Twitter/*.{h,m}'
     twitter.dependency 'TwitterKit','~> 2.0.2'
     twitter.dependency 'DDSocial/Core'
-    twitter.xcconfig = { 'CLANG_ENABLE_MODULES' => 'NO' }
   end
   
   s.subspec 'MiLiao' do |miliao|
@@ -56,20 +57,21 @@ Pod::Spec.new do |s|
     miliao.dependency 'DDSocial/Core'
   end
   
+  s.subspec 'MI' do |mi|
+    mi.source_files = 'DDSocial/MI/**/*.{h,m}'
+    mi.ios.vendored_frameworks = 'DDSocial/MI/Resources/*.framework'
+    mi.resource = "DDSocial/MI/Resources/*.bundle"
+    mi.dependency 'DDSocial/Core'
+  end
+  
   s.subspec 'Google' do |google|
     google.source_files = 'DDSocial/Google/*.{h,m}'
     google.dependency 'Google/SignIn', '~> 2.0.3' 
-  end
-  
-  s.subspec 'MI' do |mi|
-    mi.dependency 'DDMISDK', '~> 1.0.1' 
+    google.dependency 'DDSocial/Core'
   end
   
   s.subspec 'Share' do |share|
     share.source_files  = 'DDSocial/Handler/DDSocialShareHandler.{h,m}' 
-  end
-
-  s.subspec 'Auth' do |auth|
-    auth.source_files = 'DDSocial/Handler/DDSocialAuthHandler.{h,m}'
+    share.dependency 'DDSocial/Core'
   end
 end  

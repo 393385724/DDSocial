@@ -124,15 +124,11 @@ CGFloat const DDMiLiaoImageDataMaxSize = 200 * 1024.0;
     return [MLAppApi isMLAppInstalled];
 }
 
-+ (BOOL)canShare {
-    return [MLAppApi isMLAppInstalled];
-}
-
-- (BOOL)registerWithAppKey:(NSString *)appKey
+- (void)registerWithAppKey:(NSString *)appKey
                  appSecret:(NSString *)appSecret
                redirectURL:(NSString *)redirectURL
-            appDescription:(NSString *)appDescription {
-    return [MLAppApi registerApp:[MLAppApi generateAppId:[[NSBundle mainBundle] bundleIdentifier]]];
+            appDescription:(NSString *)appDescription{
+    [MLAppApi registerApp:[MLAppApi generateAppId:[[NSBundle mainBundle] bundleIdentifier]]];
 }
 
 - (BOOL)application:(UIApplication *)application
@@ -140,13 +136,6 @@ CGFloat const DDMiLiaoImageDataMaxSize = 200 * 1024.0;
   sourceApplication:(NSString *)sourceApplication
          annotation:(id)annotation {
     return [MLAppApi handOpenUrl:url withDelegate:self];
-}
-
-// MARK: TODO
-- (BOOL)authWithMode:(DDSSAuthMode)mode
-          controller:(UIViewController *)viewController
-             handler:(DDSSAuthEventHandler)handler {
-    return NO;
 }
 
 - (BOOL)shareWithController:(UIViewController *)viewController
@@ -177,10 +166,7 @@ CGFloat const DDMiLiaoImageDataMaxSize = 200 * 1024.0;
     }
 }
 
-- (BOOL)linkupWithPlatform:(DDSSPlatform)platform
-                      item:(DDLinkupItem *)linkupItem {
+- (BOOL)linkupWithItem:(DDLinkupItem *)linkupItem{
     return NO;
 }
-
 @end
-

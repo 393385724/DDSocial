@@ -7,11 +7,7 @@
 //
 
 #import <Foundation/Foundation.h>
-#import "DDSocialEventDefs.h"
-
-@protocol DDSocialHandlerProtocol;
-@class UIApplication;
-@class UIViewController;
+#import "DDSocialHandlerProtocol.h"
 
 @interface DDGoogleHandler : NSObject
 

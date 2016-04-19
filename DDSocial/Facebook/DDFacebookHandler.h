@@ -7,12 +7,7 @@
 //
 
 #import <Foundation/Foundation.h>
-#import "DDSocialEventDefs.h"
-
-@protocol DDSocialShareContentProtocol;
-@protocol DDSocialHandlerProtocol;
-@class UIViewController;
-@class UIApplication;
+#import "DDSocialHandlerProtocol.h"
 
 @interface DDFacebookHandler : NSObject
 

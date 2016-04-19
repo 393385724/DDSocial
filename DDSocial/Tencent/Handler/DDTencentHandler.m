@@ -11,20 +11,24 @@
 #import <TencentOpenAPI/QQApiInterface.h>
 
 #import "DDSocialShareContentProtocol.h"
-#import "DDSocialHandlerProtocol.h"
 #import "DDAuthItem.h"
+#import "DDUserInfoItem.h"
 
 #import "UIImage+Zoom.h"
 
 const CGFloat DDTencentThumbnailDataMaxSize = 1 * 1024.0 * 1024.0;
 const CGFloat DDTencentImageDataMaxSize = 5 * 1024.0 * 1024.0;
 
-@interface DDTencentHandler ()<TencentSessionDelegate,QQApiInterfaceDelegate>
+NSString *const DDTencentAPIUserInfo =   @"https://graph.qq.com/user/get_user_info";
+
+@interface DDTencentHandler ()<TencentSessionDelegate,QQApiInterfaceDelegate,TCAPIRequestDelegate>
 
 @property (nonatomic, strong) TencentOAuth *tencentOAuth;
 
 @property (nonatomic, assign) DDSSAuthMode authMode;
 @property (nonatomic, copy) DDSSAuthEventHandler authEventHandler;
+
+@property (nonatomic, copy) DDSSUserInfoEventHandler userInfoEventHandler;
 
 @property (nonatomic, assign) DDSSScene shareScene;
 @property (nonatomic, copy) DDSSShareEventHandler shareEventHandler;
@@ -153,7 +157,7 @@ const CGFloat DDTencentImageDataMaxSize = 5 * 1024.0 * 1024.0;
         DDAuthItem *authItem = [DDAuthItem new];
         authItem.thirdId = [self.tencentOAuth getUserOpenID];
         authItem.thirdToken = [self.tencentOAuth accessToken];
-        authItem.userInfo = self.tencentOAuth;
+        authItem.rawObject = self.tencentOAuth;
         self.authEventHandler(DDSSPlatformQQ, DDSSAuthStateSuccess, authItem, nil);
         self.authEventHandler = nil;
     }
@@ -220,27 +224,44 @@ const CGFloat DDTencentImageDataMaxSize = 5 * 1024.0 * 1024.0;
     //只是为了消除警告
 }
 
+#pragma mark - TCAPIRequestDelegate
+
+- (void)cgiRequest:(TCAPIRequest *)request didResponse:(APIResponse *)response{
+    if ([[request.apiURL absoluteString] isEqualToString:DDTencentAPIUserInfo]) {
+        //获取用户信息
+        if (self.userInfoEventHandler) {
+            if (response.retCode == 0) {
+                DDUserInfoItem *infoItem = [[DDUserInfoItem alloc] initWithPlatForm:DDSSPlatformQQ rawObject:response.jsonResponse];
+                self.userInfoEventHandler(infoItem,nil);
+                self.userInfoEventHandler = nil;
+            }
+            else {
+                NSString *errorMessage = response.jsonResponse[@"msg"];
+                NSError *error = [NSError errorWithDomain:@"GET USer info Error" code:response.retCode userInfo:@{NSLocalizedDescriptionKey:errorMessage}];
+                self.userInfoEventHandler(nil,error);
+                self.userInfoEventHandler = nil;
+            }
+        }
+    }
+}
 @end
 
-@implementation DDTencentHandler (DDSocialHandlerProtocol)
+
+
+
+
+@implementation DDTencentHandler(DDSocialHandlerProtocol)
 
 + (BOOL)isInstalled {
     return [TencentOAuth iphoneQQInstalled];
 }
 
-+ (BOOL)canShare {
-    return [TencentOAuth iphoneQQInstalled];
-}
-
-- (BOOL)registerWithAppKey:(NSString *)appKey
+- (void)registerWithAppKey:(NSString *)appKey
                  appSecret:(NSString *)appSecret
                redirectURL:(NSString *)redirectURL
-            appDescription:(NSString *)appDescription {
-    if (![appKey length]) {
-        return NO;
-    }
+            appDescription:(NSString *)appDescription{
+    NSAssert(appKey, @"appKey 不能为空");
     self.tencentOAuth = [[TencentOAuth alloc] initWithAppId:appKey andDelegate:self];
-    return YES;
 }
 
 - (BOOL)application:(UIApplication *)application
@@ -283,6 +304,20 @@ const CGFloat DDTencentImageDataMaxSize = 5 * 1024.0 * 1024.0;
     }
 }
 
+- (BOOL)getUserInfoWithAuthItem:(DDAuthItem *)authItem
+                        handler:(DDSSUserInfoEventHandler)handler{
+    if (!handler) {
+        return NO;
+    }
+    self.userInfoEventHandler = handler;
+    TencentOAuth *auth = authItem.rawObject;
+    NSDictionary *params = @{@"access_token":auth.accessToken,
+                             @"oauth_consumer_key":auth.appId,
+                             @"openid":auth.openId,};
+    TCAPIRequest *request = [self.tencentOAuth cgiRequestWithURL:[NSURL URLWithString:DDTencentAPIUserInfo] method:@"GET" params:params callback:self];
+    return [self.tencentOAuth sendAPIRequest:request callback:self];
+}
+
 - (BOOL)shareWithController:(UIViewController *)viewController
                  shareScene:(DDSSScene)shareScene
                 contentType:(DDSSContentType)contentType
@@ -311,9 +346,7 @@ const CGFloat DDTencentImageDataMaxSize = 5 * 1024.0 * 1024.0;
     }
 }
 
-- (BOOL)linkupWithPlatform:(DDSSPlatform)platform
-                      item:(DDLinkupItem *)linkupItem {
+- (BOOL)linkupWithItem:(DDLinkupItem *)linkupItem{
     return NO;
 }
-
 @end

@@ -9,9 +9,12 @@
 #import "DDSinaHandler.h"
 #import <WeiboSDK/WeiboSDK.h>
 
-#import "DDSocialShareContentProtocol.h"
-#import "DDSocialHandlerProtocol.h"
 #import "DDAuthItem.h"
+#import "DDUserInfoItem.h"
+
+#import "DDSocialShareContentProtocol.h"
+
+#import "DDSoicalRequestHandler.h"
 
 #import "UIImage+Zoom.h"
 
@@ -20,6 +23,7 @@ const CGFloat DDSinaImageDataMaxSize = 5 * 1024 * 1024;
 
 @interface DDSinaHandler ()<WeiboSDKDelegate>
 
+@property (nonatomic, copy) NSString *appkey;
 @property (nonatomic, copy) NSString *redirectURI;
 
 @property (nonatomic, assign) DDSSAuthMode authMode;
@@ -134,7 +138,7 @@ const CGFloat DDSinaImageDataMaxSize = 5 * 1024 * 1024;
                     DDAuthItem *authItem = [DDAuthItem new];
                     authItem.thirdToken = userInfo[@"access_token"];
                     authItem.thirdId = userInfo[@"uid"];
-                    authItem.userInfo = response.userInfo;
+                    authItem.rawObject = response;
                     self.authEventHandler(DDSSPlatformSina, DDSSAuthStateSuccess, authItem, nil);
                 }
                 break;
@@ -206,14 +210,12 @@ const CGFloat DDSinaImageDataMaxSize = 5 * 1024 * 1024;
     return [WeiboSDK isWeiboAppInstalled];
 }
 
-+ (BOOL)canShare {
-    return [WeiboSDK isWeiboAppInstalled];
-}
-
 - (BOOL)registerWithAppKey:(NSString *)appKey
                  appSecret:(NSString *)appSecret
                redirectURL:(NSString *)redirectURL
             appDescription:(NSString *)appDescription {
+    NSAssert(appKey, @"appkey 必须不能为空");
+    self.appkey = appKey;
     self.redirectURI = redirectURL;
     return [WeiboSDK registerApp:appKey];
 }
@@ -240,6 +242,32 @@ const CGFloat DDSinaImageDataMaxSize = 5 * 1024 * 1024;
     request.shouldOpenWeiboAppInstallPageIfNotInstalled = NO;
     request.scope = @"all";
     return [WeiboSDK sendRequest:request];
+}
+
+- (BOOL)getUserInfoWithAuthItem:(DDAuthItem *)authItem
+                        handler:(DDSSUserInfoEventHandler)handler{
+    if (!handler || !authItem) {
+        return NO;
+    }
+    NSDictionary *dict = @{@"source":self.appkey,
+                           @"access_token":authItem.thirdToken,
+                           @"uid":authItem.thirdId};
+    [DDSoicalRequestHandler sendAsynWithURL:@"https://api.weibo.com/2/users/show.json" params:dict completeHandle:^(NSDictionary *responseDict, NSError *connectionError) {
+        if (connectionError) {
+            handler(nil, connectionError);
+        } else {
+            NSInteger errorCode = [responseDict[@"error_code"] integerValue];
+            if (errorCode) {
+                NSString *errorMessage = responseDict[@"error"];
+                NSError *error = [NSError errorWithDomain:@"Sina Error" code:errorCode userInfo:@{@"description":errorMessage}];
+                handler(nil,error);
+            } else {
+                DDUserInfoItem *userItem = [[DDUserInfoItem alloc] initWithPlatForm:DDSSPlatformSina rawObject:responseDict];
+                handler(userItem,nil);
+            }
+        }
+    }];
+    return YES;
 }
 
 - (BOOL)shareWithController:(UIViewController *)viewController
@@ -269,8 +297,7 @@ const CGFloat DDSinaImageDataMaxSize = 5 * 1024 * 1024;
     }
 }
 
-- (BOOL)linkupWithPlatform:(DDSSPlatform)platform
-                      item:(DDLinkupItem *)linkupItem {
+- (BOOL)linkupWithItem:(DDLinkupItem *)linkupItem{
     return NO;
 }
 

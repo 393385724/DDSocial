@@ -7,11 +7,7 @@
 //
 
 #import <Foundation/Foundation.h>
-#import "DDSocialEventDefs.h"
-
-@protocol DDSocialShareContentProtocol;
-@protocol DDSocialHandlerProtocol;
-@class UIViewController;
+#import "DDSocialHandlerProtocol.h"
 
 @interface DDSinaHandler : NSObject
 

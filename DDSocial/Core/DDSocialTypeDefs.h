@@ -22,6 +22,7 @@ typedef NS_ENUM(NSUInteger, DDSSPlatform) {
     DDSSPlatformFacebook,     //**< Facebook  */
     DDSSPlatformTwitter,      //**< Twitter   */
     DDSSPlatformGoogle,       //**< Google    */
+    DDSSPlatformCount,        //**< 计数使用   */
 };
 
 /**
@@ -54,9 +55,8 @@ typedef NS_ENUM(NSUInteger, DDSSScene) {
     DDSSSceneSina,          /**< 新浪微博     */
     DDSSSceneMiLiaoSession, /**< 米聊聊天界面  */
     DDSSSceneMiLiaoTimeline,/**< 米聊朋友圈    */
-    DDSSSceneFBSession,     /**< Facebook聊天页面  */
-    DDSSSceneFBTimeline,    /**< Facebook朋友圈   */
-    DDSSSceneTwitter,       /**< Twitter    */
+    DDSSSceneFacebook,      /**< Facebook    */
+    DDSSSceneTwitter,       /**< Twitter     */
 };
 
 /**

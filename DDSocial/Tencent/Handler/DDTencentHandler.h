@@ -7,15 +7,12 @@
 //
 
 #import <Foundation/Foundation.h>
-#import "DDSocialEventDefs.h"
-
-@protocol DDSocialShareContentProtocol;
-@protocol DDSocialHandlerProtocol;
+#import "DDSocialHandlerProtocol.h"
 
 @interface DDTencentHandler : NSObject
 
 @end
 
-@interface DDTencentHandler (DDSocialHandlerProtocol) <DDSocialHandlerProtocol>
+@interface DDTencentHandler (DDSocialHandlerProtocol)<DDSocialHandlerProtocol>
 
 @end

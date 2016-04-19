@@ -10,6 +10,7 @@
 #import "DDSocialEventDefs.h"
 #import "DDSocialShareContentProtocol.h"
 #import "DDLinkupItem.h"
+#import "DDAuthItem.h"
 
 @class UIApplication;
 @class UIViewController;
@@ -162,6 +163,19 @@
                 authMode:(DDSSAuthMode)authMode
               controller:(UIViewController *)viewController
                  handler:(DDSSAuthEventHandler)handler;
+
+/**
+ *  @brief 获取用户个人信息
+ *
+ *  @param platform 各应用平台
+ *  @param authItem 授权信息model
+ *  @param handler  回调
+ *
+ *  @return YES ? 发起成功 : 发起失败
+ */
+- (BOOL)getUserInfoWithPlatform:(DDSSPlatform)platform
+                       authItem:(DDAuthItem *)authItem
+                        handler:(DDSSUserInfoEventHandler)handler;
 
 /**
  *  @brief  分享到第三方平台

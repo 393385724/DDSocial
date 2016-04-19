@@ -126,7 +126,7 @@
                 DDAuthItem *authItem = [DDAuthItem new];
                 authItem.thirdToken = session.authToken;
                 authItem.thirdId = session.userID;
-                authItem.userInfo = session;
+                authItem.rawObject = session;
                 handler(DDSSPlatformTwitter, DDSSAuthStateSuccess, authItem, nil);
             }
         }
