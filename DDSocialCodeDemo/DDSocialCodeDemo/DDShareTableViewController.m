@@ -83,11 +83,11 @@
         return DDSSPlatformSina;
     } else if (section == 3 || section == 4){
         return DDSSPlatformQQ;
-    } else if (section == 5 || section == 6){
+    } else if (section == 5){
         return DDSSPlatformFacebook;
-    } else if(section == 7){
+    } else if(section == 6){
         return DDSSPlatformTwitter;
-    } else if (section == 8 || section == 9){
+    } else if (section == 7 || section == 8){
         return DDSSPlatformMiLiao;
     }
     return DDSSPlatformWeChat;

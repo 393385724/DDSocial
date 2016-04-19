@@ -18,6 +18,11 @@
 	<string>1.0</string>
 	<key>CFBundleSignature</key>
 	<string>????</string>
+	<key>Fabric</key>
+	<dict>
+		<key>APIKey</key>
+		<string>70359e06e1828fbbcbca6fce0a0a0bdda1bf5fcb</string>
+	</dict>
 	<key>CFBundleURLTypes</key>
 	<array>
 		<dict>

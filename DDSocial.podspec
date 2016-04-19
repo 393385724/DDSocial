@@ -1,6 +1,6 @@
 Pod::Spec.new do |s|  
   s.name             = "DDSocial"  
-  s.version          = "1.1.0"  
+  s.version          = "1.2.0"  
   s.summary          = "A share auth wheels based on the official library content wecaht sina tencent facebook twitter google mi"  
   s.homepage         = "https://github.com/393385724/DDSocial"  
   s.license          = 'MIT'  
@@ -19,7 +19,7 @@ Pod::Spec.new do |s|
     tencent.source_files = 'DDSocial/Tencent/Handler/*.{h,m}'
     tencent.ios.vendored_frameworks = 'DDSocial/Tencent/TencentSDK/*.framework'
     tencent.resource = "DDSocial/Tencent/TencentSDK/*.bundle"
-    tencent.libraries = 'z', 'sqlite3','stdc++','iconv'  
+    tencent.libraries = 'z', 'sqlite3','stdc++','iconv'
     tencent.frameworks = 'SystemConfiguration','CoreGraphics', 'CoreTelephony', 'Security'
     tencent.dependency 'DDSocial/Core'
   end
@@ -34,7 +34,7 @@ Pod::Spec.new do |s|
 
   s.subspec 'Sina' do |sina|
     sina.source_files = 'DDSocial/Sina/*.{h,m}'
-    sina.dependency 'WeiboSDK', '~> 3.1.3'   
+    sina.dependency 'WeiboSDK', '~> 3.1.3'
     sina.dependency 'DDSocial/Core'
   end
 
@@ -47,7 +47,7 @@ Pod::Spec.new do |s|
 
   s.subspec 'Twitter' do |twitter|
     twitter.source_files = 'DDSocial/Twitter/*.{h,m}'
-    twitter.dependency 'TwitterKit','~> 2.0.2'
+    twitter.dependency 'TwitterKit', '~> 1.15.3'
     twitter.dependency 'DDSocial/Core'
   end
   
@@ -56,22 +56,22 @@ Pod::Spec.new do |s|
     miliao.ios.vendored_frameworks = 'DDSocial/MiLiao/MiLiaoSDK/*.framework'
     miliao.dependency 'DDSocial/Core'
   end
-  
+
   s.subspec 'MI' do |mi|
     mi.source_files = 'DDSocial/MI/**/*.{h,m}'
     mi.ios.vendored_frameworks = 'DDSocial/MI/Resources/*.framework'
     mi.resource = "DDSocial/MI/Resources/*.bundle"
     mi.dependency 'DDSocial/Core'
   end
-  
+
   s.subspec 'Google' do |google|
     google.source_files = 'DDSocial/Google/*.{h,m}'
-    google.dependency 'Google/SignIn', '~> 2.0.3' 
+    google.dependency 'Google/SignIn', '~> 2.0.3'
     google.dependency 'DDSocial/Core'
   end
-  
+
   s.subspec 'Share' do |share|
-    share.source_files  = 'DDSocial/Handler/DDSocialShareHandler.{h,m}' 
+    share.source_files  = 'DDSocial/Handler/DDSocialShareHandler.{h,m}'
     share.dependency 'DDSocial/Core'
   end
 end  

@@ -8,12 +8,12 @@
 
 #import "DDTwitterHandler.h"
 #import <Social/Social.h>
+//#import <Fabric/Fabric.h>
+//#import <TwitterKit/TwitterKit.h>
 
 #import "DDSocialShareContentProtocol.h"
 #import "DDSocialHandlerProtocol.h"
 #import "DDAuthItem.h"
-#import <Fabric/Fabric.h>
-#import <TwitterKit/TwitterKit.h>
 
 @interface DDTwitterHandler ()
 
@@ -88,18 +88,14 @@
     return [SLComposeViewController isAvailableForServiceType:SLServiceTypeTwitter];
 }
 
-+ (BOOL)canShare {
-    return [SLComposeViewController isAvailableForServiceType:SLServiceTypeTwitter];
-}
-
 - (BOOL)registerWithAppKey:(NSString *)appKey
                  appSecret:(NSString *)appSecret
                redirectURL:(NSString *)redirectURL
             appDescription:(NSString *)appDescription {
-    if (appKey && [appKey length] > 0 && appSecret && [appSecret length] > 0) {
-        [[Twitter sharedInstance] startWithConsumerKey:appKey consumerSecret:appSecret];
-    }
-    [Fabric with:@[[Twitter class]]];
+//    if (appKey && [appKey length] > 0 && appSecret && [appSecret length] > 0) {
+//        [[Twitter sharedInstance] startWithConsumerKey:appKey consumerSecret:appSecret];
+//    }
+//    [Fabric with:@[[Twitter class]]];
     return YES;
 }
 
@@ -110,29 +106,29 @@
     return NO;
 }
 
-- (BOOL)authWithMode:(DDSSAuthMode)mode
-          controller:(UIViewController *)viewController
-             handler:(DDSSAuthEventHandler)handler {
-    if (handler) {
-        handler(DDSSPlatformTwitter, DDSSAuthStateBegan, nil, nil);
-    }
-    [[Twitter sharedInstance] logInWithCompletion:^(TWTRSession * _Nullable session, NSError * _Nullable error) {
-        if (error) {
-            if (handler) {
-                handler(DDSSPlatformTwitter, DDSSAuthStateFail, nil, error);
-            }
-        } else {
-            if (handler) {
-                DDAuthItem *authItem = [DDAuthItem new];
-                authItem.thirdToken = session.authToken;
-                authItem.thirdId = session.userID;
-                authItem.rawObject = session;
-                handler(DDSSPlatformTwitter, DDSSAuthStateSuccess, authItem, nil);
-            }
-        }
-    }];
-    return YES;
-}
+//- (BOOL)authWithMode:(DDSSAuthMode)mode
+//          controller:(UIViewController *)viewController
+//             handler:(DDSSAuthEventHandler)handler {
+//    if (handler) {
+//        handler(DDSSPlatformTwitter, DDSSAuthStateBegan, nil, nil);
+//    }
+//    [[Twitter sharedInstance] logInWithCompletion:^(TWTRSession * _Nullable session, NSError * _Nullable error) {
+//        if (error) {
+//            if (handler) {
+//                handler(DDSSPlatformTwitter, DDSSAuthStateFail, nil, error);
+//            }
+//        } else {
+//            if (handler) {
+//                DDAuthItem *authItem = [DDAuthItem new];
+//                authItem.thirdToken = session.authToken;
+//                authItem.thirdId = session.userID;
+//                authItem.rawObject = session;
+//                handler(DDSSPlatformTwitter, DDSSAuthStateSuccess, authItem, nil);
+//            }
+//        }
+//    }];
+//    return YES;
+//}
 
 - (BOOL)shareWithController:(UIViewController *)viewController
                  shareScene:(DDSSScene)shareScene
@@ -155,17 +151,12 @@
     } else {
         if (self.shareEventHandler) {
             NSString *errorDescription = [NSString stringWithFormat:@"share format error:%@ shareType:%lu",NSStringFromClass([protocol class]),(unsigned long)contentType];
-            NSError *error = [NSError errorWithDomain:@"MiLiao Local Share Error" code:-1 userInfo:@{NSLocalizedDescriptionKey:errorDescription}];
+            NSError *error = [NSError errorWithDomain:@"Twitter Local Share Error" code:-1 userInfo:@{NSLocalizedDescriptionKey:errorDescription}];
             self.shareEventHandler(DDSSPlatformTwitter, DDSSSceneTwitter, DDSSShareStateFail, error);
             self.shareEventHandler = nil;
         }
         return NO;
     }
-}
-
-- (BOOL)linkupWithPlatform:(DDSSPlatform)platform
-                      item:(DDLinkupItem *)linkupItem {
-    return NO;
 }
 
 @end
