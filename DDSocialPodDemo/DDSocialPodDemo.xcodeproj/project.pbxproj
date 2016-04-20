@@ -1,0 +1,415 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		37C6142759A17FDE9979F3FB /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 4F01DA749B2180A721C4200C /* libPods.a */; };
+		90D12D561CC7156000D39B0C /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 90D12D551CC7156000D39B0C /* main.m */; };
+		90D12D591CC7156000D39B0C /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 90D12D581CC7156000D39B0C /* AppDelegate.m */; };
+		90D12D5F1CC7156000D39B0C /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 90D12D5D1CC7156000D39B0C /* Main.storyboard */; };
+		90D12D611CC7156000D39B0C /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 90D12D601CC7156000D39B0C /* Assets.xcassets */; };
+		90D12D641CC7156000D39B0C /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 90D12D621CC7156000D39B0C /* LaunchScreen.storyboard */; };
+		90D12D741CC7170B00D39B0C /* DDAuthTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 90D12D6C1CC7170B00D39B0C /* DDAuthTableViewController.m */; };
+		90D12D751CC7170B00D39B0C /* DDAuthTableViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 90D12D6D1CC7170B00D39B0C /* DDAuthTableViewController.xib */; };
+		90D12D761CC7170B00D39B0C /* DDMainViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 90D12D6F1CC7170B00D39B0C /* DDMainViewController.m */; };
+		90D12D771CC7170B00D39B0C /* DDMainViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 90D12D701CC7170B00D39B0C /* DDMainViewController.xib */; };
+		90D12D781CC7170B00D39B0C /* DDShareTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 90D12D721CC7170B00D39B0C /* DDShareTableViewController.m */; };
+		90D12D791CC7170B00D39B0C /* DDShareTableViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 90D12D731CC7170B00D39B0C /* DDShareTableViewController.xib */; };
+		90D12D7B1CC71F3E00D39B0C /* IMG_5644.JPG in Resources */ = {isa = PBXBuildFile; fileRef = 90D12D7A1CC71F3E00D39B0C /* IMG_5644.JPG */; };
+		90D12D7D1CC72B2F00D39B0C /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 90D12D7C1CC72B2F00D39B0C /* GoogleService-Info.plist */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXFileReference section */
+		4F01DA749B2180A721C4200C /* libPods.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPods.a; sourceTree = BUILT_PRODUCTS_DIR; };
+		90D12D511CC7156000D39B0C /* DDSocialPodDemo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = DDSocialPodDemo.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		90D12D551CC7156000D39B0C /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
+		90D12D571CC7156000D39B0C /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
+		90D12D581CC7156000D39B0C /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
+		90D12D5E1CC7156000D39B0C /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
+		90D12D601CC7156000D39B0C /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		90D12D631CC7156000D39B0C /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
+		90D12D651CC7156000D39B0C /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		90D12D6B1CC7170B00D39B0C /* DDAuthTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DDAuthTableViewController.h; sourceTree = "<group>"; };
+		90D12D6C1CC7170B00D39B0C /* DDAuthTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DDAuthTableViewController.m; sourceTree = "<group>"; };
+		90D12D6D1CC7170B00D39B0C /* DDAuthTableViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = DDAuthTableViewController.xib; sourceTree = "<group>"; };
+		90D12D6E1CC7170B00D39B0C /* DDMainViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DDMainViewController.h; sourceTree = "<group>"; };
+		90D12D6F1CC7170B00D39B0C /* DDMainViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DDMainViewController.m; sourceTree = "<group>"; };
+		90D12D701CC7170B00D39B0C /* DDMainViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = DDMainViewController.xib; sourceTree = "<group>"; };
+		90D12D711CC7170B00D39B0C /* DDShareTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DDShareTableViewController.h; sourceTree = "<group>"; };
+		90D12D721CC7170B00D39B0C /* DDShareTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DDShareTableViewController.m; sourceTree = "<group>"; };
+		90D12D731CC7170B00D39B0C /* DDShareTableViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = DDShareTableViewController.xib; sourceTree = "<group>"; };
+		90D12D7A1CC71F3E00D39B0C /* IMG_5644.JPG */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = IMG_5644.JPG; sourceTree = "<group>"; };
+		90D12D7C1CC72B2F00D39B0C /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
+		C244CE55F72B103D823FB47E /* Pods.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.debug.xcconfig; path = "Pods/Target Support Files/Pods/Pods.debug.xcconfig"; sourceTree = "<group>"; };
+		DACA979B644FF3F8F045405E /* Pods.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.release.xcconfig; path = "Pods/Target Support Files/Pods/Pods.release.xcconfig"; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		90D12D4E1CC7156000D39B0C /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				37C6142759A17FDE9979F3FB /* libPods.a in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		75B90D2D20F1757BFDFB47BE /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				C244CE55F72B103D823FB47E /* Pods.debug.xcconfig */,
+				DACA979B644FF3F8F045405E /* Pods.release.xcconfig */,
+			);
+			name = Pods;
+			sourceTree = "<group>";
+		};
+		90D12D481CC7156000D39B0C = {
+			isa = PBXGroup;
+			children = (
+				90D12D531CC7156000D39B0C /* DDSocialPodDemo */,
+				90D12D521CC7156000D39B0C /* Products */,
+				75B90D2D20F1757BFDFB47BE /* Pods */,
+				ACC6CBB85F036B7E571B08F2 /* Frameworks */,
+			);
+			sourceTree = "<group>";
+		};
+		90D12D521CC7156000D39B0C /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				90D12D511CC7156000D39B0C /* DDSocialPodDemo.app */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		90D12D531CC7156000D39B0C /* DDSocialPodDemo */ = {
+			isa = PBXGroup;
+			children = (
+				90D12D6B1CC7170B00D39B0C /* DDAuthTableViewController.h */,
+				90D12D6C1CC7170B00D39B0C /* DDAuthTableViewController.m */,
+				90D12D6D1CC7170B00D39B0C /* DDAuthTableViewController.xib */,
+				90D12D6E1CC7170B00D39B0C /* DDMainViewController.h */,
+				90D12D6F1CC7170B00D39B0C /* DDMainViewController.m */,
+				90D12D701CC7170B00D39B0C /* DDMainViewController.xib */,
+				90D12D711CC7170B00D39B0C /* DDShareTableViewController.h */,
+				90D12D721CC7170B00D39B0C /* DDShareTableViewController.m */,
+				90D12D731CC7170B00D39B0C /* DDShareTableViewController.xib */,
+				90D12D571CC7156000D39B0C /* AppDelegate.h */,
+				90D12D581CC7156000D39B0C /* AppDelegate.m */,
+				90D12D7C1CC72B2F00D39B0C /* GoogleService-Info.plist */,
+				90D12D5D1CC7156000D39B0C /* Main.storyboard */,
+				90D12D601CC7156000D39B0C /* Assets.xcassets */,
+				90D12D621CC7156000D39B0C /* LaunchScreen.storyboard */,
+				90D12D651CC7156000D39B0C /* Info.plist */,
+				90D12D7A1CC71F3E00D39B0C /* IMG_5644.JPG */,
+				90D12D541CC7156000D39B0C /* Supporting Files */,
+			);
+			path = DDSocialPodDemo;
+			sourceTree = "<group>";
+		};
+		90D12D541CC7156000D39B0C /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				90D12D551CC7156000D39B0C /* main.m */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		ACC6CBB85F036B7E571B08F2 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				4F01DA749B2180A721C4200C /* libPods.a */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		90D12D501CC7156000D39B0C /* DDSocialPodDemo */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 90D12D681CC7156000D39B0C /* Build configuration list for PBXNativeTarget "DDSocialPodDemo" */;
+			buildPhases = (
+				282DFE3051245D37DED5D497 /* Check Pods Manifest.lock */,
+				90D12D4D1CC7156000D39B0C /* Sources */,
+				90D12D4E1CC7156000D39B0C /* Frameworks */,
+				90D12D4F1CC7156000D39B0C /* Resources */,
+				67BB37CF6A1F5F75C60477CD /* Embed Pods Frameworks */,
+				190004E58EC26867F586622C /* Copy Pods Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = DDSocialPodDemo;
+			productName = DDSocialPodDemo;
+			productReference = 90D12D511CC7156000D39B0C /* DDSocialPodDemo.app */;
+			productType = "com.apple.product-type.application";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		90D12D491CC7156000D39B0C /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastUpgradeCheck = 0720;
+				ORGANIZATIONNAME = LiLingang;
+				TargetAttributes = {
+					90D12D501CC7156000D39B0C = {
+						CreatedOnToolsVersion = 7.2.1;
+					};
+				};
+			};
+			buildConfigurationList = 90D12D4C1CC7156000D39B0C /* Build configuration list for PBXProject "DDSocialPodDemo" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = 90D12D481CC7156000D39B0C;
+			productRefGroup = 90D12D521CC7156000D39B0C /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				90D12D501CC7156000D39B0C /* DDSocialPodDemo */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		90D12D4F1CC7156000D39B0C /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				90D12D771CC7170B00D39B0C /* DDMainViewController.xib in Resources */,
+				90D12D7D1CC72B2F00D39B0C /* GoogleService-Info.plist in Resources */,
+				90D12D641CC7156000D39B0C /* LaunchScreen.storyboard in Resources */,
+				90D12D611CC7156000D39B0C /* Assets.xcassets in Resources */,
+				90D12D791CC7170B00D39B0C /* DDShareTableViewController.xib in Resources */,
+				90D12D5F1CC7156000D39B0C /* Main.storyboard in Resources */,
+				90D12D7B1CC71F3E00D39B0C /* IMG_5644.JPG in Resources */,
+				90D12D751CC7170B00D39B0C /* DDAuthTableViewController.xib in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		190004E58EC26867F586622C /* Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods/Pods-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		282DFE3051245D37DED5D497 /* Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Check Pods Manifest.lock";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [[ $? != 0 ]] ; then\n    cat << EOM\nerror: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\nEOM\n    exit 1\nfi\n";
+			showEnvVarsInLog = 0;
+		};
+		67BB37CF6A1F5F75C60477CD /* Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Embed Pods Frameworks";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods/Pods-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		90D12D4D1CC7156000D39B0C /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				90D12D741CC7170B00D39B0C /* DDAuthTableViewController.m in Sources */,
+				90D12D761CC7170B00D39B0C /* DDMainViewController.m in Sources */,
+				90D12D591CC7156000D39B0C /* AppDelegate.m in Sources */,
+				90D12D781CC7170B00D39B0C /* DDShareTableViewController.m in Sources */,
+				90D12D561CC7156000D39B0C /* main.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXVariantGroup section */
+		90D12D5D1CC7156000D39B0C /* Main.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				90D12D5E1CC7156000D39B0C /* Base */,
+			);
+			name = Main.storyboard;
+			sourceTree = "<group>";
+		};
+		90D12D621CC7156000D39B0C /* LaunchScreen.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				90D12D631CC7156000D39B0C /* Base */,
+			);
+			name = LaunchScreen.storyboard;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		90D12D661CC7156000D39B0C /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.2;
+				MTL_ENABLE_DEBUG_INFO = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+			};
+			name = Debug;
+		};
+		90D12D671CC7156000D39B0C /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.2;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				SDKROOT = iphoneos;
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		90D12D691CC7156000D39B0C /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = C244CE55F72B103D823FB47E /* Pods.debug.xcconfig */;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				INFOPLIST_FILE = DDSocialPodDemo/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = com.huami.DDSocial;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Debug;
+		};
+		90D12D6A1CC7156000D39B0C /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = DACA979B644FF3F8F045405E /* Pods.release.xcconfig */;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				INFOPLIST_FILE = DDSocialPodDemo/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = com.huami.DDSocial;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		90D12D4C1CC7156000D39B0C /* Build configuration list for PBXProject "DDSocialPodDemo" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				90D12D661CC7156000D39B0C /* Debug */,
+				90D12D671CC7156000D39B0C /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		90D12D681CC7156000D39B0C /* Build configuration list for PBXNativeTarget "DDSocialPodDemo" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				90D12D691CC7156000D39B0C /* Debug */,
+				90D12D6A1CC7156000D39B0C /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = 90D12D491CC7156000D39B0C /* Project object */;
+}

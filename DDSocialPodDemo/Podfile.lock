@@ -5,6 +5,30 @@ PODS:
   - Bolts/AppLinks (1.7.0):
     - Bolts/Tasks
   - Bolts/Tasks (1.7.0)
+  - DDSocial/Core (1.2.0)
+  - DDSocial/Facebook (1.2.0):
+    - DDSocial/Core
+    - FBSDKLoginKit (~> 4.10.0)
+    - FBSDKShareKit (~> 4.10.0)
+  - DDSocial/Google (1.2.0):
+    - DDSocial/Core
+    - Google/SignIn (~> 2.0.3)
+  - DDSocial/MI (1.2.0):
+    - DDSocial/Core
+  - DDSocial/MiLiao (1.2.0):
+    - DDSocial/Core
+  - DDSocial/Share (1.2.0):
+    - DDSocial/Core
+  - DDSocial/Sina (1.2.0):
+    - DDSocial/Core
+    - WeiboSDK (~> 3.1.3)
+  - DDSocial/Tencent (1.2.0):
+    - DDSocial/Core
+  - DDSocial/Twitter (1.2.0):
+    - DDSocial/Core
+    - TwitterKit (~> 1.15.3)
+  - DDSocial/Wechat (1.2.0):
+    - DDSocial/Core
   - Fabric (1.6.7)
   - FBSDKCoreKit (4.11.0):
     - Bolts (~> 1.7)
@@ -44,14 +68,28 @@ PODS:
   - WeiboSDK (3.1.3)
 
 DEPENDENCIES:
-  - FBSDKLoginKit (~> 4.10.0)
-  - FBSDKShareKit (~> 4.10.0)
-  - Google/SignIn (~> 2.0.3)
-  - TwitterKit (~> 1.15.3)
-  - WeiboSDK (~> 3.1.3)
+  - DDSocial/Facebook (from `https://github.com/393385724/DDSocial.git`)
+  - DDSocial/Google (from `https://github.com/393385724/DDSocial.git`)
+  - DDSocial/MI (from `https://github.com/393385724/DDSocial.git`)
+  - DDSocial/MiLiao (from `https://github.com/393385724/DDSocial.git`)
+  - DDSocial/Share (from `https://github.com/393385724/DDSocial.git`)
+  - DDSocial/Sina (from `https://github.com/393385724/DDSocial.git`)
+  - DDSocial/Tencent (from `https://github.com/393385724/DDSocial.git`)
+  - DDSocial/Twitter (from `https://github.com/393385724/DDSocial.git`)
+  - DDSocial/Wechat (from `https://github.com/393385724/DDSocial.git`)
+
+EXTERNAL SOURCES:
+  DDSocial:
+    :git: https://github.com/393385724/DDSocial.git
+
+CHECKOUT OPTIONS:
+  DDSocial:
+    :commit: 4a6add4c927690073641a8ab3110522b7700287c
+    :git: https://github.com/393385724/DDSocial.git
 
 SPEC CHECKSUMS:
   Bolts: a0058fa3b331c5a1e4402d534f2dae36dbff31e4
+  DDSocial: 3ed88c04b16df3f1dd6e8d8af3ed0db97eba7689
   Fabric: caf7580c725e64db144f610ac65cd60956911dc7
   FBSDKCoreKit: 686ac982723a14ec9ddb85e2f81235d7706c891b
   FBSDKLoginKit: 699ff169080e3072de4b9b0faca90bf23dc36deb

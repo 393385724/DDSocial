@@ -3,7 +3,7 @@ platform :ios,'7.0'
 #inhibit_all_warnings!
 workspace 'DDSocialCodeDemo'
    pod 'Google/SignIn', '~> 2.0.3' 
-   pod 'TwitterKit','~> 1.15.1'
+   pod 'TwitterKit','~> 1.15.3'
    pod 'FBSDKLoginKit', '~> 4.10.0'
    pod 'FBSDKShareKit', '~> 4.10.0'
    pod 'WeiboSDK', '~> 3.1.3'   

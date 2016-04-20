@@ -1,36 +1,25 @@
 # DDSocial
-A share auth wheels based on the official library content wecaht sina tencent facebook twitter google
-#准备工作
-###微信开放平台(https://open.weixin.qq.com/)
-  (1)首先在微信开放平台根据自己app的bundleid申请一个appkey<br />
-  (2)然后配置xcode中的info.plist 添加URL Types<br />
-  (3)示例代码<br />
-  <pre><code>
-  <key>CFBundleURLTypes&lt</key>
-	<array>
-		<dict>
-			<key>CFBundleTypeRole</key>
-			<string>WeChat</string>
-			<key>CFBundleURLName</key>
-			<string>weixin</string>
-			<key>CFBundleURLSchemes</key>
-			<array>
-				<string>wx***********</string>
-			</array>
-		</dict>
-	</array>
-	</code></pre>
-###QQ互联(http://connect.qq.com/)
-  与微信类似
-###新浪微博开放平台(http://open.weibo.com/)
-  与微信类似唯一的区别是可以选择是否使用自定义的重定向URL
-###Google开放平台(https://developers.google.com/identity/sign-in/ios/)
-  goole略有不同 参见连接:https://developers.google.com/identity/sign-in/ios/start-integrating#before_you_begin
-###Facebook开放平台(https://developers.facebook.com/)
-  详情查看:https://developers.facebook.com/docs/ios/getting-started
-###Twitter开放平台(https://apps.twitter.com/)
-#分享
-1、在AppDelegate.h中实现如下方法
+A share auth wheels based on the official library content wecaht sina tencent facebook twitter google miliao mi
+#使用
+##使用配置
+1、引入类库，必须引入share模块，其他可根据自身app选择性引入
+（1）使用pod
+<pre><code>
+	pod 'DDSocial/Share' 
+	pod 'DDSocial/MI'
+	pod 'DDSocial/MiLiao'
+	pod 'DDSocial/Wechat'
+	pod 'DDSocial/Tencent'
+	pod 'DDSocial/Sina'
+	pod 'DDSocial/Facebook'
+	pod 'DDSocial/Twitter'
+	pod 'DDSocial/Google'
+</code></pre>
+（2）直接使用源文件需要配置类库的Search Paths
+   Build Settings   ->  Search Paths 
+    两个地方添加  Framework Search Paths 和 Library Search Paths 
+
+2、在AppDelegate.h中实现如下方法
 (1)引入头文件
 <pre><code>
 #import "DDSocialShareHandler.h"
@@ -38,11 +27,13 @@ A share auth wheels based on the official library content wecaht sina tencent fa
 (2)在应用启动时注册第三方eg
 <pre><code>
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
-    [[DDSocialShareHandler sharedInstance] registerPlatform:DDSSPlatformWeChat appKey:自己申请的key];
-    [[DDSocialShareHandler sharedInstance] registerPlatform:DDSSPlatformSina appKey:自己申请的key];
-    [[DDSocialShareHandler sharedInstance] registerPlatform:DDSSPlatformQQ appKey:自己申请的key];
-    [[DDSocialShareHandler sharedInstance] registerPlatform:DDSSPlatformFacebook appKey:自己申请的key];
-    [[DDSocialShareHandler sharedInstance] registerPlatform:DDSSPlatformGoogle appKey:@""];
+    [[DDSocialShareHandler sharedInstance] registerPlatform:DDSSPlatformMI appKey:@"自己申请的key"redirectURL:@"申请时填写的URL"];
+    [[DDSocialShareHandler sharedInstance] registerPlatform:DDSSPlatformWeChat appKey:@"自己申请的key"];
+    [[DDSocialShareHandler sharedInstance] registerPlatform:DDSSPlatformSina appKey:@"自己申请的key"];
+    [[DDSocialShareHandler sharedInstance] registerPlatform:DDSSPlatformQQ appKey:@"自己申请的key"];
+    [[DDSocialShareHandler sharedInstance] registerPlatform:DDSSPlatformFacebook appKey:@"自己申请的key"];
+    [[DDSocialShareHandler sharedInstance] registerPlatform:DDSSPlatformGoogle];
+    [[DDSocialShareHandler sharedInstance] registerPlatform:DDSSPlatformMiLiao appKey:@"自定义的key"];
     return YES;
 }
 </code></pre>
@@ -60,6 +51,7 @@ A share auth wheels based on the official library content wecaht sina tencent fa
     return [[DDSocialShareHandler sharedInstance] application:app openURL:url options:options];
 }
 </code></pre>
+##分享
 2、调用方式
 （1）实现分享的protocol<br />
 DDSocialShareTextProtocol:纯文本分享<br />
@@ -88,60 +80,239 @@ DDSocialShareWebPageProtocol：web内容分享<br />
         }
     }];
 </code></pre>
-#授权
-1、在AppDelegate.h中实现如下方法
-(1)引入头文件
+##授权
 <pre><code>
-#import "DDSocialShareHandler.h"
-#import "DDSocialShareHandler.h"
-</code></pre>
-(2)在应用启动时注册第三方eg
-<pre><code>
-- (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
-    [[DDSocialAuthHandler sharedInstance] registerMIApp:自己申请的key redirectURL:自己填写的url];
-    [[DDSocialShareHandler sharedInstance] registerPlatform:DDSSPlatformGoogle appKey:@""];
-
-    [[DDSocialShareHandler sharedInstance] registerPlatform:DDSSPlatformWeChat appKey:自己申请的key];
-    [[DDSocialShareHandler sharedInstance] registerPlatform:DDSSPlatformSina appKey:自己申请的key];
-    [[DDSocialShareHandler sharedInstance] registerPlatform:DDSSPlatformQQ appKey:自己申请的key];
-    [[DDSocialShareHandler sharedInstance] registerPlatform:DDSSPlatformFacebook appKey:自己申请的key];
-    return YES;
-}
-</code></pre>
-(3)实现唤起app回调
-<pre><code>
-- (BOOL)application:(UIApplication *)application handleOpenURL:(NSURL *)url {
-    return [[DDSocialShareHandler sharedInstance] application:application handleOpenURL:url sourceApplication:nil annotation:nil];
-}
-
-- (BOOL)application:(UIApplication *)application openURL:(NSURL *)url sourceApplication:(NSString *)sourceApplication annotation:(id)annotation {
-    return [[DDSocialShareHandler sharedInstance] application:application handleOpenURL:url sourceApplication:sourceApplication annotation:annotation];
-}
-
-- (BOOL)application:(UIApplication *)app openURL:(NSURL *)url options:(NSDictionary<NSString *,id> *)options{
-    return [[DDSocialShareHandler sharedInstance] application:app openURL:url options:options];
-}
-</code></pre>
-2、调用方式
-<pre><code>
-[[DDSocialAuthHandler sharedInstance] authWithPlatform:DDSSPlatformWeChat controller:self authHandler:^(DDSSPlatform platform, DDSSAuthState state, id result, NSError *error) {
+[[DDSocialShareHandler sharedInstance] authWithPlatform:DDSSPlatformWeChat authMode:DDSSAuthModeCode controller:self handler:^(DDSSPlatform platform, DDSSAuthState state, DDAuthItem *authItem, NSError *error) {
         switch (state) {
             case DDSSAuthStateBegan: {
                 NSLog(@"开始授权");
                 break;
             }
             case DDSSAuthStateSuccess: {
-                NSLog(@"授权成功:%@",result);
+                NSLog(@"授权成功：%@",authItem);
                 break;
             }
             case DDSSAuthStateFail: {
-                NSLog(@"授权失败:%@",error);
+                NSLog(@"授权失败Error：%@",error);
                 break;
             }
             case DDSSAuthStateCancel: {
-                NSLog(@"取消授权");
+                NSLog(@"授权取消");
                 break;
             }
         }
     }];
+</code></pre>
+
+#各个平台配置
+###小米开放平台(http://dev.xiaomi.com/index)
+1、首先在小米开放平台申请appkey并配置好redirectURL<br />
+2、然后在xcode中配置info.plist<br />
+   (1)添加NSAppTransportSecurity字段
+3、示例代码<br />
+<pre><code>
+<key>NSAppTransportSecurity</key>
+<dict>
+    <key>NSAllowsArbitraryLoads</key>
+    <true/>
+    <key>NSExceptionDomains</key>
+    <dict>
+        <key>open.account.xiaomi.com</key>
+        <dict>
+            <key>NSExceptionAllowsInsecureHTTPLoads</key>
+            <true/>
+        </dict>
+    </dict>
+</dict>
+</code></pre>
+###米聊
+1、然后在xcode中配置info.plist<br />
+   （1）添加CFBundleURLTypes
+   （2）添加LSApplicationQueriesSchemes白名单
+2、示例代码<br />
+<pre><code>
+<key>CFBundleURLTypes</key>
+<array>
+    <dict>
+        <key>CFBundleTypeRole</key>
+        <string>ML</string>
+        <key>CFBundleURLName</key>
+        <string>miliao</string>
+        <key>CFBundleURLSchemes</key>
+        <array>
+            <string>自定义的key</string>
+        </array>
+    </dict>
+</array>
+<key>LSApplicationQueriesSchemes</key>
+<array>
+    <string>miliao</string>
+    <string>miliaoapi.1.1</string>
+    <string>miliaoapi.1.0</string>
+</array>
+</code></pre>
+###微信开放平台(https://open.weixin.qq.com/)
+1、首先在微信开放平台根据自己app的bundleid申请一个appkey<br />
+2、然后在xcode中配置info.plist<br />
+   （1）添加CFBundleURLTypes
+   （2）添加LSApplicationQueriesSchemes白名单
+3、示例代码<br />
+<pre><code>
+<key>CFBundleURLTypes</key>
+<array>
+    <dict>
+        <key>CFBundleTypeRole</key>
+        <string>WeChat</string>
+        <key>CFBundleURLName</key>
+        <string>weixin</string>
+        <key>CFBundleURLSchemes</key>
+        <array>
+            <string>替换成自己的appkey</string>
+        </array>
+    </dict>
+</array>
+
+<key>LSApplicationQueriesSchemes</key>
+    <array>
+        <string>weixin</string>
+        <string>weichat</string>
+    </array>
+</code></pre>
+
+###QQ互联(http://connect.qq.com/)
+1、首先在QQ互联申请appkey
+2、然后在xcode中配置info.plist<br />
+   （1）添加CFBundleURLTypes
+   （2）添加LSApplicationQueriesSchemes白名单
+3、示例代码<br />
+<pre><code>
+<key>CFBundleURLTypes</key>
+<array>
+    <dict>
+        <key>CFBundleTypeRole</key>
+        <string>Tencent</string>
+        <key>CFBundleURLName</key>
+        <string>tencentopenapi</string>
+        <key>CFBundleURLSchemes</key>
+        <array>
+            <string>替换成自己的appkey</string>
+        </array>
+    </dict>
+</array>
+
+<key>LSApplicationQueriesSchemes</key>
+<array>
+    <string>mqqOpensdkSSoLogin</string>
+    <string>mqqopensdkapiV2</string>
+    <string>mqqopensdkapiV3</string>
+    <string>mqq</string>
+    <string>mqqapi</string>
+    <string>wtloginmqq2</string>
+</array>
+</code></pre>
+###新浪微博开放平台(http://open.weibo.com/)
+1、首先在新浪微博开放平台申请appkey 可以选择配置自己的redirectURL
+2、然后在xcode中配置info.plist<br />
+   （1）添加CFBundleURLTypes
+   （2）添加LSApplicationQueriesSchemes白名单
+3、示例代码<br />
+<pre><code>
+<key>CFBundleURLTypes</key>
+<array>
+    <dict>
+        <key>CFBundleTypeRole</key>
+        <string>Sina</string>
+        <key>CFBundleURLName</key>
+        <string>com.weibo</string>
+        <key>CFBundleURLSchemes</key>
+        <array>
+            <string>替换成自己的appkey</string>
+        </array>
+    </dict>
+</array>
+
+<key>LSApplicationQueriesSchemes</key>
+<array>
+    <string>sinaweibosso</string>
+    <string>sinaweibohdsso</string>
+    <string>sinaweibo</string>
+    <string>weibosdk</string>
+    <string>weibosdk2.5</string>
+    <string>sinaweibohd</string>
+</array>
+</code></pre>
+###Google开放平台(https://developers.google.com/identity/sign-in/ios/)
+1、首先在google开放平台申请appkey(详细步骤：https://developers.google.com/identity/sign-in/ios/start-integrating#before_you_begin)
+2、然后在xcode中配置info.plist<br />
+   （1）添加CFBundleURLTypes
+3、示例代码<br />
+<pre><code>
+<key>CFBundleURLTypes</key>
+<array>
+    <dict>
+        <key>CFBundleTypeRole</key>
+        <string>Editor</string>
+        <key>CFBundleURLSchemes</key>
+        <array>
+            <string>google申请的appkey</string>
+        </array>
+    </dict>
+    <dict>
+        <key>CFBundleTypeRole</key>
+        <string>Editor</string>
+        <key>CFBundleURLSchemes</key>
+        <array>
+            <string>google申请的bundle</string>
+        </array>
+    </dict>
+</array>
+</code></pre>
+1、工程的bundleid必须和申请google的完全一致
+2、google需要添加他自己生成的info.plist参见文档操作吧，参见连接:https://developers.google.com/identity/sign-in/ios/start-integrating#before_you_begin
+###Facebook开放平台(https://developers.facebook.com/) 详情查看(https://developers.facebook.com/docs/ios/getting-started)
+1、首先在Facebook开放平台申请appkey
+2、然后在xcode中配置info.plist<br />
+   （1）添加CFBundleURLTypes
+   （2）添加LSApplicationQueriesSchemes白名单
+   （3）添加FacebookAppID
+   （4）添加FacebookDisplayName
+3、示例代码<br />
+<pre><code>
+<key>CFBundleURLTypes</key>
+<array>
+    <dict>
+        <key>CFBundleTypeRole</key>
+        <string>FB</string>
+        <key>CFBundleURLName</key>
+        <string>facebook</string>
+        <key>CFBundleURLSchemes</key>
+        <array>
+            <string>替换成自己的appkey</string>
+        </array>
+    </dict>
+</array>
+
+<key>LSApplicationQueriesSchemes</key>
+<array>
+    <string>fbshareextension</string>
+    <string>fbauth2</string>
+    <string>fb-messenger-api</string>
+    <string>fbapi</string>
+</array>
+<key>FacebookAppID</key>
+<string>125938537776820</string>
+<key>FacebookDisplayName</key>
+<string>facebook授权页展示的名字</string>
+</code></pre>
+
+###Twitter开放平台(https://fabric.io/kits/ios/twitterkit/install)
+1、xcode中配置info.plist<br />
+   （1）添加Fabric
+3、示例代码<br />
+<pre><code>
+<key>Fabric</key>
+<dict>
+    <key>APIKey</key>
+    <string>自己申请的key</string>
+</dict>
 </code></pre>

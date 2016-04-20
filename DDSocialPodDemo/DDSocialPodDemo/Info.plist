@@ -18,11 +18,6 @@
 	<string>1.0</string>
 	<key>CFBundleSignature</key>
 	<string>????</string>
-	<key>Fabric</key>
-	<dict>
-		<key>APIKey</key>
-		<string>70359e06e1828fbbcbca6fce0a0a0bdda1bf5fcb</string>
-	</dict>
 	<key>CFBundleURLTypes</key>
 	<array>
 		<dict>
@@ -53,16 +48,6 @@
 			<key>CFBundleURLSchemes</key>
 			<array>
 				<string>wb2045436852</string>
-			</array>
-		</dict>
-		<dict>
-			<key>CFBundleTypeRole</key>
-			<string>MI</string>
-			<key>CFBundleURLName</key>
-			<string>xiaomi</string>
-			<key>CFBundleURLSchemes</key>
-			<array>
-				<string>mi2882303761517373163</string>
 			</array>
 		</dict>
 		<dict>
@@ -104,6 +89,11 @@
 	</array>
 	<key>CFBundleVersion</key>
 	<string>1</string>
+	<key>Fabric</key>
+	<dict>
+		<key>APIKey</key>
+		<string>70359e06e1828fbbcbca6fce0a0a0bdda1bf5fcb</string>
+	</dict>
 	<key>FacebookAppID</key>
 	<string>125938537776820</string>
 	<key>FacebookDisplayName</key>
@@ -112,18 +102,18 @@
 	<array>
 		<string>weixin</string>
 		<string>weichat</string>
-		<string>sinaweibosso</string>
-		<string>sinaweibohdsso</string>
-		<string>sinaweibohd</string>
-		<string>sinaweibo</string>
-		<string>weibosdk</string>
-		<string>weibosdk2.5</string>
 		<string>mqqOpensdkSSoLogin</string>
 		<string>mqqopensdkapiV2</string>
 		<string>mqqopensdkapiV3</string>
 		<string>mqq</string>
 		<string>mqqapi</string>
 		<string>wtloginmqq2</string>
+		<string>sinaweibosso</string>
+		<string>sinaweibohdsso</string>
+		<string>sinaweibo</string>
+		<string>weibosdk</string>
+		<string>weibosdk2.5</string>
+		<string>sinaweibohd</string>
 		<string>fbshareextension</string>
 		<string>fbauth2</string>
 		<string>fb-messenger-api</string>
@@ -140,66 +130,10 @@
 		<true/>
 		<key>NSExceptionDomains</key>
 		<dict>
-			<key>account.amazfit.com</key>
+			<key>open.account.xiaomi.com</key>
 			<dict>
 				<key>NSExceptionAllowsInsecureHTTPLoads</key>
-				<false/>
-			</dict>
-			<key>akamaihd.net</key>
-			<dict>
-				<key>NSIncludesSubdomains</key>
 				<true/>
-				<key>NSThirdPartyExceptionRequiresForwardSecrecy</key>
-				<false/>
-			</dict>
-			<key>api-aws.amazfit.com</key>
-			<dict>
-				<key>NSExceptionAllowsInsecureHTTPLoads</key>
-				<false/>
-			</dict>
-			<key>api.amazfit.com</key>
-			<dict>
-				<key>NSExceptionAllowsInsecureHTTPLoads</key>
-				<false/>
-			</dict>
-			<key>facebook.com</key>
-			<dict>
-				<key>NSIncludesSubdomains</key>
-				<true/>
-				<key>NSThirdPartyExceptionRequiresForwardSecrecy</key>
-				<false/>
-			</dict>
-			<key>fbcdn.net</key>
-			<dict>
-				<key>NSIncludesSubdomains</key>
-				<true/>
-				<key>NSThirdPartyExceptionRequiresForwardSecrecy</key>
-				<false/>
-			</dict>
-			<key>qq.com</key>
-			<dict>
-				<key>NSExceptionAllowsInsecureHTTPLoads</key>
-				<false/>
-			</dict>
-			<key>run.amazfit.com</key>
-			<dict>
-				<key>NSExceptionAllowsInsecureHTTPLoads</key>
-				<false/>
-			</dict>
-			<key>sina.com.cn</key>
-			<dict>
-				<key>NSExceptionAllowsInsecureHTTPLoads</key>
-				<false/>
-			</dict>
-			<key>weibo.cn</key>
-			<dict>
-				<key>NSExceptionAllowsInsecureHTTPLoads</key>
-				<false/>
-			</dict>
-			<key>weibo.com</key>
-			<dict>
-				<key>NSExceptionAllowsInsecureHTTPLoads</key>
-				<false/>
 			</dict>
 		</dict>
 	</dict>

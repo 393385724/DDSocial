@@ -128,7 +128,7 @@ CGFloat const DDMiLiaoImageDataMaxSize = 200 * 1024.0;
                  appSecret:(NSString *)appSecret
                redirectURL:(NSString *)redirectURL
             appDescription:(NSString *)appDescription{
-    [MLAppApi registerApp:[MLAppApi generateAppId:[[NSBundle mainBundle] bundleIdentifier]]];
+    [MLAppApi registerApp:appKey];
 }
 
 - (BOOL)application:(UIApplication *)application
