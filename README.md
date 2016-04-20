@@ -2,8 +2,8 @@
 A share auth wheels based on the official library content wecaht sina tencent facebook twitter google miliao mi
 #使用
 ##使用配置
-1、引入类库，必须引入share模块，其他可根据自身app选择性引入
-（1）使用pod
+1、引入类库，必须引入share模块，其他可根据自身app选择性引入<br />
+（1）使用pod形式引入
 <pre><code>
 	pod 'DDSocial/Share' 
 	pod 'DDSocial/MI'
@@ -15,16 +15,15 @@ A share auth wheels based on the official library content wecaht sina tencent fa
 	pod 'DDSocial/Twitter'
 	pod 'DDSocial/Google'
 </code></pre>
-（2）直接使用源文件需要配置类库的Search Paths
-   Build Settings   ->  Search Paths 
-    两个地方添加  Framework Search Paths 和 Library Search Paths 
-
-2、在AppDelegate.h中实现如下方法
+（2）使用源文件需要配置类库的Search Paths<br />
+选择使用DDSocial目录下的模块Core是必须依赖的模块<br />
+Build Settings   ->  Search Paths 两个地方添加  Framework Search Paths 和 Library Search Paths 
+2、在AppDelegate.h中实现如下方法<br />
 (1)引入头文件
 <pre><code>
 #import "DDSocialShareHandler.h"
 </code></pre>
-(2)在应用启动时注册第三方eg
+(2)在应用启动时注册第三方
 <pre><code>
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
     [[DDSocialShareHandler sharedInstance] registerPlatform:DDSSPlatformMI appKey:@"自己申请的key"redirectURL:@"申请时填写的URL"];
@@ -42,21 +41,21 @@ A share auth wheels based on the official library content wecaht sina tencent fa
 - (BOOL)application:(UIApplication *)application handleOpenURL:(NSURL *)url {
     return [[DDSocialShareHandler sharedInstance] application:application handleOpenURL:url sourceApplication:nil annotation:nil];
 }
-
 - (BOOL)application:(UIApplication *)application openURL:(NSURL *)url sourceApplication:(NSString *)sourceApplication annotation:(id)annotation {
     return [[DDSocialShareHandler sharedInstance] application:application handleOpenURL:url sourceApplication:sourceApplication annotation:annotation];
 }
-
 - (BOOL)application:(UIApplication *)app openURL:(NSURL *)url options:(NSDictionary<NSString *,id> *)options{
     return [[DDSocialShareHandler sharedInstance] application:app openURL:url options:options];
 }
 </code></pre>
 ##分享
-2、调用方式
+2、调用方式<br />
 （1）实现分享的protocol<br />
-DDSocialShareTextProtocol:纯文本分享<br />
-DDSocialShareImageProtocol：图片分享<br />
-DDSocialShareWebPageProtocol：web内容分享<br />
+<pre><code>
+DDSocialShareTextProtocol//纯文本分享需要实现该协议<br />
+DDSocialShareImageProtocol//图片分享需要实现该协议<br />
+DDSocialShareWebPageProtocol//web内容分享需要实现该协议<br />
+</code></pre>
 （2）分享代码
 <pre><code>
 [[DDSocialShareHandler sharedInstance] shareWithPlatform:DDSSPlatformWeChat controller:self shareScene:DDSSSceneWXSession contentType:DDSSContentTypeImage protocol:self handler:^(DDSSPlatform platform, DDSSScene scene, DDSSShareState state, NSError *error) {
@@ -108,7 +107,7 @@ DDSocialShareWebPageProtocol：web内容分享<br />
 ###小米开放平台(http://dev.xiaomi.com/index)
 1、首先在小米开放平台申请appkey并配置好redirectURL<br />
 2、然后在xcode中配置info.plist<br />
-   (1)添加NSAppTransportSecurity字段
+   (1)添加NSAppTransportSecurity字段<br />
 3、示例代码<br />
 <pre><code>
 <key>NSAppTransportSecurity</key>
@@ -127,8 +126,8 @@ DDSocialShareWebPageProtocol：web内容分享<br />
 </code></pre>
 ###米聊
 1、然后在xcode中配置info.plist<br />
-   （1）添加CFBundleURLTypes,注意这里使用的key是由[MLAppApi generateAppId:@"建议是bundleid"];生成的key
-   （2）添加LSApplicationQueriesSchemes白名单
+   （1）添加CFBundleURLTypes,注意这里使用的key是由[MLAppApi generateAppId:@"建议是bundleid"];生成的key<br />
+   （2）添加LSApplicationQueriesSchemes白名单<br />
 2、示例代码<br />
 <pre><code>
 <key>CFBundleURLTypes</key>
@@ -154,8 +153,8 @@ DDSocialShareWebPageProtocol：web内容分享<br />
 ###微信开放平台(https://open.weixin.qq.com/)
 1、首先在微信开放平台根据自己app的bundleid申请一个appkey<br />
 2、然后在xcode中配置info.plist<br />
-   （1）添加CFBundleURLTypes
-   （2）添加LSApplicationQueriesSchemes白名单
+   （1）添加CFBundleURLTypes<br />
+   （2）添加LSApplicationQueriesSchemes白名单<br />
 3、示例代码<br />
 <pre><code>
 <key>CFBundleURLTypes</key>
@@ -180,10 +179,10 @@ DDSocialShareWebPageProtocol：web内容分享<br />
 </code></pre>
 
 ###QQ互联(http://connect.qq.com/)
-1、首先在QQ互联申请appkey
+1、首先在QQ互联申请appkey<br />
 2、然后在xcode中配置info.plist<br />
-   （1）添加CFBundleURLTypes
-   （2）添加LSApplicationQueriesSchemes白名单
+   （1）添加CFBundleURLTypes<br />
+   （2）添加LSApplicationQueriesSchemes白名单<br />
 3、示例代码<br />
 <pre><code>
 <key>CFBundleURLTypes</key>
@@ -211,10 +210,10 @@ DDSocialShareWebPageProtocol：web内容分享<br />
 </array>
 </code></pre>
 ###新浪微博开放平台(http://open.weibo.com/)
-1、首先在新浪微博开放平台申请appkey 可以选择配置自己的redirectURL
+1、首先在新浪微博开放平台申请appkey 可以选择配置自己的redirectURL<br />
 2、然后在xcode中配置info.plist<br />
-   （1）添加CFBundleURLTypes
-   （2）添加LSApplicationQueriesSchemes白名单
+   （1）添加CFBundleURLTypes<br />
+   （2）添加LSApplicationQueriesSchemes白名单<br />
 3、示例代码<br />
 <pre><code>
 <key>CFBundleURLTypes</key>
@@ -242,9 +241,9 @@ DDSocialShareWebPageProtocol：web内容分享<br />
 </array>
 </code></pre>
 ###Google开放平台(https://developers.google.com/identity/sign-in/ios/)
-1、首先在google开放平台申请appkey(详细步骤：https://developers.google.com/identity/sign-in/ios/start-integrating#before_you_begin)
+1、首先在google开放平台申请appkey(详细步骤：https://developers.google.com/identity/sign-in/ios/start-integrating#before_you_begin)<br />
 2、然后在xcode中配置info.plist<br />
-   （1）添加CFBundleURLTypes
+   （1）添加CFBundleURLTypes<br />
 3、示例代码<br />
 <pre><code>
 <key>CFBundleURLTypes</key>
@@ -267,15 +266,15 @@ DDSocialShareWebPageProtocol：web内容分享<br />
     </dict>
 </array>
 </code></pre>
-1、工程的bundleid必须和申请google的完全一致
-2、google需要添加他自己生成的info.plist参见文档操作吧，参见连接:https://developers.google.com/identity/sign-in/ios/start-integrating#before_you_begin
+1、工程的bundleid必须和申请google的完全一致<br />
+2、google需要添加他自己生成的info.plist参见文档操作吧，参见连接:https://developers.google.com/identity/sign-in/ios/start-integrating#before_you_begin<br />
 ###Facebook开放平台(https://developers.facebook.com/) 详情查看(https://developers.facebook.com/docs/ios/getting-started)
-1、首先在Facebook开放平台申请appkey
+1、首先在Facebook开放平台申请appkey<br />
 2、然后在xcode中配置info.plist<br />
-   （1）添加CFBundleURLTypes
-   （2）添加LSApplicationQueriesSchemes白名单
-   （3）添加FacebookAppID
-   （4）添加FacebookDisplayName
+   （1）添加CFBundleURLTypes<br />
+   （2）添加LSApplicationQueriesSchemes白名单<br />
+   （3）添加FacebookAppID<br />
+   （4）添加FacebookDisplayName<br />
 3、示例代码<br />
 <pre><code>
 <key>CFBundleURLTypes</key>
@@ -307,7 +306,7 @@ DDSocialShareWebPageProtocol：web内容分享<br />
 
 ###Twitter开放平台(https://fabric.io/kits/ios/twitterkit/install)
 1、xcode中配置info.plist<br />
-   （1）添加Fabric
+   （1）添加Fabric<br />
 3、示例代码<br />
 <pre><code>
 <key>Fabric</key>
