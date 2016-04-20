@@ -47,6 +47,7 @@ Pod::Spec.new do |s|
 
   s.subspec 'Twitter' do |twitter|
     twitter.source_files = 'DDSocial/Twitter/*.{h,m}'
+	twitter.xcconfig = { 'CLANG_ENABLE_MODULES' => 'NO' }
     twitter.dependency 'TwitterKit', '~> 1.15.3'
     twitter.dependency 'DDSocial/Core'
   end
@@ -61,6 +62,7 @@ Pod::Spec.new do |s|
     mi.source_files = 'DDSocial/MI/**/*.{h,m}'
     mi.ios.vendored_frameworks = 'DDSocial/MI/Resources/*.framework'
     mi.resource = "DDSocial/MI/Resources/*.bundle"
+	mi.xcconfig = { 'ENABLE_BITCODE' => 'NO' }
     mi.dependency 'DDSocial/Core'
   end
 

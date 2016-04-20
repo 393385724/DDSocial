@@ -8,8 +8,8 @@
 
 #import "DDTwitterHandler.h"
 #import <Social/Social.h>
-//#import <Fabric/Fabric.h>
-//#import <TwitterKit/TwitterKit.h>
+#import <Fabric/Fabric.h>
+#import <TwitterKit/TwitterKit.h>
 
 #import "DDSocialShareContentProtocol.h"
 #import "DDSocialHandlerProtocol.h"
@@ -92,10 +92,10 @@
                  appSecret:(NSString *)appSecret
                redirectURL:(NSString *)redirectURL
             appDescription:(NSString *)appDescription {
-//    if (appKey && [appKey length] > 0 && appSecret && [appSecret length] > 0) {
-//        [[Twitter sharedInstance] startWithConsumerKey:appKey consumerSecret:appSecret];
-//    }
-//    [Fabric with:@[[Twitter class]]];
+    if (appKey && [appKey length] > 0 && appSecret && [appSecret length] > 0) {
+        [[Twitter sharedInstance] startWithConsumerKey:appKey consumerSecret:appSecret];
+    }
+    [Fabric with:@[[Twitter class]]];
     return YES;
 }
 
@@ -106,29 +106,29 @@
     return NO;
 }
 
-//- (BOOL)authWithMode:(DDSSAuthMode)mode
-//          controller:(UIViewController *)viewController
-//             handler:(DDSSAuthEventHandler)handler {
-//    if (handler) {
-//        handler(DDSSPlatformTwitter, DDSSAuthStateBegan, nil, nil);
-//    }
-//    [[Twitter sharedInstance] logInWithCompletion:^(TWTRSession * _Nullable session, NSError * _Nullable error) {
-//        if (error) {
-//            if (handler) {
-//                handler(DDSSPlatformTwitter, DDSSAuthStateFail, nil, error);
-//            }
-//        } else {
-//            if (handler) {
-//                DDAuthItem *authItem = [DDAuthItem new];
-//                authItem.thirdToken = session.authToken;
-//                authItem.thirdId = session.userID;
-//                authItem.rawObject = session;
-//                handler(DDSSPlatformTwitter, DDSSAuthStateSuccess, authItem, nil);
-//            }
-//        }
-//    }];
-//    return YES;
-//}
+- (BOOL)authWithMode:(DDSSAuthMode)mode
+          controller:(UIViewController *)viewController
+             handler:(DDSSAuthEventHandler)handler {
+    if (handler) {
+        handler(DDSSPlatformTwitter, DDSSAuthStateBegan, nil, nil);
+    }
+    [[Twitter sharedInstance] logInWithCompletion:^(TWTRSession * _Nullable session, NSError * _Nullable error) {
+        if (error) {
+            if (handler) {
+                handler(DDSSPlatformTwitter, DDSSAuthStateFail, nil, error);
+            }
+        } else {
+            if (handler) {
+                DDAuthItem *authItem = [DDAuthItem new];
+                authItem.thirdToken = session.authToken;
+                authItem.thirdId = session.userID;
+                authItem.rawObject = session;
+                handler(DDSSPlatformTwitter, DDSSAuthStateSuccess, authItem, nil);
+            }
+        }
+    }];
+    return YES;
+}
 
 - (BOOL)shareWithController:(UIViewController *)viewController
                  shareScene:(DDSSScene)shareScene
