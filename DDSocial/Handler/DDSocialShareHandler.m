@@ -38,7 +38,7 @@
 
 + (BOOL)isInstalledPlatform:(DDSSPlatform)platform{
     Class class = [self classWithPlatForm:platform];
-    if (class) {
+    if (class && [class resolveClassMethod:@selector(isInstalled)]) {
         return [class isInstalled];
     } else {
         return NO;
@@ -106,9 +106,9 @@
         }
         id <DDSocialHandlerProtocol> handlerProtocol = [self handlerWithPlatForm:platform];
         if ([handlerProtocol respondsToSelector:@selector(application:handleOpenURL:sourceApplication:annotation:)] && handlerProtocol) {
-            canOpenURL = [handlerProtocol application:application handleOpenURL:url sourceApplication:sourceApplication annotation:annotation];
-            if (canOpenURL) {
-                break;
+            BOOL canOpen = [handlerProtocol application:application handleOpenURL:url sourceApplication:sourceApplication annotation:annotation];
+            if (canOpen) {
+                canOpenURL = canOpen;
             }
         }
     }

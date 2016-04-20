@@ -296,9 +296,4 @@ const CGFloat DDSinaImageDataMaxSize = 5 * 1024 * 1024;
         return NO;
     }
 }
-
-- (BOOL)linkupWithItem:(DDLinkupItem *)linkupItem{
-    return NO;
-}
-
 @end

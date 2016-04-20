@@ -166,7 +166,4 @@ CGFloat const DDMiLiaoImageDataMaxSize = 200 * 1024.0;
     }
 }
 
-- (BOOL)linkupWithItem:(DDLinkupItem *)linkupItem{
-    return NO;
-}
 @end

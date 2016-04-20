@@ -346,7 +346,4 @@ NSString *const DDTencentAPIUserInfo =   @"https://graph.qq.com/user/get_user_in
     }
 }
 
-- (BOOL)linkupWithItem:(DDLinkupItem *)linkupItem{
-    return NO;
-}
 @end

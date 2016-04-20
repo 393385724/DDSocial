@@ -77,16 +77,6 @@ didDisconnectWithUser:(GIDGoogleUser *)user
 
 @implementation DDGoogleHandler (DDSocialHandlerProtocol)
 
-// MARK: TODO
-+ (BOOL)isInstalled {
-    return NO;
-}
-
-// MARK: TODO
-+ (BOOL)canShare {
-    return NO;
-}
-
 - (BOOL)registerWithAppKey:(NSString *)appKey
                  appSecret:(NSString *)appSecret
                redirectURL:(NSString *)redirectURL
@@ -123,18 +113,4 @@ didDisconnectWithUser:(GIDGoogleUser *)user
     [[GIDSignIn sharedInstance] signIn];
     return YES;
 }
-
-// MARK: TODO
-- (BOOL)shareWithController:(UIViewController *)viewController
-                 shareScene:(DDSSScene)shareScene
-                contentType:(DDSSContentType)contentType
-                   protocol:(id<DDSocialShareContentProtocol>)protocol
-                    handler:(DDSSShareEventHandler)handler {
-    return NO;
-}
-
-- (BOOL)linkupWithItem:(DDLinkupItem *)linkupItem{
-    return NO;
-}
-
 @end
