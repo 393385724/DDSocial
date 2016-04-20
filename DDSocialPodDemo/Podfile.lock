@@ -84,7 +84,7 @@ EXTERNAL SOURCES:
 
 CHECKOUT OPTIONS:
   DDSocial:
-    :commit: 4a6add4c927690073641a8ab3110522b7700287c
+    :commit: 9bcef5a9dcc73e14b38cd69d2da73a00741fc1e6
     :git: https://github.com/393385724/DDSocial.git
 
 SPEC CHECKSUMS:

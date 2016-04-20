@@ -32,7 +32,7 @@
     [[DDSocialShareHandler sharedInstance] registerPlatform:DDSSPlatformQQ appKey:@"222222"];
     [[DDSocialShareHandler sharedInstance] registerPlatform:DDSSPlatformFacebook appKey:@"125938537776820"];
     [[DDSocialShareHandler sharedInstance] registerPlatform:DDSSPlatformGoogle];
-    [[DDSocialShareHandler sharedInstance] registerPlatform:DDSSPlatformMiLiao appKey:@"DDSocialDemo"];
+    [[DDSocialShareHandler sharedInstance] registerPlatform:DDSSPlatformMiLiao appKey:@"ml6df2cb3b3cc22134"];
     
     return YES;
 }

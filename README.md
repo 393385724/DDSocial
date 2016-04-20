@@ -33,7 +33,7 @@ A share auth wheels based on the official library content wecaht sina tencent fa
     [[DDSocialShareHandler sharedInstance] registerPlatform:DDSSPlatformQQ appKey:@"自己申请的key"];
     [[DDSocialShareHandler sharedInstance] registerPlatform:DDSSPlatformFacebook appKey:@"自己申请的key"];
     [[DDSocialShareHandler sharedInstance] registerPlatform:DDSSPlatformGoogle];
-    [[DDSocialShareHandler sharedInstance] registerPlatform:DDSSPlatformMiLiao appKey:@"自定义的key"];
+    [[DDSocialShareHandler sharedInstance] registerPlatform:DDSSPlatformMiLiao appKey:@"米聊SDK生成的key"];
     return YES;
 }
 </code></pre>
@@ -127,7 +127,7 @@ DDSocialShareWebPageProtocol：web内容分享<br />
 </code></pre>
 ###米聊
 1、然后在xcode中配置info.plist<br />
-   （1）添加CFBundleURLTypes
+   （1）添加CFBundleURLTypes,注意这里使用的key是由[MLAppApi generateAppId:@"建议是bundleid"];生成的key
    （2）添加LSApplicationQueriesSchemes白名单
 2、示例代码<br />
 <pre><code>
@@ -140,7 +140,7 @@ DDSocialShareWebPageProtocol：web内容分享<br />
         <string>miliao</string>
         <key>CFBundleURLSchemes</key>
         <array>
-            <string>自定义的key</string>
+            <string>米聊SDK生成的key</string>
         </array>
     </dict>
 </array>
