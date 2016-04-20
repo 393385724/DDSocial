@@ -63,6 +63,7 @@ Pod::Spec.new do |s|
     mi.ios.vendored_frameworks = 'DDSocial/MI/Resources/*.framework'
     mi.resource = "DDSocial/MI/Resources/*.bundle"
 	mi.xcconfig = { 'ENABLE_BITCODE' => 'NO' }
+    mi.libraries = 'stdc++'  
     mi.dependency 'DDSocial/Core'
   end
 
