@@ -5,30 +5,30 @@ PODS:
   - Bolts/AppLinks (1.7.0):
     - Bolts/Tasks
   - Bolts/Tasks (1.7.0)
-  - DDSocial/Core (1.2.1)
-  - DDSocial/Facebook (1.2.1):
+  - DDSocial/Core (1.3.0)
+  - DDSocial/Facebook (1.3.0):
     - DDSocial/Core
     - FBSDKLoginKit (~> 4.10.0)
     - FBSDKShareKit (~> 4.10.0)
-  - DDSocial/Google (1.2.1):
+  - DDSocial/Google (1.3.0):
     - DDSocial/Core
     - Google/SignIn (~> 2.0.3)
-  - DDSocial/MI (1.2.1):
+  - DDSocial/MI (1.3.0):
     - DDSocial/Core
     - TTTAttributedLabel (~> 1.13.4)
-  - DDSocial/MiLiao (1.2.1):
+  - DDSocial/MiLiao (1.3.0):
     - DDSocial/Core
-  - DDSocial/Share (1.2.1):
+  - DDSocial/Share (1.3.0):
     - DDSocial/Core
-  - DDSocial/Sina (1.2.1):
+  - DDSocial/Sina (1.3.0):
     - DDSocial/Core
     - WeiboSDK (~> 3.1.3)
-  - DDSocial/Tencent (1.2.1):
+  - DDSocial/Tencent (1.3.0):
     - DDSocial/Core
-  - DDSocial/Twitter (1.2.1):
+  - DDSocial/Twitter (1.3.0):
     - DDSocial/Core
     - TwitterKit (~> 1.15.3)
-  - DDSocial/Wechat (1.2.1):
+  - DDSocial/Wechat (1.3.0):
     - DDSocial/Core
   - Fabric (1.6.7)
   - FBSDKCoreKit (4.11.0):
@@ -86,12 +86,12 @@ EXTERNAL SOURCES:
 
 CHECKOUT OPTIONS:
   DDSocial:
-    :commit: 79eaf7e786768336a050d22d8d52efffc7847994
+    :commit: 2d23f99c88935fff044fe23ca2eaa49e5146a84b
     :git: https://github.com/393385724/DDSocial.git
 
 SPEC CHECKSUMS:
   Bolts: a0058fa3b331c5a1e4402d534f2dae36dbff31e4
-  DDSocial: b770c2fa8d1147f8219d0a8d8659e1fe0cf72c6c
+  DDSocial: 41584cc425007a5f4c2713e0429c79e09f6dbe1c
   Fabric: caf7580c725e64db144f610ac65cd60956911dc7
   FBSDKCoreKit: 686ac982723a14ec9ddb85e2f81235d7706c891b
   FBSDKLoginKit: 699ff169080e3072de4b9b0faca90bf23dc36deb
