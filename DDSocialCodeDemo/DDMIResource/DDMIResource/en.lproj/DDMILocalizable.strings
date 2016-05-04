@@ -1,0 +1,65 @@
+/* 
+  DDMILocalizable.strings
+  DDMIResource
+
+  Created by lilingang on 16/2/29.
+  Copyright © 2016年 LiLingang. All rights reserved.
+*/
+/**通用*/
+"取消" = "Cancel";
+"确定" = "OK";
+
+/**错误提示语*/
+"请求出错了" = "Server error.";
+"请求超时" = "Request Timeout.";
+"网络未连接" = "No Network Connection.";
+"动态口令错误" = "Incorrect code.";
+"请输入验证码" = "Please enter the code.";
+"账号不能为空" = "Username can't be empty.";
+"密码不能为空" = "Password can't be empty.";
+"验证码不能为空" = "Code can't be empty.";
+"无法连接服务器" = "Failed to connect to the service.";
+"您输入的验证码有误" = "The code is wrong.";
+"账号或密码错误,请重新填写" = "Incorrect username/password. Please try again.";
+"您的操作频率过快，请稍后再试" = "Operation too frequent. Please try again later.";
+"未知错误" = "Unknown error.";
+"手机号码格式错误" = "The phone number you entered is invalid.";
+"该号码已经注册过小米账号" = "The phone number you entered is already associated with another account.";
+"验证码错误" = "Verification code wrong.";
+"您今天已经发送太多短信,请换个时间或改用其他号码" = "You've exceeded the maximum number of verification attempts allowed within 24 hours.";
+
+/**登陆页面*/
+"登录" = "Log in";
+"请使用小米账号登录" = "Please Login with Mi Account";
+"邮箱/手机号/小米ID" = "Email/Phone Number/Mi Account";
+"密码" = "Password";
+"验证码" = "Verification code";
+"忘记密码?" = "Forgot password?";
+"注册小米账号" = "Create Mi Account";
+
+/**登录二次验证页面*/
+"口令验证" = "Login Verification";
+"一个账号,玩转所有小米服务!" = "Access to all the services from Xiaomi  with just one account!";
+"请输入6位动态口令" = "Please enter the 6-digit activation code";
+"这是我的私人设备,以后登录无需输入口令" = "This is my private device. I don't need login verification in the future.";
+
+/**注册页面*/
+"注册" = "Register";
+"手机号:" = "Phone number:";
+"请输入手机号" = "Please enter the phone number";
+"密码:" = "Password:";
+"8-16位数字、字母、字符(至少两种)" = "Password must be 8-16 characters long and contain both letters and numbers";
+"点击\"注册\"代表您同意并接受小米的%@和%@" = "By tapping 'OK' you agree to Xiaomi's %@ and %@";
+"用户协议" = "User Agreement";
+"隐私政策" = "Privacy Policy";
+"cn" = "en";
+
+/**区号选择页面*/
+"国家或地区" = "Locale";
+"常用" = "General";
+
+/**短信验证码页面*/
+"已向手机%@发送了验证码短信" = "A verification code has been sent to your phone. %@";
+"重新发送" = "Resend";
+"下一步" = "Next";
+"我为何收不到验证码?" = "Why can't I get the code?";

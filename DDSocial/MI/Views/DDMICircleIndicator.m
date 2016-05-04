@@ -22,13 +22,13 @@
 - (instancetype)initWithCoder:(NSCoder *)aDecoder{
     self = [super initWithCoder:aDecoder];
     if (self) {
-        [self initSettingsWithImagename:@"dd_circleIndicator_icon"];
+        [self initSettingsWithImagename:@"dd_mi_circleIndicator_icon"];
     }
     return self;
 }
 
 - (instancetype)initWithFrame:(CGRect)frame{
-    return [self initWithFrame:frame imageName:@"dd_circleIndicator_icon"];
+    return [self initWithFrame:frame imageName:@"dd_mi_circleIndicator_icon"];
 }
 
 - (instancetype)initWithFrame:(CGRect)frame imageName:(NSString *)imageName{

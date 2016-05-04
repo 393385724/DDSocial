@@ -1,0 +1,366 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		906BAFAF1CD9807300E27B65 /* DDMICountryListViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 906BAF9B1CD9807300E27B65 /* DDMICountryListViewController.xib */; };
+		906BAFB01CD9807300E27B65 /* DDMIRegisterCodeView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 906BAF9C1CD9807300E27B65 /* DDMIRegisterCodeView.xib */; };
+		906BAFB11CD9807300E27B65 /* DDMIRegisterViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 906BAF9D1CD9807300E27B65 /* DDMIRegisterViewController.xib */; };
+		906BAFB21CD9807300E27B65 /* DDMISMSVerifyViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 906BAF9E1CD9807300E27B65 /* DDMISMSVerifyViewController.xib */; };
+		90B986B11CD9AADD009E355A /* dd_mi_back_highlight@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 90B9869F1CD9AADD009E355A /* dd_mi_back_highlight@2x.png */; };
+		90B986B21CD9AADD009E355A /* dd_mi_back_normal@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 90B986A01CD9AADD009E355A /* dd_mi_back_normal@2x.png */; };
+		90B986B31CD9AADD009E355A /* dd_mi_button_trust_icon@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 90B986A11CD9AADD009E355A /* dd_mi_button_trust_icon@2x.png */; };
+		90B986B41CD9AADD009E355A /* dd_mi_button_untrust_icon@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 90B986A21CD9AADD009E355A /* dd_mi_button_untrust_icon@2x.png */; };
+		90B986B51CD9AADD009E355A /* dd_mi_circleIndicator_icon@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 90B986A31CD9AADD009E355A /* dd_mi_circleIndicator_icon@2x.png */; };
+		90B986B61CD9AADD009E355A /* dd_mi_hide_password@2x.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 90B986A41CD9AADD009E355A /* dd_mi_hide_password@2x.jpg */; };
+		90B986B71CD9AADD009E355A /* dd_mi_login_input_bg_verification@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 90B986A51CD9AADD009E355A /* dd_mi_login_input_bg_verification@2x.png */; };
+		90B986B81CD9AADD009E355A /* dd_mi_login_input_bg@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 90B986A61CD9AADD009E355A /* dd_mi_login_input_bg@2x.png */; };
+		90B986B91CD9AADD009E355A /* dd_mi_logo_icon@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 90B986A71CD9AADD009E355A /* dd_mi_logo_icon@2x.png */; };
+		90B986BA1CD9AADD009E355A /* dd_mi_more_country@2x.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 90B986A81CD9AADD009E355A /* dd_mi_more_country@2x.jpg */; };
+		90B986BB1CD9AADD009E355A /* dd_mi_register_input_bg@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 90B986A91CD9AADD009E355A /* dd_mi_register_input_bg@2x.png */; };
+		90B986BC1CD9AADD009E355A /* dd_mi_resend_bg_disable@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 90B986AA1CD9AADD009E355A /* dd_mi_resend_bg_disable@2x.png */; };
+		90B986BD1CD9AADD009E355A /* dd_mi_resend_bg_normal@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 90B986AB1CD9AADD009E355A /* dd_mi_resend_bg_normal@2x.png */; };
+		90B986BE1CD9AADD009E355A /* dd_mi_show_password@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 90B986AC1CD9AADD009E355A /* dd_mi_show_password@2x.png */; };
+		90B986BF1CD9AADD009E355A /* dd_mi_single_input_bg@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 90B986AD1CD9AADD009E355A /* dd_mi_single_input_bg@2x.png */; };
+		90B986C01CD9AADD009E355A /* dd_mi_sms_code_bg_image@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 90B986AE1CD9AADD009E355A /* dd_mi_sms_code_bg_image@2x.png */; };
+		90B986C11CD9AADD009E355A /* DDMIWebViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 90B986AF1CD9AADD009E355A /* DDMIWebViewController.xib */; };
+		90D612EA1C841AA000B768A5 /* DDMILoginViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 90D612E61C841AA000B768A5 /* DDMILoginViewController.xib */; };
+		90D612EB1C841AA000B768A5 /* DDMIVerifyLoginViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 90D612E71C841AA000B768A5 /* DDMIVerifyLoginViewController.xib */; };
+		90D613241C841AE300B768A5 /* DDMILocalizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 90D613261C841AE300B768A5 /* DDMILocalizable.strings */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXFileReference section */
+		906BAF9B1CD9807300E27B65 /* DDMICountryListViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = DDMICountryListViewController.xib; sourceTree = "<group>"; };
+		906BAF9C1CD9807300E27B65 /* DDMIRegisterCodeView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = DDMIRegisterCodeView.xib; sourceTree = "<group>"; };
+		906BAF9D1CD9807300E27B65 /* DDMIRegisterViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = DDMIRegisterViewController.xib; sourceTree = "<group>"; };
+		906BAF9E1CD9807300E27B65 /* DDMISMSVerifyViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = DDMISMSVerifyViewController.xib; sourceTree = "<group>"; };
+		90B9869F1CD9AADD009E355A /* dd_mi_back_highlight@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "dd_mi_back_highlight@2x.png"; sourceTree = "<group>"; };
+		90B986A01CD9AADD009E355A /* dd_mi_back_normal@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "dd_mi_back_normal@2x.png"; sourceTree = "<group>"; };
+		90B986A11CD9AADD009E355A /* dd_mi_button_trust_icon@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "dd_mi_button_trust_icon@2x.png"; sourceTree = "<group>"; };
+		90B986A21CD9AADD009E355A /* dd_mi_button_untrust_icon@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "dd_mi_button_untrust_icon@2x.png"; sourceTree = "<group>"; };
+		90B986A31CD9AADD009E355A /* dd_mi_circleIndicator_icon@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "dd_mi_circleIndicator_icon@2x.png"; sourceTree = "<group>"; };
+		90B986A41CD9AADD009E355A /* dd_mi_hide_password@2x.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = "dd_mi_hide_password@2x.jpg"; sourceTree = "<group>"; };
+		90B986A51CD9AADD009E355A /* dd_mi_login_input_bg_verification@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "dd_mi_login_input_bg_verification@2x.png"; sourceTree = "<group>"; };
+		90B986A61CD9AADD009E355A /* dd_mi_login_input_bg@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "dd_mi_login_input_bg@2x.png"; sourceTree = "<group>"; };
+		90B986A71CD9AADD009E355A /* dd_mi_logo_icon@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "dd_mi_logo_icon@2x.png"; sourceTree = "<group>"; };
+		90B986A81CD9AADD009E355A /* dd_mi_more_country@2x.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = "dd_mi_more_country@2x.jpg"; sourceTree = "<group>"; };
+		90B986A91CD9AADD009E355A /* dd_mi_register_input_bg@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "dd_mi_register_input_bg@2x.png"; sourceTree = "<group>"; };
+		90B986AA1CD9AADD009E355A /* dd_mi_resend_bg_disable@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "dd_mi_resend_bg_disable@2x.png"; sourceTree = "<group>"; };
+		90B986AB1CD9AADD009E355A /* dd_mi_resend_bg_normal@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "dd_mi_resend_bg_normal@2x.png"; sourceTree = "<group>"; };
+		90B986AC1CD9AADD009E355A /* dd_mi_show_password@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "dd_mi_show_password@2x.png"; sourceTree = "<group>"; };
+		90B986AD1CD9AADD009E355A /* dd_mi_single_input_bg@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "dd_mi_single_input_bg@2x.png"; sourceTree = "<group>"; };
+		90B986AE1CD9AADD009E355A /* dd_mi_sms_code_bg_image@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "dd_mi_sms_code_bg_image@2x.png"; sourceTree = "<group>"; };
+		90B986AF1CD9AADD009E355A /* DDMIWebViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = DDMIWebViewController.xib; sourceTree = "<group>"; };
+		90D612DB1C841A5300B768A5 /* DDMIResource.bundle */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = DDMIResource.bundle; sourceTree = BUILT_PRODUCTS_DIR; };
+		90D612E61C841AA000B768A5 /* DDMILoginViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = DDMILoginViewController.xib; sourceTree = "<group>"; };
+		90D612E71C841AA000B768A5 /* DDMIVerifyLoginViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = DDMIVerifyLoginViewController.xib; sourceTree = "<group>"; };
+		90D613251C841AE300B768A5 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/DDMILocalizable.strings; sourceTree = "<group>"; };
+		90D613271C841AF300B768A5 /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/DDMILocalizable.strings"; sourceTree = "<group>"; };
+		90D613281C841AF700B768A5 /* zh-Hant */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hant"; path = "zh-Hant.lproj/DDMILocalizable.strings"; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		90D612D81C841A5300B768A5 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		90D612D21C841A5300B768A5 = {
+			isa = PBXGroup;
+			children = (
+				90D612DD1C841A5300B768A5 /* DDMIResource */,
+				90D612DC1C841A5300B768A5 /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		90D612DC1C841A5300B768A5 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				90D612DB1C841A5300B768A5 /* DDMIResource.bundle */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		90D612DD1C841A5300B768A5 /* DDMIResource */ = {
+			isa = PBXGroup;
+			children = (
+				90B9869F1CD9AADD009E355A /* dd_mi_back_highlight@2x.png */,
+				90B986A01CD9AADD009E355A /* dd_mi_back_normal@2x.png */,
+				90B986A11CD9AADD009E355A /* dd_mi_button_trust_icon@2x.png */,
+				90B986A21CD9AADD009E355A /* dd_mi_button_untrust_icon@2x.png */,
+				90B986A31CD9AADD009E355A /* dd_mi_circleIndicator_icon@2x.png */,
+				90B986A41CD9AADD009E355A /* dd_mi_hide_password@2x.jpg */,
+				90B986A51CD9AADD009E355A /* dd_mi_login_input_bg_verification@2x.png */,
+				90B986A61CD9AADD009E355A /* dd_mi_login_input_bg@2x.png */,
+				90B986A71CD9AADD009E355A /* dd_mi_logo_icon@2x.png */,
+				90B986A81CD9AADD009E355A /* dd_mi_more_country@2x.jpg */,
+				90B986A91CD9AADD009E355A /* dd_mi_register_input_bg@2x.png */,
+				90B986AA1CD9AADD009E355A /* dd_mi_resend_bg_disable@2x.png */,
+				90B986AB1CD9AADD009E355A /* dd_mi_resend_bg_normal@2x.png */,
+				90B986AC1CD9AADD009E355A /* dd_mi_show_password@2x.png */,
+				90B986AD1CD9AADD009E355A /* dd_mi_single_input_bg@2x.png */,
+				90B986AE1CD9AADD009E355A /* dd_mi_sms_code_bg_image@2x.png */,
+				90B986AF1CD9AADD009E355A /* DDMIWebViewController.xib */,
+				906BAF9B1CD9807300E27B65 /* DDMICountryListViewController.xib */,
+				906BAF9C1CD9807300E27B65 /* DDMIRegisterCodeView.xib */,
+				906BAF9D1CD9807300E27B65 /* DDMIRegisterViewController.xib */,
+				906BAF9E1CD9807300E27B65 /* DDMISMSVerifyViewController.xib */,
+				90D612E61C841AA000B768A5 /* DDMILoginViewController.xib */,
+				90D612E71C841AA000B768A5 /* DDMIVerifyLoginViewController.xib */,
+				90D613261C841AE300B768A5 /* DDMILocalizable.strings */,
+			);
+			path = DDMIResource;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		90D612DA1C841A5300B768A5 /* DDMIResource */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 90D612E11C841A5300B768A5 /* Build configuration list for PBXNativeTarget "DDMIResource" */;
+			buildPhases = (
+				90D612D71C841A5300B768A5 /* Sources */,
+				90D612D81C841A5300B768A5 /* Frameworks */,
+				90D612D91C841A5300B768A5 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = DDMIResource;
+			productName = DDMIResource;
+			productReference = 90D612DB1C841A5300B768A5 /* DDMIResource.bundle */;
+			productType = "com.apple.product-type.bundle";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		90D612D31C841A5300B768A5 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastUpgradeCheck = 0720;
+				ORGANIZATIONNAME = LiLingang;
+				TargetAttributes = {
+					90D612DA1C841A5300B768A5 = {
+						CreatedOnToolsVersion = 7.2.1;
+					};
+				};
+			};
+			buildConfigurationList = 90D612D61C841A5300B768A5 /* Build configuration list for PBXProject "DDMIResource" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				"zh-Hans",
+				"zh-Hant",
+			);
+			mainGroup = 90D612D21C841A5300B768A5;
+			productRefGroup = 90D612DC1C841A5300B768A5 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				90D612DA1C841A5300B768A5 /* DDMIResource */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		90D612D91C841A5300B768A5 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				90B986B71CD9AADD009E355A /* dd_mi_login_input_bg_verification@2x.png in Resources */,
+				906BAFB01CD9807300E27B65 /* DDMIRegisterCodeView.xib in Resources */,
+				90B986B11CD9AADD009E355A /* dd_mi_back_highlight@2x.png in Resources */,
+				90B986B41CD9AADD009E355A /* dd_mi_button_untrust_icon@2x.png in Resources */,
+				90B986B81CD9AADD009E355A /* dd_mi_login_input_bg@2x.png in Resources */,
+				90D612EA1C841AA000B768A5 /* DDMILoginViewController.xib in Resources */,
+				90B986BD1CD9AADD009E355A /* dd_mi_resend_bg_normal@2x.png in Resources */,
+				90D613241C841AE300B768A5 /* DDMILocalizable.strings in Resources */,
+				906BAFB21CD9807300E27B65 /* DDMISMSVerifyViewController.xib in Resources */,
+				90B986B51CD9AADD009E355A /* dd_mi_circleIndicator_icon@2x.png in Resources */,
+				90B986B91CD9AADD009E355A /* dd_mi_logo_icon@2x.png in Resources */,
+				90B986C11CD9AADD009E355A /* DDMIWebViewController.xib in Resources */,
+				90B986BE1CD9AADD009E355A /* dd_mi_show_password@2x.png in Resources */,
+				90B986B31CD9AADD009E355A /* dd_mi_button_trust_icon@2x.png in Resources */,
+				90B986BA1CD9AADD009E355A /* dd_mi_more_country@2x.jpg in Resources */,
+				90B986B21CD9AADD009E355A /* dd_mi_back_normal@2x.png in Resources */,
+				906BAFB11CD9807300E27B65 /* DDMIRegisterViewController.xib in Resources */,
+				90B986B61CD9AADD009E355A /* dd_mi_hide_password@2x.jpg in Resources */,
+				90D612EB1C841AA000B768A5 /* DDMIVerifyLoginViewController.xib in Resources */,
+				90B986BB1CD9AADD009E355A /* dd_mi_register_input_bg@2x.png in Resources */,
+				906BAFAF1CD9807300E27B65 /* DDMICountryListViewController.xib in Resources */,
+				90B986BF1CD9AADD009E355A /* dd_mi_single_input_bg@2x.png in Resources */,
+				90B986C01CD9AADD009E355A /* dd_mi_sms_code_bg_image@2x.png in Resources */,
+				90B986BC1CD9AADD009E355A /* dd_mi_resend_bg_disable@2x.png in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		90D612D71C841A5300B768A5 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXVariantGroup section */
+		90D613261C841AE300B768A5 /* DDMILocalizable.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				90D613251C841AE300B768A5 /* en */,
+				90D613271C841AF300B768A5 /* zh-Hans */,
+				90D613281C841AF700B768A5 /* zh-Hant */,
+			);
+			name = DDMILocalizable.strings;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		90D612DF1C841A5300B768A5 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				CODE_SIGN_IDENTITY = "-";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
+				MACOSX_DEPLOYMENT_TARGET = 10.10;
+				MTL_ENABLE_DEBUG_INFO = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+			};
+			name = Debug;
+		};
+		90D612E01C841A5300B768A5 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				CODE_SIGN_IDENTITY = "-";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
+				MACOSX_DEPLOYMENT_TARGET = 10.10;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				SDKROOT = iphoneos;
+			};
+			name = Release;
+		};
+		90D612E21C841A5300B768A5 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				COMBINE_HIDPI_IMAGES = YES;
+				INFOPLIST_FILE = "";
+				INSTALL_PATH = "";
+				PRODUCT_BUNDLE_IDENTIFIER = DD.DDMIResource;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SKIP_INSTALL = NO;
+				WRAPPER_EXTENSION = bundle;
+			};
+			name = Debug;
+		};
+		90D612E31C841A5300B768A5 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				COMBINE_HIDPI_IMAGES = YES;
+				INFOPLIST_FILE = "";
+				INSTALL_PATH = "";
+				PRODUCT_BUNDLE_IDENTIFIER = DD.DDMIResource;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SKIP_INSTALL = NO;
+				WRAPPER_EXTENSION = bundle;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		90D612D61C841A5300B768A5 /* Build configuration list for PBXProject "DDMIResource" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				90D612DF1C841A5300B768A5 /* Debug */,
+				90D612E01C841A5300B768A5 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		90D612E11C841A5300B768A5 /* Build configuration list for PBXNativeTarget "DDMIResource" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				90D612E21C841A5300B768A5 /* Debug */,
+				90D612E31C841A5300B768A5 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = 90D612D31C841A5300B768A5 /* Project object */;
+}

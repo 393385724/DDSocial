@@ -11,7 +11,7 @@
 
 #ifndef MIResourceBundlePath
 #define MIResourceBundlePath \
-[[NSBundle mainBundle] pathForResource: @ "DDMIResource" ofType :@ "bundle"]
+[[NSBundle mainBundle] pathForResource:@"DDMIResource" ofType:@"bundle"]
 #endif
 
 #ifndef MIResourceBundle
@@ -28,6 +28,20 @@
 #define MIImage(s) \
 [UIImage imageWithContentsOfFile:[MIResourceBundlePath stringByAppendingPathComponent:s]]
 #endif
+
+#ifndef MIIsEmptyString
+#define MIIsEmptyString(objStr)\
+(![objStr isKindOfClass:[NSString class]] || objStr == nil || [objStr length] <= 0)
+#endif
+
+/**
+ *  @brief 登录授权的通知
+ */
+static NSString * const DDMILoginAuthNotification = @"DDMILoginAuthNotification";
+/**
+ *  @brief 取消登录的通知
+ */
+static NSString * const DDMILoginCancelNotification = @"DDMILoginCancelNotification";
 
 
 #endif /* DDMIDefines_h */

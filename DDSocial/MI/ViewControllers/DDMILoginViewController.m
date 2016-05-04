@@ -7,13 +7,23 @@
 //
 
 #import "DDMILoginViewController.h"
+#import "DDMIVerifyLoginViewController.h"
+#import "DDMIForgetPasswordViewController.h"
+#import "DDMIRegisterViewController.h"
+
 #import "DDMICircleIndicator.h"
 
+#import "DDMIRequestHandle.h"
 #import "DDMIDownLoader.h"
 
-#import "UIView+DDFrame.h"
+#import "DDMIAccountManager.h"
 
-@interface DDMILoginViewController ()<UITextFieldDelegate>
+typedef NS_ENUM(NSUInteger, DDMILoginType) {
+    DDMILoginTypeDefault,
+    DDMILoginTypeImageVerification,
+};
+
+@interface DDMILoginViewController ()<UITextFieldDelegate,DDMIRequestHandleDelegate>
 
 @property (weak, nonatomic) IBOutlet UIView *contentView;
 @property (weak, nonatomic) IBOutlet UIImageView *logoImageView;
@@ -28,10 +38,15 @@
 @property (weak, nonatomic) IBOutlet UILabel *errorTipLabel;
 @property (weak, nonatomic) IBOutlet DDMICircleIndicator *indicatorView;
 @property (weak, nonatomic) IBOutlet UIButton *loginButton;
+@property (weak, nonatomic) IBOutlet UIButton *forgetPasswordButton;
+@property (weak, nonatomic) IBOutlet UIButton *registerButton;
 
 @property (weak, nonatomic) IBOutlet NSLayoutConstraint *contentViewTopConstraint;
 @property (weak, nonatomic) IBOutlet NSLayoutConstraint *contentViewHeightConstraint;
 @property (weak, nonatomic) IBOutlet NSLayoutConstraint *inputContentViewHeightConstraint;
+@property (weak, nonatomic) IBOutlet NSLayoutConstraint *forgetPasswordTopConstraint;
+@property (weak, nonatomic) IBOutlet NSLayoutConstraint *registerHorizontalConstraint;
+@property (weak, nonatomic) IBOutlet NSLayoutConstraint *registerBottomConstraint;
 
 @property (nonatomic, assign) DDMILoginType loginType;
 @property (nonatomic, strong) DDMIRequestHandle *requestHandle;
@@ -45,7 +60,6 @@
     self = [super initWithNibName:@"DDMILoginViewController" bundle:MIResourceBundle];
     if (self) {
         self.requestHandle = requestHandle;
-        self.requestHandle.delegate = self;
     }
     return self;
 }
@@ -57,7 +71,7 @@
     
     self.loginButton.enabled = NO;
     self.loginButton.layer.borderWidth = 1;
-    self.loginButton.layer.cornerRadius = self.loginButton.ddHeight/2.0;
+    self.loginButton.layer.cornerRadius = CGRectGetHeight(self.loginButton.frame)/2.0;
     self.loginButton.layer.borderColor = [UIColor colorWithRed:236/255.0f green:236/255.0f blue:236/255.0f alpha:1].CGColor;
     [self.loginButton setBackgroundColor:[UIColor colorWithRed:252/255.0f green:252/255.0f blue:252/255.0f alpha:1]];
 
@@ -70,8 +84,6 @@
     [swipeRecognizer setDirection:UISwipeGestureRecognizerDirectionUp | UISwipeGestureRecognizerDirectionDown];
     [self.view addGestureRecognizer:swipeRecognizer];
     
-    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(keyboardWillChangeFrameNotification:) name:UIKeyboardWillChangeFrameNotification object:nil];
-    
     self.logoImageView.image = MIImage(@"dd_mi_logo_icon");
     
     self.title = MILocal(@"登录");
@@ -80,16 +92,29 @@
     self.passwordTextField.placeholder = MILocal(@"密码");
     self.codeTextField.placeholder = MILocal(@"验证码");
     [self.loginButton setTitle:MILocal(@"登录") forState:UIControlStateNormal];
-    self.accountTextField.text = [self userAccount];
+    [self.forgetPasswordButton setTitle:MILocal(@"忘记密码?") forState:UIControlStateNormal];
+    [self.registerButton setTitle:MILocal(@"注册小米账号") forState:UIControlStateNormal];
+    self.accountTextField.text = [DDMIAccountManager userAccount];
+    self.forgetPasswordButton.hidden = YES;
+    self.registerButton.hidden = YES;
+
+#ifdef MI
+    self.forgetPasswordButton.hidden = NO;
+    self.registerButton.hidden = NO;
+#endif
 }
 
 - (void)viewWillAppear:(BOOL)animated{
     [super viewWillAppear:animated];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(keyboardWillChangeFrameNotification:) name:UIKeyboardWillChangeFrameNotification object:nil];
+    //重置接受者
+    self.requestHandle.delegate = self;
     [self switchLoginType:DDMILoginTypeDefault];
 }
 
 - (void)viewWillDisappear:(BOOL)animated{
     [super viewWillDisappear:animated];
+    [[NSNotificationCenter defaultCenter] removeObserver:self];
     [self hidenKeyboard:nil];
 }
 
@@ -102,16 +127,16 @@
     NSString *password = self.passwordTextField.text;
     NSString *code = self.codeTextField.text;
     
-    if (![account length]) {
+    if (MIIsEmptyString(account)) {
         [self displayAndAutoDisMissErrorTipLabelWithText:MILocal(@"账号不能为空")];
         return;
     }
-    if (![password length]) {
+    if (MIIsEmptyString(password)) {
         [self displayAndAutoDisMissErrorTipLabelWithText:MILocal(@"密码不能为空")];
         return;
     }
     
-    if (self.loginType == DDMILoginTypeImageVerification && ![code length]) {
+    if (self.loginType == DDMILoginTypeImageVerification && MIIsEmptyString(code)) {
         [self displayAndAutoDisMissErrorTipLabelWithText:MILocal(@"验证码不能为空")];
         return;
     }
@@ -131,6 +156,21 @@
     [self changeImageVerificationCodeWithURLString:nil];
 }
 
+- (IBAction)forgetPasswordButtonAction:(id)sender {
+    DDMIForgetPasswordViewController *viewController = [[DDMIForgetPasswordViewController alloc] init];
+    [self.navigationController pushViewController:viewController animated:YES];
+}
+
+- (IBAction)registerButtonAction:(id)sender {
+    DDMIRegisterViewController *viewController = [[DDMIRegisterViewController alloc] initWithRequestHandle:self.requestHandle];
+    [self.navigationController pushViewController:viewController animated:YES];
+}
+
+- (void)pushToVerifyLoginViewController{
+    DDMIVerifyLoginViewController *viewController = [[DDMIVerifyLoginViewController alloc] initWithRequestHandle:self.requestHandle];
+    [self.navigationController pushViewController:viewController animated:YES];
+}
+
 #pragma mark - Private Methods
 
 - (void)switchLoginType:(DDMILoginType)loginType{
@@ -138,27 +178,46 @@
         return;
     }
     self.loginType = loginType;
+    CGFloat contentViewHeight = 0;
+    CGFloat inputbackImageViewHeight = 0;
     if (loginType == DDMILoginTypeDefault) {
         self.codeTextField.hidden = YES;
         self.codeImageView.hidden = YES;
         self.passwordTextField.returnKeyType = UIReturnKeyDone;
-        
-        self.contentView.ddHeight = 337;
-        self.inputbackImageView.ddHeight = 112;
-        self.inputbackImageView.image = MIImage(@"dd_input_bg");
-    }
-    else {
+#ifdef MI
+        contentViewHeight = 381;
+#else
+        contentViewHeight = 337;
+#endif
+        inputbackImageViewHeight = 112;
+        self.inputbackImageView.image = MIImage(@"dd_mi_login_input_bg");
+        if ([UIScreen mainScreen].bounds.size.height <= 480) {
+            self.forgetPasswordTopConstraint.constant = 8.0;
+            self.registerHorizontalConstraint.constant = 0.0;
+            self.registerBottomConstraint.constant = 8.0;
+        }
+    } else {
         self.codeTextField.hidden = NO;
         self.codeImageView.hidden = NO;
         self.passwordTextField.returnKeyType = UIReturnKeyNext;
         self.loginButton.enabled = NO;
-        
-        self.contentView.ddHeight = 387;
-        self.inputbackImageView.ddHeight = 162;
-        self.inputbackImageView.image = MIImage(@"dd_input_bg_verification");
+#ifdef MI
+        contentViewHeight = 430;
+#else
+        contentViewHeight = 387;
+#endif
+        inputbackImageViewHeight = 162;
+        self.inputbackImageView.image = MIImage(@"dd_mi_login_input_bg_verification");
+        if ([UIScreen mainScreen].bounds.size.height <= 480) {
+            self.forgetPasswordTopConstraint.constant = 0;
+            self.registerHorizontalConstraint.constant = -60;
+            self.registerBottomConstraint.constant = 0.0;
+        }
     }
-    self.contentViewHeightConstraint.constant = self.contentView.ddHeight;
-    self.inputContentViewHeightConstraint.constant = self.inputbackImageView.ddHeight;
+    self.contentView.frame = CGRectMake(CGRectGetMinX(self.contentView.frame), CGRectGetMinY(self.contentView.frame), CGRectGetWidth(self.contentView.frame), contentViewHeight);
+    self.inputbackImageView.frame = CGRectMake(CGRectGetMinX(self.inputbackImageView.frame), CGRectGetMinY(self.inputbackImageView.frame), CGRectGetWidth(self.inputbackImageView.frame), inputbackImageViewHeight);
+    self.contentViewHeightConstraint.constant = CGRectGetHeight(self.contentView.frame);
+    self.inputContentViewHeightConstraint.constant = CGRectGetHeight(self.inputbackImageView.frame);
 }
 
 - (void)changeImageVerificationCodeWithURLString:(NSString *)urlString{
@@ -166,22 +225,9 @@
     __weak __typeof(&*self)weakSelf = self;
     [self.downLoader loadLoginCodeImageWithURLString:urlString account:self.accountTextField.text completeHandle:^(NSData *data, NSError *error) {
         if (error) {
-            NSInteger errorCode = [error code];
-            NSInteger errorUserCode = [[[error userInfo] objectForKey:@"code"] integerValue];
-            NSString *errorMessage = [[[error userInfo] objectForKey:@"desc"] stringByAppendingFormat:@"(%ld)",(long)errorUserCode];
-            if (errorCode == -1009 ||
-                errorCode == -1005 ||
-                errorUserCode == -1009 ||
-                errorUserCode == -1005) {
-                errorMessage = MILocal(@"网络未连接");
-            }
-            else if (errorCode == -1001 ||
-                     errorUserCode == -1001){
-                errorMessage = MILocal(@"请求超时");
-            }
+            NSString *errorMessage = [DDMIErrorTool errorMessageWithError:error];
             [weakSelf displayErrorTipLabelWithText:errorMessage];
-        }
-        else {
+        } else {
             UIImage *codeImage = [UIImage imageWithData:data];
             weakSelf.codeImageView.image = codeImage;
         }
@@ -261,31 +307,31 @@
 
 #pragma mark - DDMIRequestHandleDelegate
 
-- (void)requestHandle:(DDMIRequestHandle *)requestHandle successedNeedDynamicToken:(BOOL)needDynamicToken{
+- (void)requestHandleDidSuccess:(DDMIRequestHandle *)requestHandle{
     [self.indicatorView stopAnimation];
     self.loginButton.enabled = YES;
     self.view.userInteractionEnabled = YES;
-    [self saveUserAccount:self.accountTextField.text];
-    if (self.delegate && [self.delegate respondsToSelector:@selector(loginViewController:successNeedDaynamicCode:)]) {
-        [self.delegate loginViewController:self successNeedDaynamicCode:needDynamicToken];
-    }
+    [DDMIAccountManager saveUserAccount:self.accountTextField.text];
+    [[NSNotificationCenter defaultCenter] postNotificationName:DDMILoginAuthNotification object:nil];
 }
 
 - (void)requestHandle:(DDMIRequestHandle *)requestHandle failedWithType:(DDMIErrorType)errorType errorMessage:(NSString *)errorMessage error:(NSError *)error{
     [self.indicatorView stopAnimation];
     self.loginButton.enabled = YES;
     self.view.userInteractionEnabled = YES;
+    if (errorType == DDMIErrorNeedDynamicToken){
+        [self pushToVerifyLoginViewController];
+        return;
+    }
     if (errorType == DDMIErrorVerificationCode) {
         if (self.loginType == DDMILoginTypeDefault) {
             [self switchLoginType:DDMILoginTypeImageVerification];
             errorMessage = MILocal(@"请输入验证码");
         }
-        
         UIImage *captImage = [error.userInfo objectForKey:@"captImage"];
         if (captImage) {
             self.codeImageView.image = captImage;
-        }
-        else {
+        } else {
             NSString *captchaUrl = [error.userInfo objectForKey:@"captchaUrl"];
             [self changeImageVerificationCodeWithURLString:captchaUrl];
         }
@@ -314,7 +360,7 @@
 }
 
 
-#pragma mark - Keyboard
+#pragma mark - Hiden Keyboard
 
 - (void)hidenKeyboard:(UIGestureRecognizer *)recognizer{
     if ([self.accountTextField isFirstResponder]) {
@@ -337,39 +383,25 @@
                           delay:0
                         options:UIViewAnimationOptionCurveEaseInOut
                      animations:^{
-                         if (keyboardY == self.view.ddHeight) {
-                             self.contentView.ddTop = 64;
+                         if (keyboardY == CGRectGetHeight(self.view.frame)) {
+                             self.contentView.frame = CGRectMake(CGRectGetMinX(self.contentView.frame), 64, CGRectGetWidth(self.contentView.frame), CGRectGetHeight(self.contentView.frame));
                          } else {
-                             CGFloat offset = keyboardY - self.contentView.ddHeight;
+                             CGFloat offset = keyboardY - CGRectGetHeight(self.contentView.frame);
                              //fix bug the input box shows is not complete for 480 screen
                              if (CGRectGetHeight([UIScreen mainScreen].bounds) <= 480) {
                                  if ([self.accountTextField isFirstResponder]) {
                                      offset += 30; 
                                  }
+#ifdef MI
+                                 offset += 43;
+#endif
                              }
                              if (offset < 64) {
-                                 self.contentView.ddTop = offset;
+                                 self.contentView.frame = CGRectMake(CGRectGetMinX(self.contentView.frame), offset, CGRectGetWidth(self.contentView.frame), CGRectGetHeight(self.contentView.frame));
                              }
                          }
                      } completion:nil];
-    self.contentViewTopConstraint.constant = self.contentView.ddTop;
-}
-
-#pragma mark - UserDefault Account
-
-- (void)saveUserAccount:(NSString *)account{
-    if (account && [account length]) {
-        [[NSUserDefaults standardUserDefaults] setObject:account forKey:@"DDMIAccount"];
-        [[NSUserDefaults standardUserDefaults] synchronize];
-    }
-}
-
-- (NSString *)userAccount{
-    NSString *account = [[NSUserDefaults standardUserDefaults] stringForKey:@"DDMIAccount"];
-    if (account && [account length]) {
-        return account;
-    }
-    return @"";
+    self.contentViewTopConstraint.constant = CGRectGetMinY(self.contentView.frame);
 }
 
 #pragma mark - Getter and Setter

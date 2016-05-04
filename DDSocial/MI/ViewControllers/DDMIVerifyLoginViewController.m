@@ -11,9 +11,6 @@
 
 #import "DDMIRequestHandle.h"
 
-#import "UIView+DDFrame.h"
-#import "UIButton+DDHitTestEdgeInsets.h"
-
 @interface DDMIVerifyLoginViewController ()<UITextFieldDelegate,DDMIRequestHandleDelegate>
 @property (weak, nonatomic) IBOutlet UIView *contentView;
 @property (weak, nonatomic) IBOutlet UILabel *tipLabel;
@@ -40,7 +37,6 @@
     self = [super initWithNibName:@"DDMIVerifyLoginViewController" bundle:MIResourceBundle];
     if (self) {
         self.requestHandle = requestHandle;
-        self.requestHandle.delegate = self;
     }
     return self;
 }
@@ -48,19 +44,10 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     self.title = MILocal(@"口令验证");
-    
-    //LeftBar
-    UIButton* backButton= [[UIButton alloc] initWithFrame:CGRectMake(0, 0, 44, 44)];
-    [backButton setTitle:MILocal(@"返回") forState:UIControlStateNormal];
-    [backButton.titleLabel setFont:[UIFont systemFontOfSize:15]];
-    [backButton setTitleColor:[UIColor orangeColor] forState:UIControlStateNormal];
-    [backButton addTarget:self action:@selector(backButtonAction:) forControlEvents:UIControlEventTouchUpInside];
-    self.navigationItem.leftBarButtonItem = [[UIBarButtonItem alloc] initWithCustomView:backButton];
-    
-    self.trustButton.hitTestEdgeInsets = UIEdgeInsetsMake(-5, -10, -10, -10);
+
     self.confirmButton.enabled = NO;
     self.confirmButton.layer.borderWidth = 1;
-    self.confirmButton.layer.cornerRadius = self.confirmButton.ddHeight/2.0;
+    self.confirmButton.layer.cornerRadius = CGRectGetHeight(self.confirmButton.frame)/2.0;
     self.confirmButton.layer.borderColor = [UIColor colorWithRed:236/255.0f green:236/255.0f blue:236/255.0f alpha:1].CGColor;
     [self.confirmButton setBackgroundColor:[UIColor colorWithRed:252/255.0f green:252/255.0f blue:252/255.0f alpha:1]];
     [self.confirmButton setTitle:MILocal(@"确定") forState:UIControlStateNormal];
@@ -72,7 +59,7 @@
     
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(keyboardWillChangeFrameNotification:) name:UIKeyboardWillChangeFrameNotification object:nil];
     
-    self.inputBackImageView.image = MIImage(@"dd_single_input_bg");
+    self.inputBackImageView.image = MIImage(@"dd_mi_single_input_bg");
     
     self.tipLabel.text = MILocal(@"一个账号,玩转所有小米服务!");
     self.codeTextField.placeholder = MILocal(@"请输入6位动态口令");
@@ -81,19 +68,25 @@
 
 - (void)viewWillDisappear:(BOOL)animated{
     [super viewWillDisappear:animated];
+    self.requestHandle.delegate = self;
     [self hidenKeyboard:nil];
+}
+
+#pragma mark - Template Methods
+
+- (DDMINavigationLeftBarAction)leftBarAction{
+    return DDMINavigationLeftBarActionBack;
 }
 
 #pragma mark - Button actions
 - (void)backButtonAction:(id)sender{
-    if (self.delegate && [self.delegate respondsToSelector:@selector(viewControllerNeedPop:)]) {
-        [self.delegate viewControllerNeedPop:self];
-    }
+    self.requestHandle.delegate = [self.navigationController.viewControllers firstObject];
+    [self.navigationController popViewControllerAnimated:YES];
 }
 
 - (IBAction)trustButtonAction:(id)sender {
     self.isTrustDevice = !self.isTrustDevice;
-    NSString *imageName = self.isTrustDevice ? @"dd_button_trust_icon" : @"dd_button_untrust_icon";
+    NSString *imageName = self.isTrustDevice ? @"dd_mi_button_trust_icon" : @"dd_mi_button_untrust_icon";
     [self.trustButton setImage:MIImage(imageName) forState:UIControlStateNormal];
 }
 
@@ -106,18 +99,11 @@
 
 #pragma mark -  DDMIRequestHandleDelegate
 
-- (void)requestHandle:(DDMIRequestHandle *)requestHandle successedNeedDynamicToken:(BOOL)needDynamicToken{
+- (void)requestHandleDidSuccess:(DDMIRequestHandle *)requestHandle{
     [self.indicatorView stopAnimation];
     self.confirmButton.enabled = YES;
     self.view.userInteractionEnabled = YES;
-    if (needDynamicToken) {
-        [self displayErrorTipLabelWithText:MILocal(@"动态口令错误")];
-    }
-    else {
-        if (self.delegate && [self.delegate respondsToSelector:@selector(viewControllerDidVerifySucess:)]) {
-            [self.delegate viewControllerDidVerifySucess:self];
-        }
-    }
+    [[NSNotificationCenter defaultCenter] postNotificationName:DDMILoginAuthNotification object:nil];
 }
 
 - (void)requestHandle:(DDMIRequestHandle *)requestHandle failedWithType:(DDMIErrorType)errorType errorMessage:(NSString *)errorMessage error:(NSError *)error{
@@ -194,16 +180,16 @@
                           delay:0
                         options:UIViewAnimationOptionCurveEaseInOut
                      animations:^{
-                         if (keyboardY == self.view.ddHeight) {
-                             self.contentView.ddTop = 64;
+                         if (keyboardY == CGRectGetHeight(self.view.frame)) {
+                             self.contentView.frame = CGRectMake(CGRectGetMinX(self.contentView.frame), 64, CGRectGetWidth(self.contentView.frame), CGRectGetHeight(self.contentView.frame));
                          } else {
-                             CGFloat offset = keyboardY - self.contentView.ddHeight;
+                             CGFloat offset = keyboardY - CGRectGetHeight(self.contentView.frame);
                              if (offset < 64) {
-                                 self.contentView.ddTop = offset;
+                                 self.contentView.frame = CGRectMake(CGRectGetMinX(self.contentView.frame), offset, CGRectGetWidth(self.contentView.frame), CGRectGetHeight(self.contentView.frame));
                              }
                          }
                      } completion:nil];
-    self.contentTopConstraint.constant = self.contentView.ddTop;
+    self.contentTopConstraint.constant = self.contentView.frame.origin.y;
 }
 
 @end

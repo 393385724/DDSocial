@@ -10,14 +10,13 @@
 
 #import "DDMILoginViewController.h"
 #import "DDMIAuthViewController.h"
-#import "DDMIVerifyLoginViewController.h"
 
 #import "DDMIRequestHandle.h"
 
 #import "DDAuthItem.h"
 #import "DDUserInfoItem.h"
 
-@interface DDMIHandler ()<DDMICancelDelegate,DDMILoginViewControllerDelegate,DDMIAuthViewControllerDelegate,DDMIVerifyLoginViewControllerDelegate>
+@interface DDMIHandler ()<DDMIAuthViewControllerDelegate>
 
 @property (nonatomic, copy) NSString *appKey;
 
@@ -36,32 +35,25 @@
 @implementation DDMIHandler
 
 - (void)dealloc{
+    [[NSNotificationCenter defaultCenter] removeObserver:self];
     NSLog(@"dealloc");
+}
+
+- (instancetype)init{
+    self = [super init];
+    if (self) {
+        [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(miLoginAuthNotification:) name:DDMILoginAuthNotification object:nil];
+        [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(miLoginCancelNotification:) name:DDMILoginCancelNotification object:nil];
+    }
+    return self;
 }
 
 #pragma mark - Private Methods
 
 - (void)presetLoginViewControllerInViewController:(UIViewController *)viewController{
     DDMILoginViewController *loginViewController = [[DDMILoginViewController alloc] initWithRequestHandle:self.requestHandle];
-    loginViewController.delegate = self;
-    loginViewController.cancelDelegate = self;
     self.navigationController = [[UINavigationController alloc] initWithRootViewController:loginViewController];
     [viewController presentViewController:self.navigationController animated:YES completion:nil];
-}
-
-- (void)pushWebAuthViewContoller{
-    DDMIAuthViewController *viewController = [[DDMIAuthViewController alloc] initWithAppid:self.appKey redirectUrl:self.redirectUrl];
-    viewController.cancelDelegate = self;
-    viewController.delegate = self;
-    viewController.authMode = self.authMode;
-    [self.navigationController pushViewController:viewController animated:YES];
-}
-
-- (void)pushVerifyLoginViewControllerWithAccount:(NSString *)account{
-    DDMIVerifyLoginViewController *viewController = [[DDMIVerifyLoginViewController alloc] initWithRequestHandle:self.requestHandle];
-    viewController.delegate = self;
-    viewController.cancelDelegate = self;
-    [self.navigationController pushViewController:viewController animated:YES];
 }
 
 - (void)disMissWithCompletion:(void (^)(void))completion{
@@ -74,47 +66,7 @@
     }];
 }
 
-#pragma mark - DDMICancelDelegate
-
-- (void)viewControllerCanceled:(UIViewController *)viewController{
-    __weak __typeof(&*self)weakSelf = self;
-    [self disMissWithCompletion:^{
-        weakSelf.authEventHandle(DDSSPlatformMI,DDSSAuthStateCancel,nil,nil);
-        weakSelf.authEventHandle = nil;
-    }];
-}
-
-#pragma mark - DDMILoginViewControllerDelegate
-
-- (void)loginViewController:(DDMILoginViewController *)viewController successNeedDaynamicCode:(BOOL)needDaynamicCode{
-    if (!needDaynamicCode) {
-        [self pushWebAuthViewContoller];
-    }
-    else {
-        [self pushVerifyLoginViewControllerWithAccount:self.requestHandle.account];
-    }
-}
-
-#pragma mark - DDMIVerifyLoginViewControllerDelegate
-
-- (void)viewControllerDidVerifySucess:(DDMIVerifyLoginViewController *)viewController{
-    [self pushWebAuthViewContoller];
-}
-
-- (void)viewControllerNeedPop:(DDMIVerifyLoginViewController *)viewController{
-    [self.navigationController popViewControllerAnimated:YES];
-    self.requestHandle.delegate = ((DDMILoginViewController *)self.navigationController.topViewController);
-}
-
 #pragma mark - DDMIAuthViewControllerDelegate
-
-- (void)authViewController:(DDMIAuthViewController *)viewController failedWithError:(NSError *)error{
-    __weak __typeof(&*self)weakSelf = self;
-    [self disMissWithCompletion:^{
-        weakSelf.authEventHandle(DDSSPlatformMI,DDSSAuthStateFail,nil,error);
-        weakSelf.authEventHandle = nil;
-    }];
-}
 
 - (void)authViewController:(DDMIAuthViewController *)viewController successWithResponse:(NSDictionary *)response{
     __weak __typeof(&*self)weakSelf = self;
@@ -131,8 +83,29 @@
     }];
 }
 
-- (void)authViewControllerSwitchLogin{
-    [self.navigationController popToRootViewControllerAnimated:NO];
+- (void)authViewController:(DDMIAuthViewController *)viewController failedWithError:(NSError *)error{
+    __weak __typeof(&*self)weakSelf = self;
+    [self disMissWithCompletion:^{
+        weakSelf.authEventHandle(DDSSPlatformMI,DDSSAuthStateFail,nil,error);
+        weakSelf.authEventHandle = nil;
+    }];
+}
+
+#pragma mark - Notification
+
+- (void)miLoginAuthNotification:(NSNotification *)notification{
+    DDMIAuthViewController *viewController = [[DDMIAuthViewController alloc] initWithAppid:self.appKey redirectUrl:self.redirectUrl];
+    viewController.delegate = self;
+    viewController.authMode = self.authMode;
+    [self.navigationController pushViewController:viewController animated:YES];
+}
+
+- (void)miLoginCancelNotification:(NSNotification *)notification{
+    __weak __typeof(&*self)weakSelf = self;
+    [self disMissWithCompletion:^{
+        weakSelf.authEventHandle(DDSSPlatformMI,DDSSAuthStateCancel,nil,nil);
+        weakSelf.authEventHandle = nil;
+    }];
 }
 
 #pragma mark - Getter and Setter

@@ -7,26 +7,10 @@
 //
 
 #import "DDMIBaseViewController.h"
-#import "DDMIRequestHandle.h"
 
+@class DDMIRequestHandle;
 
-typedef NS_ENUM(NSUInteger, DDMILoginType) {
-    DDMILoginTypeDefault,
-    DDMILoginTypeImageVerification,
-};
-
-@class DDMILoginViewController;
-
-@protocol DDMILoginViewControllerDelegate <NSObject>
-
-- (void)loginViewController:(DDMILoginViewController *)viewController
-    successNeedDaynamicCode:(BOOL)needDaynamicCode;
-
-@end
-
-@interface DDMILoginViewController : DDMIBaseViewController<DDMIRequestHandleDelegate>
-
-@property (nonatomic, weak) id<DDMILoginViewControllerDelegate> delegate;
+@interface DDMILoginViewController : DDMIBaseViewController
 
 - (instancetype)initWithRequestHandle:(DDMIRequestHandle *)requestHandle;
 

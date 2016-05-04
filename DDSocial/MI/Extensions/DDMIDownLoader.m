@@ -38,4 +38,22 @@
     [downloadTask resume];
 }
 
+- (void)loadRegisterCodeImageWithAccount:(NSString *)account
+                         completeHandle:(DDMIDownLoaderEventHandler)completeHandle{
+    NSString *url = [NSString stringWithFormat:@"https://account.xiaomi.com/pass/getCode?icodeType=register&phone=%@",account];
+    NSURLRequest *request = [NSURLRequest requestWithURL:[NSURL URLWithString:url]];
+    NSURLSession *session = [NSURLSession sharedSession];
+    NSURLSessionDownloadTask *downloadTask = [session downloadTaskWithRequest:request
+                                                            completionHandler:
+                                              ^(NSURL *location, NSURLResponse *response, NSError *error) {
+                                                  if (error) {
+                                                      completeHandle(nil, error);
+                                                  } else {
+                                                      NSData *data = [NSData dataWithContentsOfURL:location];
+                                                      completeHandle(data, error);
+                                                  }
+                                              }];
+    
+    [downloadTask resume];
+}
 @end

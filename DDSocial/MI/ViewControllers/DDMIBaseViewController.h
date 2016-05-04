@@ -9,14 +9,35 @@
 #import <UIKit/UIKit.h>
 #import "DDMIDefines.h"
 
-@protocol DDMICancelDelegate <NSObject>
+typedef NS_ENUM(NSUInteger, DDMINavigationLeftBarAction) {
+    DDMINavigationLeftBarActionCancel,   //**展示取消触发dismiss*/
+    DDMINavigationLeftBarActionBack,     //**展示<触发pop*/
+};
 
-- (void)viewControllerCanceled:(UIViewController *)viewController;
-
-@end
-
+/**
+ *  @brief 小米登录所有页面的根类
+ */
 @interface DDMIBaseViewController : UIViewController
 
-@property (nonatomic, weak) id<DDMICancelDelegate> cancelDelegate;
+/**
+ *  @brief 返回Navigation Left Bar 展现以及事件, 默认DDMINavigationLeftBarActionCancel
+ *
+ *  @return DDMINavigationLeftBarAction
+ */
+- (DDMINavigationLeftBarAction)leftBarAction;
+
+/**
+ *  @brief 取消按钮点击出发的时间
+ *
+ *  @param sender UIButton
+ */
+- (void)cancelButtonAction:(id)sender;
+
+/**
+ *  @brief 返回按钮点击出发的时间
+ *
+ *  @param sender UIButton
+ */
+- (void)backButtonAction:(id)sender;
 
 @end

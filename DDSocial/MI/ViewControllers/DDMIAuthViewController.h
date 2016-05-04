@@ -6,7 +6,7 @@
 //  Copyright (c) 2015年 lilingang. All rights reserved.
 //
 
-#import "DDMIBaseViewController.h"
+#import "DDMIWebViewController.h"
 #import "DDSocialTypeDefs.h"
 
 @class DDMIAuthViewController;
@@ -15,11 +15,10 @@
 
 - (void)authViewController:(DDMIAuthViewController *)viewController successWithResponse:(NSDictionary *)response;
 - (void)authViewController:(DDMIAuthViewController *)viewController failedWithError:(NSError *)error;
-- (void)authViewControllerSwitchLogin;
 
 @end
 
-@interface DDMIAuthViewController : DDMIBaseViewController
+@interface DDMIAuthViewController : DDMIWebViewController
 
 @property (nonatomic, weak) id<DDMIAuthViewControllerDelegate> delegate;
 

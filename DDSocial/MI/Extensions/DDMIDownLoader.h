@@ -16,4 +16,7 @@ typedef void(^DDMIDownLoaderEventHandler) (NSData *data, NSError *error);
                                 account:(NSString *)account
                          completeHandle:(DDMIDownLoaderEventHandler)completeHandle;
 
+- (void)loadRegisterCodeImageWithAccount:(NSString *)account
+                          completeHandle:(DDMIDownLoaderEventHandler)completeHandle;
+
 @end
