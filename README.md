@@ -105,7 +105,6 @@ DDSocialShareWebPageProtocol//web内容分享需要实现该协议<br />
 
 #各个平台配置
 ###小米开放平台(http://dev.xiaomi.com/index)
-注意：如果需要使用小米注册功能需要定义MI宏
 1、首先在小米开放平台申请appkey并配置好redirectURL<br />
 2、然后在xcode中配置info.plist<br />
    (1)添加NSAppTransportSecurity字段<br />

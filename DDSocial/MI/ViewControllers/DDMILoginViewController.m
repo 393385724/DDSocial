@@ -95,13 +95,6 @@ typedef NS_ENUM(NSUInteger, DDMILoginType) {
     [self.forgetPasswordButton setTitle:MILocal(@"忘记密码?") forState:UIControlStateNormal];
     [self.registerButton setTitle:MILocal(@"注册小米账号") forState:UIControlStateNormal];
     self.accountTextField.text = [DDMIAccountManager userAccount];
-    self.forgetPasswordButton.hidden = YES;
-    self.registerButton.hidden = YES;
-
-#ifdef MI
-    self.forgetPasswordButton.hidden = NO;
-    self.registerButton.hidden = NO;
-#endif
 }
 
 - (void)viewWillAppear:(BOOL)animated{
@@ -184,11 +177,8 @@ typedef NS_ENUM(NSUInteger, DDMILoginType) {
         self.codeTextField.hidden = YES;
         self.codeImageView.hidden = YES;
         self.passwordTextField.returnKeyType = UIReturnKeyDone;
-#ifdef MI
+
         contentViewHeight = 381;
-#else
-        contentViewHeight = 337;
-#endif
         inputbackImageViewHeight = 112;
         self.inputbackImageView.image = MIImage(@"dd_mi_login_input_bg");
         if ([UIScreen mainScreen].bounds.size.height <= 480) {
@@ -201,11 +191,8 @@ typedef NS_ENUM(NSUInteger, DDMILoginType) {
         self.codeImageView.hidden = NO;
         self.passwordTextField.returnKeyType = UIReturnKeyNext;
         self.loginButton.enabled = NO;
-#ifdef MI
+
         contentViewHeight = 430;
-#else
-        contentViewHeight = 387;
-#endif
         inputbackImageViewHeight = 162;
         self.inputbackImageView.image = MIImage(@"dd_mi_login_input_bg_verification");
         if ([UIScreen mainScreen].bounds.size.height <= 480) {
@@ -392,9 +379,7 @@ typedef NS_ENUM(NSUInteger, DDMILoginType) {
                                  if ([self.accountTextField isFirstResponder]) {
                                      offset += 30; 
                                  }
-#ifdef MI
                                  offset += 43;
-#endif
                              }
                              if (offset < 64) {
                                  self.contentView.frame = CGRectMake(CGRectGetMinX(self.contentView.frame), offset, CGRectGetWidth(self.contentView.frame), CGRectGetHeight(self.contentView.frame));
