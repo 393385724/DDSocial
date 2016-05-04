@@ -1,6 +1,6 @@
 Pod::Spec.new do |s|  
   s.name             = "DDSocial"  
-  s.version          = "1.2.1"  
+  s.version          = "1.3.0"  
   s.summary          = "A share auth wheels based on the official library content wecaht sina tencent facebook twitter google mi"  
   s.homepage         = "https://github.com/393385724/DDSocial"  
   s.license          = 'MIT'  
