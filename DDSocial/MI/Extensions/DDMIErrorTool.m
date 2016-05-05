@@ -101,7 +101,7 @@ NSString *const DDMIErrorMessageKey = @"DDMIErrorMessageKey";
         errorType = DDMIErrorParameter;
         errorMessage = MILocal(@"请求出错了");
     }
-    return @{DDMIErrorCodeKey:@(errorCode),DDMIErrorMessageKey:errorMessage};
+    return @{DDMIErrorCodeKey:@(errorType),DDMIErrorMessageKey:errorMessage};
 }
 
 + (NSString *)errorMessageWithError:(NSError *)error{
