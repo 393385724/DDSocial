@@ -33,6 +33,7 @@
     [[DDSocialShareHandler sharedInstance] registerPlatform:DDSSPlatformFacebook appKey:@"125938537776820"];
     [[DDSocialShareHandler sharedInstance] registerPlatform:DDSSPlatformGoogle];
     [[DDSocialShareHandler sharedInstance] registerPlatform:DDSSPlatformMiLiao appKey:@"ml6df2cb3b3cc22134"];
+    [[DDSocialShareHandler sharedInstance] registerPlatform:DDSSPlatformTwitter appKey:@"4r5BMrTUl5W3lOwBLSskd9VUb" appSecret:@"8pdLS9spOkf00HE2HetoUxb8bVB6YTxoFvoRwcyq9gl2XDRJBz"];
     
     return YES;
 }

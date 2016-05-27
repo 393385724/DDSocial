@@ -40,8 +40,8 @@ Pod::Spec.new do |s|
 
   s.subspec 'Facebook' do |facebook|
     facebook.source_files = 'DDSocial/Facebook/*.{h,m}'
-    facebook.dependency 'FBSDKLoginKit', '~> 4.10.0'
-    facebook.dependency 'FBSDKShareKit', '~> 4.10.0'
+    facebook.dependency 'FBSDKLoginKit', '~> 4.12.0'
+    facebook.dependency 'FBSDKShareKit', '~> 4.12.0'
     facebook.dependency 'DDSocial/Core'
   end
 
@@ -70,7 +70,7 @@ Pod::Spec.new do |s|
 
   s.subspec 'Google' do |google|
     google.source_files = 'DDSocial/Google/*.{h,m}'
-    google.dependency 'Google/SignIn', '~> 2.0.3'
+    google.dependency 'Google/SignIn', '~> 3.0.3'
     google.dependency 'DDSocial/Core'
   end
 
