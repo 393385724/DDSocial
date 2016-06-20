@@ -44,13 +44,13 @@ const CGFloat DDWeChatImageDataMaxSize = 10 * 1024.0 * 1024.0;
     mediaMessage.title = [protocol ddShareImageWithTitle];
     
     NSData *imageData = [protocol ddShareImageWithImageData];
+    if (imageData) {
+        NSLog(@"微信分享图片必须使用本地图片");
+        return NO;
+    }
     //图片
     WXImageObject *ext = [WXImageObject object];
-    if ([protocol respondsToSelector:@selector(ddShareImageWithImageURL)]) {
-        ext.imageUrl = [protocol ddShareImageWithImageURL];
-    } else {
-        ext.imageData = [UIImage imageData:imageData maxBytes:DDWeChatImageDataMaxSize];
-    }
+    ext.imageData = [UIImage imageData:imageData maxBytes:DDWeChatImageDataMaxSize];
     mediaMessage.mediaObject = ext;
     
     //缩略图

@@ -214,6 +214,7 @@ DDSocialShareWebPageProtocol//web内容分享需要实现该协议<br />
     <string>mqq</string>
     <string>mqqapi</string>
     <string>wtloginmqq2</string>
+    <string>mqzone</string>
 </array>
 </code></pre>
 ###新浪微博开放平台(http://open.weibo.com/)
