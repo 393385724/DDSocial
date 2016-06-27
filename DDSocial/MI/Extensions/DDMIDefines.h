@@ -24,9 +24,32 @@
 [MIResourceBundle localizedStringForKey:s value:s table:@"DDMILocalizable"]
 #endif
 
+static NSString *MIImageFilePathWithImageName(NSString *imageName){
+    NSString *imagefilePath = [MIResourceBundlePath stringByAppendingPathComponent:imageName];
+    if (![[NSFileManager defaultManager] fileExistsAtPath:imagefilePath]) {
+        imagefilePath = [MIResourceBundlePath stringByAppendingPathComponent:[imageName stringByAppendingString:@".png"]];
+        if (![[NSFileManager defaultManager] fileExistsAtPath:imagefilePath]) {
+            imagefilePath = [MIResourceBundlePath stringByAppendingPathComponent:[imageName stringByAppendingString:@".jpg"]];
+            if (![[NSFileManager defaultManager] fileExistsAtPath:imagefilePath]) {
+                imagefilePath = [MIResourceBundlePath stringByAppendingPathComponent:[imageName stringByAppendingString:@"@2x.png"]];
+                if (![[NSFileManager defaultManager] fileExistsAtPath:imagefilePath]) {
+                    imagefilePath = [MIResourceBundlePath stringByAppendingPathComponent:[imageName stringByAppendingString:@"@2x.jpg"]];
+                    if (![[NSFileManager defaultManager] fileExistsAtPath:imagefilePath]) {
+                        imagefilePath = [MIResourceBundlePath stringByAppendingPathComponent:[imageName stringByAppendingString:@"@3x.png"]];
+                        if (![[NSFileManager defaultManager] fileExistsAtPath:imagefilePath]) {
+                            imagefilePath = [MIResourceBundlePath stringByAppendingPathComponent:[imageName stringByAppendingString:@"@3x.jpg"]];
+                        }
+                    }
+                }
+            }
+        }
+    }
+    return imagefilePath;
+}
+
 #ifndef MIImage
 #define MIImage(s) \
-[UIImage imageWithContentsOfFile:[MIResourceBundlePath stringByAppendingPathComponent:s]]
+[UIImage imageWithContentsOfFile:MIImageFilePathWithImageName(s)]
 #endif
 
 #ifndef MIIsEmptyString
