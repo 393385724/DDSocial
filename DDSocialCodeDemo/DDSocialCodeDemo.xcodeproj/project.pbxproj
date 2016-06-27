@@ -60,6 +60,7 @@
 		90B9869C1CD9A7BC009E355A /* DDMICircleIndicator.m in Sources */ = {isa = PBXBuildFile; fileRef = 90B986801CD9A7BC009E355A /* DDMICircleIndicator.m */; };
 		90B9869D1CD9A7BC009E355A /* DDMIRegisterCodeView.m in Sources */ = {isa = PBXBuildFile; fileRef = 90B986821CD9A7BC009E355A /* DDMIRegisterCodeView.m */; };
 		90B987D91CD9B6DB009E355A /* DDMIResource.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 90B987D81CD9B6DB009E355A /* DDMIResource.bundle */; };
+		90C23E751D211CF800BF36C9 /* NSString+DDMI.m in Sources */ = {isa = PBXBuildFile; fileRef = 90C23E741D211CF800BF36C9 /* NSString+DDMI.m */; };
 		90D12CCF1CC5BEDD00D39B0C /* TencentOpenAPI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9060AAA01CC50935006BABE2 /* TencentOpenAPI.framework */; };
 		90D12D031CC6177100D39B0C /* DDAuthItem.m in Sources */ = {isa = PBXBuildFile; fileRef = 90D12CD31CC6177100D39B0C /* DDAuthItem.m */; };
 		90D12D041CC6177100D39B0C /* DDLinkupItem.m in Sources */ = {isa = PBXBuildFile; fileRef = 90D12CD51CC6177100D39B0C /* DDLinkupItem.m */; };
@@ -168,6 +169,8 @@
 		90B986811CD9A7BC009E355A /* DDMIRegisterCodeView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DDMIRegisterCodeView.h; sourceTree = "<group>"; };
 		90B986821CD9A7BC009E355A /* DDMIRegisterCodeView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DDMIRegisterCodeView.m; sourceTree = "<group>"; };
 		90B987D81CD9B6DB009E355A /* DDMIResource.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = DDMIResource.bundle; sourceTree = "<group>"; };
+		90C23E731D211CF800BF36C9 /* NSString+DDMI.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSString+DDMI.h"; sourceTree = "<group>"; };
+		90C23E741D211CF800BF36C9 /* NSString+DDMI.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSString+DDMI.m"; sourceTree = "<group>"; };
 		90D12CD21CC6177100D39B0C /* DDAuthItem.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DDAuthItem.h; sourceTree = "<group>"; };
 		90D12CD31CC6177100D39B0C /* DDAuthItem.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DDAuthItem.m; sourceTree = "<group>"; };
 		90D12CD41CC6177100D39B0C /* DDLinkupItem.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DDLinkupItem.h; sourceTree = "<group>"; };
@@ -319,6 +322,8 @@
 				90B9865C1CD9A7BC009E355A /* UIButton+DDMIHitTestEdgeInsets.m */,
 				90B9865D1CD9A7BC009E355A /* UIView+DDFrame.h */,
 				90B9865E1CD9A7BC009E355A /* UIView+DDFrame.m */,
+				90C23E731D211CF800BF36C9 /* NSString+DDMI.h */,
+				90C23E741D211CF800BF36C9 /* NSString+DDMI.m */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -710,6 +715,7 @@
 				9060A9B31CC50435006BABE2 /* DDAuthTableViewController.m in Sources */,
 				90B9868D1CD9A7BC009E355A /* DDMIHandler.m in Sources */,
 				90B986881CD9A7BC009E355A /* DDMIURLEncode.m in Sources */,
+				90C23E751D211CF800BF36C9 /* NSString+DDMI.m in Sources */,
 				90B9869C1CD9A7BC009E355A /* DDMICircleIndicator.m in Sources */,
 				90B9868B1CD9A7BC009E355A /* UIButton+DDMIHitTestEdgeInsets.m in Sources */,
 				90B986971CD9A7BC009E355A /* DDMIRegisterViewController.m in Sources */,

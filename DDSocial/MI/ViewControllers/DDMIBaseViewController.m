@@ -15,7 +15,6 @@
 @implementation DDMIBaseViewController
 
 - (void)dealloc{
-    NSLog(@"%@ dealloc",[[self class] description]);
     [[NSNotificationCenter defaultCenter] removeObserver:self];
 }
 
