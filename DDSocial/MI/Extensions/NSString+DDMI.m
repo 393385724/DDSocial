@@ -19,7 +19,7 @@
     NSArray *imageNameSuffixArray = @[@".png",@".jpg",@"@2x.png",@"@2x.jpg",@"@3x.png",@"@3x.jpg"];
     for (NSString *suffix in imageNameSuffixArray) {
         NSString *newImageName = [imageName stringByAppendingString:suffix];
-        NSString *imagefilePath = [MIResourceBundlePath stringByAppendingPathComponent:newImageName];
+        imagefilePath = [MIResourceBundlePath stringByAppendingPathComponent:newImageName];
         if ([[NSFileManager defaultManager] fileExistsAtPath:imagefilePath]) {
             break;
         }
