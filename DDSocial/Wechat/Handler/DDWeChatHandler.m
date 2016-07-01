@@ -44,13 +44,13 @@ const CGFloat DDWeChatImageDataMaxSize = 10 * 1024.0 * 1024.0;
     mediaMessage.title = [protocol ddShareImageWithTitle];
     
     NSData *imageData = [protocol ddShareImageWithImageData];
-    if (imageData) {
+    if (!imageData) {
         NSLog(@"微信分享图片必须使用本地图片");
         return NO;
     }
     //图片
     WXImageObject *ext = [WXImageObject object];
-    ext.imageData = [UIImage imageData:imageData maxBytes:DDWeChatImageDataMaxSize];
+    ext.imageData = [UIImage imageData:imageData maxBytes:DDWeChatImageDataMaxSize type:DDSocialImageTypeOrigin];
     mediaMessage.mediaObject = ext;
     
     //缩略图
@@ -58,7 +58,7 @@ const CGFloat DDWeChatImageDataMaxSize = 10 * 1024.0 * 1024.0;
     if ([protocol respondsToSelector:@selector(ddShareImageWithThumbnailData)]) {
         thumbData = [protocol ddShareImageWithThumbnailData];
     }
-    mediaMessage.thumbData = [UIImage imageData:thumbData maxBytes:DDWeChatThumbnailDataMaxSize];
+    mediaMessage.thumbData = [UIImage imageData:thumbData maxBytes:DDWeChatThumbnailDataMaxSize type:DDSocialImageTypeThumbnail];
     return [self sendWithText:nil mediaMessage:mediaMessage];
 }
 
@@ -68,7 +68,7 @@ const CGFloat DDWeChatImageDataMaxSize = 10 * 1024.0 * 1024.0;
     mediaMessage.description = [protocol ddShareWebPageWithDescription];
     
     NSData *thumbImageData = [protocol ddShareWebPageWithImageData];
-    mediaMessage.thumbData = [UIImage imageData:thumbImageData maxBytes:DDWeChatThumbnailDataMaxSize];
+    mediaMessage.thumbData = [UIImage imageData:thumbImageData maxBytes:DDWeChatThumbnailDataMaxSize type:DDSocialImageTypeThumbnail];
     
     WXWebpageObject *ext = [WXWebpageObject object];
     ext.webpageUrl = [protocol ddShareWebPageWithWebpageUrl];

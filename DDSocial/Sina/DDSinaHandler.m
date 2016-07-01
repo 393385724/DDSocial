@@ -46,7 +46,7 @@ const CGFloat DDSinaImageDataMaxSize = 5 * 1024 * 1024;
 - (BOOL)shareImageWithProtocol:(id<DDSocialShareImageProtocol>)protocol{
     WBImageObject *imageObject = [WBImageObject object];
     NSData *imageData = [protocol ddShareImageWithImageData];
-    imageObject.imageData = [UIImage imageData:imageData maxBytes:DDSinaImageDataMaxSize];
+    imageObject.imageData = [UIImage imageData:imageData maxBytes:DDSinaImageDataMaxSize type:DDSocialImageTypeOrigin];
     WBMessageObject *message = [WBMessageObject message];
     if ([protocol respondsToSelector:@selector(ddShareImageText)]) {
         message.text = [protocol ddShareImageText];
@@ -64,7 +64,7 @@ const CGFloat DDSinaImageDataMaxSize = 5 * 1024 * 1024;
     if (useImage) {
         WBImageObject *imageObject = [WBImageObject object];
         NSData *imageData = [protocol ddShareWebPageWithImageData];
-        imageObject.imageData = [UIImage imageData:imageData maxBytes:DDSinaImageDataMaxSize];
+        imageObject.imageData = [UIImage imageData:imageData maxBytes:DDSinaImageDataMaxSize type:DDSocialImageTypeOrigin];
         NSString *shareText = @"";
         if ([protocol respondsToSelector:@selector(ddShareImageText)]) {
             NSString *text = [protocol ddShareWebPageText];
@@ -92,7 +92,7 @@ const CGFloat DDSinaImageDataMaxSize = 5 * 1024 * 1024;
         webPageObject.title = [protocol ddShareWebPageWithTitle];
         webPageObject.description = [protocol ddShareWebPageWithDescription];
         NSData *imageData = [protocol ddShareWebPageWithImageData];
-        webPageObject.thumbnailData = [UIImage imageData:imageData maxBytes:DDSinaThumbnailDataMaxSize];
+        webPageObject.thumbnailData = [UIImage imageData:imageData maxBytes:DDSinaThumbnailDataMaxSize type:DDSocialImageTypeThumbnail];
         webPageObject.webpageUrl = [protocol ddShareWebPageWithWebpageUrl];
         
         message.mediaObject = webPageObject;

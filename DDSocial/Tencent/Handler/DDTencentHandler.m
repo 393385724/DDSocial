@@ -53,8 +53,8 @@ NSString *const DDTencentAPIUserInfo =   @"https://graph.qq.com/user/get_user_in
         //optional
         thumbnailData = [protocol ddShareImageWithThumbnailData];
     }
-    imageData = [UIImage imageData:imageData maxBytes:DDTencentImageDataMaxSize];
-    thumbnailData = [UIImage imageData:thumbnailData maxBytes:DDTencentThumbnailDataMaxSize];
+    imageData = [UIImage imageData:imageData maxBytes:DDTencentImageDataMaxSize type:DDSocialImageTypeOrigin];
+    thumbnailData = [UIImage imageData:thumbnailData maxBytes:DDTencentThumbnailDataMaxSize type:DDSocialImageTypeThumbnail];
     
     NSString *title = [protocol ddShareImageWithTitle];
     NSString *descriptionString = [protocol ddShareImageWithDescription];
@@ -81,7 +81,7 @@ NSString *const DDTencentAPIUserInfo =   @"https://graph.qq.com/user/get_user_in
     NSString *title = [protocol ddShareWebPageWithTitle];
     NSString *descriptionString = [protocol ddShareWebPageWithDescription];
     NSData *imageData = [protocol ddShareWebPageWithImageData];
-    imageData = [UIImage imageData:imageData maxBytes:DDTencentThumbnailDataMaxSize];
+    imageData = [UIImage imageData:imageData maxBytes:DDTencentThumbnailDataMaxSize type:DDSocialImageTypeThumbnail];
     QQApiNewsObject *newsObject = [QQApiNewsObject objectWithURL:[NSURL URLWithString:webpageURL]
                                                            title:title
                                                      description:descriptionString

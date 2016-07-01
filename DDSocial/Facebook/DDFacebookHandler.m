@@ -48,7 +48,7 @@ const CGFloat DDFacebookImageDataMaxSize = 12 * 1024 * 1024;
 
 - (BOOL)shareImageWithProtocol:(id<DDSocialShareImageProtocol>)protocol{
     FBSDKSharePhoto *photo = [[FBSDKSharePhoto alloc] init];
-    photo.image = [UIImage imageWithImageData:[protocol ddShareImageWithImageData] maxBytes:DDFacebookImageDataMaxSize];
+    photo.image = [UIImage imageWithImageData:[protocol ddShareImageWithImageData] maxBytes:DDFacebookImageDataMaxSize type:DDSocialImageTypeOrigin];
     photo.userGenerated = YES;
     FBSDKSharePhotoContent *content = [[FBSDKSharePhotoContent alloc] init];
     content.photos = @[photo];

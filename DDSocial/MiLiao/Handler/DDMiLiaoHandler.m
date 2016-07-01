@@ -48,7 +48,7 @@ CGFloat const DDMiLiaoImageDataMaxSize = 200 * 1024.0;
     } else if ([protocol respondsToSelector:@selector(ddShareImageWithImageURL)]) {
         ext.imageUrl = [protocol ddShareImageWithImageURL];
     }else {
-        ext.imageData = [UIImage imageData:imageData maxBytes:DDMiLiaoImageDataMaxSize];
+        ext.imageData = [UIImage imageData:imageData maxBytes:DDMiLiaoImageDataMaxSize type:DDSocialImageTypeOrigin];
     }
     
     MLMediaMessage* mediaMessage = [[MLMediaMessage alloc] init];
@@ -61,7 +61,7 @@ CGFloat const DDMiLiaoImageDataMaxSize = 200 * 1024.0;
     if ([protocol respondsToSelector:@selector(ddShareImageWithThumbnailData)]) {
         thumbData = [protocol ddShareImageWithThumbnailData];
     }
-    mediaMessage.thumbData = [UIImage imageData:thumbData maxBytes:DDMiLiaoThumbnailDataMaxSize];
+    mediaMessage.thumbData = [UIImage imageData:thumbData maxBytes:DDMiLiaoThumbnailDataMaxSize type:DDSocialImageTypeThumbnail];
     return [self sendWithText:nil mediaMessage:mediaMessage];
 }
 
@@ -73,7 +73,7 @@ CGFloat const DDMiLiaoImageDataMaxSize = 200 * 1024.0;
     
     //缩略图
     NSData *thumbData = [protocol ddShareWebPageWithImageData];
-    mediaMessage.thumbData = [UIImage imageData:thumbData maxBytes:DDMiLiaoThumbnailDataMaxSize];
+    mediaMessage.thumbData = [UIImage imageData:thumbData maxBytes:DDMiLiaoThumbnailDataMaxSize type:DDSocialImageTypeThumbnail];
     
     MLAppExtendObject *ext = [MLAppExtendObject extendObject];
     ext.webUrl = [protocol ddShareWebPageWithWebpageUrl];

@@ -60,10 +60,7 @@
 - (NSString *)ddShareImageWithTitle;
 
 /**
- *  @brief   图片真实数据内容
- *
- *  @note  过大的图片转换必须使用UIImagePNGRepresentation()
- *
+ *  @brief   原始图片 建议不要超过1M
  */
 - (NSData *)ddShareImageWithImageData;
 
@@ -88,10 +85,7 @@
 - (NSString *)ddShareImageText;
 
 /**
- *  @brief   图片缩略图
- *
- *  @note  过大的图片转换必须使用UIImagePNGRepresentation()
- *
+ *  @brief   图片缩略图 不应超过32K
  */
 - (NSData *)ddShareImageWithThumbnailData;
 
@@ -135,9 +129,7 @@
 - (NSString *)ddShareWebPageWithDescription;
 
 /**
- *  @brief   图片真实数据
- *
- *  @note  过大的图片转换必须使用UIImagePNGRepresentation()
+ *  @brief   图片缩略图 不应超过32K
  *
  */
 - (NSData *)ddShareWebPageWithImageData;
