@@ -14,8 +14,14 @@
     if (imageData.length < maxBytes) {
         return imageData;
     }
+    //对分享的图做了一个限制，不会超过1M
+    maxBytes = MIN(maxBytes, 1024*1024.0);
+    CGFloat kbps = [imageData length]/maxBytes;
+    if (kbps < 1.0) {
+        return imageData;
+    }
     UIImage *image = [UIImage imageWithData:imageData];
-    CGFloat scale = sqrt([imageData length]/maxBytes)*[UIScreen mainScreen].scale;
+    CGFloat scale = sqrt(kbps);
     CGFloat newWidth = floorf(image.size.width/scale);
     CGFloat newHeight = floorf(image.size.height/scale);
     UIGraphicsBeginImageContext(CGSizeMake(newWidth, newHeight));
