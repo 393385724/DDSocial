@@ -1,6 +1,6 @@
 Pod::Spec.new do |s|  
   s.name             = "DDSocial"  
-  s.version          = "1.2.3"  
+  s.version          = "1.2.4"  
   s.summary          = "A share auth wheels based on the official library content wecaht sina tencent facebook twitter google mi"  
   s.homepage         = "https://github.com/393385724/DDSocial"  
   s.license          = 'MIT'  
@@ -12,7 +12,7 @@ Pod::Spec.new do |s|
 
   s.subspec 'Core' do |core|
     core.source_files  = 'DDSocial/Core/*.{h,m}'
-    core.frameworks    = 'Foundation', 'UIKit'
+    core.frameworks    = 'Foundation', 'UIKit', 'Accelerate'
   end
 
   s.subspec 'Tencent' do |tencent|
