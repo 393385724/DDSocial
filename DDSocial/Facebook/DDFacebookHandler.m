@@ -177,7 +177,7 @@ const CGFloat DDFacebookImageDataMaxSize = 12 * 1024 * 1024;
                                                   }
                                               } else if (result.isCancelled){
                                                   if (handler) {
-                                                      handler(DDSSPlatformFacebook, DDSSAuthStateFail, nil, error);
+                                                      handler(DDSSPlatformFacebook, DDSSAuthStateCancel, nil, error);
                                                   }
                                               } else {
                                                   if (handler) {
