@@ -14,6 +14,7 @@
 #import "DDSocialShareContentProtocol.h"
 #import "DDSocialHandlerProtocol.h"
 #import "DDAuthItem.h"
+#import "DDUserInfoItem.h"
 
 #import "UIImage+Zoom.h"
 
@@ -189,6 +190,24 @@ const CGFloat DDFacebookImageDataMaxSize = 12 * 1024 * 1024;
                                                   }
                                               }
                                           }];
+    return YES;
+}
+
+- (BOOL)getUserInfoWithAuthItem:(DDAuthItem *)authItem
+                        handler:(DDSSUserInfoEventHandler)handler{
+    FBSDKGraphRequest *request = [[FBSDKGraphRequest alloc]
+                                  initWithGraphPath:@"me"
+                                  parameters:@{@"fields":@"id,about,birthday,email,gender,name,picture"}];
+    [request startWithCompletionHandler:^(FBSDKGraphRequestConnection *connection,
+                                          id result,
+                                          NSError *error) {
+        if (error) {
+            handler(nil, error);
+        } else {
+            DDUserInfoItem *userInfoItem = [[DDUserInfoItem alloc] initWithPlatForm:DDSSPlatformFacebook rawObject:result];
+            handler(userInfoItem,error);
+        }
+    }];
     return YES;
 }
 

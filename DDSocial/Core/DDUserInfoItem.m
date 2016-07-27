@@ -89,6 +89,17 @@
     }
 }
 
+- (void)setupFacebookUserInfoDict:(NSDictionary *)infoDict{
+    _nickName = [infoDict objectForKey:@"name"];
+    NSString *genderString = [infoDict objectForKey:@"gender"];
+    _genderType = DDSSGenderTypeMale;
+    if ([genderString isEqualToString:@"female"]) {
+        _genderType = DDSSGenderTypeFemale;
+    }
+    /**大小为100×100像素的QQ头像URL。需要注意，不是所有的用户都拥有QQ的100x100 figureurl_qq_2的头像，但figureurl_qq_1 40x40像素则是一定会有*/
+    _avatarURL = [[[infoDict objectForKey:@"picture"] objectForKey:@"data"] objectForKey:@"url"];
+}
+
 - (NSString *)description{
     return [NSString stringWithFormat:@"nickName:%@\ndesString:%@\nrawObject:%@",self.nickName,self.desString,self.rawObject];
 }
