@@ -1,5 +1,7 @@
 # DDSocial
 A share auth wheels based on the official library content wecaht sina tencent facebook twitter google miliao mi
+#Warning
+1、新版TencentSDK不支持模拟器，所以只能使用真机调试
 #使用
 ##使用配置
 1、引入类库，必须引入share模块，其他可根据自身app选择性引入<br />
