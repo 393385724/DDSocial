@@ -21,9 +21,9 @@ NSString *const DDMIServiceLoginURL =  @"https://account.xiaomi.com/pass/service
 #pragma mark - Template Methods
 
 - (NSString *)loadWholeURLString{
-    NSArray *languages = [NSLocale preferredLanguages];
-    NSString *localeString = [languages objectAtIndex:0];
-    return [NSString stringWithFormat:DDMIResetPasswordURL,localeString];
+    NSArray *languages = [[NSBundle mainBundle] preferredLocalizations];
+    NSString *preferredLang = [languages objectAtIndex:0];
+    return [NSString stringWithFormat:DDMIResetPasswordURL,preferredLang];
 }
 
 - (BOOL)shouldStartLoadWithRequest:(NSURLRequest *)request{

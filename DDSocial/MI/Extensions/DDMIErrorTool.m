@@ -50,13 +50,13 @@ NSString *const DDMIErrorMessageKey = @"DDMIErrorMessageKey";
     if (errorCode == 403 ||
         userInfoErrorCode == 403 ) {
         errorType = DDMIErrorOperationFrequent;
-        errorMessage = MILocal(@"您的操作频率过快，请稍后再试.");
+        errorMessage = MILocal(@"您的操作频率过快，请稍后再试");
     }
     
     if (errorCode == 10017 ||
         userInfoErrorCode == 10017 ) {
         errorType = DDMIErrorRegisterPhoneNumberInvalid;
-        errorMessage = MILocal(@"手机号码格式错误.");
+        errorMessage = MILocal(@"手机号码格式错误");
     }
     
     if (errorCode == 70016 ||
@@ -64,7 +64,7 @@ NSString *const DDMIErrorMessageKey = @"DDMIErrorMessageKey";
         userInfoErrorCode == 70016 ||
         userInfoErrorCode == 20003 ) {
         errorType = DDMIErrorAccountOrPassword;
-        errorMessage = MILocal(@"账号或密码错误,请重新填写.");
+        errorMessage = MILocal(@"账号或密码错误,请重新填写");
     }
     
     if (errorCode == 81003 ||

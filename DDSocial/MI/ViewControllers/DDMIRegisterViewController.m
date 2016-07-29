@@ -84,7 +84,7 @@ NSString * const DDMIPrivacyPolicyHTML = @"http://www.miui.com/res/doc/privacy/%
     UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(moreCountryAction)];
     self.countryContentView.userInteractionEnabled = YES;
     [self.countryContentView addGestureRecognizer:tap];
-
+    
     //隐藏键盘
     UISwipeGestureRecognizer *swipeRecognizer = [[UISwipeGestureRecognizer alloc] initWithTarget:self action:@selector(hidenKeyboard:)];
     [swipeRecognizer setDirection:UISwipeGestureRecognizerDirectionUp | UISwipeGestureRecognizerDirectionDown];
@@ -96,8 +96,10 @@ NSString * const DDMIPrivacyPolicyHTML = @"http://www.miui.com/res/doc/privacy/%
     self.inputBackImageView.image = MIImage(@"dd_mi_register_input_bg");
     self.moreCountryImageView.image = MIImage(@"dd_mi_more_country@2x.jpg");
     self.phoneTextLabel.text = MILocal(@"手机号:");
+    self.phoneTextLabel.adjustsFontSizeToFitWidth = YES;
     self.phoneTextField.placeholder = MILocal(@"请输入手机号");
     self.passwordTextLabel.text = MILocal(@"密码:");
+    self.passwordTextLabel.adjustsFontSizeToFitWidth = YES;
     self.passwordTextField.placeholder = MILocal(@"8-16位数字、字母、字符(至少两种)");
     [self.showPasswordButton setImage:MIImage(@"dd_mi_show_password") forState:UIControlStateNormal];
     [self.showPasswordButton setImage:MIImage(@"dd_mi_hide_password@2x.jpg") forState:UIControlStateSelected];
@@ -160,7 +162,6 @@ NSString * const DDMIPrivacyPolicyHTML = @"http://www.miui.com/res/doc/privacy/%
         self.phoneNumberString = [self.areaCodeLabel.text stringByAppendingString:[[[DDMITelephoneRule alloc] initWithDefaultRule] formatPhoneNum:self.phoneTextField.text]];
         self.phoneNumberString = [DDMIURLEncode encodeString:self.phoneNumberString];
     }
-    NSLog(@"mi_phone:%@",self.phoneNumberString);
     [self.indicatorView startAnimation];
     self.view.userInteractionEnabled = NO;
     __weak __typeof(&*self)weakSelf = self;
