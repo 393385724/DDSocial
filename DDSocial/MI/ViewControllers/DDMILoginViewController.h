@@ -12,6 +12,17 @@
 
 @interface DDMILoginViewController : DDMIBaseViewController
 
+/**
+ *  @brief 是否显示忘记密码按钮, 默认NO
+ */
+@property (nonatomic, assign) BOOL showForgotPassword;
+
+/**
+ *  @brief 是否显示注册按钮, 默认NO
+ */
+@property (nonatomic, assign) BOOL showRegister;
+
+
 - (instancetype)initWithRequestHandle:(DDMIRequestHandle *)requestHandle;
 
 @end

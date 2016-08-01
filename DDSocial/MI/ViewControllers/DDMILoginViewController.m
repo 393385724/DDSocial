@@ -95,6 +95,8 @@ typedef NS_ENUM(NSUInteger, DDMILoginType) {
     [self.forgetPasswordButton setTitle:MILocal(@"忘记密码?") forState:UIControlStateNormal];
     [self.registerButton setTitle:MILocal(@"注册小米账号") forState:UIControlStateNormal];
     self.accountTextField.text = [DDMIAccountManager userAccount];
+    self.forgetPasswordButton.hidden = !self.showForgotPassword;
+    self.registerButton.hidden = !self.showRegister;
 }
 
 - (void)viewWillAppear:(BOOL)animated{

@@ -16,6 +16,10 @@
 #import "DDAuthItem.h"
 #import "DDUserInfoItem.h"
 
+static BOOL DDMIShouldShowForgotPassword = YES;
+
+static BOOL DDMIShouldShowRegister = YES;
+
 @interface DDMIHandler ()<DDMIAuthViewControllerDelegate>
 
 @property (nonatomic, copy) NSString *appKey;
@@ -33,6 +37,12 @@
 @end
 
 @implementation DDMIHandler
+
++ (void)configShouldShowRegister:(BOOL)showRegister
+              showForgotPassword:(BOOL)showForgotPassword{
+    DDMIShouldShowForgotPassword = showForgotPassword;
+    DDMIShouldShowRegister = showRegister;
+}
 
 - (void)dealloc{
     [[NSNotificationCenter defaultCenter] removeObserver:self];
@@ -52,6 +62,8 @@
 
 - (void)presetLoginViewControllerInViewController:(UIViewController *)viewController{
     DDMILoginViewController *loginViewController = [[DDMILoginViewController alloc] initWithRequestHandle:self.requestHandle];
+    loginViewController.showRegister = DDMIShouldShowForgotPassword;
+    loginViewController.showForgotPassword = DDMIShouldShowForgotPassword;
     self.navigationController = [[UINavigationController alloc] initWithRootViewController:loginViewController];
     [viewController presentViewController:self.navigationController animated:YES completion:nil];
 }
