@@ -62,7 +62,7 @@ Pod::Spec.new do |s|
     mi.source_files = 'DDSocial/MI/**/*.{h,m}'
     mi.ios.vendored_frameworks = 'DDSocial/MI/Resources/*.framework'
     mi.resource = "DDSocial/MI/Resources/*.bundle"
-	  mi.xcconfig = { 'ENABLE_BITCODE' => 'NO' }
+	mi.xcconfig = { 'ENABLE_BITCODE' => 'NO' }
     mi.libraries = 'stdc++'  
     mi.dependency 'DDSocial/Core'
     mi.dependency 'TTTAttributedLabel', '~> 1.13.4'

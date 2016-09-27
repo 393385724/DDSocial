@@ -85,7 +85,7 @@
 @implementation DDTwitterHandler (DDSocialHandlerProtocol)
 
 + (BOOL)isInstalled {
-    return [SLComposeViewController isAvailableForServiceType:SLServiceTypeTwitter];
+    return [SLComposeViewController isAvailableForServiceType:SLServiceTypeTwitter] && [SLComposeViewController composeViewControllerForServiceType:SLServiceTypeTwitter];
 }
 
 - (BOOL)registerWithAppKey:(NSString *)appKey
