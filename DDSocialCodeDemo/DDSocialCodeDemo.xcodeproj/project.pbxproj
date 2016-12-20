@@ -61,7 +61,6 @@
 		90B9869D1CD9A7BC009E355A /* DDMIRegisterCodeView.m in Sources */ = {isa = PBXBuildFile; fileRef = 90B986821CD9A7BC009E355A /* DDMIRegisterCodeView.m */; };
 		90B987D91CD9B6DB009E355A /* DDMIResource.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 90B987D81CD9B6DB009E355A /* DDMIResource.bundle */; };
 		90C23E751D211CF800BF36C9 /* NSString+DDMI.m in Sources */ = {isa = PBXBuildFile; fileRef = 90C23E741D211CF800BF36C9 /* NSString+DDMI.m */; };
-		90D12CCF1CC5BEDD00D39B0C /* TencentOpenAPI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9060AAA01CC50935006BABE2 /* TencentOpenAPI.framework */; };
 		90D12D031CC6177100D39B0C /* DDAuthItem.m in Sources */ = {isa = PBXBuildFile; fileRef = 90D12CD31CC6177100D39B0C /* DDAuthItem.m */; };
 		90D12D041CC6177100D39B0C /* DDLinkupItem.m in Sources */ = {isa = PBXBuildFile; fileRef = 90D12CD51CC6177100D39B0C /* DDLinkupItem.m */; };
 		90D12D051CC6177100D39B0C /* UIImage+Zoom.m in Sources */ = {isa = PBXBuildFile; fileRef = 90D12CDB1CC6177100D39B0C /* UIImage+Zoom.m */; };
@@ -215,7 +214,6 @@
 			files = (
 				90D12D0B1CC6177100D39B0C /* MiLiaoAppSDK.framework in Frameworks */,
 				90A56D021D180885001F68A8 /* TencentOpenAPI.framework in Frameworks */,
-				90D12CCF1CC5BEDD00D39B0C /* TencentOpenAPI.framework in Frameworks */,
 				9060AA351CC5052C006BABE2 /* Security.framework in Frameworks */,
 				9060AA331CC50523006BABE2 /* CoreTelephony.framework in Frameworks */,
 				9060AA311CC50516006BABE2 /* CoreGraphics.framework in Frameworks */,
@@ -613,7 +611,7 @@
 		9060A9851CC50396006BABE2 /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
-				LastUpgradeCheck = 0720;
+				LastUpgradeCheck = 0820;
 				ORGANIZATIONNAME = LiLingang;
 				TargetAttributes = {
 					9060A98C1CC50396006BABE2 = {
@@ -794,8 +792,10 @@
 				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
 				CLANG_WARN_EMPTY_BODY = YES;
 				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
 				CLANG_WARN_INT_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
@@ -837,8 +837,10 @@
 				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
 				CLANG_WARN_EMPTY_BODY = YES;
 				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
 				CLANG_WARN_INT_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
@@ -876,14 +878,14 @@
 					"\"$(SRCROOT)/../DDSocial/MiLiao/MiLiaoSDK/\"",
 					"\"$(SRCROOT)/../DDSocial/MI/Resources/\"",
 				);
-				GCC_PREFIX_HEADER = "/Users/lilingang/Desktop/DDProject/DDSocial/DDSocialCodeDemo/DDSocialCodeDemo/DDSosial-Prefix.pch";
+				GCC_PREFIX_HEADER = "$(SRCROOT)/DDSocialCodeDemo/DDSosial-Prefix.pch";
 				GCC_PREPROCESSOR_DEFINITIONS = (
 					"$(inherited)",
 					"COCOAPODS=1",
 					MI,
 				);
 				INFOPLIST_FILE = DDSocialCodeDemo/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
@@ -966,9 +968,9 @@
 					"\"$(SRCROOT)/../DDSocial/MiLiao/MiLiaoSDK/\"",
 					"\"$(SRCROOT)/../DDSocial/MI/Resources/\"",
 				);
-				GCC_PREFIX_HEADER = "/Users/lilingang/Desktop/DDProject/DDSocial/DDSocialCodeDemo/DDSocialCodeDemo/DDSosial-Prefix.pch";
+				GCC_PREFIX_HEADER = "$(SRCROOT)/DDSocialCodeDemo/DDSosial-Prefix.pch";
 				INFOPLIST_FILE = DDSocialCodeDemo/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
