@@ -1,0 +1,1 @@
+../../../DDSocial/DDSocial/Core/DDSocialShareContentProtocol.h
