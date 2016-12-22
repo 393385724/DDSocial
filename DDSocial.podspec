@@ -60,9 +60,9 @@ Pod::Spec.new do |s|
   end
 
   s.subspec 'MI' do |mi|
-    mi.source_files = 'DDSocial/MI/**/*.{h,m}'
-    mi.ios.vendored_frameworks = 'DDSocial/MI/Resources/*.framework'
-    mi.resource = "DDSocial/MI/Resources/*.bundle"
+    mi.source_files = 'DDSocial/MI/Handler/*.{h,m}'
+    mi.ios.vendored_frameworks = 'DDSocial/MI/MiSDK/*.framework'
+    mi.resource = "DDSocial/MI/MiSDK/*.bundle"
 	mi.xcconfig = { 'ENABLE_BITCODE' => 'NO' }
     mi.libraries = 'stdc++'  
     mi.dependency 'DDSocial/Core'
