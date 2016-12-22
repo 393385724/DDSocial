@@ -7,7 +7,7 @@ Pod::Spec.new do |s|
   s.author           = { "llg" => "393385724@qq.com" }  
   s.source           = { :git => "https://github.com/393385724/DDSocial.git", :tag => s.version.to_s }  
   
-  s.platform     = :ios, '7.0'  
+  s.platform     = :ios, '8.0'  
   s.requires_arc = true 
 
   s.subspec 'Core' do |core|
@@ -34,23 +34,24 @@ Pod::Spec.new do |s|
 
   s.subspec 'Sina' do |sina|
     sina.source_files = 'DDSocial/Sina/*.{h,m}'
-    sina.dependency 'WeiboSDK', '~> 3.1.3'
+    sina.dependency 'WeiboSDK'
     sina.dependency 'DDSocial/Core'
   end
 
   s.subspec 'Facebook' do |facebook|
     facebook.source_files = 'DDSocial/Facebook/*.{h,m}'
-    facebook.dependency 'FBSDKLoginKit', '~> 4.12.0'
-    facebook.dependency 'FBSDKShareKit', '~> 4.12.0'
+    facebook.dependency 'FBSDKLoginKit'
+    facebook.dependency 'FBSDKShareKit'
     facebook.dependency 'DDSocial/Core'
   end
 
-  s.subspec 'Twitter' do |twitter|
-    twitter.source_files = 'DDSocial/Twitter/*.{h,m}'
-	twitter.xcconfig = { 'CLANG_ENABLE_MODULES' => 'NO' }
-    twitter.dependency 'TwitterKit', '~> 1.15.3'
-    twitter.dependency 'DDSocial/Core'
-  end
+ #  s.subspec 'Twitter' do |twitter|
+ #    twitter.source_files = 'DDSocial/Twitter/*.{h,m}'
+	# twitter.xcconfig = { 'CLANG_ENABLE_MODULES' => 'YES' }
+ #    twitter.dependency 'TwitterCore'
+ #    twitter.dependency 'TwitterKit'
+ #    twitter.dependency 'DDSocial/Core'
+ #  end
   
   s.subspec 'MiLiao' do |miliao|
     miliao.source_files = 'DDSocial/MiLiao/Handler/*.{h,m}'
@@ -70,7 +71,7 @@ Pod::Spec.new do |s|
 
   s.subspec 'Google' do |google|
     google.source_files = 'DDSocial/Google/*.{h,m}'
-    google.dependency 'Google/SignIn', '~> 3.0.3'
+    google.dependency 'Google/SignIn'
     google.dependency 'DDSocial/Core'
   end
 

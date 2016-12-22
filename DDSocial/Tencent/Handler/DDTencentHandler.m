@@ -8,7 +8,6 @@
 
 #import "DDTencentHandler.h"
 #import <TencentOpenAPI/TencentOAuth.h>
-#import <TencentOpenAPI/TencentApiInterface.h>
 #import <TencentOpenAPI/QQApiInterface.h>
 
 #import "DDSocialShareContentProtocol.h"
