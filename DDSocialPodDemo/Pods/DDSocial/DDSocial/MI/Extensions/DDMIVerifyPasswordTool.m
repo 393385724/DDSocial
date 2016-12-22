@@ -27,7 +27,7 @@
     
     NSCharacterSet *cs = [[NSCharacterSet characterSetWithCharactersInString:LEGAL_PWD] invertedSet];
     NSString *filtered = [[passwordString componentsSeparatedByCharactersInSet:cs] componentsJoinedByString:@""];
-    if ([filtered length] >= 8 && [filtered length] <= 16){
+    if ([filtered length] >= 8 && [filtered length] <= 16) {
         return YES;
     }
     return NO;

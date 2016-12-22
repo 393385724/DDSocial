@@ -8,22 +8,33 @@
 
 /* Begin PBXBuildFile section */
 		06085643583A7CECCA5AD749 /* libPods-DDSocialPodDemo.a in Frameworks */ = {isa = PBXBuildFile; fileRef = F39712F354FF1FBAC377625E /* libPods-DDSocialPodDemo.a */; };
+		7BF33FD51E0AC82600A02EAA /* DDAuthTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7BF33FCB1E0AC82600A02EAA /* DDAuthTableViewController.m */; };
+		7BF33FD61E0AC82600A02EAA /* DDAuthTableViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7BF33FCC1E0AC82600A02EAA /* DDAuthTableViewController.xib */; };
+		7BF33FD71E0AC82600A02EAA /* DDMainViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7BF33FCE1E0AC82600A02EAA /* DDMainViewController.m */; };
+		7BF33FD81E0AC82600A02EAA /* DDMainViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7BF33FCF1E0AC82600A02EAA /* DDMainViewController.xib */; };
+		7BF33FD91E0AC82600A02EAA /* DDShareTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7BF33FD11E0AC82600A02EAA /* DDShareTableViewController.m */; };
+		7BF33FDA1E0AC82600A02EAA /* DDShareTableViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7BF33FD21E0AC82600A02EAA /* DDShareTableViewController.xib */; };
+		7BF33FDB1E0AC82600A02EAA /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 7BF33FD31E0AC82600A02EAA /* GoogleService-Info.plist */; };
+		7BF33FDC1E0AC82600A02EAA /* IMG_5644.JPG in Resources */ = {isa = PBXBuildFile; fileRef = 7BF33FD41E0AC82600A02EAA /* IMG_5644.JPG */; };
 		90D12D561CC7156000D39B0C /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 90D12D551CC7156000D39B0C /* main.m */; };
 		90D12D591CC7156000D39B0C /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 90D12D581CC7156000D39B0C /* AppDelegate.m */; };
 		90D12D5F1CC7156000D39B0C /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 90D12D5D1CC7156000D39B0C /* Main.storyboard */; };
 		90D12D611CC7156000D39B0C /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 90D12D601CC7156000D39B0C /* Assets.xcassets */; };
 		90D12D641CC7156000D39B0C /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 90D12D621CC7156000D39B0C /* LaunchScreen.storyboard */; };
-		90D12D741CC7170B00D39B0C /* DDAuthTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 90D12D6C1CC7170B00D39B0C /* DDAuthTableViewController.m */; };
-		90D12D751CC7170B00D39B0C /* DDAuthTableViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 90D12D6D1CC7170B00D39B0C /* DDAuthTableViewController.xib */; };
-		90D12D761CC7170B00D39B0C /* DDMainViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 90D12D6F1CC7170B00D39B0C /* DDMainViewController.m */; };
-		90D12D771CC7170B00D39B0C /* DDMainViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 90D12D701CC7170B00D39B0C /* DDMainViewController.xib */; };
-		90D12D781CC7170B00D39B0C /* DDShareTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 90D12D721CC7170B00D39B0C /* DDShareTableViewController.m */; };
-		90D12D791CC7170B00D39B0C /* DDShareTableViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 90D12D731CC7170B00D39B0C /* DDShareTableViewController.xib */; };
-		90D12D7B1CC71F3E00D39B0C /* IMG_5644.JPG in Resources */ = {isa = PBXBuildFile; fileRef = 90D12D7A1CC71F3E00D39B0C /* IMG_5644.JPG */; };
-		90D12D7D1CC72B2F00D39B0C /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 90D12D7C1CC72B2F00D39B0C /* GoogleService-Info.plist */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		7BF33FCA1E0AC82600A02EAA /* DDAuthTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DDAuthTableViewController.h; sourceTree = "<group>"; };
+		7BF33FCB1E0AC82600A02EAA /* DDAuthTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DDAuthTableViewController.m; sourceTree = "<group>"; };
+		7BF33FCC1E0AC82600A02EAA /* DDAuthTableViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = DDAuthTableViewController.xib; sourceTree = "<group>"; };
+		7BF33FCD1E0AC82600A02EAA /* DDMainViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DDMainViewController.h; sourceTree = "<group>"; };
+		7BF33FCE1E0AC82600A02EAA /* DDMainViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DDMainViewController.m; sourceTree = "<group>"; };
+		7BF33FCF1E0AC82600A02EAA /* DDMainViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = DDMainViewController.xib; sourceTree = "<group>"; };
+		7BF33FD01E0AC82600A02EAA /* DDShareTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DDShareTableViewController.h; sourceTree = "<group>"; };
+		7BF33FD11E0AC82600A02EAA /* DDShareTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DDShareTableViewController.m; sourceTree = "<group>"; };
+		7BF33FD21E0AC82600A02EAA /* DDShareTableViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = DDShareTableViewController.xib; sourceTree = "<group>"; };
+		7BF33FD31E0AC82600A02EAA /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
+		7BF33FD41E0AC82600A02EAA /* IMG_5644.JPG */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = IMG_5644.JPG; sourceTree = "<group>"; };
 		872C6612BE1B45416BBC4589 /* Pods-DDSocialPodDemo.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-DDSocialPodDemo.release.xcconfig"; path = "Pods/Target Support Files/Pods-DDSocialPodDemo/Pods-DDSocialPodDemo.release.xcconfig"; sourceTree = "<group>"; };
 		90D12D511CC7156000D39B0C /* DDSocialPodDemo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = DDSocialPodDemo.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		90D12D551CC7156000D39B0C /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
@@ -33,17 +44,6 @@
 		90D12D601CC7156000D39B0C /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		90D12D631CC7156000D39B0C /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		90D12D651CC7156000D39B0C /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		90D12D6B1CC7170B00D39B0C /* DDAuthTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DDAuthTableViewController.h; sourceTree = "<group>"; };
-		90D12D6C1CC7170B00D39B0C /* DDAuthTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DDAuthTableViewController.m; sourceTree = "<group>"; };
-		90D12D6D1CC7170B00D39B0C /* DDAuthTableViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = DDAuthTableViewController.xib; sourceTree = "<group>"; };
-		90D12D6E1CC7170B00D39B0C /* DDMainViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DDMainViewController.h; sourceTree = "<group>"; };
-		90D12D6F1CC7170B00D39B0C /* DDMainViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DDMainViewController.m; sourceTree = "<group>"; };
-		90D12D701CC7170B00D39B0C /* DDMainViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = DDMainViewController.xib; sourceTree = "<group>"; };
-		90D12D711CC7170B00D39B0C /* DDShareTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DDShareTableViewController.h; sourceTree = "<group>"; };
-		90D12D721CC7170B00D39B0C /* DDShareTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DDShareTableViewController.m; sourceTree = "<group>"; };
-		90D12D731CC7170B00D39B0C /* DDShareTableViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = DDShareTableViewController.xib; sourceTree = "<group>"; };
-		90D12D7A1CC71F3E00D39B0C /* IMG_5644.JPG */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = IMG_5644.JPG; sourceTree = "<group>"; };
-		90D12D7C1CC72B2F00D39B0C /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		A11DAAA67DA9F139387205B6 /* Pods-DDSocialPodDemo.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-DDSocialPodDemo.debug.xcconfig"; path = "Pods/Target Support Files/Pods-DDSocialPodDemo/Pods-DDSocialPodDemo.debug.xcconfig"; sourceTree = "<group>"; };
 		F39712F354FF1FBAC377625E /* libPods-DDSocialPodDemo.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-DDSocialPodDemo.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
@@ -69,6 +69,25 @@
 			name = Pods;
 			sourceTree = "<group>";
 		};
+		7BF33FC91E0AC82600A02EAA /* DDSocialDemoCore */ = {
+			isa = PBXGroup;
+			children = (
+				7BF33FCA1E0AC82600A02EAA /* DDAuthTableViewController.h */,
+				7BF33FCB1E0AC82600A02EAA /* DDAuthTableViewController.m */,
+				7BF33FCC1E0AC82600A02EAA /* DDAuthTableViewController.xib */,
+				7BF33FCD1E0AC82600A02EAA /* DDMainViewController.h */,
+				7BF33FCE1E0AC82600A02EAA /* DDMainViewController.m */,
+				7BF33FCF1E0AC82600A02EAA /* DDMainViewController.xib */,
+				7BF33FD01E0AC82600A02EAA /* DDShareTableViewController.h */,
+				7BF33FD11E0AC82600A02EAA /* DDShareTableViewController.m */,
+				7BF33FD21E0AC82600A02EAA /* DDShareTableViewController.xib */,
+				7BF33FD31E0AC82600A02EAA /* GoogleService-Info.plist */,
+				7BF33FD41E0AC82600A02EAA /* IMG_5644.JPG */,
+			);
+			name = DDSocialDemoCore;
+			path = ../../DDSocialDemoCore;
+			sourceTree = "<group>";
+		};
 		90D12D481CC7156000D39B0C = {
 			isa = PBXGroup;
 			children = (
@@ -90,23 +109,13 @@
 		90D12D531CC7156000D39B0C /* DDSocialPodDemo */ = {
 			isa = PBXGroup;
 			children = (
-				90D12D6B1CC7170B00D39B0C /* DDAuthTableViewController.h */,
-				90D12D6C1CC7170B00D39B0C /* DDAuthTableViewController.m */,
-				90D12D6D1CC7170B00D39B0C /* DDAuthTableViewController.xib */,
-				90D12D6E1CC7170B00D39B0C /* DDMainViewController.h */,
-				90D12D6F1CC7170B00D39B0C /* DDMainViewController.m */,
-				90D12D701CC7170B00D39B0C /* DDMainViewController.xib */,
-				90D12D711CC7170B00D39B0C /* DDShareTableViewController.h */,
-				90D12D721CC7170B00D39B0C /* DDShareTableViewController.m */,
-				90D12D731CC7170B00D39B0C /* DDShareTableViewController.xib */,
+				7BF33FC91E0AC82600A02EAA /* DDSocialDemoCore */,
 				90D12D571CC7156000D39B0C /* AppDelegate.h */,
 				90D12D581CC7156000D39B0C /* AppDelegate.m */,
-				90D12D7C1CC72B2F00D39B0C /* GoogleService-Info.plist */,
 				90D12D5D1CC7156000D39B0C /* Main.storyboard */,
 				90D12D601CC7156000D39B0C /* Assets.xcassets */,
 				90D12D621CC7156000D39B0C /* LaunchScreen.storyboard */,
 				90D12D651CC7156000D39B0C /* Info.plist */,
-				90D12D7A1CC71F3E00D39B0C /* IMG_5644.JPG */,
 				90D12D541CC7156000D39B0C /* Supporting Files */,
 			);
 			path = DDSocialPodDemo;
@@ -188,14 +197,14 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				90D12D771CC7170B00D39B0C /* DDMainViewController.xib in Resources */,
-				90D12D7D1CC72B2F00D39B0C /* GoogleService-Info.plist in Resources */,
+				7BF33FD81E0AC82600A02EAA /* DDMainViewController.xib in Resources */,
 				90D12D641CC7156000D39B0C /* LaunchScreen.storyboard in Resources */,
+				7BF33FDC1E0AC82600A02EAA /* IMG_5644.JPG in Resources */,
 				90D12D611CC7156000D39B0C /* Assets.xcassets in Resources */,
-				90D12D791CC7170B00D39B0C /* DDShareTableViewController.xib in Resources */,
+				7BF33FDA1E0AC82600A02EAA /* DDShareTableViewController.xib in Resources */,
 				90D12D5F1CC7156000D39B0C /* Main.storyboard in Resources */,
-				90D12D7B1CC71F3E00D39B0C /* IMG_5644.JPG in Resources */,
-				90D12D751CC7170B00D39B0C /* DDAuthTableViewController.xib in Resources */,
+				7BF33FD61E0AC82600A02EAA /* DDAuthTableViewController.xib in Resources */,
+				7BF33FDB1E0AC82600A02EAA /* GoogleService-Info.plist in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -254,10 +263,10 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				90D12D741CC7170B00D39B0C /* DDAuthTableViewController.m in Sources */,
-				90D12D761CC7170B00D39B0C /* DDMainViewController.m in Sources */,
+				7BF33FD51E0AC82600A02EAA /* DDAuthTableViewController.m in Sources */,
+				7BF33FD71E0AC82600A02EAA /* DDMainViewController.m in Sources */,
 				90D12D591CC7156000D39B0C /* AppDelegate.m in Sources */,
-				90D12D781CC7170B00D39B0C /* DDShareTableViewController.m in Sources */,
+				7BF33FD91E0AC82600A02EAA /* DDShareTableViewController.m in Sources */,
 				90D12D561CC7156000D39B0C /* main.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

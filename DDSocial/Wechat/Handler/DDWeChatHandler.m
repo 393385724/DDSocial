@@ -81,7 +81,7 @@ const CGFloat DDWeChatImageDataMaxSize = 10 * 1024.0 * 1024.0;
     enum WXScene scene = WXSceneSession;
     if (self.shareScene == DDSSSceneWXSession) {
         scene = WXSceneSession;
-    } else if (self.shareScene == DDSSSceneWXTimeline){
+    } else if (self.shareScene == DDSSSceneWXTimeline) {
         scene = WXSceneTimeline;
     }
     
@@ -115,7 +115,7 @@ const CGFloat DDWeChatImageDataMaxSize = 10 * 1024.0 * 1024.0;
                 authItem.rawObject = authResp;
                 self.authEventHandler(DDSSPlatformWeChat,DDSSAuthStateSuccess, authItem, nil);
             }
-        } else if (resp.errCode == WXErrCodeUserCancel){
+        } else if (resp.errCode == WXErrCodeUserCancel) {
             if (self.authEventHandler) {
                 self.authEventHandler(DDSSPlatformWeChat, DDSSAuthStateCancel, nil, nil);
             }
@@ -134,7 +134,7 @@ const CGFloat DDWeChatImageDataMaxSize = 10 * 1024.0 * 1024.0;
             if (self.shareEventHandler) {
                 self.shareEventHandler(DDSSPlatformWeChat, self.shareScene, DDSSShareStateSuccess, nil);
             }
-        } else if (resp.errCode == WXErrCodeUserCancel){
+        } else if (resp.errCode == WXErrCodeUserCancel) {
             if (self.shareEventHandler) {
                 self.shareEventHandler(DDSSPlatformWeChat, self.shareScene, DDSSShareStateCancel, nil);
             }
@@ -199,9 +199,9 @@ const CGFloat DDWeChatImageDataMaxSize = 10 * 1024.0 * 1024.0;
     }
     if (contentType == DDSSContentTypeText && [protocol conformsToProtocol:@protocol(DDSocialShareTextProtocol)]) {
         return [self shareTextWithProtocol:(id<DDSocialShareTextProtocol>)protocol];
-    } else if (contentType == DDSSContentTypeImage && [protocol conformsToProtocol:@protocol(DDSocialShareImageProtocol)]){
+    } else if (contentType == DDSSContentTypeImage && [protocol conformsToProtocol:@protocol(DDSocialShareImageProtocol)]) {
         return [self shareImageWithProtocol:(id<DDSocialShareImageProtocol>)protocol];
-    } else if (contentType == DDSSContentTypeWebPage && [protocol conformsToProtocol:@protocol(DDSocialShareWebPageProtocol)]){
+    } else if (contentType == DDSSContentTypeWebPage && [protocol conformsToProtocol:@protocol(DDSocialShareWebPageProtocol)]) {
         return [self shareWebPageWithProtocol:(id<DDSocialShareWebPageProtocol>)protocol];
     } else {
         if (self.shareEventHandler) {

@@ -14,15 +14,15 @@
  */
 typedef NS_ENUM(NSUInteger, DDSSPlatform) {
     DDSSPlatformNone = 0,
-    DDSSPlatformWeChat,       //**< 微信      */
-    DDSSPlatformQQ,           //**< QQ客户端   */
-    DDSSPlatformSina,         //**< 新浪微博   */
-    DDSSPlatformMI,           //**< 小米       */
-    DDSSPlatformMiLiao,       //**< 米聊       */
-    DDSSPlatformFacebook,     //**< Facebook  */
-    DDSSPlatformTwitter,      //**< Twitter   */
-    DDSSPlatformGoogle,       //**< Google    */
-    DDSSPlatformCount,        //**< 计数使用   */
+    DDSSPlatformWeChat,        //**< 微信      */
+    DDSSPlatformQQ,            //**< QQ客户端   */
+    DDSSPlatformSina,          //**< 新浪微博   */
+    DDSSPlatformMI,            //**< 小米       */
+    DDSSPlatformFacebook,      //**< Facebook  */
+    DDSSPlatformSystemTwitter, //**< Twitter  */
+    DDSSPlatformTwitter,       //**< 系统自带Twitter   */
+    DDSSPlatformGoogle,        //**< Google    */
+    DDSSPlatformCount,         //**< 计数使用   */
 };
 
 /**
@@ -43,20 +43,18 @@ typedef NS_ENUM(NSUInteger, DDSSAuthState) {
     DDSSAuthStateCancel,      /**< 取消 */
 };
 
-
 /**
  *  @brief  定义了第三方分享的场景
  */
 typedef NS_ENUM(NSUInteger, DDSSScene) {
-    DDSSSceneWXSession,     /**< 聊天界面    */
-    DDSSSceneWXTimeline,    /**< 朋友圈      */
-    DDSSSceneQQFrined,      /**< QQ好友      */
-    DDSSSceneQZone,         /**< QQ空间      */
-    DDSSSceneSina,          /**< 新浪微博     */
-    DDSSSceneMiLiaoSession, /**< 米聊聊天界面  */
-    DDSSSceneMiLiaoTimeline,/**< 米聊朋友圈    */
-    DDSSSceneFacebook,      /**< Facebook    */
-    DDSSSceneTwitter,       /**< Twitter     */
+    DDSSSceneWXSession,     /**< 聊天界面       */
+    DDSSSceneWXTimeline,    /**< 朋友圈         */
+    DDSSSceneQQFrined,      /**< QQ好友         */
+    DDSSSceneQZone,         /**< QQ空间         */
+    DDSSSceneSina,          /**< 新浪微博        */
+    DDSSSceneFacebook,      /**< Facebook       */
+    DDSSSceneSystemTwitter, /**< 系统自带Twitter  */
+    DDSSSceneTwitter,       /**< Twitter         */
 };
 
 /**

@@ -253,7 +253,7 @@ typedef NS_ENUM(NSUInteger, DDMILoginType) {
             [self.passwordTextField resignFirstResponder];
         }
         else {
-            if (textField == self.passwordTextField){
+            if (textField == self.passwordTextField) {
                 [self.codeTextField becomeFirstResponder];
             } else {
                 [self.codeTextField resignFirstResponder];
@@ -276,9 +276,9 @@ typedef NS_ENUM(NSUInteger, DDMILoginType) {
     NSString *codeString = self.codeTextField.text;
     if (textField == self.accountTextField) {
         accountString = text;
-    } else if (textField == self.passwordTextField){
+    } else if (textField == self.passwordTextField) {
         passwordString = text;
-    } else if (textField == self.codeTextField){
+    } else if (textField == self.codeTextField) {
         codeString = text;
     }
     if ([accountString length] && [passwordString length]) {
@@ -308,7 +308,7 @@ typedef NS_ENUM(NSUInteger, DDMILoginType) {
     [self.indicatorView stopAnimation];
     self.loginButton.enabled = YES;
     self.view.userInteractionEnabled = YES;
-    if (errorType == DDMIErrorNeedDynamicToken){
+    if (errorType == DDMIErrorNeedDynamicToken) {
         [self pushToVerifyLoginViewController];
         return;
     }

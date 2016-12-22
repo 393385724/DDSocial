@@ -24,11 +24,11 @@
         _genderType = DDSSGenderTypeUnkown;
         if (platForm == DDSSPlatformQQ) {
             [self setupTencentUserInfoDict:rawObject];
-        } else if (platForm == DDSSPlatformMI){
+        } else if (platForm == DDSSPlatformMI) {
             [self setupMIUserInfoDict:rawObject];
-        } else if (platForm == DDSSPlatformSina){
+        } else if (platForm == DDSSPlatformSina) {
             [self setupSinaUserInfoDict:rawObject];
-        } else if (platForm == DDSSPlatformWeChat){
+        } else if (platForm == DDSSPlatformWeChat) {
             [self setupWeChatUserInfoDict:rawObject];
         }
     }
@@ -65,7 +65,7 @@
     NSString *genderString = [infoDict objectForKey:@"gender"];
     if ([genderString isEqualToString:@"m"]) {
         _genderType = DDSSGenderTypeMale;
-    } else if ([genderString isEqualToString:@"f"]){
+    } else if ([genderString isEqualToString:@"f"]) {
         _genderType = DDSSGenderTypeFemale;
     }
     _avatarURL = [infoDict objectForKey:@"avatar_large"];

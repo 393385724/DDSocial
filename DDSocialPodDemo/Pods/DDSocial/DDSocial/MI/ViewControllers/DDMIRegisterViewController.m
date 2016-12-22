@@ -299,7 +299,7 @@ NSString * const DDMIPrivacyPolicyHTML = @"http://www.miui.com/res/doc/privacy/%
     
     if (textField == self.phoneTextField) {
         phoneNumberString = text;
-    } else if (textField == self.passwordTextField){
+    } else if (textField == self.passwordTextField) {
         passwordString = text;
     }
     if ([phoneNumberString length] && [passwordString length]) {

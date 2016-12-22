@@ -50,9 +50,9 @@ NSString * const DDMIUserAuthorization = @"https://account.xiaomi.com/oauth2/use
 - (BOOL)shouldStartLoadWithRequest:(NSURLRequest *)request{
     if ([request.URL.absoluteString hasPrefix:self.redirectUrl]) {
         [self didFinishedAuthWithRequest:request];
-    } else if ([request.URL.absoluteString hasPrefix:DDMISwitchAccountAPIName]){
+    } else if ([request.URL.absoluteString hasPrefix:DDMISwitchAccountAPIName]) {
         [self.navigationController popViewControllerAnimated:YES];
-    } else if ([request.URL.absoluteString hasPrefix:DDMIUserAuthorization]){
+    } else if ([request.URL.absoluteString hasPrefix:DDMIUserAuthorization]) {
         [self.activityIndicator startAnimating];
     }
     return YES;
