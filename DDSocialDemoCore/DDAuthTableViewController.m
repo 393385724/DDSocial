@@ -48,17 +48,17 @@
     DDSSPlatform platform = DDSSPlatformNone;
     if (indexPath.row == 0) {
         platform = DDSSPlatformWeChat;
-    } else if (indexPath.row == 1){
+    } else if (indexPath.row == 1) {
         platform = DDSSPlatformMI;
-    } else if (indexPath.row == 2){
+    } else if (indexPath.row == 2) {
         platform = DDSSPlatformQQ;
-    } else if (indexPath.row == 3){
+    } else if (indexPath.row == 3) {
         platform = DDSSPlatformSina;
-    } else if (indexPath.row == 4){
+    } else if (indexPath.row == 4) {
         platform = DDSSPlatformFacebook;
-    } else if (indexPath.row == 5){
+    } else if (indexPath.row == 5) {
         platform = DDSSPlatformGoogle;
-    } else if (indexPath.row == 6){
+    } else if (indexPath.row == 6) {
         platform = DDSSPlatformTwitter;
     }
     [[DDSocialShareHandler sharedInstance] authWithPlatform:platform authMode:DDSSAuthModeToken controller:self handler:^(DDSSPlatform platform, DDSSAuthState state, DDAuthItem *authItem, NSError *error) {
@@ -69,13 +69,20 @@
             }
             case DDSSAuthStateSuccess: {
                 NSLog(@"授权成功：%@",authItem);
+                [[[UIAlertView alloc] initWithTitle:nil message:[NSString stringWithFormat:@"%@", authItem] delegate:nil cancelButtonTitle:@"ok" otherButtonTitles:nil] show];
                 [[DDSocialShareHandler sharedInstance] getUserInfoWithPlatform:platform authItem:authItem handler:^(DDUserInfoItem *userInfoItem, NSError *error) {
-                    NSLog(@"%@,error:%@",userInfoItem,error);
+                    if (error) {
+                        [[[UIAlertView alloc] initWithTitle:nil message:[NSString stringWithFormat:@"error:%@", error] delegate:nil cancelButtonTitle:@"ok" otherButtonTitles:nil] show];
+                    } else {
+                        if (userInfoItem) {
+                            [[[UIAlertView alloc] initWithTitle:nil message:[NSString stringWithFormat:@"%@", userInfoItem] delegate:nil cancelButtonTitle:@"ok" otherButtonTitles:nil] show];
+                        }
+                    }
                 }];
                 break;
             }
             case DDSSAuthStateFail: {
-                NSLog(@"授权失败Error：%@",error);
+                [[[UIAlertView alloc] initWithTitle:nil message:[NSString stringWithFormat:@"授权失败Error:%@", error] delegate:nil cancelButtonTitle:@"ok" otherButtonTitles:nil] show];
                 break;
             }
             case DDSSAuthStateCancel: {

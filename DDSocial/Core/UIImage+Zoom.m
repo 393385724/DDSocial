@@ -84,7 +84,7 @@ static int16_t unsharpen_kernel[9] = {
     if (!bmContext)
         return nil;
     
-    CGContextDrawImage(bmContext, (CGRect){.origin.x = 0.0f, .origin.y = 0.0f, .size.width = width, .size.height = height}, self.CGImage);
+    CGContextDrawImage(bmContext, (CGRect) {.origin.x = 0.0f, .origin.y = 0.0f, .size.width = width, .size.height = height}, self.CGImage);
     
     UInt8* data = (UInt8*)CGBitmapContextGetData(bmContext);
     if (!data)

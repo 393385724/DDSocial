@@ -22,7 +22,7 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     [self.tableView registerClass:[UITableViewCell class] forCellReuseIdentifier:@"UITableViewCell"];
-    self.sectionArray = @[@"微信朋友圈",@"微信好友",@"新浪",@"QQ好友",@"QQ空间",@"Facebook",@"Twitter",@"米聊好友",@"米聊朋友圈"];
+    self.sectionArray = @[@"微信朋友圈",@"微信好友",@"新浪",@"QQ好友",@"QQ空间",@"Facebook",@"系统Twitter",@"Twitter"];
     self.shareContentArray = @[@"纯文本",@"图片",@"网页"];
 }
 
@@ -79,16 +79,16 @@
 - (DDSSPlatform)platformWithsection:(NSInteger)section{
     if (section == 0 || section == 1) {
         return DDSSPlatformWeChat;
-    } else if (section == 2){
+    } else if (section == 2) {
         return DDSSPlatformSina;
-    } else if (section == 3 || section == 4){
+    } else if (section == 3 || section == 4) {
         return DDSSPlatformQQ;
-    } else if (section == 5){
+    } else if (section == 5) {
         return DDSSPlatformFacebook;
-    } else if(section == 6){
+    } else if(section == 6) {
+        return DDSSPlatformSystemTwitter;
+    } else if(section == 7) {
         return DDSSPlatformTwitter;
-    } else if (section == 7 || section == 8){
-        return DDSSPlatformMiLiao;
     }
     return DDSSPlatformWeChat;
 }
@@ -96,22 +96,20 @@
 - (DDSSScene)shareSceneWithsection:(NSInteger)section{
     if (section == 0) {
         return DDSSSceneWXTimeline;
-    } else if (section == 1){
+    } else if (section == 1) {
         return DDSSSceneWXSession;
-    } else if (section == 2){
+    } else if (section == 2) {
         return DDSSSceneSina;
-    } else if (section == 3){
+    } else if (section == 3) {
         return DDSSSceneQQFrined;
-    } else if (section == 4){
+    } else if (section == 4) {
         return DDSSSceneQZone;
     } else if (section == 5) {
         return DDSSSceneFacebook;
-    } else if (section == 6){
+    } else if (section == 6) {
+        return DDSSSceneSystemTwitter;
+    } else if (section == 7) {
         return DDSSSceneTwitter;
-    } else if (section == 7){
-        return DDSSSceneMiLiaoSession;
-    } else if (section == 8){
-        return DDSSSceneMiLiaoTimeline;
     } else {
         return DDSSSceneWXTimeline;
     }
@@ -121,7 +119,7 @@
 - (DDSSContentType)contentTypeWithRow:(NSInteger)row{
     if (row == 0) {
         return DDSSContentTypeText;
-    } else if (row == 1){
+    } else if (row == 1) {
         return DDSSContentTypeImage;
     } else {
         return DDSSContentTypeWebPage;

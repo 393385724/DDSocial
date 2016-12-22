@@ -1,5 +1,5 @@
 # DDSocial
-A share auth wheels based on the official library content wecaht sina tencent facebook twitter google miliao mi
+A share auth wheels based on the official library content wecaht sina tencent facebook twitter google mi
 #Warning
 1、新版TencentSDK不支持模拟器，所以只能使用真机调试
 #使用
@@ -9,11 +9,11 @@ A share auth wheels based on the official library content wecaht sina tencent fa
 <pre><code>
 	pod 'DDSocial/Share' 
 	pod 'DDSocial/MI'
-	pod 'DDSocial/MiLiao'
 	pod 'DDSocial/Wechat'
 	pod 'DDSocial/Tencent'
 	pod 'DDSocial/Sina'
 	pod 'DDSocial/Facebook'
+    pod 'DDSocial/SystemTwitter'
 	pod 'DDSocial/Twitter'
 	pod 'DDSocial/Google'
 </code></pre>
@@ -33,8 +33,9 @@ Build Settings   ->  Search Paths 两个地方添加  Framework Search Paths 和
     [[DDSocialShareHandler sharedInstance] registerPlatform:DDSSPlatformSina appKey:@"自己申请的key"];
     [[DDSocialShareHandler sharedInstance] registerPlatform:DDSSPlatformQQ appKey:@"自己申请的key"];
     [[DDSocialShareHandler sharedInstance] registerPlatform:DDSSPlatformFacebook appKey:@"自己申请的key"];
+    [[DDSocialShareHandler sharedInstance] registerPlatform:DDSSPlatformSystemTwitter]; 
+    [[DDSocialShareHandler sharedInstance] registerPlatform:DDSSPlatformTwitter appKey:@"自己申请的key" appSecret:@"对应的secret"];
     [[DDSocialShareHandler sharedInstance] registerPlatform:DDSSPlatformGoogle];
-    [[DDSocialShareHandler sharedInstance] registerPlatform:DDSSPlatformMiLiao appKey:@"米聊SDK生成的key"];
     return YES;
 }
 </code></pre>
@@ -132,32 +133,6 @@ DDSocialShareWebPageProtocol//web内容分享需要实现该协议<br />
         </dict>
     </dict>
 </dict>
-</code></pre>
-###米聊
-1、然后在xcode中配置info.plist<br />
-   （1）添加CFBundleURLTypes,注意这里使用的key是由[MLAppApi generateAppId:@"建议是bundleid"];生成的key<br />
-   （2）添加LSApplicationQueriesSchemes白名单<br />
-2、示例代码<br />
-<pre><code>
-<key>CFBundleURLTypes</key>
-<array>
-    <dict>
-        <key>CFBundleTypeRole</key>
-        <string>ML</string>
-        <key>CFBundleURLName</key>
-        <string>miliao</string>
-        <key>CFBundleURLSchemes</key>
-        <array>
-            <string>米聊SDK生成的key</string>
-        </array>
-    </dict>
-</array>
-<key>LSApplicationQueriesSchemes</key>
-<array>
-    <string>miliao</string>
-    <string>miliaoapi.1.1</string>
-    <string>miliaoapi.1.0</string>
-</array>
 </code></pre>
 ###微信开放平台(https://open.weixin.qq.com/)
 1、首先在微信开放平台根据自己app的bundleid申请一个appkey<br />
