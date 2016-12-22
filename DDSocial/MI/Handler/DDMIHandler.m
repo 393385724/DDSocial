@@ -7,30 +7,19 @@
 //
 
 #import "DDMIHandler.h"
-
-#import "DDMILoginViewController.h"
-#import "DDMIAuthViewController.h"
-
-#import "DDMIRequestHandle.h"
-
+#import <MiPassport/MiPassport.h>
 #import "DDAuthItem.h"
 #import "DDUserInfoItem.h"
 
-static BOOL DDMIShouldShowForgotPassword = YES;
+static NSString * const DDMIGetProfileAPISuffix = @"user/profile";
 
-static BOOL DDMIShouldShowRegister = YES;
+@interface DDMIHandler ()<MPSessionDelegate, MPRequestDelegate>
 
-@interface DDMIHandler ()<DDMIAuthViewControllerDelegate>
-
-@property (nonatomic, copy) NSString *appKey;
-
-@property (nonatomic, copy) NSString *redirectUrl;
-
-@property (nonatomic, strong) UINavigationController *navigationController;
-
-@property (nonatomic, strong) DDMIRequestHandle *requestHandle;
+@property (nonatomic, strong) MiPassport *miPassport;
 
 @property (nonatomic, copy) DDSSAuthEventHandler authEventHandle;
+
+@property (nonatomic, copy) DDSSUserInfoEventHandler userInfoEventHandler;
 
 @property (nonatomic, assign) DDSSAuthMode  authMode;
 
@@ -38,96 +27,130 @@ static BOOL DDMIShouldShowRegister = YES;
 
 @implementation DDMIHandler
 
-+ (void)configShouldShowRegister:(BOOL)showRegister
-              showForgotPassword:(BOOL)showForgotPassword{
-    DDMIShouldShowForgotPassword = showForgotPassword;
-    DDMIShouldShowRegister = showRegister;
-}
 
-- (void)dealloc{
-    [[NSNotificationCenter defaultCenter] removeObserver:self];
-    NSLog(@"dealloc");
-}
+#pragma mark - MPSessionDelegate
 
-- (instancetype)init{
-    self = [super init];
-    if (self) {
-        [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(miLoginAuthNotification:) name:DDMILoginAuthNotification object:nil];
-        [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(miLoginCancelNotification:) name:DDMILoginCancelNotification object:nil];
+/**
+ * Called when the user successfully logged in.
+ */
+- (void)passportDidLogin:(MiPassport *)passport {
+    DDAuthItem *authItem = [[DDAuthItem alloc] init];
+    
+    authItem.thirdToken = passport.accessToken;
+    authItem.thirdId = passport.appId;
+    authItem.rawObject = passport;
+    
+    if (self.authEventHandle) {
+        self.authEventHandle(DDSSPlatformMI,DDSSAuthStateSuccess,authItem,nil);
     }
-    return self;
+}
+/**
+ * Called when the user failed to log in.
+ */
+- (void)passport:(MiPassport *)passport failedWithError:(NSError *)error {
+    if (self.authEventHandle) {
+        self.authEventHandle(DDSSPlatformMI,DDSSAuthStateFail,nil,nil);
+    }
 }
 
-#pragma mark - Private Methods
-
-- (void)presetLoginViewControllerInViewController:(UIViewController *)viewController{
-    DDMILoginViewController *loginViewController = [[DDMILoginViewController alloc] initWithRequestHandle:self.requestHandle];
-    loginViewController.showRegister = DDMIShouldShowForgotPassword;
-    loginViewController.showForgotPassword = DDMIShouldShowForgotPassword;
-    self.navigationController = [[UINavigationController alloc] initWithRootViewController:loginViewController];
-    [viewController presentViewController:self.navigationController animated:YES completion:nil];
+/**
+ * Called when the user dismissed the dialog without logging in.
+ */
+- (void)passportDidCancel:(MiPassport *)passport {
+    if (self.authEventHandle) {
+        self.authEventHandle(DDSSPlatformMI,DDSSAuthStateCancel,nil,nil);
+    }
 }
 
-- (void)disMissWithCompletion:(void (^)(void))completion{
-    __weak __typeof(&*self)weakSelf = self;
-    [self.navigationController dismissViewControllerAnimated:YES completion:^{
-        weakSelf.navigationController = nil;
-        if (completion) {
-            completion();
-        }
-    }];
+/**
+ * Called when the user logged out.
+ */
+- (void)passportDidLogout:(MiPassport *)passport {
+    
 }
 
-#pragma mark - DDMIAuthViewControllerDelegate
+/**
+ * Called when the user get code.
+ */
+- (void)passport:(MiPassport *)passport didGetCode:(NSString *)code {
+    DDAuthItem *authItem = [[DDAuthItem alloc] init];
+    if (self.authMode == DDSSAuthModeToken) {
+        authItem.thirdToken = code;
+    } else {
+        authItem.thirdToken = passport.accessToken;
+    }
+    authItem.thirdId = passport.appId;
+    authItem.rawObject = passport;
+    
+    if (self.authEventHandle) {
+        self.authEventHandle(DDSSPlatformMI,DDSSAuthStateSuccess,authItem,nil);
+    }
+}
 
-- (void)authViewController:(DDMIAuthViewController *)viewController successWithResponse:(NSDictionary *)response{
-    __weak __typeof(&*self)weakSelf = self;
-    [self disMissWithCompletion:^{
-        DDAuthItem *authItem = [[DDAuthItem alloc] init];
-        authItem.rawObject = response;
-        if (self.authMode == DDSSAuthModeCode) {
-            authItem.thirdToken = [response objectForKey:@"code"];
+/**
+ * Called when access token expired.
+ */
+- (void)passport:(MiPassport *)passport accessTokenInvalidOrExpired:(NSError *)error {
+    NSLog(@"passport accesstoken invalid or expired");
+}
+
+#pragma mark - MPRequestDelegate
+/**
+ * Called just before the request is sent to the server.
+ */
+- (void)requestLoading:(MPRequest *)request {
+    
+}
+
+/**
+ * Called when the server responds and begins to send back data.
+ */
+- (void)request:(MPRequest *)request didReceiveResponse:(NSURLResponse *)response {
+    
+}
+
+/**
+ * Called when an error prevents the request from completing successfully.
+ */
+- (void)request:(MPRequest *)request didFailWithError:(NSError *)error {
+    NSLog(@"request did fail with error code: %zd", [error code]);
+    if ([request.url hasSuffix:DDMIGetProfileAPISuffix]) {
+        self.userInfoEventHandler(nil, error);
+        self.userInfoEventHandler = nil;
+    }
+}
+
+/**
+ * Called when a request returns and its response has been parsed into
+ * an object.
+ *
+ * The resulting object may be a dictionary, an array, a string, or a number,
+ * depending on thee format of the API response.
+ */
+- (void)request:(MPRequest *)request didLoad:(id)result {
+    if ([request.url hasSuffix:DDMIGetProfileAPISuffix]) {
+        NSInteger code = [[result objectForKey:@"code"] integerValue];
+        if (code == 0) {
+            NSDictionary *dataDict = [result objectForKey:@"data"];
+            DDUserInfoItem *infoItem = [[DDUserInfoItem alloc] initWithPlatForm:DDSSPlatformMI rawObject:dataDict];
+            self.userInfoEventHandler(infoItem,nil);
+            self.userInfoEventHandler = nil;
         } else {
-            authItem.thirdToken = [response objectForKey:@"access_token"];
+            NSError *error = [NSError errorWithDomain:@"服务器错误" code:code userInfo:result];
+            [self request:request didFailWithError:error];
         }
-        weakSelf.authEventHandle(DDSSPlatformMI,DDSSAuthStateSuccess,authItem,nil);
-        weakSelf.authEventHandle = nil;
-    }];
-}
-
-- (void)authViewController:(DDMIAuthViewController *)viewController failedWithError:(NSError *)error{
-    __weak __typeof(&*self)weakSelf = self;
-    [self disMissWithCompletion:^{
-        weakSelf.authEventHandle(DDSSPlatformMI,DDSSAuthStateFail,nil,error);
-        weakSelf.authEventHandle = nil;
-    }];
-}
-
-#pragma mark - Notification
-
-- (void)miLoginAuthNotification:(NSNotification *)notification{
-    DDMIAuthViewController *viewController = [[DDMIAuthViewController alloc] initWithAppid:self.appKey redirectUrl:self.redirectUrl];
-    viewController.delegate = self;
-    viewController.authMode = self.authMode;
-    [self.navigationController pushViewController:viewController animated:YES];
-}
-
-- (void)miLoginCancelNotification:(NSNotification *)notification{
-    __weak __typeof(&*self)weakSelf = self;
-    [self disMissWithCompletion:^{
-        weakSelf.authEventHandle(DDSSPlatformMI,DDSSAuthStateCancel,nil,nil);
-        weakSelf.authEventHandle = nil;
-    }];
-}
-
-#pragma mark - Getter and Setter
-
-- (DDMIRequestHandle *)requestHandle{
-    if (!_requestHandle) {
-        _requestHandle = [[DDMIRequestHandle alloc] init];
     }
-    return _requestHandle;
 }
+
+/**
+ * Called when a request returns a response.
+ *
+ * The result object is the raw response from the server of type NSData
+ */
+- (void)request:(MPRequest *)request didLoadRawResponse:(NSData *)data {
+
+}
+
 @end
 
 @implementation DDMIHandler (DDSocialHandlerProtocol)
@@ -136,8 +159,9 @@ static BOOL DDMIShouldShowRegister = YES;
                  appSecret:(NSString *)appSecret
                redirectURL:(NSString *)redirectURL
             appDescription:(NSString *)appDescription {
-    self.redirectUrl = redirectURL;
-    self.appKey = appKey;
+    NSAssert(appKey, @"appKey 不能为空");
+    self.miPassport = [[MiPassport alloc] initWithAppId:appKey
+                                            redirectUrl:redirectURL andDelegate:self];
 }
 
 - (BOOL)authWithMode:(DDSSAuthMode)mode
@@ -149,7 +173,11 @@ static BOOL DDMIShouldShowRegister = YES;
     self.authMode = mode;
     self.authEventHandle = handler;
     self.authEventHandle(DDSSPlatformMI,DDSSAuthStateBegan,nil,nil);
-    [self presetLoginViewControllerInViewController:viewController];
+    if (mode == DDSSAuthModeCode) {
+        [self.miPassport applyPassCodeWithPermissions:nil];
+    } else {
+        [self.miPassport loginWithPermissions:nil];
+    }
     return YES;
 }
 
@@ -158,20 +186,10 @@ static BOOL DDMIShouldShowRegister = YES;
     if (!handler) {
         return NO;
     }
-    NSDictionary *dict = authItem.rawObject;
-    NSString *token = [dict objectForKey:@"access_token"];
-    if (!token) {
-        NSLog(@"获取小米个人信息需要使用token方式授权");
-        return NO;
-    }
-    return [self.requestHandle getProfileWithAccessToken:token clientId:self.appKey completeHandler:^(NSDictionary *responseDict, NSError *connectionError) {
-        if (connectionError) {
-            handler(nil,connectionError);
-        } else {
-            DDUserInfoItem *userItem = [[DDUserInfoItem alloc] initWithPlatForm:DDSSPlatformMI rawObject:responseDict];
-            handler(userItem, nil);
-        }
-    }];
+    self.userInfoEventHandler = handler;
+    [self.miPassport requestWithURL:DDMIGetProfileAPISuffix params:[NSMutableDictionary dictionaryWithObject:self.miPassport.appId forKey:@"clientId"] httpMethod:@"GET" delegate:self];
+    
+    return YES;
 }
 
 @end
