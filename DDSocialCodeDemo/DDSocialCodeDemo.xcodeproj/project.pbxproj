@@ -441,7 +441,6 @@
 				TargetAttributes = {
 					9060A98C1CC50396006BABE2 = {
 						CreatedOnToolsVersion = 7.2.1;
-						DevelopmentTeam = BPBCHD64GW;
 					};
 				};
 			};
@@ -669,13 +668,10 @@
 			baseConfigurationReference = 9BC6CA4E6F25037B761CEEC2 /* Pods-DDSocialCodeDemo.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				DEVELOPMENT_TEAM = BPBCHD64GW;
+				DEVELOPMENT_TEAM = "";
 				ENABLE_BITCODE = NO;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
-					"\"${PODS_ROOT}/Fabric/iOS\"",
-					"\"${PODS_ROOT}/TwitterCore/iOS\"",
-					"\"${PODS_ROOT}/TwitterKit\"",
 					"\"$(SRCROOT)/../DDSocial/Tencent/TencentSDK/\"",
 					"\"$(SRCROOT)/../DDSocial/MiLiao/MiLiaoSDK/\"",
 					"\"$(SRCROOT)/../DDSocial/MI/MiSDK/\"",
@@ -760,13 +756,10 @@
 			baseConfigurationReference = 8453350BBBF6F5D4DBC36145 /* Pods-DDSocialCodeDemo.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				DEVELOPMENT_TEAM = BPBCHD64GW;
+				DEVELOPMENT_TEAM = "";
 				ENABLE_BITCODE = NO;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
-					"\"${PODS_ROOT}/Fabric/iOS\"",
-					"\"${PODS_ROOT}/TwitterCore/iOS\"",
-					"\"${PODS_ROOT}/TwitterKit\"",
 					"\"$(SRCROOT)/../DDSocial/Tencent/TencentSDK/\"",
 					"\"$(SRCROOT)/../DDSocial/MiLiao/MiLiaoSDK/\"",
 					"\"$(SRCROOT)/../DDSocial/MI/MiSDK/\"",
