@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		7B3D634F1E1106890096D290 /* DDTwitterHandler.m in Sources */ = {isa = PBXBuildFile; fileRef = 7B3D634E1E1106890096D290 /* DDTwitterHandler.m */; };
 		7B717BD41E0BC1FE0098D5D8 /* DDAuthItem.m in Sources */ = {isa = PBXBuildFile; fileRef = 7B717B9E1E0BC1FE0098D5D8 /* DDAuthItem.m */; };
 		7B717BD51E0BC1FE0098D5D8 /* DDLinkupItem.m in Sources */ = {isa = PBXBuildFile; fileRef = 7B717BA01E0BC1FE0098D5D8 /* DDLinkupItem.m */; };
 		7B717BD61E0BC1FE0098D5D8 /* DDSoicalRequestHandler.m in Sources */ = {isa = PBXBuildFile; fileRef = 7B717BA61E0BC1FE0098D5D8 /* DDSoicalRequestHandler.m */; };
@@ -19,11 +20,9 @@
 		7B717BDD1E0BC1FE0098D5D8 /* MiPassport.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 7B717BB91E0BC1FE0098D5D8 /* MiPassport.bundle */; };
 		7B717BDE1E0BC1FE0098D5D8 /* MiPassport.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7B717BBA1E0BC1FE0098D5D8 /* MiPassport.framework */; };
 		7B717BDF1E0BC1FE0098D5D8 /* DDSinaHandler.m in Sources */ = {isa = PBXBuildFile; fileRef = 7B717BBD1E0BC1FE0098D5D8 /* DDSinaHandler.m */; };
-		7B717BE01E0BC1FE0098D5D8 /* DDSystemTwitterHandler.m in Sources */ = {isa = PBXBuildFile; fileRef = 7B717BC01E0BC1FE0098D5D8 /* DDSystemTwitterHandler.m */; };
 		7B717BE11E0BC1FE0098D5D8 /* DDTencentHandler.m in Sources */ = {isa = PBXBuildFile; fileRef = 7B717BC41E0BC1FE0098D5D8 /* DDTencentHandler.m */; };
 		7B717BE21E0BC1FE0098D5D8 /* TencentOpenAPI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7B717BC61E0BC1FE0098D5D8 /* TencentOpenAPI.framework */; };
 		7B717BE31E0BC1FE0098D5D8 /* TencentOpenApi_IOS_Bundle.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 7B717BC71E0BC1FE0098D5D8 /* TencentOpenApi_IOS_Bundle.bundle */; };
-		7B717BE41E0BC1FE0098D5D8 /* DDTwitterHandler.m in Sources */ = {isa = PBXBuildFile; fileRef = 7B717BCA1E0BC1FE0098D5D8 /* DDTwitterHandler.m */; };
 		7B717BE51E0BC1FE0098D5D8 /* DDWeChatHandler.m in Sources */ = {isa = PBXBuildFile; fileRef = 7B717BCE1E0BC1FE0098D5D8 /* DDWeChatHandler.m */; };
 		7B717BE61E0BC1FE0098D5D8 /* libWeChatSDK.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 7B717BD01E0BC1FE0098D5D8 /* libWeChatSDK.a */; };
 		7B717BE81E0BC2280098D5D8 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 7B717BE71E0BC2280098D5D8 /* main.m */; };
@@ -53,6 +52,8 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		7B3D634D1E1106890096D290 /* DDTwitterHandler.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DDTwitterHandler.h; sourceTree = "<group>"; };
+		7B3D634E1E1106890096D290 /* DDTwitterHandler.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DDTwitterHandler.m; sourceTree = "<group>"; };
 		7B717B9D1E0BC1FE0098D5D8 /* DDAuthItem.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DDAuthItem.h; sourceTree = "<group>"; };
 		7B717B9E1E0BC1FE0098D5D8 /* DDAuthItem.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DDAuthItem.m; sourceTree = "<group>"; };
 		7B717B9F1E0BC1FE0098D5D8 /* DDLinkupItem.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DDLinkupItem.h; sourceTree = "<group>"; };
@@ -79,14 +80,10 @@
 		7B717BBA1E0BC1FE0098D5D8 /* MiPassport.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = MiPassport.framework; sourceTree = "<group>"; };
 		7B717BBC1E0BC1FE0098D5D8 /* DDSinaHandler.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DDSinaHandler.h; sourceTree = "<group>"; };
 		7B717BBD1E0BC1FE0098D5D8 /* DDSinaHandler.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DDSinaHandler.m; sourceTree = "<group>"; };
-		7B717BBF1E0BC1FE0098D5D8 /* DDSystemTwitterHandler.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DDSystemTwitterHandler.h; sourceTree = "<group>"; };
-		7B717BC01E0BC1FE0098D5D8 /* DDSystemTwitterHandler.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DDSystemTwitterHandler.m; sourceTree = "<group>"; };
 		7B717BC31E0BC1FE0098D5D8 /* DDTencentHandler.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DDTencentHandler.h; sourceTree = "<group>"; };
 		7B717BC41E0BC1FE0098D5D8 /* DDTencentHandler.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DDTencentHandler.m; sourceTree = "<group>"; };
 		7B717BC61E0BC1FE0098D5D8 /* TencentOpenAPI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = TencentOpenAPI.framework; sourceTree = "<group>"; };
 		7B717BC71E0BC1FE0098D5D8 /* TencentOpenApi_IOS_Bundle.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = TencentOpenApi_IOS_Bundle.bundle; sourceTree = "<group>"; };
-		7B717BC91E0BC1FE0098D5D8 /* DDTwitterHandler.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DDTwitterHandler.h; sourceTree = "<group>"; };
-		7B717BCA1E0BC1FE0098D5D8 /* DDTwitterHandler.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DDTwitterHandler.m; sourceTree = "<group>"; };
 		7B717BCD1E0BC1FE0098D5D8 /* DDWeChatHandler.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DDWeChatHandler.h; sourceTree = "<group>"; };
 		7B717BCE1E0BC1FE0098D5D8 /* DDWeChatHandler.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DDWeChatHandler.m; sourceTree = "<group>"; };
 		7B717BD01E0BC1FE0098D5D8 /* libWeChatSDK.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libWeChatSDK.a; sourceTree = "<group>"; };
@@ -154,6 +151,15 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		7B3D634C1E1106890096D290 /* Twitter */ = {
+			isa = PBXGroup;
+			children = (
+				7B3D634D1E1106890096D290 /* DDTwitterHandler.h */,
+				7B3D634E1E1106890096D290 /* DDTwitterHandler.m */,
+			);
+			path = Twitter;
+			sourceTree = "<group>";
+		};
 		7B717B9B1E0BC1FE0098D5D8 /* DDSocial */ = {
 			isa = PBXGroup;
 			children = (
@@ -163,9 +169,8 @@
 				7B717BB11E0BC1FE0098D5D8 /* Handler */,
 				7B717BB41E0BC1FE0098D5D8 /* MI */,
 				7B717BBB1E0BC1FE0098D5D8 /* Sina */,
-				7B717BBE1E0BC1FE0098D5D8 /* SystemTwitter */,
 				7B717BC11E0BC1FE0098D5D8 /* Tencent */,
-				7B717BC81E0BC1FE0098D5D8 /* Twitter */,
+				7B3D634C1E1106890096D290 /* Twitter */,
 				7B717BCB1E0BC1FE0098D5D8 /* Wechat */,
 			);
 			name = DDSocial;
@@ -256,15 +261,6 @@
 			path = Sina;
 			sourceTree = "<group>";
 		};
-		7B717BBE1E0BC1FE0098D5D8 /* SystemTwitter */ = {
-			isa = PBXGroup;
-			children = (
-				7B717BBF1E0BC1FE0098D5D8 /* DDSystemTwitterHandler.h */,
-				7B717BC01E0BC1FE0098D5D8 /* DDSystemTwitterHandler.m */,
-			);
-			path = SystemTwitter;
-			sourceTree = "<group>";
-		};
 		7B717BC11E0BC1FE0098D5D8 /* Tencent */ = {
 			isa = PBXGroup;
 			children = (
@@ -290,15 +286,6 @@
 				7B717BC71E0BC1FE0098D5D8 /* TencentOpenApi_IOS_Bundle.bundle */,
 			);
 			path = TencentSDK;
-			sourceTree = "<group>";
-		};
-		7B717BC81E0BC1FE0098D5D8 /* Twitter */ = {
-			isa = PBXGroup;
-			children = (
-				7B717BC91E0BC1FE0098D5D8 /* DDTwitterHandler.h */,
-				7B717BCA1E0BC1FE0098D5D8 /* DDTwitterHandler.m */,
-			);
-			path = Twitter;
 			sourceTree = "<group>";
 		};
 		7B717BCB1E0BC1FE0098D5D8 /* Wechat */ = {
@@ -553,7 +540,6 @@
 				7BF33FE91E0AC84500A02EAA /* DDAuthTableViewController.m in Sources */,
 				7B717BDB1E0BC1FE0098D5D8 /* DDSocialShareHandler.m in Sources */,
 				7B717BDC1E0BC1FE0098D5D8 /* DDMIHandler.m in Sources */,
-				7B717BE01E0BC1FE0098D5D8 /* DDSystemTwitterHandler.m in Sources */,
 				7B717BD61E0BC1FE0098D5D8 /* DDSoicalRequestHandler.m in Sources */,
 				9060A9951CC50396006BABE2 /* AppDelegate.m in Sources */,
 				7B717BDA1E0BC1FE0098D5D8 /* DDGoogleHandler.m in Sources */,
@@ -562,8 +548,8 @@
 				7B717BD41E0BC1FE0098D5D8 /* DDAuthItem.m in Sources */,
 				7B717BD51E0BC1FE0098D5D8 /* DDLinkupItem.m in Sources */,
 				7B717BE51E0BC1FE0098D5D8 /* DDWeChatHandler.m in Sources */,
-				7B717BE41E0BC1FE0098D5D8 /* DDTwitterHandler.m in Sources */,
 				7B717BD91E0BC1FE0098D5D8 /* DDFacebookHandler.m in Sources */,
+				7B3D634F1E1106890096D290 /* DDTwitterHandler.m in Sources */,
 				7B717BE11E0BC1FE0098D5D8 /* DDTencentHandler.m in Sources */,
 				7B717BDF1E0BC1FE0098D5D8 /* DDSinaHandler.m in Sources */,
 				7BF33FEB1E0AC84500A02EAA /* DDMainViewController.m in Sources */,

@@ -17,7 +17,6 @@
 @property (nonatomic, strong) id<DDSocialHandlerProtocol> tencentHandler;
 @property (nonatomic, strong) id<DDSocialHandlerProtocol> facebookHandler;
 @property (nonatomic, strong) id<DDSocialHandlerProtocol> googleHandler;
-@property (nonatomic, strong) id<DDSocialHandlerProtocol> systemTwitterHandler;
 @property (nonatomic, strong) id<DDSocialHandlerProtocol> twitterHandler;
 @property (nonatomic, strong) id<DDSocialHandlerProtocol> miHandler;
 
@@ -55,8 +54,6 @@
         platform = DDSSPlatformQQ;
     } else if (scene == DDSSSceneFacebook) {
         platform = DDSSPlatformFacebook;
-    } else if (scene == DDSSSceneSystemTwitter) {
-        platform = DDSSPlatformSystemTwitter;
     } else if (scene == DDSSSceneTwitter) {
         platform = DDSSPlatformTwitter;
     }
@@ -235,8 +232,6 @@
         return NSClassFromString(@"DDMIHandler");
     } else if (platForm == DDSSPlatformFacebook) {
         return NSClassFromString(@"DDFacebookHandler");
-    } else if (platForm == DDSSPlatformSystemTwitter) {
-        return NSClassFromString(@"DDSystemTwitterHandler");
     } else if (platForm == DDSSPlatformTwitter) {
         return NSClassFromString(@"DDTwitterHandler");
     } else if (platForm == DDSSPlatformGoogle) {
@@ -268,10 +263,6 @@
         self.facebookHandler = [[DDSocialShareHandler classWithPlatForm:DDSSPlatformFacebook] new];
         handlerProtocol = self.facebookHandler;
         
-    } else if (platForm == DDSSPlatformSystemTwitter) {
-        self.systemTwitterHandler = [[DDSocialShareHandler classWithPlatForm:DDSSPlatformSystemTwitter] new];
-        handlerProtocol = self.systemTwitterHandler;
-    
     } else if (platForm == DDSSPlatformTwitter) {
         self.twitterHandler = [[DDSocialShareHandler classWithPlatForm:DDSSPlatformTwitter] new];
         handlerProtocol = self.twitterHandler;
@@ -295,8 +286,6 @@
         handlerProtocol = self.miHandler;
     } else if (platForm == DDSSPlatformFacebook) {
         handlerProtocol = self.facebookHandler;
-    } else if (platForm == DDSSPlatformSystemTwitter) {
-        handlerProtocol = self.systemTwitterHandler;
     } else if (platForm == DDSSPlatformTwitter) {
         handlerProtocol = self.twitterHandler;
     } else if (platForm == DDSSPlatformGoogle) {
