@@ -52,11 +52,10 @@ Pod::Spec.new do |s|
  #    twitter.dependency 'TwitterKit'
  #    twitter.dependency 'DDSocial/Core'
  #  end
-  
-  s.subspec 'MiLiao' do |miliao|
-    miliao.source_files = 'DDSocial/MiLiao/Handler/*.{h,m}'
-    miliao.ios.vendored_frameworks = 'DDSocial/MiLiao/MiLiaoSDK/*.framework'
-    miliao.dependency 'DDSocial/Core'
+
+  s.subspec ‘SystemTwitter' do |systemTwitter|
+    systemTwitter.source_files = 'DDSocial/SystemTwitter/*.{h,m}'
+    systemTwitter.dependency 'DDSocial/Core'
   end
 
   s.subspec 'MI' do |mi|
