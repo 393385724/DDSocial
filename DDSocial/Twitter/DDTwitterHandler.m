@@ -27,15 +27,14 @@
 #pragma mark - Private Methods
 
 - (BOOL)shareTextWithProtocol:(id<DDSocialShareTextProtocol>)protocol{
-    SLComposeViewController *composeViewController = [SLComposeViewController composeViewControllerForServiceType:SLServiceTypeTwitter];
-    [composeViewController setInitialText:[protocol ddShareText]];
-    return [self sendInComposeViewController:composeViewController];
+    NSString *text = [protocol ddShareText];
+    return [self sendWithText:text image:nil URL:nil];
 }
 
 - (BOOL)shareImageWithProtocol:(id<DDSocialShareImageProtocol>)protocol{
-    SLComposeViewController *composeViewController = [SLComposeViewController composeViewControllerForServiceType:SLServiceTypeTwitter];
+    NSString *text;
     if ([protocol respondsToSelector:@selector(ddShareImageText)]) {
-        [composeViewController setInitialText:[protocol ddShareImageText]];
+        text = [protocol ddShareImageText];
     }
     
     UIImage *image;
@@ -44,39 +43,33 @@
     } else {
         image = [UIImage imageWithData:[protocol ddShareImageWithImageData]];
     }
-    [composeViewController addImage:image];
     
-    return [self sendInComposeViewController:composeViewController];
+    return [self sendWithText:text image:image URL:nil];
 }
 
-- (BOOL)shareWebPageWithProtocol:(id<DDSocialShareWebPageProtocol>)protocol{
-    SLComposeViewController *composeViewController = [SLComposeViewController composeViewControllerForServiceType:SLServiceTypeTwitter];
+- (BOOL)shareWebPageWithProtocol:(id<DDSocialShareWebPageProtocol>)protocol {
+    NSString *text;
     if ([protocol respondsToSelector:@selector(ddShareWebPageText)]) {
-        [composeViewController setInitialText:[protocol ddShareWebPageText]];
+        text = [protocol ddShareWebPageText];
     }
     
     UIImage *image = [UIImage imageWithData:[protocol ddShareWebPageWithImageData]];
-    [composeViewController addImage:image];
-    [composeViewController addURL:[NSURL URLWithString:[protocol ddShareWebPageWithWebpageUrl]]];
+    NSURL *url = [NSURL URLWithString:[protocol ddShareWebPageWithWebpageUrl]];
     
-    return [self sendInComposeViewController:composeViewController];
+    return [self sendWithText:text image:image URL:url];
 }
 
-- (BOOL)sendInComposeViewController:(SLComposeViewController *)composeViewController {
-    composeViewController.completionHandler = ^(SLComposeViewControllerResult result) {
-        if (result == SLComposeViewControllerResultCancelled) {
-            if (self.shareEventHandler) {
-                self.shareEventHandler(DDSSPlatformTwitter, DDSSSceneTwitter, DDSSShareStateCancel, nil);
-                self.shareEventHandler = nil;
-            }
-        } else {
-            if (self.shareEventHandler) {
-                self.shareEventHandler(DDSSPlatformTwitter, DDSSSceneTwitter, DDSSShareStateSuccess, nil);
-                self.shareEventHandler = nil;
-            }
-        }
-    };
-    [self.viewController presentViewController:composeViewController animated:YES completion:nil];
+- (BOOL)sendWithText:(NSString *)text image:(UIImage *)image URL:(NSURL *)url {
+    
+    if (![[self class] isInstalled]) {
+        return NO;
+    }
+    
+    TWTRComposer *composer = [[TWTRComposer alloc] init];
+    [composer setText:text];
+    [composer setImage:image];
+    [composer setURL:url];
+    [composer showFromViewController:self.viewController completion:^(TWTRComposerResult result) {}];
     return YES;
 }
 
