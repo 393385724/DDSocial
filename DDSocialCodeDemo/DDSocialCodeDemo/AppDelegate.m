@@ -32,7 +32,6 @@
     [[DDSocialShareHandler sharedInstance] registerPlatform:DDSSPlatformQQ appKey:@"222222"];
     [[DDSocialShareHandler sharedInstance] registerPlatform:DDSSPlatformFacebook appKey:@"125938537776820"];
     [[DDSocialShareHandler sharedInstance] registerPlatform:DDSSPlatformGoogle];
-    [[DDSocialShareHandler sharedInstance] registerPlatform:DDSSPlatformSystemTwitter];
     [[DDSocialShareHandler sharedInstance] registerPlatform:DDSSPlatformTwitter appKey:@"4r5BMrTUl5W3lOwBLSskd9VUb" appSecret:@"8pdLS9spOkf00HE2HetoUxb8bVB6YTxoFvoRwcyq9gl2XDRJBz"];
     
     return YES;

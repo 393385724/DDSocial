@@ -13,7 +13,6 @@ A share auth wheels based on the official library content wecaht sina tencent fa
 	pod 'DDSocial/Tencent'
 	pod 'DDSocial/Sina'
 	pod 'DDSocial/Facebook'
-    pod 'DDSocial/SystemTwitter'
 	pod 'DDSocial/Twitter'
 	pod 'DDSocial/Google'
 </code></pre>
@@ -33,7 +32,6 @@ Build Settings   ->  Search Paths 两个地方添加  Framework Search Paths 和
     [[DDSocialShareHandler sharedInstance] registerPlatform:DDSSPlatformSina appKey:@"自己申请的key"];
     [[DDSocialShareHandler sharedInstance] registerPlatform:DDSSPlatformQQ appKey:@"自己申请的key"];
     [[DDSocialShareHandler sharedInstance] registerPlatform:DDSSPlatformFacebook appKey:@"自己申请的key"];
-    [[DDSocialShareHandler sharedInstance] registerPlatform:DDSSPlatformSystemTwitter]; 
     [[DDSocialShareHandler sharedInstance] registerPlatform:DDSSPlatformTwitter appKey:@"自己申请的key" appSecret:@"对应的secret"];
     [[DDSocialShareHandler sharedInstance] registerPlatform:DDSSPlatformGoogle];
     return YES;

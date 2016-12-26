@@ -4,7 +4,6 @@ platform :ios,'7.0'
 workspace 'DDSocialCodeDemo'
 target 'DDSocialCodeDemo' do
    pod 'Google/SignIn', '~> 3.0.3' 
-   pod 'TwitterKit','~> 1.15.3'
    pod 'FBSDKLoginKit', '~> 4.12.0'
    pod 'FBSDKShareKit', '~> 4.12.0'
    pod 'WeiboSDK', '~> 3.1.3'   

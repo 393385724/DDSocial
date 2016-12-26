@@ -45,27 +45,16 @@ Pod::Spec.new do |s|
     facebook.dependency 'DDSocial/Core'
   end
 
- #  s.subspec 'Twitter' do |twitter|
- #    twitter.source_files = 'DDSocial/Twitter/*.{h,m}'
-	# twitter.xcconfig = { 'CLANG_ENABLE_MODULES' => 'YES' }
- #    twitter.dependency 'TwitterCore'
- #    twitter.dependency 'TwitterKit'
- #    twitter.dependency 'DDSocial/Core'
- #  end
-
-  s.subspec ‘SystemTwitter' do |systemTwitter|
-    systemTwitter.source_files = 'DDSocial/SystemTwitter/*.{h,m}'
-    systemTwitter.dependency 'DDSocial/Core'
+  s.subspec 'Twitter' do |twitter|
+    twitter.source_files = 'DDSocial/Twitter/*.{h,m}'
+    twitter.dependency 'DDSocial/Core'
   end
 
   s.subspec 'MI' do |mi|
     mi.source_files = 'DDSocial/MI/Handler/*.{h,m}'
     mi.ios.vendored_frameworks = 'DDSocial/MI/MiSDK/*.framework'
     mi.resource = "DDSocial/MI/MiSDK/*.bundle"
-	mi.xcconfig = { 'ENABLE_BITCODE' => 'NO' }
-    mi.libraries = 'stdc++'  
     mi.dependency 'DDSocial/Core'
-    mi.dependency 'TTTAttributedLabel', '~> 1.13.4'
   end
 
   s.subspec 'Google' do |google|

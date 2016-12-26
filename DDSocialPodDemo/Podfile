@@ -2,14 +2,13 @@ source 'https://github.com/CocoaPods/Specs.git'
 platform :ios,'7.0'
 #inhibit_all_warnings!
 target 'DDSocialPodDemo’do
-    pod 'DDSocial/Share' 
-    pod 'DDSocial/MI'
-    pod 'DDSocial/MiLiao'
-    pod 'DDSocial/Wechat'
-    pod 'DDSocial/Tencent'
-    pod 'DDSocial/Sina'
-    pod 'DDSocial/Facebook'
-    pod 'DDSocial/Twitter'
-    pod 'DDSocial/Google'
+    pod 'DDSocial/Share', :git => 'https://github.com/393385724/DDSocial.git'
+    pod 'DDSocial/MI', :git => 'https://github.com/393385724/DDSocial.git'
+    pod 'DDSocial/Wechat', :git => 'https://github.com/393385724/DDSocial.git'
+    pod 'DDSocial/Tencent', :git => 'https://github.com/393385724/DDSocial.git'
+    pod 'DDSocial/Sina', :git => 'https://github.com/393385724/DDSocial.git'
+    pod 'DDSocial/Facebook', :git => 'https://github.com/393385724/DDSocial.git'
+    pod 'DDSocial/Twitter', :git => 'https://github.com/393385724/DDSocial.git'
+    pod 'DDSocial/Google', :git => 'https://github.com/393385724/DDSocial.git'
 end
 
