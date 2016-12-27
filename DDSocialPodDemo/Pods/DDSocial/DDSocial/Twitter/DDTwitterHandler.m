@@ -2,14 +2,12 @@
 //  DDTwitterHandler.m
 //  DDSocialDemo
 //
-//  Created by lilingang on 16/1/4.
-//  Copyright © 2016年 LiLingang. All rights reserved.
+//  Created by dingdaojun on 16/1/4.
+//  Copyright © 2016年 dingdaojun. All rights reserved.
 //
 
 #import "DDTwitterHandler.h"
 #import <Social/Social.h>
-#import <Fabric/Fabric.h>
-#import <TwitterKit/TwitterKit.h>
 
 #import "DDSocialShareContentProtocol.h"
 #import "DDSocialHandlerProtocol.h"
@@ -63,7 +61,12 @@
 }
 
 - (BOOL)sendInComposeViewController:(SLComposeViewController *)composeViewController {
-    composeViewController.completionHandler = ^(SLComposeViewControllerResult result){
+    
+    if (!composeViewController) {
+        return NO;
+    }
+    
+    composeViewController.completionHandler = ^(SLComposeViewControllerResult result) {
         if (result == SLComposeViewControllerResultCancelled) {
             if (self.shareEventHandler) {
                 self.shareEventHandler(DDSSPlatformTwitter, DDSSSceneTwitter, DDSSShareStateCancel, nil);
@@ -85,49 +88,14 @@
 @implementation DDTwitterHandler (DDSocialHandlerProtocol)
 
 + (BOOL)isInstalled {
-    return [SLComposeViewController isAvailableForServiceType:SLServiceTypeTwitter];
+    return [SLComposeViewController isAvailableForServiceType:SLServiceTypeTwitter] && [SLComposeViewController composeViewControllerForServiceType:SLServiceTypeTwitter];
 }
 
 - (BOOL)registerWithAppKey:(NSString *)appKey
                  appSecret:(NSString *)appSecret
                redirectURL:(NSString *)redirectURL
             appDescription:(NSString *)appDescription {
-    if (appKey && [appKey length] > 0 && appSecret && [appSecret length] > 0) {
-        [[Twitter sharedInstance] startWithConsumerKey:appKey consumerSecret:appSecret];
-    }
-    [Fabric with:@[[Twitter class]]];
-    return YES;
-}
-
-- (BOOL)application:(UIApplication *)application
-      handleOpenURL:(NSURL *)url
-  sourceApplication:(NSString *)sourceApplication
-         annotation:(id)annotation {
-    return NO;
-}
-
-- (BOOL)authWithMode:(DDSSAuthMode)mode
-          controller:(UIViewController *)viewController
-             handler:(DDSSAuthEventHandler)handler {
-    if (handler) {
-        handler(DDSSPlatformTwitter, DDSSAuthStateBegan, nil, nil);
-    }
-    [[Twitter sharedInstance] logInWithCompletion:^(TWTRSession * _Nullable session, NSError * _Nullable error) {
-        if (error) {
-            if (handler) {
-                handler(DDSSPlatformTwitter, DDSSAuthStateFail, nil, error);
-            }
-        } else {
-            if (handler) {
-                DDAuthItem *authItem = [DDAuthItem new];
-                authItem.thirdToken = session.authToken;
-                authItem.thirdId = session.userID;
-                authItem.rawObject = session;
-                handler(DDSSPlatformTwitter, DDSSAuthStateSuccess, authItem, nil);
-            }
-        }
-    }];
-    return YES;
+    return [DDTwitterHandler isInstalled];
 }
 
 - (BOOL)shareWithController:(UIViewController *)viewController
@@ -144,9 +112,9 @@
     
     if (contentType == DDSSContentTypeText && [protocol conformsToProtocol:@protocol(DDSocialShareTextProtocol)]) {
         return [self shareTextWithProtocol:(id<DDSocialShareTextProtocol>)protocol];
-    } else if (contentType == DDSSContentTypeImage && [protocol conformsToProtocol:@protocol(DDSocialShareImageProtocol)]){
+    } else if (contentType == DDSSContentTypeImage && [protocol conformsToProtocol:@protocol(DDSocialShareImageProtocol)]) {
         return [self shareImageWithProtocol:(id<DDSocialShareImageProtocol>)protocol];
-    } else if (contentType == DDSSContentTypeWebPage && [protocol conformsToProtocol:@protocol(DDSocialShareWebPageProtocol)]){
+    } else if (contentType == DDSSContentTypeWebPage && [protocol conformsToProtocol:@protocol(DDSocialShareWebPageProtocol)]) {
         return [self shareWebPageWithProtocol:(id<DDSocialShareWebPageProtocol>)protocol];
     } else {
         if (self.shareEventHandler) {

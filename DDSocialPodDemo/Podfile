@@ -1,7 +1,7 @@
 source 'https://github.com/CocoaPods/Specs.git'
-platform :ios,'7.0'
+platform :ios,'8.0'
 #inhibit_all_warnings!
-target 'DDSocialPodDemo’do
+target 'DDSocialPodDemo'do
     pod 'DDSocial/Share', :git => 'https://github.com/393385724/DDSocial.git'
     pod 'DDSocial/MI', :git => 'https://github.com/393385724/DDSocial.git'
     pod 'DDSocial/Wechat', :git => 'https://github.com/393385724/DDSocial.git'

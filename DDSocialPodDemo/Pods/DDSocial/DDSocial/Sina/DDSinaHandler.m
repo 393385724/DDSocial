@@ -165,7 +165,7 @@ const CGFloat DDSinaImageDataMaxSize = 5 * 1024 * 1024;
         }
         self.authEventHandler = nil;
         
-    } else if ([response isKindOfClass:[WBSendMessageToWeiboResponse class]]){
+    } else if ([response isKindOfClass:[WBSendMessageToWeiboResponse class]]) {
         WeiboSDKResponseStatusCode statusCode = response.statusCode;
         switch (statusCode) {
             case WeiboSDKResponseStatusCodeSuccess: {
@@ -284,9 +284,9 @@ const CGFloat DDSinaImageDataMaxSize = 5 * 1024 * 1024;
     
     if (contentType == DDSSContentTypeText && [protocol conformsToProtocol:@protocol(DDSocialShareTextProtocol)]) {
         return [self shareTextWithProtocol:(id<DDSocialShareTextProtocol>)protocol];
-    } else if (contentType == DDSSContentTypeImage && [protocol conformsToProtocol:@protocol(DDSocialShareImageProtocol)]){
+    } else if (contentType == DDSSContentTypeImage && [protocol conformsToProtocol:@protocol(DDSocialShareImageProtocol)]) {
         return [self shareImageWithProtocol:(id<DDSocialShareImageProtocol>)protocol];
-    } else if (contentType == DDSSContentTypeWebPage && [protocol conformsToProtocol:@protocol(DDSocialShareWebPageProtocol)]){
+    } else if (contentType == DDSSContentTypeWebPage && [protocol conformsToProtocol:@protocol(DDSocialShareWebPageProtocol)]) {
         return [self shareWebPageWithProtocol:(id<DDSocialShareWebPageProtocol>)protocol];
     } else {
         NSString *errorDescription = [NSString stringWithFormat:@"分享格式错误:%@ shareType:%lu",NSStringFromClass([protocol class]),(unsigned long)contentType];

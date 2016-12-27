@@ -2,8 +2,8 @@
 //  DDTwitterHandler.h
 //  DDSocialDemo
 //
-//  Created by lilingang on 16/1/4.
-//  Copyright © 2016年 LiLingang. All rights reserved.
+//  Created by dingdaojun on 16/1/4.
+//  Copyright © 2016年 dingdaojun. All rights reserved.
 //
 
 #import <Foundation/Foundation.h>
