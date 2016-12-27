@@ -286,15 +286,3 @@ DDSocialShareWebPageProtocol//web内容分享需要实现该协议<br />
 <key>FacebookDisplayName</key>
 <string>facebook授权页展示的名字</string>
 </code></pre>
-
-###Twitter开放平台(https://fabric.io/kits/ios/twitterkit/install)
-1、xcode中配置info.plist<br />
-   （1）添加Fabric<br />
-3、示例代码<br />
-<pre><code>
-<key>Fabric</key>
-<dict>
-    <key>APIKey</key>
-    <string>自己申请的key</string>
-</dict>
-</code></pre>

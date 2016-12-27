@@ -28,11 +28,11 @@
     
     [[DDSocialShareHandler sharedInstance] registerPlatform:DDSSPlatformMI appKey:@"2882303761517373163"redirectURL:@"http://xiaomi.com"];
     [[DDSocialShareHandler sharedInstance] registerPlatform:DDSSPlatformWeChat appKey:@"wxd930ea5d5a258f4f"];
-    [[DDSocialShareHandler sharedInstance] registerPlatform:DDSSPlatformSina appKey:@"2045436852"];
     [[DDSocialShareHandler sharedInstance] registerPlatform:DDSSPlatformQQ appKey:@"222222"];
+    [[DDSocialShareHandler sharedInstance] registerPlatform:DDSSPlatformSina appKey:@"2045436852"];
     [[DDSocialShareHandler sharedInstance] registerPlatform:DDSSPlatformFacebook appKey:@"125938537776820"];
+    [[DDSocialShareHandler sharedInstance] registerPlatform:DDSSPlatformTwitter];
     [[DDSocialShareHandler sharedInstance] registerPlatform:DDSSPlatformGoogle];
-    [[DDSocialShareHandler sharedInstance] registerPlatform:DDSSPlatformTwitter appKey:@"4r5BMrTUl5W3lOwBLSskd9VUb" appSecret:@"8pdLS9spOkf00HE2HetoUxb8bVB6YTxoFvoRwcyq9gl2XDRJBz"];
     
     return YES;
 }
