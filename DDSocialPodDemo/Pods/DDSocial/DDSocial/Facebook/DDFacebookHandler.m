@@ -70,7 +70,7 @@ const CGFloat DDFacebookImageDataMaxSize = 12 * 1024 * 1024;
 - (BOOL)sendWithContent:(id<FBSDKSharingContent>)sharingContent{
     FBSDKShareDialog *dialog = [[FBSDKShareDialog alloc] init];
     //fix bug FBSDKShareDialog of Facebook SDK is not working on iOS9? http://www.basedb.net/Index/detail/id/537586.html
-    if ([[self class] isInstalled]){
+    if ([[self class] isInstalled]) {
         dialog.mode = FBSDKShareDialogModeNative;
     } else {
         dialog.mode = FBSDKShareDialogModeBrowser;
@@ -176,7 +176,7 @@ const CGFloat DDFacebookImageDataMaxSize = 12 * 1024 * 1024;
                                                   if (handler) {
                                                       handler(DDSSPlatformFacebook, DDSSAuthStateFail, nil, error);
                                                   }
-                                              } else if (result.isCancelled){
+                                              } else if (result.isCancelled) {
                                                   if (handler) {
                                                       handler(DDSSPlatformFacebook, DDSSAuthStateCancel, nil, error);
                                                   }
@@ -225,9 +225,9 @@ const CGFloat DDFacebookImageDataMaxSize = 12 * 1024 * 1024;
     }
     if (contentType == DDSSContentTypeText && [protocol conformsToProtocol:@protocol(DDSocialShareTextProtocol)]) {
         return [self shareTextWithProtocol:(id<DDSocialShareTextProtocol>)protocol];
-    } else if (contentType == DDSSContentTypeImage && [protocol conformsToProtocol:@protocol(DDSocialShareImageProtocol)]){
+    } else if (contentType == DDSSContentTypeImage && [protocol conformsToProtocol:@protocol(DDSocialShareImageProtocol)]) {
         return [self shareImageWithProtocol:(id<DDSocialShareImageProtocol>)protocol];
-    } else if (contentType == DDSSContentTypeWebPage && [protocol conformsToProtocol:@protocol(DDSocialShareWebPageProtocol)]){
+    } else if (contentType == DDSSContentTypeWebPage && [protocol conformsToProtocol:@protocol(DDSocialShareWebPageProtocol)]) {
         return [self shareWebPageWithProtocol:(id<DDSocialShareWebPageProtocol>)protocol];
     } else {
         if (self.shareEventHandler) {

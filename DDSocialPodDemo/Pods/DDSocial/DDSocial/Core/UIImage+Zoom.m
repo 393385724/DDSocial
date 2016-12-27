@@ -46,19 +46,19 @@ static int16_t unsharpen_kernel[9] = {
     [originImage drawInRect:CGRectMake(0, 0, btWidth,btHeight)];
     UIImage *scaledImage = UIGraphicsGetImageFromCurrentImageContext();
     UIGraphicsEndImageContext();
-    NSData *newImageData = UIImageJPEGRepresentation(scaledImage, 1.0);
+    NSData *newImageData = UIImageJPEGRepresentation([scaledImage unsharpen], 1.0);
     CGFloat compressionQuality = 1.0;
     while ([newImageData length] > maxBytes) {
         @autoreleasepool {
             compressionQuality -= 0.2;
             newImageData = UIImageJPEGRepresentation(scaledImage, compressionQuality);
         }
-        if (compressionQuality < 0.7) {
+        if (compressionQuality < 0.6) {
             NSLog(@"图片太大无法完成分享，缩略图不应超过32k 原始图不应超过1M");
             break;
         }
     }
-    return UIImageJPEGRepresentation([scaledImage unsharpen], compressionQuality);
+    return newImageData;
 }
 
 + (UIImage *)imageWithImageData:(NSData *)imageData maxBytes:(CGFloat)maxBytes type:(DDSocialImageType)type{
@@ -84,7 +84,7 @@ static int16_t unsharpen_kernel[9] = {
     if (!bmContext)
         return nil;
     
-    CGContextDrawImage(bmContext, (CGRect){.origin.x = 0.0f, .origin.y = 0.0f, .size.width = width, .size.height = height}, self.CGImage);
+    CGContextDrawImage(bmContext, (CGRect) {.origin.x = 0.0f, .origin.y = 0.0f, .size.width = width, .size.height = height}, self.CGImage);
     
     UInt8* data = (UInt8*)CGBitmapContextGetData(bmContext);
     if (!data)
