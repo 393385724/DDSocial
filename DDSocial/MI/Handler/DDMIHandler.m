@@ -73,11 +73,8 @@ static NSString * const DDMIGetProfileAPISuffix = @"user/profile";
  */
 - (void)passport:(MiPassport *)passport didGetCode:(NSString *)code {
     DDAuthItem *authItem = [[DDAuthItem alloc] init];
-    if (self.authMode == DDSSAuthModeToken) {
-        authItem.thirdToken = code;
-    } else {
-        authItem.thirdToken = passport.accessToken;
-    }
+    authItem.thirdId = passport.appId;
+    authItem.thirdToken = code;
     authItem.rawObject = passport;
     
     if (self.authEventHandle) {
