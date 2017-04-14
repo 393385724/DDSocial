@@ -160,7 +160,7 @@ const CGFloat DDWeChatImageDataMaxSize = 10 * 1024.0 * 1024.0;
                  appSecret:(NSString *)appSecret
                redirectURL:(NSString *)redirectURL
             appDescription:(NSString *)appDescription {
-    return [WXApi registerApp:appKey withDescription:appDescription];
+    return [WXApi registerApp:appKey enableMTA:NO];
 }
 
 - (BOOL)application:(UIApplication *)application
