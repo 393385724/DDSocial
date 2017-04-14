@@ -27,7 +27,7 @@
 			<string>weixin</string>
 			<key>CFBundleURLSchemes</key>
 			<array>
-				<string>wxd930ea5d5a258f4f</string>
+				<string>wxXXXXXXXX</string>
 			</array>
 		</dict>
 		<dict>
@@ -57,7 +57,7 @@
 			<string>xiaomi</string>
 			<key>CFBundleURLSchemes</key>
 			<array>
-				<string>mi2882303761517373163</string>
+				<string>miXXXXXXXXX</string>
 			</array>
 		</dict>
 		<dict>
@@ -67,17 +67,7 @@
 			<string>facebook</string>
 			<key>CFBundleURLSchemes</key>
 			<array>
-				<string>fb125938537776820</string>
-			</array>
-		</dict>
-		<dict>
-			<key>CFBundleTypeRole</key>
-			<string>ML</string>
-			<key>CFBundleURLName</key>
-			<string>miliao</string>
-			<key>CFBundleURLSchemes</key>
-			<array>
-				<string>ml6df2cb3b3cc22134</string>
+				<string>fbXXXXXXXXXX</string>
 			</array>
 		</dict>
 		<dict>
@@ -85,7 +75,7 @@
 			<string>Editor</string>
 			<key>CFBundleURLSchemes</key>
 			<array>
-				<string>com.googleusercontent.apps.223284909155-00q7in1se57mprom92n7c65c10dr058q</string>
+				<string>xxxxxx</string>
 			</array>
 		</dict>
 		<dict>
