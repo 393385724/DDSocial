@@ -268,10 +268,12 @@ static NSMutableArray *g_pendingFBSDKShareAPI;
   [self _addCommonParameters:parameters content:linkContent];
   [FBSDKInternalUtility dictionary:parameters setObject:self.message forKey:@"message"];
   [FBSDKInternalUtility dictionary:parameters setObject:linkContent.contentURL forKey:@"link"];
+#pragma clang diagnostic push
+#pragma clang diagnostic ignored "-Wdeprecated-declarations"
   [FBSDKInternalUtility dictionary:parameters setObject:linkContent.imageURL forKey:@"picture"];
   [FBSDKInternalUtility dictionary:parameters setObject:linkContent.contentTitle forKey:@"name"];
   [FBSDKInternalUtility dictionary:parameters setObject:linkContent.contentDescription forKey:@"description"];
-
+#pragma clang diagnostic pop
   [[[FBSDKGraphRequest alloc] initWithGraphPath:[self _graphPathWithSuffix:@"feed", nil]
                                      parameters:parameters
                                     tokenString:self.accessToken.tokenString
@@ -368,6 +370,7 @@ static NSMutableArray *g_pendingFBSDKShareAPI;
     if ([errors count]) {
       [_delegate sharer:self didFailWithError:errors[0]];
     } else if ([results count]) {
+      NSArray *individualPhotoIDs = [results valueForKeyPath:@"id"];
       // each photo upload will be merged into the same post, so grab the post_id from the first and use that
       NSMutableDictionary *shareResults = [[NSMutableDictionary alloc] init];
       [FBSDKInternalUtility dictionary:shareResults setObject:FBSDK_SHARE_RESULT_COMPLETION_GESTURE_VALUE_POST
@@ -375,6 +378,7 @@ static NSMutableArray *g_pendingFBSDKShareAPI;
       NSDictionary *firstResult = [FBSDKTypeUtility dictionaryValue:results[0]];
       [FBSDKInternalUtility dictionary:shareResults setObject:[FBSDKTypeUtility stringValue:firstResult[@"post_id"]]
                                 forKey:FBSDK_SHARE_RESULT_POST_ID_KEY];
+      [FBSDKInternalUtility dictionary:shareResults setObject:individualPhotoIDs forKey:FBSDK_SHARE_RESULT_PHOTO_IDS_KEY];
       [_delegate sharer:self didCompleteWithResults:shareResults];
     }
   };
@@ -413,6 +417,7 @@ static NSMutableArray *g_pendingFBSDKShareAPI;
                                                                             videoSize:(unsigned long)[_fileHandle seekToEndOfFile]
                                                                            parameters:parameters
                                                                              delegate:self];
+    videoUploader.graphNode = self.graphNode;
     [videoUploader start];
     return YES;
   } else if (videoURL) {
@@ -429,6 +434,7 @@ static NSMutableArray *g_pendingFBSDKShareAPI;
                                                                               videoSize:size
                                                                              parameters:parameters
                                                                                delegate:self];
+      videoUploader.graphNode = self.graphNode;
       [videoUploader start];
     } failureBlock:^(NSError *error) {
       [_delegate sharer:self didFailWithError:error];
