@@ -1,6 +1,6 @@
 Pod::Spec.new do |s|  
   s.name             = "DDSocial"  
-  s.version          = "1.3.1"  
+  s.version          = "1.3.2"  
   s.summary          = "A share auth wheels based on the official library content wecaht sina tencent facebook twitter google mi"  
   s.homepage         = "https://github.com/393385724/DDSocial"  
   s.license          = 'MIT'  
@@ -52,6 +52,7 @@ Pod::Spec.new do |s|
 
   s.subspec 'MI' do |mi|
     mi.source_files = 'DDSocial/MI/Handler/*.{h,m}'
+	mi.user_target_xcconfig = { 'ENABLE_BITCODE' => 'NO' }
     mi.ios.vendored_frameworks = 'DDSocial/MI/MiSDK/*.framework'
     mi.resource = "DDSocial/MI/MiSDK/*.bundle"
     mi.dependency 'DDSocial/Core'
