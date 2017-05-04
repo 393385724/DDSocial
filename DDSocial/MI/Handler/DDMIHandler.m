@@ -73,11 +73,8 @@ static NSString * const DDMIGetProfileAPISuffix = @"user/profile";
  */
 - (void)passport:(MiPassport *)passport didGetCode:(NSString *)code {
     DDAuthItem *authItem = [[DDAuthItem alloc] init];
-    if (self.authMode == DDSSAuthModeToken) {
-        authItem.thirdToken = code;
-    } else {
-        authItem.thirdToken = passport.accessToken;
-    }
+    authItem.thirdId = passport.appId;
+    authItem.thirdToken = code;
     authItem.rawObject = passport;
     
     if (self.authEventHandle) {
@@ -160,6 +157,13 @@ static NSString * const DDMIGetProfileAPISuffix = @"user/profile";
     NSAssert(appKey, @"appKey 不能为空");
     self.miPassport = [[MiPassport alloc] initWithAppId:appKey
                                             redirectUrl:redirectURL andDelegate:self];
+}
+
+- (BOOL)application:(UIApplication *)application
+      handleOpenURL:(NSURL *)url
+  sourceApplication:(NSString *)sourceApplication
+         annotation:(id)annotation {
+    return [self.miPassport handleOpenURL:url];
 }
 
 - (BOOL)authWithMode:(DDSSAuthMode)mode
