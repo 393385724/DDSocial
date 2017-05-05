@@ -160,6 +160,13 @@ static NSString * const DDMIGetProfileAPISuffix = @"user/profile";
                                             redirectUrl:redirectURL andDelegate:self];
 }
 
+- (BOOL)application:(UIApplication *)application
+      handleOpenURL:(NSURL *)url
+  sourceApplication:(NSString *)sourceApplication
+         annotation:(id)annotation {
+    return [self.miPassport handleOpenURL:url];
+}
+
 - (BOOL)authWithMode:(DDSSAuthMode)mode
           controller:(UIViewController *)viewController
              handler:(DDSSAuthEventHandler)handler{
