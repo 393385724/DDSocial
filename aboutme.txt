@@ -8,5 +8,5 @@
   2、fixbug 图片分享缩略图失真
 2017-05-15
   1、QQ SDK，2017-05-05 V3.2.1版本
-  1、Sina SDK，https://github.com/sinaweibosdk/weibo_ios_sdk.git
+  1、Sina SDK，3.2.0， 暂时直接把库下载下来引入
  
