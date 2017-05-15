@@ -1,6 +1,6 @@
 Pod::Spec.new do |s|  
   s.name             = "DDSocial"  
-  s.version          = "1.3.3"  
+  s.version          = "1.4.0"  
   s.summary          = "A share auth wheels based on the official library content wecaht sina tencent facebook twitter google mi"  
   s.homepage         = "https://github.com/393385724/DDSocial"  
   s.license          = 'MIT'  
@@ -18,7 +18,6 @@ Pod::Spec.new do |s|
   s.subspec 'Tencent' do |tencent|
     tencent.source_files = 'DDSocial/Tencent/Handler/*.{h,m}'
     tencent.ios.vendored_frameworks = 'DDSocial/Tencent/TencentSDK/*.framework'
-    tencent.resource = "DDSocial/Tencent/TencentSDK/*.bundle"
     tencent.libraries = 'z', 'sqlite3','stdc++','iconv'
     tencent.frameworks = 'SystemConfiguration','CoreGraphics', 'CoreTelephony', 'Security'
     tencent.dependency 'DDSocial/Core'
@@ -34,7 +33,7 @@ Pod::Spec.new do |s|
 
   s.subspec 'Sina' do |sina|
     sina.source_files = 'DDSocial/Sina/*.{h,m}'
-    sina.dependency 'WeiboSDK'
+    sina.dependency 'WeiboSDK', :git => "https://github.com/sinaweibosdk/weibo_ios_sdk.git"
     sina.dependency 'DDSocial/Core'
   end
 
