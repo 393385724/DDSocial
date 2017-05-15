@@ -6,3 +6,7 @@
 2016-07-01 版本1.2.4
   1、fixbug 微信图片分享逻辑判断错误
   2、fixbug 图片分享缩略图失真
+2017-05-15
+  1、QQ SDK，2017-05-05 V3.2.1版本
+  1、Sina SDK，https://github.com/sinaweibosdk/weibo_ios_sdk.git
+ 

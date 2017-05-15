@@ -22,7 +22,6 @@
 		7B717BDF1E0BC1FE0098D5D8 /* DDSinaHandler.m in Sources */ = {isa = PBXBuildFile; fileRef = 7B717BBD1E0BC1FE0098D5D8 /* DDSinaHandler.m */; };
 		7B717BE11E0BC1FE0098D5D8 /* DDTencentHandler.m in Sources */ = {isa = PBXBuildFile; fileRef = 7B717BC41E0BC1FE0098D5D8 /* DDTencentHandler.m */; };
 		7B717BE21E0BC1FE0098D5D8 /* TencentOpenAPI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7B717BC61E0BC1FE0098D5D8 /* TencentOpenAPI.framework */; };
-		7B717BE31E0BC1FE0098D5D8 /* TencentOpenApi_IOS_Bundle.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 7B717BC71E0BC1FE0098D5D8 /* TencentOpenApi_IOS_Bundle.bundle */; };
 		7B717BE51E0BC1FE0098D5D8 /* DDWeChatHandler.m in Sources */ = {isa = PBXBuildFile; fileRef = 7B717BCE1E0BC1FE0098D5D8 /* DDWeChatHandler.m */; };
 		7B717BE61E0BC1FE0098D5D8 /* libWeChatSDK.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 7B717BD01E0BC1FE0098D5D8 /* libWeChatSDK.a */; };
 		7B717BE81E0BC2280098D5D8 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 7B717BE71E0BC2280098D5D8 /* main.m */; };
@@ -83,7 +82,6 @@
 		7B717BC31E0BC1FE0098D5D8 /* DDTencentHandler.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DDTencentHandler.h; sourceTree = "<group>"; };
 		7B717BC41E0BC1FE0098D5D8 /* DDTencentHandler.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DDTencentHandler.m; sourceTree = "<group>"; };
 		7B717BC61E0BC1FE0098D5D8 /* TencentOpenAPI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = TencentOpenAPI.framework; sourceTree = "<group>"; };
-		7B717BC71E0BC1FE0098D5D8 /* TencentOpenApi_IOS_Bundle.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = TencentOpenApi_IOS_Bundle.bundle; sourceTree = "<group>"; };
 		7B717BCD1E0BC1FE0098D5D8 /* DDWeChatHandler.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DDWeChatHandler.h; sourceTree = "<group>"; };
 		7B717BCE1E0BC1FE0098D5D8 /* DDWeChatHandler.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DDWeChatHandler.m; sourceTree = "<group>"; };
 		7B717BD01E0BC1FE0098D5D8 /* libWeChatSDK.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libWeChatSDK.a; sourceTree = "<group>"; };
@@ -283,7 +281,6 @@
 			isa = PBXGroup;
 			children = (
 				7B717BC61E0BC1FE0098D5D8 /* TencentOpenAPI.framework */,
-				7B717BC71E0BC1FE0098D5D8 /* TencentOpenApi_IOS_Bundle.bundle */,
 			);
 			path = TencentSDK;
 			sourceTree = "<group>";
@@ -475,7 +472,6 @@
 				7BF33FF01E0AC84500A02EAA /* IMG_5644.JPG in Resources */,
 				7BF33FEF1E0AC84500A02EAA /* GoogleService-Info.plist in Resources */,
 				9060A99D1CC50396006BABE2 /* Assets.xcassets in Resources */,
-				7B717BE31E0BC1FE0098D5D8 /* TencentOpenApi_IOS_Bundle.bundle in Resources */,
 				9060A99B1CC50396006BABE2 /* Main.storyboard in Resources */,
 				7BF33FEC1E0AC84500A02EAA /* DDMainViewController.xib in Resources */,
 				7BF33FEA1E0AC84500A02EAA /* DDAuthTableViewController.xib in Resources */,
@@ -527,7 +523,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n";
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n";
 			showEnvVarsInLog = 0;
 		};
 /* End PBXShellScriptBuildPhase section */
@@ -683,6 +679,24 @@
 					"COCOAPODS=1",
 					MI,
 				);
+				HEADER_SEARCH_PATHS = (
+					"$(inherited)",
+					"\"${PODS_ROOT}/Headers/Public\"",
+					"\"${PODS_ROOT}/Headers/Public/Bolts\"",
+					"\"${PODS_ROOT}/Headers/Public/FBSDKCoreKit\"",
+					"\"${PODS_ROOT}/Headers/Public/FBSDKLoginKit\"",
+					"\"${PODS_ROOT}/Headers/Public/FBSDKShareKit\"",
+					"\"${PODS_ROOT}/Headers/Public/FirebaseAnalytics\"",
+					"\"${PODS_ROOT}/Headers/Public/FirebaseCore\"",
+					"\"${PODS_ROOT}/Headers/Public/FirebaseInstanceID\"",
+					"\"${PODS_ROOT}/Headers/Public/GTMOAuth2\"",
+					"\"${PODS_ROOT}/Headers/Public/GTMSessionFetcher\"",
+					"\"${PODS_ROOT}/Headers/Public/Google\"",
+					"\"${PODS_ROOT}/Headers/Public/GoogleSignIn\"",
+					"\"${PODS_ROOT}/Headers/Public/GoogleToolboxForMac\"",
+					"\"${PODS_ROOT}/Headers/Public/TTTAttributedLabel\"",
+					"\"${PODS_ROOT}/Headers/Public/WeiboSDK\"",
+				);
 				INFOPLIST_FILE = DDSocialCodeDemo/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
@@ -766,6 +780,24 @@
 					"\"$(SRCROOT)/../DDSocial/MI/MiSDK/\"",
 				);
 				GCC_PREFIX_HEADER = "$(SRCROOT)/DDSocialCodeDemo/DDSosial-Prefix.pch";
+				HEADER_SEARCH_PATHS = (
+					"$(inherited)",
+					"\"${PODS_ROOT}/Headers/Public\"",
+					"\"${PODS_ROOT}/Headers/Public/Bolts\"",
+					"\"${PODS_ROOT}/Headers/Public/FBSDKCoreKit\"",
+					"\"${PODS_ROOT}/Headers/Public/FBSDKLoginKit\"",
+					"\"${PODS_ROOT}/Headers/Public/FBSDKShareKit\"",
+					"\"${PODS_ROOT}/Headers/Public/FirebaseAnalytics\"",
+					"\"${PODS_ROOT}/Headers/Public/FirebaseCore\"",
+					"\"${PODS_ROOT}/Headers/Public/FirebaseInstanceID\"",
+					"\"${PODS_ROOT}/Headers/Public/GTMOAuth2\"",
+					"\"${PODS_ROOT}/Headers/Public/GTMSessionFetcher\"",
+					"\"${PODS_ROOT}/Headers/Public/Google\"",
+					"\"${PODS_ROOT}/Headers/Public/GoogleSignIn\"",
+					"\"${PODS_ROOT}/Headers/Public/GoogleToolboxForMac\"",
+					"\"${PODS_ROOT}/Headers/Public/TTTAttributedLabel\"",
+					"\"${PODS_ROOT}/Headers/Public/WeiboSDK\"",
+				);
 				INFOPLIST_FILE = DDSocialCodeDemo/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";

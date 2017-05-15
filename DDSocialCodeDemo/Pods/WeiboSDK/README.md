@@ -141,3 +141,53 @@ the server cannot be made."这样的问题。
 
 ###3.应用瘦身与bitcode
 苹果在iOS9的SDK中添加了对应用的瘦身的支持，其中就包括bitcode。我们也在最新的代码中添加了对bitcode的支持
+
+# 关于ADSupport集成的问题
+
+关于第三方应用开发者是否集成ADSupport.framework的问题：
+ 
+1. 如果开发者希望集成ADSupport.framework，在进行ipa提交store时候勾选用于跟踪用户广告效果的选项即可。具体操作可参照友盟
+[http://bbs.umeng.com/forum.php？mod=viewthread&tid=6242&aid=1611&from=album&page=1&mobile=2](http://bbs.umeng.com/forum.php?mod=viewthread&tid=6242&aid=1611&from=album&page=1&mobile=2)
+
+2. 如果开发者希望不集成ADSupport.framework，直接删去即可，微博SDK的使用并非强制要求第三方开发者集成ADSupport.framework。不集成ADSupport.framework不会影响WeiboSDK的正常使用。
+
+# 关于ipv6支持的问题
+
+由于苹果商店6月1日起，强制app需要支持ipv6-only的网络。微博sdk这边也做了支持，更新了使用的底层网络代码，包括reachability库。
+
+
+# iOS10的适配问题
+
+由于iOS10的发布，原有ATS设置在iOS10上会出现https网络访问限制的问题，为了确保好的应用体验，我们需要采取如下措施：
+
+-
+			<key>sina.com.cn</key>
+			<dict>
+				<key>NSIncludesSubdomains</key>
+				<true/>
+				<key>NSThirdPartyExceptionAllowsInsecureHTTPLoads</key>
+				<true/>
+				<key>NSExceptionMinimumTLSVersion</key>
+				<string>TLSv1.0</string>
+				<key>NSThirdPartyExceptionRequiresForwardSecrecy</key>
+				<false/>
+			</dict>
+
+需要在每一个域名下添加NSExceptionMinimumTLSVersion这样的key，值的部分为TLSv1.0
+
+
+# 3.2.0版本更新
+
+微博移动SDK3.2，围绕 “分享＋连接” 这个核心主题，面向开发者，规划的主要功能模块只有4个：SDK初始化、用微博帐号登录、分享到微博、连接到微博。其他的功能已经转移，下线或在未来不久的版本即将下线。具体变动的功能如下：
+
+1. 热评与关系化组件下线
+2. 私信分享功能，私信应用推荐功能下线
+3. SDK不再包装访问openAPI的接口，SDK对外提供的网络访问工具WBHttpRequest也将逐步下线，开发者微博后期使用微博openAPI接口时，需要使用自己网络模块并按照平台的接口文档进行调用
+4. 短信注册登录功能下线
+5. 多媒体分享功能整体修改，在微博客户端7.5.0后的版本，分享到发布器的多媒体对象将不再以linkcard显示，转而以文本链接的形式插入到分享的文本中。（该功能的修改不会影响到分享内容在信息里的显示，凡是经过商务对接的第三方，发出去的多媒体对象在信息流中就会显示linkcard）并且该功能在后期会进一步修改。
+
+同时在新的SDK中还有部分功能未完善，会在近期的版本更新中逐步完善：
+
+1. 由于部分H5模块针对TLS1.2的支持还有问题，所以目前SDK的ATS还不能完全打开
+2. 连接到微博的功能还有部分不太完善，将在后期的版本中逐步修改
+

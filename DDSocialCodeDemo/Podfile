@@ -6,6 +6,6 @@ target 'DDSocialCodeDemo' do
    pod 'Google/SignIn'
    pod 'FBSDKLoginKit'
    pod 'FBSDKShareKit'
-   pod 'WeiboSDK'
-   pod 'TTTAttributedLabel'     
+   pod 'WeiboSDK', :git => "https://github.com/sinaweibosdk/weibo_ios_sdk.git"
+   pod 'TTTAttributedLabel'
 end 

@@ -851,7 +851,7 @@ THE SOFTWARE.
 			<key>FooterText</key>
 			<string></string>
 			<key>License</key>
-			<string>Commercial</string>
+			<string>MIT</string>
 			<key>Title</key>
 			<string>WeiboSDK</string>
 			<key>Type</key>
