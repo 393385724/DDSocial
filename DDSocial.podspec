@@ -32,8 +32,7 @@ Pod::Spec.new do |s|
   end
 
   s.subspec 'Sina' do |sina|
-    sina.source_files = 'DDSocial/Sina/*.{h,m}'
-	sina.source_files = 'DDSocial/Sina/libWeiboSDK/*.{h,m}'
+	sina.source_files = 'DDSocial/Sina/*.{h,m}','DDSocial/Sina/libWeiboSDK/*.{h,m}'
 	sina.resource     = 'DDSocial/Sina/libWeiboSDK/WeiboSDK.bundle'
 	sina.ios.vendored_libraries  = 'DDSocial/Sina/libWeiboSDK/libWeiboSDK.a'
 	sina.frameworks   = 'ImageIO', 'CoreText', 'QuartzCore', 'SystemConfiguration','Security', 'CoreGraphics','CoreTelephony'
