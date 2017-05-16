@@ -122,6 +122,8 @@
 		<string>miliao</string>
 		<string>miliaoapi.1.1</string>
 		<string>miliaoapi.1.0</string>
+		<string>tim</string>
+		<string>timapiV1</string>
 	</array>
 	<key>LSRequiresIPhoneOS</key>
 	<true/>

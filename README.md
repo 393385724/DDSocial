@@ -190,6 +190,8 @@ DDSocialShareWebPageProtocol//web内容分享需要实现该协议<br />
     <string>mqqapi</string>
     <string>wtloginmqq2</string>
     <string>mqzone</string>
+    <string>tim</string>
+    <string>timapiV1</string>
 </array>
 </code></pre>
 ###新浪微博开放平台(http://open.weibo.com/)

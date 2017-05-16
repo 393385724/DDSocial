@@ -52,6 +52,7 @@
     DDSSPlatform platform = [self platformWithsection:indexPath.section];
     DDSSScene shareScene = [self shareSceneWithsection:indexPath.section];
     DDSSContentType contentType = [self contentTypeWithRow:indexPath.row];
+    BOOL isInstall = [DDSocialShareHandler isInstalledPlatform:platform];
     [[DDSocialShareHandler sharedInstance] shareWithPlatform:platform controller:self shareScene:shareScene contentType:contentType protocol:self handler:^(DDSSPlatform platform, DDSSScene scene, DDSSShareState state, NSError *error) {
         switch (state) {
             case DDSSShareStateBegan: {
