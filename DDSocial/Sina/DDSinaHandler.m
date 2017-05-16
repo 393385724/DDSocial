@@ -7,7 +7,7 @@
 //
 
 #import "DDSinaHandler.h"
-#import <WeiboSDK/WeiboSDK.h>
+#import "WeiboSDK.h"
 
 #import "DDAuthItem.h"
 #import "DDUserInfoItem.h"
