@@ -13,7 +13,7 @@
 
 static NSString * const DDMIGetProfileAPISuffix = @"user/profile";
 
-@interface DDMIHandler ()<MPSessionDelegate, MPRequestDelegate>
+@interface DDMIHandler ()<MPSessionDelegate, MiPassportRequestDelegate>
 
 @property (nonatomic, strong) MiPassport *miPassport;
 
@@ -94,21 +94,21 @@ static NSString * const DDMIGetProfileAPISuffix = @"user/profile";
 /**
  * Called just before the request is sent to the server.
  */
-- (void)requestLoading:(MPRequest *)request {
+- (void)requestLoading:(MiPassportRequest *)request {
     
 }
 
 /**
  * Called when the server responds and begins to send back data.
  */
-- (void)request:(MPRequest *)request didReceiveResponse:(NSURLResponse *)response {
+- (void)request:(MiPassportRequest *)request didReceiveResponse:(NSURLResponse *)response {
     
 }
 
 /**
  * Called when an error prevents the request from completing successfully.
  */
-- (void)request:(MPRequest *)request didFailWithError:(NSError *)error {
+- (void)request:(MiPassportRequest *)request didFailWithError:(NSError *)error {
     NSLog(@"request did fail with error code: %zd", [error code]);
     if ([request.url hasSuffix:DDMIGetProfileAPISuffix]) {
         self.userInfoEventHandler(nil, error);
@@ -123,7 +123,7 @@ static NSString * const DDMIGetProfileAPISuffix = @"user/profile";
  * The resulting object may be a dictionary, an array, a string, or a number,
  * depending on thee format of the API response.
  */
-- (void)request:(MPRequest *)request didLoad:(id)result {
+- (void)request:(MiPassportRequest *)request didLoad:(id)result {
     if ([request.url hasSuffix:DDMIGetProfileAPISuffix]) {
         NSInteger code = [[result objectForKey:@"code"] integerValue];
         if (code == 0) {
@@ -143,7 +143,7 @@ static NSString * const DDMIGetProfileAPISuffix = @"user/profile";
  *
  * The result object is the raw response from the server of type NSData
  */
-- (void)request:(MPRequest *)request didLoadRawResponse:(NSData *)data {
+- (void)request:(MiPassportRequest *)request didLoadRawResponse:(NSData *)data {
 
 }
 

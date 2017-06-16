@@ -18,7 +18,6 @@
 		7B717BDB1E0BC1FE0098D5D8 /* DDSocialShareHandler.m in Sources */ = {isa = PBXBuildFile; fileRef = 7B717BB31E0BC1FE0098D5D8 /* DDSocialShareHandler.m */; };
 		7B717BDC1E0BC1FE0098D5D8 /* DDMIHandler.m in Sources */ = {isa = PBXBuildFile; fileRef = 7B717BB71E0BC1FE0098D5D8 /* DDMIHandler.m */; };
 		7B717BDD1E0BC1FE0098D5D8 /* MiPassport.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 7B717BB91E0BC1FE0098D5D8 /* MiPassport.bundle */; };
-		7B717BDE1E0BC1FE0098D5D8 /* MiPassport.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7B717BBA1E0BC1FE0098D5D8 /* MiPassport.framework */; };
 		7B717BDF1E0BC1FE0098D5D8 /* DDSinaHandler.m in Sources */ = {isa = PBXBuildFile; fileRef = 7B717BBD1E0BC1FE0098D5D8 /* DDSinaHandler.m */; };
 		7B717BE11E0BC1FE0098D5D8 /* DDTencentHandler.m in Sources */ = {isa = PBXBuildFile; fileRef = 7B717BC41E0BC1FE0098D5D8 /* DDTencentHandler.m */; };
 		7B717BE21E0BC1FE0098D5D8 /* TencentOpenAPI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7B717BC61E0BC1FE0098D5D8 /* TencentOpenAPI.framework */; };
@@ -34,6 +33,7 @@
 		7BF33FEF1E0AC84500A02EAA /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 7BF33FE71E0AC84500A02EAA /* GoogleService-Info.plist */; };
 		7BF33FF01E0AC84500A02EAA /* IMG_5644.JPG in Resources */ = {isa = PBXBuildFile; fileRef = 7BF33FE81E0AC84500A02EAA /* IMG_5644.JPG */; };
 		8FB3F3308E386B894D00C0E6 /* libPods-DDSocialCodeDemo.a in Frameworks */ = {isa = PBXBuildFile; fileRef = ADB39552868A13A2BE675CED /* libPods-DDSocialCodeDemo.a */; };
+		90235F781EF29A060042D83A /* MiPassport.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 90235F771EF29A060042D83A /* MiPassport.framework */; };
 		9060A9951CC50396006BABE2 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 9060A9941CC50396006BABE2 /* AppDelegate.m */; };
 		9060A99B1CC50396006BABE2 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 9060A9991CC50396006BABE2 /* Main.storyboard */; };
 		9060A99D1CC50396006BABE2 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 9060A99C1CC50396006BABE2 /* Assets.xcassets */; };
@@ -78,7 +78,6 @@
 		7B717BB61E0BC1FE0098D5D8 /* DDMIHandler.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DDMIHandler.h; sourceTree = "<group>"; };
 		7B717BB71E0BC1FE0098D5D8 /* DDMIHandler.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DDMIHandler.m; sourceTree = "<group>"; };
 		7B717BB91E0BC1FE0098D5D8 /* MiPassport.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = MiPassport.bundle; sourceTree = "<group>"; };
-		7B717BBA1E0BC1FE0098D5D8 /* MiPassport.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = MiPassport.framework; sourceTree = "<group>"; };
 		7B717BBC1E0BC1FE0098D5D8 /* DDSinaHandler.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DDSinaHandler.h; sourceTree = "<group>"; };
 		7B717BBD1E0BC1FE0098D5D8 /* DDSinaHandler.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DDSinaHandler.m; sourceTree = "<group>"; };
 		7B717BC31E0BC1FE0098D5D8 /* DDTencentHandler.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DDTencentHandler.h; sourceTree = "<group>"; };
@@ -103,6 +102,7 @@
 		7BF33FE71E0AC84500A02EAA /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		7BF33FE81E0AC84500A02EAA /* IMG_5644.JPG */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = IMG_5644.JPG; sourceTree = "<group>"; };
 		8453350BBBF6F5D4DBC36145 /* Pods-DDSocialCodeDemo.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-DDSocialCodeDemo.release.xcconfig"; path = "Pods/Target Support Files/Pods-DDSocialCodeDemo/Pods-DDSocialCodeDemo.release.xcconfig"; sourceTree = "<group>"; };
+		90235F771EF29A060042D83A /* MiPassport.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = MiPassport.framework; sourceTree = "<group>"; };
 		9060A98D1CC50396006BABE2 /* DDSocialCodeDemo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = DDSocialCodeDemo.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		9060A9931CC50396006BABE2 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		9060A9941CC50396006BABE2 /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
@@ -143,9 +143,9 @@
 				9060AA311CC50516006BABE2 /* CoreGraphics.framework in Frameworks */,
 				9060AA2F1CC50510006BABE2 /* SystemConfiguration.framework in Frameworks */,
 				7B717BE21E0BC1FE0098D5D8 /* TencentOpenAPI.framework in Frameworks */,
+				90235F781EF29A060042D83A /* MiPassport.framework in Frameworks */,
 				9060AA2D1CC50503006BABE2 /* libiconv.tbd in Frameworks */,
 				9060AA2B1CC504FB006BABE2 /* libstdc++.tbd in Frameworks */,
-				7B717BDE1E0BC1FE0098D5D8 /* MiPassport.framework in Frameworks */,
 				9060AA291CC504C7006BABE2 /* libsqlite3.tbd in Frameworks */,
 				90DDEFC41ECA87F60081E86C /* libWeiboSDK.a in Frameworks */,
 				9060AA271CC504C1006BABE2 /* libz.tbd in Frameworks */,
@@ -253,8 +253,8 @@
 		7B717BB81E0BC1FE0098D5D8 /* MiSDK */ = {
 			isa = PBXGroup;
 			children = (
+				90235F771EF29A060042D83A /* MiPassport.framework */,
 				7B717BB91E0BC1FE0098D5D8 /* MiPassport.bundle */,
-				7B717BBA1E0BC1FE0098D5D8 /* MiPassport.framework */,
 			);
 			path = MiSDK;
 			sourceTree = "<group>";
@@ -785,7 +785,7 @@
 					"\"${PODS_ROOT}/WeiboSDK/libWeiboSDK\"",
 					"\"$(SRCROOT)/../DDSocial/Wechat/WeChatSDK/\"",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.huami.DDSocial;
+				PRODUCT_BUNDLE_IDENTIFIER = com.huami.midong;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};
 			name = Debug;
@@ -886,7 +886,7 @@
 					"\"${PODS_ROOT}/WeiboSDK/libWeiboSDK\"",
 					"\"$(SRCROOT)/../DDSocial/Wechat/WeChatSDK/\"",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.huami.DDSocial;
+				PRODUCT_BUNDLE_IDENTIFIER = com.huami.midong;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};
 			name = Release;
