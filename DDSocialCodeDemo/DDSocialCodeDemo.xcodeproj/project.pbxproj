@@ -21,8 +21,6 @@
 		7B717BDF1E0BC1FE0098D5D8 /* DDSinaHandler.m in Sources */ = {isa = PBXBuildFile; fileRef = 7B717BBD1E0BC1FE0098D5D8 /* DDSinaHandler.m */; };
 		7B717BE11E0BC1FE0098D5D8 /* DDTencentHandler.m in Sources */ = {isa = PBXBuildFile; fileRef = 7B717BC41E0BC1FE0098D5D8 /* DDTencentHandler.m */; };
 		7B717BE21E0BC1FE0098D5D8 /* TencentOpenAPI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7B717BC61E0BC1FE0098D5D8 /* TencentOpenAPI.framework */; };
-		7B717BE51E0BC1FE0098D5D8 /* DDWeChatHandler.m in Sources */ = {isa = PBXBuildFile; fileRef = 7B717BCE1E0BC1FE0098D5D8 /* DDWeChatHandler.m */; };
-		7B717BE61E0BC1FE0098D5D8 /* libWeChatSDK.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 7B717BD01E0BC1FE0098D5D8 /* libWeChatSDK.a */; };
 		7B717BE81E0BC2280098D5D8 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 7B717BE71E0BC2280098D5D8 /* main.m */; };
 		7BF33FE91E0AC84500A02EAA /* DDAuthTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7BF33FDF1E0AC84500A02EAA /* DDAuthTableViewController.m */; };
 		7BF33FEA1E0AC84500A02EAA /* DDAuthTableViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7BF33FE01E0AC84500A02EAA /* DDAuthTableViewController.xib */; };
@@ -33,6 +31,7 @@
 		7BF33FEF1E0AC84500A02EAA /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 7BF33FE71E0AC84500A02EAA /* GoogleService-Info.plist */; };
 		7BF33FF01E0AC84500A02EAA /* IMG_5644.JPG in Resources */ = {isa = PBXBuildFile; fileRef = 7BF33FE81E0AC84500A02EAA /* IMG_5644.JPG */; };
 		8FB3F3308E386B894D00C0E6 /* libPods-DDSocialCodeDemo.a in Frameworks */ = {isa = PBXBuildFile; fileRef = ADB39552868A13A2BE675CED /* libPods-DDSocialCodeDemo.a */; };
+		901CFA8A1F4FFE2C004A46CA /* DDWeChatHandler.m in Sources */ = {isa = PBXBuildFile; fileRef = 901CFA891F4FFE2C004A46CA /* DDWeChatHandler.m */; };
 		90235F781EF29A060042D83A /* MiPassport.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 90235F771EF29A060042D83A /* MiPassport.framework */; };
 		9060A9951CC50396006BABE2 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 9060A9941CC50396006BABE2 /* AppDelegate.m */; };
 		9060A99B1CC50396006BABE2 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 9060A9991CC50396006BABE2 /* Main.storyboard */; };
@@ -83,12 +82,6 @@
 		7B717BC31E0BC1FE0098D5D8 /* DDTencentHandler.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DDTencentHandler.h; sourceTree = "<group>"; };
 		7B717BC41E0BC1FE0098D5D8 /* DDTencentHandler.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DDTencentHandler.m; sourceTree = "<group>"; };
 		7B717BC61E0BC1FE0098D5D8 /* TencentOpenAPI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = TencentOpenAPI.framework; sourceTree = "<group>"; };
-		7B717BCD1E0BC1FE0098D5D8 /* DDWeChatHandler.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DDWeChatHandler.h; sourceTree = "<group>"; };
-		7B717BCE1E0BC1FE0098D5D8 /* DDWeChatHandler.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DDWeChatHandler.m; sourceTree = "<group>"; };
-		7B717BD01E0BC1FE0098D5D8 /* libWeChatSDK.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libWeChatSDK.a; sourceTree = "<group>"; };
-		7B717BD11E0BC1FE0098D5D8 /* WechatAuthSDK.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WechatAuthSDK.h; sourceTree = "<group>"; };
-		7B717BD21E0BC1FE0098D5D8 /* WXApi.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WXApi.h; sourceTree = "<group>"; };
-		7B717BD31E0BC1FE0098D5D8 /* WXApiObject.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WXApiObject.h; sourceTree = "<group>"; };
 		7B717BE71E0BC2280098D5D8 /* main.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		7BF33FDE1E0AC84500A02EAA /* DDAuthTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DDAuthTableViewController.h; sourceTree = "<group>"; };
 		7BF33FDF1E0AC84500A02EAA /* DDAuthTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DDAuthTableViewController.m; sourceTree = "<group>"; };
@@ -102,6 +95,8 @@
 		7BF33FE71E0AC84500A02EAA /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		7BF33FE81E0AC84500A02EAA /* IMG_5644.JPG */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = IMG_5644.JPG; sourceTree = "<group>"; };
 		8453350BBBF6F5D4DBC36145 /* Pods-DDSocialCodeDemo.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-DDSocialCodeDemo.release.xcconfig"; path = "Pods/Target Support Files/Pods-DDSocialCodeDemo/Pods-DDSocialCodeDemo.release.xcconfig"; sourceTree = "<group>"; };
+		901CFA881F4FFE2C004A46CA /* DDWeChatHandler.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DDWeChatHandler.h; sourceTree = "<group>"; };
+		901CFA891F4FFE2C004A46CA /* DDWeChatHandler.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DDWeChatHandler.m; sourceTree = "<group>"; };
 		90235F771EF29A060042D83A /* MiPassport.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = MiPassport.framework; sourceTree = "<group>"; };
 		9060A98D1CC50396006BABE2 /* DDSocialCodeDemo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = DDSocialCodeDemo.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		9060A9931CC50396006BABE2 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
@@ -137,7 +132,6 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				7B717BE61E0BC1FE0098D5D8 /* libWeChatSDK.a in Frameworks */,
 				9060AA351CC5052C006BABE2 /* Security.framework in Frameworks */,
 				9060AA331CC50523006BABE2 /* CoreTelephony.framework in Frameworks */,
 				9060AA311CC50516006BABE2 /* CoreGraphics.framework in Frameworks */,
@@ -298,30 +292,10 @@
 		7B717BCB1E0BC1FE0098D5D8 /* Wechat */ = {
 			isa = PBXGroup;
 			children = (
-				7B717BCC1E0BC1FE0098D5D8 /* Handler */,
-				7B717BCF1E0BC1FE0098D5D8 /* WeChatSDK */,
+				901CFA881F4FFE2C004A46CA /* DDWeChatHandler.h */,
+				901CFA891F4FFE2C004A46CA /* DDWeChatHandler.m */,
 			);
 			path = Wechat;
-			sourceTree = "<group>";
-		};
-		7B717BCC1E0BC1FE0098D5D8 /* Handler */ = {
-			isa = PBXGroup;
-			children = (
-				7B717BCD1E0BC1FE0098D5D8 /* DDWeChatHandler.h */,
-				7B717BCE1E0BC1FE0098D5D8 /* DDWeChatHandler.m */,
-			);
-			path = Handler;
-			sourceTree = "<group>";
-		};
-		7B717BCF1E0BC1FE0098D5D8 /* WeChatSDK */ = {
-			isa = PBXGroup;
-			children = (
-				7B717BD01E0BC1FE0098D5D8 /* libWeChatSDK.a */,
-				7B717BD11E0BC1FE0098D5D8 /* WechatAuthSDK.h */,
-				7B717BD21E0BC1FE0098D5D8 /* WXApi.h */,
-				7B717BD31E0BC1FE0098D5D8 /* WXApiObject.h */,
-			);
-			path = WeChatSDK;
 			sourceTree = "<group>";
 		};
 		7BF33FDD1E0AC84500A02EAA /* DDSocialDemoCore */ = {
@@ -561,13 +535,13 @@
 				7B717BDB1E0BC1FE0098D5D8 /* DDSocialShareHandler.m in Sources */,
 				7B717BDC1E0BC1FE0098D5D8 /* DDMIHandler.m in Sources */,
 				7B717BD61E0BC1FE0098D5D8 /* DDSoicalRequestHandler.m in Sources */,
+				901CFA8A1F4FFE2C004A46CA /* DDWeChatHandler.m in Sources */,
 				9060A9951CC50396006BABE2 /* AppDelegate.m in Sources */,
 				7B717BDA1E0BC1FE0098D5D8 /* DDGoogleHandler.m in Sources */,
 				7B717BD71E0BC1FE0098D5D8 /* DDUserInfoItem.m in Sources */,
 				7B717BE81E0BC2280098D5D8 /* main.m in Sources */,
 				7B717BD41E0BC1FE0098D5D8 /* DDAuthItem.m in Sources */,
 				7B717BD51E0BC1FE0098D5D8 /* DDLinkupItem.m in Sources */,
-				7B717BE51E0BC1FE0098D5D8 /* DDWeChatHandler.m in Sources */,
 				7B717BD91E0BC1FE0098D5D8 /* DDFacebookHandler.m in Sources */,
 				7B3D634F1E1106890096D290 /* DDTwitterHandler.m in Sources */,
 				7B717BE11E0BC1FE0098D5D8 /* DDTencentHandler.m in Sources */,

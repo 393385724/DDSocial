@@ -1,6 +1,6 @@
 Pod::Spec.new do |s|  
   s.name             = "DDSocial"  
-  s.version          = "1.4.1"  
+  s.version          = "1.4.2"  
   s.summary          = "A share auth wheels based on the official library content wecaht sina tencent facebook twitter google mi"  
   s.homepage         = "https://github.com/393385724/DDSocial"  
   s.license          = 'MIT'  
@@ -24,11 +24,9 @@ Pod::Spec.new do |s|
   end
 
   s.subspec 'Wechat' do |wechat|
-    wechat.source_files = 'DDSocial/Wechat/Handler/*.{h,m}','DDSocial/Wechat/WeChatSDK/*.h'
-    wechat.ios.vendored_libraries = 'DDSocial/Wechat/WeChatSDK/*.a'
-    wechat.libraries = 'z', 'sqlite3','stdc++'
-    wechat.frameworks = 'SystemConfiguration','CoreTelephony'
+    wechat.source_files = 'DDSocial/Wechat/*.{h,m}'
     wechat.dependency 'DDSocial/Core'
+    wechat.dependency 'WechatOpenSDK'
   end
 
   s.subspec 'Sina' do |sina|

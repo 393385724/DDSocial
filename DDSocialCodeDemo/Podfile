@@ -7,5 +7,6 @@ target 'DDSocialCodeDemo' do
    pod 'FBSDKLoginKit'
    pod 'FBSDKShareKit'
    pod 'WeiboSDK', :git => "https://github.com/sinaweibosdk/weibo_ios_sdk.git"
+   pod 'WechatOpenSDK', '~> 1.7.9'
    pod 'TTTAttributedLabel'
 end 
