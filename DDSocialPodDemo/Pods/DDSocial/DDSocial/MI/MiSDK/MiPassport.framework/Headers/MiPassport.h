@@ -38,10 +38,10 @@ typedef enum {
 
 - (void)logOut;
 
-- (MPRequest *)requestWithURL:(NSString *)url
+- (MiPassportRequest *)requestWithURL:(NSString *)url
                        params:(NSMutableDictionary *)params
                    httpMethod:(NSString *)httpMethod
-                     delegate:(id<MPRequestDelegate>)_delegate;
+                     delegate:(id<MiPassportRequestDelegate>)_delegate;
 
 - (BOOL)handleOpenURL:(NSURL *)url;
 @end

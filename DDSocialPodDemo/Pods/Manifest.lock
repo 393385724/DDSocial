@@ -5,121 +5,105 @@ PODS:
   - Bolts/AppLinks (1.8.4):
     - Bolts/Tasks
   - Bolts/Tasks (1.8.4)
-  - DDSocial/Core (1.2.6)
-  - DDSocial/Facebook (1.2.6):
+  - DDSocial/Core (1.4.2)
+  - DDSocial/Facebook (1.4.2):
     - DDSocial/Core
-    - FBSDKLoginKit (~> 4.12.0)
-    - FBSDKShareKit (~> 4.12.0)
-  - DDSocial/Google (1.2.6):
+    - FBSDKLoginKit
+    - FBSDKShareKit
+  - DDSocial/Google (1.4.2):
     - DDSocial/Core
-    - Google/SignIn (~> 3.0.3)
-  - DDSocial/MI (1.2.6):
+    - Google/SignIn
+  - DDSocial/MI (1.4.2):
     - DDSocial/Core
-    - TTTAttributedLabel (~> 1.13.4)
-  - DDSocial/MiLiao (1.2.6):
+  - DDSocial/Share (1.4.2):
     - DDSocial/Core
-  - DDSocial/Share (1.2.6):
+  - DDSocial/Sina (1.4.2):
     - DDSocial/Core
-  - DDSocial/Sina (1.2.6):
+  - DDSocial/Tencent (1.4.2):
     - DDSocial/Core
-    - WeiboSDK (~> 3.1.3)
-  - DDSocial/Tencent (1.2.6):
+  - DDSocial/Twitter (1.4.2):
     - DDSocial/Core
-  - DDSocial/Twitter (1.2.6):
+  - DDSocial/Wechat (1.4.2):
     - DDSocial/Core
-    - TwitterKit (~> 1.15.3)
-  - DDSocial/Wechat (1.2.6):
-    - DDSocial/Core
-  - Fabric (1.6.11)
-  - FBSDKCoreKit (4.18.0):
+    - WechatOpenSDK
+  - FBSDKCoreKit (4.26.0):
     - Bolts (~> 1.7)
-  - FBSDKLoginKit (4.12.0):
+  - FBSDKLoginKit (4.26.0):
     - FBSDKCoreKit
-  - FBSDKShareKit (4.12.0):
+  - FBSDKShareKit (4.26.0):
     - FBSDKCoreKit
-  - FirebaseAnalytics (3.6.0):
-    - FirebaseCore (~> 3.4)
+  - FirebaseAnalytics (3.9.0):
+    - FirebaseCore (~> 3.6)
     - FirebaseInstanceID (~> 1.0)
-    - GoogleInterchangeUtilities (~> 1.2)
-    - GoogleSymbolUtilities (~> 1.1)
     - GoogleToolboxForMac/NSData+zlib (~> 2.1)
-  - FirebaseCore (3.4.6):
-    - GoogleInterchangeUtilities (~> 1.2)
+  - FirebaseCore (3.6.0):
     - GoogleToolboxForMac/NSData+zlib (~> 2.1)
-  - FirebaseInstanceID (1.0.8)
-  - Google/Core (3.0.3):
+  - FirebaseInstanceID (1.0.10):
+    - FirebaseCore (~> 3.6)
+  - Google/Core (3.1.0):
     - FirebaseAnalytics (~> 3.2)
-  - Google/SignIn (3.0.3):
+  - Google/SignIn (3.1.0):
     - Google/Core
     - GoogleSignIn (~> 4.0)
-  - GoogleAppUtilities (1.1.2):
-    - GoogleSymbolUtilities (~> 1.1)
-  - GoogleInterchangeUtilities (1.2.2):
-    - GoogleSymbolUtilities (~> 1.1)
-  - GoogleSignIn (4.0.1):
-    - GoogleAppUtilities (~> 1.1)
+  - GoogleSignIn (4.0.2):
     - GoogleToolboxForMac/NSDictionary+URLArguments (~> 2.1)
+    - GoogleToolboxForMac/NSString+URLArguments (~> 2.1)
     - GTMOAuth2 (~> 1.0)
     - GTMSessionFetcher/Core (~> 1.1)
-  - GoogleSymbolUtilities (1.1.2)
-  - GoogleToolboxForMac/DebugUtils (2.1.0):
-    - GoogleToolboxForMac/Defines (= 2.1.0)
-  - GoogleToolboxForMac/Defines (2.1.0)
-  - GoogleToolboxForMac/NSData+zlib (2.1.0):
-    - GoogleToolboxForMac/Defines (= 2.1.0)
-  - GoogleToolboxForMac/NSDictionary+URLArguments (2.1.0):
-    - GoogleToolboxForMac/DebugUtils (= 2.1.0)
-    - GoogleToolboxForMac/Defines (= 2.1.0)
-    - GoogleToolboxForMac/NSString+URLArguments (= 2.1.0)
-  - GoogleToolboxForMac/NSString+URLArguments (2.1.0)
+  - GoogleToolboxForMac/DebugUtils (2.1.1):
+    - GoogleToolboxForMac/Defines (= 2.1.1)
+  - GoogleToolboxForMac/Defines (2.1.1)
+  - GoogleToolboxForMac/NSData+zlib (2.1.1):
+    - GoogleToolboxForMac/Defines (= 2.1.1)
+  - GoogleToolboxForMac/NSDictionary+URLArguments (2.1.1):
+    - GoogleToolboxForMac/DebugUtils (= 2.1.1)
+    - GoogleToolboxForMac/Defines (= 2.1.1)
+    - GoogleToolboxForMac/NSString+URLArguments (= 2.1.1)
+  - GoogleToolboxForMac/NSString+URLArguments (2.1.1)
   - GTMOAuth2 (1.1.4):
     - GTMSessionFetcher (~> 1.1)
-  - GTMSessionFetcher (1.1.7):
-    - GTMSessionFetcher/Full (= 1.1.7)
-  - GTMSessionFetcher/Core (1.1.7)
-  - GTMSessionFetcher/Full (1.1.7):
-    - GTMSessionFetcher/Core (= 1.1.7)
-  - TTTAttributedLabel (1.13.4)
-  - TwitterCore (1.15.3):
-    - Fabric
-  - TwitterKit (1.15.3):
-    - TwitterCore (= 1.15.3)
-  - WeiboSDK (3.1.3)
+  - GTMSessionFetcher (1.1.11):
+    - GTMSessionFetcher/Full (= 1.1.11)
+  - GTMSessionFetcher/Core (1.1.11)
+  - GTMSessionFetcher/Full (1.1.11):
+    - GTMSessionFetcher/Core (= 1.1.11)
+  - WechatOpenSDK (1.7.9)
 
 DEPENDENCIES:
-  - DDSocial/Facebook
-  - DDSocial/Google
-  - DDSocial/MI
-  - DDSocial/MiLiao
-  - DDSocial/Share
-  - DDSocial/Sina
-  - DDSocial/Tencent
-  - DDSocial/Twitter
-  - DDSocial/Wechat
+  - DDSocial/Facebook (from `https://github.com/393385724/DDSocial.git`)
+  - DDSocial/Google (from `https://github.com/393385724/DDSocial.git`)
+  - DDSocial/MI (from `https://github.com/393385724/DDSocial.git`)
+  - DDSocial/Share (from `https://github.com/393385724/DDSocial.git`)
+  - DDSocial/Sina (from `https://github.com/393385724/DDSocial.git`)
+  - DDSocial/Tencent (from `https://github.com/393385724/DDSocial.git`)
+  - DDSocial/Twitter (from `https://github.com/393385724/DDSocial.git`)
+  - DDSocial/Wechat (from `https://github.com/393385724/DDSocial.git`)
+
+EXTERNAL SOURCES:
+  DDSocial:
+    :git: https://github.com/393385724/DDSocial.git
+
+CHECKOUT OPTIONS:
+  DDSocial:
+    :commit: 52b577cd95ff2582b2f4e9b442f79a0b6901071c
+    :git: https://github.com/393385724/DDSocial.git
 
 SPEC CHECKSUMS:
   Bolts: 8a7995239dbe724f9cba2248b766d48b7ebdd322
-  DDSocial: 787c50363a1d504a75e413963e70a1a85e9264fb
-  Fabric: 5911403591946b8228ab1c51d98f1d7137e863c6
-  FBSDKCoreKit: 15fef8804a4629f98c6f4e55e81a76c9d725d85e
-  FBSDKLoginKit: 03f68a8d48c2c8bb81d7eb8097973d483543e1f6
-  FBSDKShareKit: df1491f064cffc8ebcc3fc8b71be94cc190c728e
-  FirebaseAnalytics: 9c67af0ebeb8d2146c9b4ea2616439affa947b58
-  FirebaseCore: 03da1cb32615569bbc2830a22f9ad753d9a02ef5
-  FirebaseInstanceID: ba1e640935235e5fac39dfa816fe7660e72e1a8a
-  Google: 813c467362eabc11385f5a5cc9ad0cb651a58f4e
-  GoogleAppUtilities: a8a552aa74f6597f805e45b5a3962766c3134973
-  GoogleInterchangeUtilities: d5bc4d88d5b661ab72f9d70c58d02ca8c27ad1f7
-  GoogleSignIn: a8694c0a8e6d1b0ec77c58014de5bfd4ba2fa766
-  GoogleSymbolUtilities: 631ee17048aa5e9ab133470d768ea997a5ef9b96
-  GoogleToolboxForMac: 2b2596cbb7186865e98cadf2b1e262d851c2b168
+  DDSocial: db36312653869ebe3f3b17c3411283a3e9820cb7
+  FBSDKCoreKit: c8b8582311ec11b145451d8b9717dc6cc2ae5a76
+  FBSDKLoginKit: f3f03b94c21eb834af243c0a881d48641f47ca60
+  FBSDKShareKit: 320712d8293fde6392872c91eb80ef0da5d73cc3
+  FirebaseAnalytics: e5fe8486efc01bec33f6bf82e2fa9fce4b124052
+  FirebaseCore: 9691ee2ade70c098d7cf92440f4303f16d83ca75
+  FirebaseInstanceID: b9eedd6846fb5e1f0f7279e1deaa7a7e4cf8392e
+  Google: 98da4b1a60ed0beb80a290387a28333406a1eb90
+  GoogleSignIn: d7ad83f13480e1f30453471d00d19b5293ac46af
+  GoogleToolboxForMac: 8e329f1b599f2512c6b10676d45736bcc2cbbeb0
   GTMOAuth2: 7fc9c10f5c745f4d9850419ea88889fe3baa6b7d
-  GTMSessionFetcher: a1f8ed39e4fe21c68957daed472c7afbcdf29166
-  TTTAttributedLabel: 0a2ac7b2dd726d32a070dafb01446026b11e624f
-  TwitterCore: cce24b3c798993ccde72787ea79ea9a478b284e4
-  TwitterKit: 43600f2d2848c227739efea5b2939585e69339c3
-  WeiboSDK: acb067053668102cf07d01aa7604350162c2e466
+  GTMSessionFetcher: 5ad62e8200fa00ed011fe5e08d27fef72c5b1429
+  WechatOpenSDK: 1fe7e3b07db860d6a936c3ff4a5aba6b890958d9
 
-PODFILE CHECKSUM: 2ee664d8a49f947f19d6c59bccc2660a70f781c0
+PODFILE CHECKSUM: bfa69b747bebda3f3b06f15c9366b63e855f71a8
 
-COCOAPODS: 1.1.1
+COCOAPODS: 1.2.1

@@ -253,7 +253,8 @@ NSString *const DDTencentAPIUserInfo =   @"https://graph.qq.com/user/get_user_in
 @implementation DDTencentHandler(DDSocialHandlerProtocol)
 
 + (BOOL)isInstalled {
-    return [TencentOAuth iphoneQQInstalled];
+    return ([QQApiInterface isQQInstalled] && [QQApiInterface isQQSupportApi]) ||
+    ([QQApiInterface isTIMInstalled] && [QQApiInterface isTIMSupportApi]);
 }
 
 - (void)registerWithAppKey:(NSString *)appKey

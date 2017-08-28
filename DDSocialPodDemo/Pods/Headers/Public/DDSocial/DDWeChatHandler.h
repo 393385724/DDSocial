@@ -1,1 +1,1 @@
-../../../DDSocial/DDSocial/Wechat/Handler/DDWeChatHandler.h
+../../../DDSocial/DDSocial/Wechat/DDWeChatHandler.h

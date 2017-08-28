@@ -39,7 +39,7 @@ didSignInForUser:(GIDGoogleUser *)user
         } else {
             DDAuthItem *authItem = [DDAuthItem new];
             authItem.thirdId = user.userID;
-            authItem.thirdToken = user.authentication.accessToken;
+            authItem.thirdToken = user.authentication.idToken;
             authItem.rawObject = user;
             self.authEventHandler(DDSSPlatformGoogle, DDSSAuthStateSuccess, authItem, nil);
         }

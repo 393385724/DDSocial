@@ -59,11 +59,6 @@ const CGFloat DDFacebookImageDataMaxSize = 12 * 1024 * 1024;
 - (BOOL)shareWebPageWithProtocol:(id<DDSocialShareWebPageProtocol>)protocol{
     FBSDKShareLinkContent *content = [[FBSDKShareLinkContent alloc] init];
     content.contentURL = [NSURL URLWithString:[protocol ddShareWebPageWithWebpageUrl]];
-    content.contentTitle = [protocol ddShareWebPageWithTitle];
-    content.contentDescription = [protocol ddShareWebPageWithDescription];
-    if ([protocol respondsToSelector:@selector(ddShareWebPageWithThumbnailURL)]) {
-        content.imageURL = [NSURL URLWithString:[protocol ddShareWebPageWithThumbnailURL]];
-    }
     return [self sendWithContent:content];
 }
 

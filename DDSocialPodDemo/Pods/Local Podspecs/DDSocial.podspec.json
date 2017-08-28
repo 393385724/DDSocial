@@ -1,6 +1,6 @@
 {
   "name": "DDSocial",
-  "version": "1.2.7",
+  "version": "1.4.2",
   "summary": "A share auth wheels based on the official library content wecaht sina tencent facebook twitter google mi",
   "homepage": "https://github.com/393385724/DDSocial",
   "license": "MIT",
@@ -9,7 +9,7 @@
   },
   "source": {
     "git": "https://github.com/393385724/DDSocial.git",
-    "tag": "1.2.7"
+    "tag": "1.4.2"
   },
   "platforms": {
     "ios": "8.0"
@@ -31,7 +31,6 @@
       "ios": {
         "vendored_frameworks": "DDSocial/Tencent/TencentSDK/*.framework"
       },
-      "resources": "DDSocial/Tencent/TencentSDK/*.bundle",
       "libraries": [
         "z",
         "sqlite3",
@@ -52,35 +51,40 @@
     },
     {
       "name": "Wechat",
-      "source_files": [
-        "DDSocial/Wechat/Handler/*.{h,m}",
-        "DDSocial/Wechat/WeChatSDK/*.h"
-      ],
-      "ios": {
-        "vendored_libraries": "DDSocial/Wechat/WeChatSDK/*.a"
-      },
-      "libraries": [
-        "z",
-        "sqlite3",
-        "stdc++"
-      ],
-      "frameworks": [
-        "SystemConfiguration",
-        "CoreTelephony"
-      ],
+      "source_files": "DDSocial/Wechat/*.{h,m}",
       "dependencies": {
         "DDSocial/Core": [
+
+        ],
+        "WechatOpenSDK": [
 
         ]
       }
     },
     {
       "name": "Sina",
-      "source_files": "DDSocial/Sina/*.{h,m}",
+      "source_files": [
+        "DDSocial/Sina/*.{h,m}",
+        "DDSocial/Sina/libWeiboSDK/*.{h,m}"
+      ],
+      "resources": "DDSocial/Sina/libWeiboSDK/WeiboSDK.bundle",
+      "ios": {
+        "vendored_libraries": "DDSocial/Sina/libWeiboSDK/libWeiboSDK.a"
+      },
+      "frameworks": [
+        "ImageIO",
+        "CoreText",
+        "QuartzCore",
+        "SystemConfiguration",
+        "Security",
+        "CoreGraphics",
+        "CoreTelephony"
+      ],
+      "libraries": [
+        "z",
+        "sqlite3"
+      ],
       "dependencies": {
-        "WeiboSDK": [
-
-        ],
         "DDSocial/Core": [
 
         ]
@@ -113,6 +117,9 @@
     {
       "name": "MI",
       "source_files": "DDSocial/MI/Handler/*.{h,m}",
+      "user_target_xcconfig": {
+        "ENABLE_BITCODE": "NO"
+      },
       "ios": {
         "vendored_frameworks": "DDSocial/MI/MiSDK/*.framework"
       },

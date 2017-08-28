@@ -21,6 +21,10 @@
 
 #import <objc/runtime.h>
 
+#if !TARGET_OS_TV
+#import <SafariServices/SafariServices.h>
+#endif
+
 #import "FBSDKAppEvents+Internal.h"
 #import "FBSDKConstants.h"
 #import "FBSDKDynamicFrameworkLoader.h"
@@ -51,6 +55,9 @@ static NSString *const FBSDKAppLinkInboundEvent = @"fb_al_inbound";
   FBSDKBridgeAPIRequest *_pendingRequest;
   FBSDKBridgeAPICallbackBlock _pendingRequestCompletionBlock;
   id<FBSDKURLOpening> _pendingURLOpen;
+ #ifdef __IPHONE_11_0
+  SFAuthenticationSession *_authenticationSession NS_AVAILABLE_IOS(11_0);
+ #endif
 #endif
   BOOL _expectingBackground;
   UIViewController *_safariViewController;
@@ -123,7 +130,7 @@ static NSString *const FBSDKAppLinkInboundEvent = @"fb_al_inbound";
 
 #pragma mark - UIApplicationDelegate
 
-#if __IPHONE_OS_VERSION_MAX_ALLOWED > __IPHONE_9_3
+#if __IPHONE_OS_VERSION_MAX_ALLOWED > __IPHONE_9_0
 - (BOOL)application:(UIApplication *)application
             openURL:(NSURL *)url
             options:(NSDictionary<UIApplicationOpenURLOptionsKey,id> *)options
@@ -220,6 +227,10 @@ static NSString *const FBSDKAppLinkInboundEvent = @"fb_al_inbound";
 
 - (void)applicationDidBecomeActive:(NSNotification *)notification
 {
+  // Auto log basic events in case autoLogAppEventsEnabled is set
+  if ([[FBSDKSettings autoLogAppEventsEnabled] boolValue]) {
+    [FBSDKAppEvents activateApp];
+  }
   //  _expectingBackground can be YES if the caller started doing work (like login)
   // within the app delegate's lifecycle like openURL, in which case there
   // might have been a "didBecomeActive" event pending that we want to ignore.
@@ -239,7 +250,7 @@ static NSString *const FBSDKAppLinkInboundEvent = @"fb_al_inbound";
 
 #if !TARGET_OS_TV
 
-- (void)openURL:(NSURL *)url sender:(id<FBSDKURLOpening>)sender handler:(void(^)(BOOL))handler
+- (void)openURL:(NSURL *)url sender:(id<FBSDKURLOpening>)sender handler:(void(^)(BOOL, NSError *))handler
 {
   _expectingBackground = YES;
   _pendingURLOpen = sender;
@@ -247,7 +258,9 @@ static NSString *const FBSDKAppLinkInboundEvent = @"fb_al_inbound";
     // Dispatch openURL calls to prevent hangs if we're inside the current app delegate's openURL flow already
     NSOperatingSystemVersion iOS10Version = { .majorVersion = 10, .minorVersion = 0, .patchVersion = 0 };
     if ([FBSDKInternalUtility isOSRunTimeVersionAtLeast:iOS10Version]) {
-      [[UIApplication sharedApplication] openURL:url options:@{} completionHandler:handler];
+      [[UIApplication sharedApplication] openURL:url options:@{} completionHandler:^(BOOL success) {
+        handler(success, nil);
+      }];
     } else {
       BOOL opened = [[UIApplication sharedApplication] openURL:url];
 
@@ -260,7 +273,7 @@ static NSString *const FBSDKAppLinkInboundEvent = @"fb_al_inbound";
         }
       }
       if (handler) {
-        handler(opened);
+        handler(opened, nil);
       }
     }
   });
@@ -283,7 +296,7 @@ static NSString *const FBSDKAppLinkInboundEvent = @"fb_al_inbound";
   }
   _pendingRequest = request;
   _pendingRequestCompletionBlock = [completionBlock copy];
-  void (^handler)(BOOL) = ^(BOOL openedURL) {
+  void (^handler)(BOOL, NSError *) = ^(BOOL openedURL, NSError *anError) {
     if (!openedURL) {
       _pendingRequest = nil;
       _pendingRequestCompletionBlock = nil;
@@ -311,7 +324,7 @@ static NSString *const FBSDKAppLinkInboundEvent = @"fb_al_inbound";
 - (void)openURLWithSafariViewController:(NSURL *)url
                                  sender:(id<FBSDKURLOpening>)sender
                      fromViewController:(UIViewController *)fromViewController
-                                handler:(void(^)(BOOL))handler
+                                handler:(void(^)(BOOL, NSError *))handler
 {
   if (![url.scheme hasPrefix:@"http"]) {
     [self openURL:url sender:sender handler:handler];
@@ -321,6 +334,23 @@ static NSString *const FBSDKAppLinkInboundEvent = @"fb_al_inbound";
   _expectingBackground = NO;
   _pendingURLOpen = sender;
 
+#ifdef __IPHONE_11_0
+  if ([sender isAuthenticationURL:url]) {
+    Class SFAuthenticationSessionClass = fbsdkdfl_SFAuthenticationSessionClass();
+    if (SFAuthenticationSessionClass != nil) {
+      _authenticationSession = [[SFAuthenticationSessionClass alloc] initWithURL:url callbackURLScheme:[FBSDKInternalUtility appURLScheme] completionHandler:^ (NSURL *aURL, NSError *error) {
+        handler(error == nil, error);
+        if (error == nil) {
+          [self application:[UIApplication sharedApplication] openURL:aURL sourceApplication:@"com.apple" annotation:nil];
+        }
+        _authenticationSession = nil;
+      }];
+      [_authenticationSession start];
+      return;
+    }
+  }
+#endif
+
   // trying to dynamically load SFSafariViewController class
   // so for the cases when it is available we can send users through Safari View Controller flow
   // in cases it is not available regular flow will be selected
@@ -328,6 +358,12 @@ static NSString *const FBSDKAppLinkInboundEvent = @"fb_al_inbound";
 
   if (SFSafariViewControllerClass) {
     UIViewController *parent = fromViewController ?: [FBSDKInternalUtility topMostViewController];
+    if (parent == nil) {
+      [FBSDKLogger singleShotLogEntry:FBSDKLoggingBehaviorDeveloperErrors
+                         formatString:@"There are no valid ViewController to present SafariViewController with", nil];
+      return;
+    }
+
     NSURLComponents *components = [NSURLComponents componentsWithURL:url resolvingAgainstBaseURL:NO];
     NSURLQueryItem *sfvcQueryItem = [[NSURLQueryItem alloc] initWithName:@"sfvc" value:@"1"];
     [components setQueryItems:[components.queryItems arrayByAddingObject:sfvcQueryItem]];
@@ -356,7 +392,7 @@ static NSString *const FBSDKAppLinkInboundEvent = @"fb_al_inbound";
 
     // Assuming Safari View Controller always opens
     if (handler) {
-      handler(YES);
+      handler(YES, nil);
     }
   } else {
     [self openURL:url sender:sender handler:handler];
@@ -411,12 +447,14 @@ static NSString *const FBSDKAppLinkInboundEvent = @"fb_al_inbound";
     return;
   }
 
-  NSDictionary * applinkData = [FBSDKInternalUtility objectForJSONString:applinkDataString error:NULL];
+  NSDictionary *applinkData = [FBSDKInternalUtility objectForJSONString:applinkDataString error:NULL];
   if (!applinkData) {
     return;
   }
 
-  NSURL *targetURL = [NSURL URLWithString:applinkData[@"target_url"]];
+  NSString *targetURLString = applinkData[@"target_url"];
+  NSURL *targetURL = [targetURLString isKindOfClass:[NSString class]] ? [NSURL URLWithString:targetURLString] : nil;
+
   NSMutableDictionary *logData = [[NSMutableDictionary alloc] init];
   [FBSDKInternalUtility dictionary:logData setObject:[targetURL absoluteString] forKey:@"targetURL"];
   [FBSDKInternalUtility dictionary:logData setObject:[targetURL host] forKey:@"targetURLHost"];

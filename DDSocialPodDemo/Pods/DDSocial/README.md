@@ -190,6 +190,8 @@ DDSocialShareWebPageProtocol//web内容分享需要实现该协议<br />
     <string>mqqapi</string>
     <string>wtloginmqq2</string>
     <string>mqzone</string>
+    <string>tim</string>
+    <string>timapiV1</string>
 </array>
 </code></pre>
 ###新浪微博开放平台(http://open.weibo.com/)
@@ -285,16 +287,4 @@ DDSocialShareWebPageProtocol//web内容分享需要实现该协议<br />
 <string>125938537776820</string>
 <key>FacebookDisplayName</key>
 <string>facebook授权页展示的名字</string>
-</code></pre>
-
-###Twitter开放平台(https://fabric.io/kits/ios/twitterkit/install)
-1、xcode中配置info.plist<br />
-   （1）添加Fabric<br />
-3、示例代码<br />
-<pre><code>
-<key>Fabric</key>
-<dict>
-    <key>APIKey</key>
-    <string>自己申请的key</string>
-</dict>
 </code></pre>

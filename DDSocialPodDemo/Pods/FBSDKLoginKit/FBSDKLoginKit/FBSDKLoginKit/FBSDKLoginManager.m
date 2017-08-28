@@ -32,6 +32,7 @@
 
 static int const FBClientStateChallengeLength = 20;
 static NSString *const FBSDKExpectedChallengeKey = @"expected_login_challenge";
+static NSString *const FBSDKOauthPath = @"/dialog/oauth";
 
 typedef NS_ENUM(NSInteger, FBSDKLoginManagerState) {
   FBSDKLoginManagerStateIdle,
@@ -83,10 +84,9 @@ typedef NS_ENUM(NSInteger, FBSDKLoginManagerState) {
   [self assertPermissions:permissions];
   NSSet *permissionSet = [NSSet setWithArray:permissions];
   if (![FBSDKInternalUtility areAllPermissionsReadPermissions:permissionSet]) {
-    [[NSException exceptionWithName:NSInvalidArgumentException
-                             reason:@"Publish or manage permissions are not permitted to be requested with read permissions."
-                           userInfo:nil]
-     raise];
+    [self raiseLoginException:[NSException exceptionWithName:NSInvalidArgumentException
+                                                      reason:@"Publish or manage permissions are not permitted to be requested with read permissions."
+                                                    userInfo:nil]];
   }
   self.fromViewController = fromViewController;
   [self logInWithPermissions:permissionSet handler:handler];
@@ -109,10 +109,9 @@ typedef NS_ENUM(NSInteger, FBSDKLoginManagerState) {
   [self assertPermissions:permissions];
   NSSet *permissionSet = [NSSet setWithArray:permissions];
   if (![FBSDKInternalUtility areAllPermissionsPublishPermissions:permissionSet]) {
-    [[NSException exceptionWithName:NSInvalidArgumentException
-                             reason:@"Read permissions are not permitted to be requested with publish or manage permissions."
-                           userInfo:nil]
-     raise];
+    [self raiseLoginException:[NSException exceptionWithName:NSInvalidArgumentException
+                                                      reason:@"Read permissions are not permitted to be requested with publish or manage permissions."
+                                                    userInfo:nil]];
   }
   self.fromViewController = fromViewController;
   [self logInWithPermissions:permissionSet handler:handler];
@@ -139,7 +138,14 @@ typedef NS_ENUM(NSInteger, FBSDKLoginManagerState) {
 
 #pragma mark - Private
 
-- (void)handleImplicitCancelOfLogIn {
+- (void)raiseLoginException:(NSException *)exception
+{
+  _state = FBSDKLoginManagerStateIdle;
+  [exception raise];
+}
+
+- (void)handleImplicitCancelOfLogIn
+{
   FBSDKLoginManagerLoginResult *result = [[FBSDKLoginManagerLoginResult alloc] initWithToken:nil
                                                                                  isCancelled:YES
                                                                           grantedPermissions:nil
@@ -177,16 +183,14 @@ typedef NS_ENUM(NSInteger, FBSDKLoginManagerState) {
 {
   for (NSString *permission in permissions) {
     if (![permission isKindOfClass:[NSString class]]) {
-      [[NSException exceptionWithName:NSInvalidArgumentException
-                               reason:@"Permissions must be string values."
-                             userInfo:nil]
-       raise];
+      [self raiseLoginException:[NSException exceptionWithName:NSInvalidArgumentException
+                                                         reason:@"Permissions must be string values."
+                                                       userInfo:nil]];
     }
     if ([permission rangeOfString:@","].location != NSNotFound) {
-      [[NSException exceptionWithName:NSInvalidArgumentException
-                               reason:@"Permissions should each be specified in separate string values in the array."
-                             userInfo:nil]
-       raise];
+      [self raiseLoginException:[NSException exceptionWithName:NSInvalidArgumentException
+                                                        reason:@"Permissions should each be specified in separate string values in the array."
+                                                      userInfo:nil]];
     }
   }
 }
@@ -502,10 +506,10 @@ typedef NS_ENUM(NSInteger, FBSDKLoginManagerState) {
   NSURL *authURL = [FBSDKInternalUtility URLWithScheme:scheme host:@"authorize" path:@"" queryParameters:mutableParams error:&error];
 
   NSDate *start = [NSDate date];
-  [[FBSDKApplicationDelegate sharedInstance] openURL:authURL sender:self handler:^(BOOL openedURL) {
+  [[FBSDKApplicationDelegate sharedInstance] openURL:authURL sender:self handler:^(BOOL openedURL, NSError *anError) {
     [_logger logNativeAppDialogResult:openedURL dialogDuration:-[start timeIntervalSinceNow]];
     if (handler) {
-      handler(openedURL, error);
+      handler(openedURL, anError);
     }
   }];
 }
@@ -531,14 +535,14 @@ typedef NS_ENUM(NSInteger, FBSDKLoginManagerState) {
                            setObject:redirectURL
                               forKey:@"redirect_uri"];
     authURL = [FBSDKInternalUtility facebookURLWithHostPrefix:@"m."
-                                                         path:@"/dialog/oauth"
+                                                         path:FBSDKOauthPath
                                               queryParameters:browserParams
                                                         error:&error];
   }
   if (authURL) {
-    void(^handlerWrapper)(BOOL) = ^(BOOL didOpen) {
+    void(^handlerWrapper)(BOOL, NSError*) = ^(BOOL didOpen, NSError *anError) {
       if (handler) {
-        handler(didOpen, authMethod, nil);
+        handler(didOpen, authMethod, anError);
       }
     };
     if (useSafariViewController) {
@@ -602,6 +606,11 @@ typedef NS_ENUM(NSInteger, FBSDKLoginManagerState) {
   if ([self isPerformingLogin]) {
     [self handleImplicitCancelOfLogIn];
   }
+}
+
+- (BOOL)isAuthenticationURL:(NSURL *)url
+{
+  return [url.path hasSuffix:FBSDKOauthPath];
 }
 
 @end
