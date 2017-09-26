@@ -86,9 +86,22 @@
 				<string>com.huami.DDSocial</string>
 			</array>
 		</dict>
+		<dict>
+			<key>CFBundleTypeRole</key>
+			<string>Line</string>
+			<key>CFBundleURLSchemes</key>
+			<array>
+				<string>line3rdp.$(PRODUCT_BUNDLE_IDENTIFIER)</string>
+			</array>
+		</dict>
 	</array>
 	<key>CFBundleVersion</key>
 	<string>1</string>
+	<key>LineSDKConfig</key>
+	<dict>
+		<key>ChannelID</key>
+		<string>XXXXXXXXX</string>
+	</dict>
 	<key>Fabric</key>
 	<dict>
 		<key>APIKey</key>
@@ -124,6 +137,9 @@
 		<string>miliaoapi.1.0</string>
 		<string>tim</string>
 		<string>timapiV1</string>
+		<string>lineauth</string>
+		<string>line3rdp.$(PRODUCT_BUNDLE_IDENTIFIER)</string>
+		<string>line</string>
 	</array>
 	<key>LSRequiresIPhoneOS</key>
 	<true/>

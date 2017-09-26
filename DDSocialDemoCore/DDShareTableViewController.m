@@ -22,7 +22,7 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     [self.tableView registerClass:[UITableViewCell class] forCellReuseIdentifier:@"UITableViewCell"];
-    self.sectionArray = @[@"微信朋友圈",@"微信好友",@"新浪",@"QQ好友",@"QQ空间",@"Facebook",@"Twitter"];
+    self.sectionArray = @[@"微信朋友圈",@"微信好友",@"新浪",@"QQ好友",@"QQ空间",@"Facebook",@"Twitter",@"Line"];
     self.shareContentArray = @[@"纯文本",@"图片",@"网页"];
 }
 
@@ -88,6 +88,8 @@
         return DDSSPlatformFacebook;
     } else if(section == 6) {
         return DDSSPlatformTwitter;
+    } else if(section == 7) {
+        return DDSSPlatformLine;
     }
     return DDSSPlatformWeChat;
 }
@@ -107,6 +109,8 @@
         return DDSSSceneFacebook;
     } else if (section == 6) {
         return DDSSSceneTwitter;
+    } else if (section == 6) {
+        return DDSSSceneLine;
     } else {
         return DDSSSceneWXTimeline;
     }

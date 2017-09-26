@@ -33,6 +33,7 @@
     [[DDSocialShareHandler sharedInstance] registerPlatform:DDSSPlatformFacebook appKey:@"125938537776820"];
     [[DDSocialShareHandler sharedInstance] registerPlatform:DDSSPlatformTwitter];
     [[DDSocialShareHandler sharedInstance] registerPlatform:DDSSPlatformGoogle];
+    [[DDSocialShareHandler sharedInstance] registerPlatform:DDSSPlatformLine];
     
     return YES;
 }

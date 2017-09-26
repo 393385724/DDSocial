@@ -25,4 +25,9 @@
  */
 @property (nonatomic, strong) id rawObject;
 
+/**
+ *  @brief 原始个人信息(如果有的话，目前只有line有)
+ */
+@property (nonatomic, strong) id rawProfileObject;
+
 @end

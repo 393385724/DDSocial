@@ -1,0 +1,1 @@
+../../../../LineSDK/LineSDK/LineSDK.framework/Versions/A/Headers/LineSDKVerifyResult.h

@@ -33,10 +33,10 @@
 		8FB3F3308E386B894D00C0E6 /* libPods-DDSocialCodeDemo.a in Frameworks */ = {isa = PBXBuildFile; fileRef = ADB39552868A13A2BE675CED /* libPods-DDSocialCodeDemo.a */; };
 		901CFA8A1F4FFE2C004A46CA /* DDWeChatHandler.m in Sources */ = {isa = PBXBuildFile; fileRef = 901CFA891F4FFE2C004A46CA /* DDWeChatHandler.m */; };
 		90235F781EF29A060042D83A /* MiPassport.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 90235F771EF29A060042D83A /* MiPassport.framework */; };
+		903668CF1F79FC8C00D5D459 /* DDLineHandler.m in Sources */ = {isa = PBXBuildFile; fileRef = 903668CD1F79FC8C00D5D459 /* DDLineHandler.m */; };
 		9060A9951CC50396006BABE2 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 9060A9941CC50396006BABE2 /* AppDelegate.m */; };
 		9060A99B1CC50396006BABE2 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 9060A9991CC50396006BABE2 /* Main.storyboard */; };
 		9060A99D1CC50396006BABE2 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 9060A99C1CC50396006BABE2 /* Assets.xcassets */; };
-		9060A9A01CC50396006BABE2 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 9060A99E1CC50396006BABE2 /* LaunchScreen.storyboard */; };
 		9060AA231CC504B0006BABE2 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9060AA221CC504B0006BABE2 /* Foundation.framework */; };
 		9060AA251CC504B6006BABE2 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9060AA241CC504B6006BABE2 /* UIKit.framework */; };
 		9060AA271CC504C1006BABE2 /* libz.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 9060AA261CC504C1006BABE2 /* libz.tbd */; };
@@ -47,6 +47,7 @@
 		9060AA311CC50516006BABE2 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9060AA301CC50516006BABE2 /* CoreGraphics.framework */; };
 		9060AA331CC50523006BABE2 /* CoreTelephony.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9060AA321CC50523006BABE2 /* CoreTelephony.framework */; };
 		9060AA351CC5052C006BABE2 /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9060AA341CC5052C006BABE2 /* Security.framework */; };
+		90C947AB1F7A59AF00F05655 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 9060A99E1CC50396006BABE2 /* LaunchScreen.storyboard */; };
 		90DDEFC41ECA87F60081E86C /* libWeiboSDK.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 90DDEFBE1ECA87F60081E86C /* libWeiboSDK.a */; };
 		90DDEFC51ECA87F60081E86C /* WeiboSDK.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 90DDEFC21ECA87F60081E86C /* WeiboSDK.bundle */; };
 /* End PBXBuildFile section */
@@ -98,6 +99,8 @@
 		901CFA881F4FFE2C004A46CA /* DDWeChatHandler.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DDWeChatHandler.h; sourceTree = "<group>"; };
 		901CFA891F4FFE2C004A46CA /* DDWeChatHandler.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DDWeChatHandler.m; sourceTree = "<group>"; };
 		90235F771EF29A060042D83A /* MiPassport.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = MiPassport.framework; sourceTree = "<group>"; };
+		903668CD1F79FC8C00D5D459 /* DDLineHandler.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DDLineHandler.m; sourceTree = "<group>"; };
+		903668CE1F79FC8C00D5D459 /* DDLineHandler.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DDLineHandler.h; sourceTree = "<group>"; };
 		9060A98D1CC50396006BABE2 /* DDSocialCodeDemo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = DDSocialCodeDemo.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		9060A9931CC50396006BABE2 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		9060A9941CC50396006BABE2 /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
@@ -173,6 +176,7 @@
 				7B717BC11E0BC1FE0098D5D8 /* Tencent */,
 				7B3D634C1E1106890096D290 /* Twitter */,
 				7B717BCB1E0BC1FE0098D5D8 /* Wechat */,
+				903668CC1F79FC8C00D5D459 /* Line */,
 			);
 			name = DDSocial;
 			path = ../DDSocial;
@@ -317,6 +321,15 @@
 			path = ../../DDSocialDemoCore;
 			sourceTree = "<group>";
 		};
+		903668CC1F79FC8C00D5D459 /* Line */ = {
+			isa = PBXGroup;
+			children = (
+				903668CE1F79FC8C00D5D459 /* DDLineHandler.h */,
+				903668CD1F79FC8C00D5D459 /* DDLineHandler.m */,
+			);
+			path = Line;
+			sourceTree = "<group>";
+		};
 		9060A9841CC50396006BABE2 = {
 			isa = PBXGroup;
 			children = (
@@ -430,7 +443,7 @@
 		9060A9851CC50396006BABE2 /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
-				LastUpgradeCheck = 0820;
+				LastUpgradeCheck = 0900;
 				ORGANIZATIONNAME = LiLingang;
 				TargetAttributes = {
 					9060A98C1CC50396006BABE2 = {
@@ -462,9 +475,8 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				9060A9A01CC50396006BABE2 /* LaunchScreen.storyboard in Resources */,
+				90C947AB1F7A59AF00F05655 /* LaunchScreen.storyboard in Resources */,
 				7B717BDD1E0BC1FE0098D5D8 /* MiPassport.bundle in Resources */,
-				9060A9A01CC50396006BABE2 /* LaunchScreen.storyboard in Resources */,
 				7BF33FEE1E0AC84500A02EAA /* DDShareTableViewController.xib in Resources */,
 				7BF33FF01E0AC84500A02EAA /* IMG_5644.JPG in Resources */,
 				7BF33FEF1E0AC84500A02EAA /* GoogleService-Info.plist in Resources */,
@@ -485,9 +497,15 @@
 			files = (
 			);
 			inputPaths = (
+				"${SRCROOT}/Pods/Target Support Files/Pods-DDSocialCodeDemo/Pods-DDSocialCodeDemo-resources.sh",
+				"${PODS_ROOT}/FBSDKCoreKit/FacebookSDKStrings.bundle",
+				"${PODS_ROOT}/GTMOAuth2/Source/Touch/GTMOAuth2ViewTouch.xib",
+				"${PODS_ROOT}/GoogleSignIn/Resources/GoogleSignIn.bundle",
+				"${PODS_ROOT}/WeiboSDK/libWeiboSDK/WeiboSDK.bundle",
 			);
 			name = "[CP] Copy Pods Resources";
 			outputPaths = (
+				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
@@ -515,13 +533,16 @@
 			files = (
 			);
 			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
 			);
 			name = "[CP] Check Pods Manifest.lock";
 			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-DDSocialCodeDemo-checkManifestLockResult.txt",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n";
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
 			showEnvVarsInLog = 0;
 		};
 /* End PBXShellScriptBuildPhase section */
@@ -532,6 +553,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				7BF33FE91E0AC84500A02EAA /* DDAuthTableViewController.m in Sources */,
+				903668CF1F79FC8C00D5D459 /* DDLineHandler.m in Sources */,
 				7B717BDB1E0BC1FE0098D5D8 /* DDSocialShareHandler.m in Sources */,
 				7B717BDC1E0BC1FE0098D5D8 /* DDMIHandler.m in Sources */,
 				7B717BD61E0BC1FE0098D5D8 /* DDSoicalRequestHandler.m in Sources */,
@@ -582,14 +604,20 @@
 				CLANG_CXX_LIBRARY = "libc++";
 				CLANG_ENABLE_MODULES = YES;
 				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
 				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
 				CLANG_WARN_CONSTANT_CONVERSION = YES;
 				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
 				CLANG_WARN_EMPTY_BODY = YES;
 				CLANG_WARN_ENUM_CONVERSION = YES;
 				CLANG_WARN_INFINITE_RECURSION = YES;
 				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
 				CLANG_WARN_SUSPICIOUS_MOVE = YES;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
@@ -627,14 +655,20 @@
 				CLANG_CXX_LIBRARY = "libc++";
 				CLANG_ENABLE_MODULES = YES;
 				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
 				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
 				CLANG_WARN_CONSTANT_CONVERSION = YES;
 				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
 				CLANG_WARN_EMPTY_BODY = YES;
 				CLANG_WARN_ENUM_CONVERSION = YES;
 				CLANG_WARN_INFINITE_RECURSION = YES;
 				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
 				CLANG_WARN_SUSPICIOUS_MOVE = YES;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
@@ -702,21 +736,11 @@
 					"$(inherited)",
 					"\"${PODS_ROOT}/Google/Libraries\"",
 					"$(inherited)",
-					"\"${PODS_ROOT}/Google/Libraries\"",
-					"$(inherited)",
-					"\"${PODS_ROOT}/GoogleAppUtilities/Libraries\"",
-					"$(inherited)",
-					"\"${PODS_ROOT}/GoogleAuthUtilities/Libraries\"",
-					"$(inherited)",
 					"\"${PODS_ROOT}/GoogleAuthUtilities/Libraries\"",
 					"$(inherited)",
 					"\"${PODS_ROOT}/GoogleInterchangeUtilities/Libraries\"",
 					"$(inherited)",
 					"\"${PODS_ROOT}/GoogleNetworkingUtilities/Libraries\"",
-					"$(inherited)",
-					"\"${PODS_ROOT}/GoogleNetworkingUtilities/Libraries\"",
-					"$(inherited)",
-					"\"${PODS_ROOT}/GoogleSignIn/Libraries\"",
 					"$(inherited)",
 					"\"${PODS_ROOT}/GoogleSignIn/Libraries\"",
 					"$(inherited)",
@@ -724,40 +748,7 @@
 					"$(inherited)",
 					"\"${PODS_ROOT}/GoogleUtilities/Libraries\"",
 					"$(inherited)",
-					"\"${PODS_ROOT}/GoogleUtilities/Libraries\"",
-					"$(inherited)",
-					"\"${PODS_ROOT}/GoogleUtilities/Libraries\"",
-					"$(inherited)",
-					"\"${PODS_ROOT}/GoogleUtilities/Libraries\"",
-					"$(inherited)",
-					"\"${PODS_ROOT}/GoogleUtilities/Libraries\"",
-					"$(inherited)",
-					"\"${PODS_ROOT}/GoogleUtilities/Libraries\"",
-					"$(inherited)",
-					"\"${PODS_ROOT}/GoogleUtilities/Libraries\"",
-					"$(inherited)",
-					"\"${PODS_ROOT}/GoogleUtilities/Libraries\"",
-					"$(inherited)",
-					"\"${PODS_ROOT}/GoogleUtilities/Libraries\"",
-					"$(inherited)",
-					"\"${PODS_ROOT}/GoogleUtilities/Libraries\"",
-					"$(inherited)",
-					"\"${PODS_ROOT}/GoogleUtilities/Libraries\"",
-					"$(inherited)",
-					"\"${PODS_ROOT}/GoogleUtilities/Libraries\"",
-					"$(inherited)",
-					"\"${PODS_ROOT}/GoogleUtilities/Libraries\"",
-					"$(inherited)",
-					"\"${PODS_ROOT}/GoogleUtilities/Libraries\"",
-					"$(inherited)",
-					"\"${PODS_ROOT}/GoogleUtilities/Libraries\"",
-					"$(inherited)",
-					"\"${PODS_ROOT}/GoogleUtilities/Libraries\"",
-					"$(inherited)",
-					"\"${PODS_ROOT}/GoogleUtilities/Libraries\"",
-					"$(inherited)",
 					"\"${PODS_ROOT}/WeiboSDK/libWeiboSDK\"",
-					"\"$(SRCROOT)/../DDSocial/Wechat/WeChatSDK/\"",
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.huami.midong;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -803,11 +794,7 @@
 					"$(inherited)",
 					"\"${PODS_ROOT}/Google/Libraries\"",
 					"$(inherited)",
-					"\"${PODS_ROOT}/Google/Libraries\"",
-					"$(inherited)",
 					"\"${PODS_ROOT}/GoogleAppUtilities/Libraries\"",
-					"$(inherited)",
-					"\"${PODS_ROOT}/GoogleAuthUtilities/Libraries\"",
 					"$(inherited)",
 					"\"${PODS_ROOT}/GoogleAuthUtilities/Libraries\"",
 					"$(inherited)",
@@ -815,45 +802,9 @@
 					"$(inherited)",
 					"\"${PODS_ROOT}/GoogleNetworkingUtilities/Libraries\"",
 					"$(inherited)",
-					"\"${PODS_ROOT}/GoogleNetworkingUtilities/Libraries\"",
-					"$(inherited)",
-					"\"${PODS_ROOT}/GoogleSignIn/Libraries\"",
-					"$(inherited)",
 					"\"${PODS_ROOT}/GoogleSignIn/Libraries\"",
 					"$(inherited)",
 					"\"${PODS_ROOT}/GoogleSymbolUtilities/Libraries\"",
-					"$(inherited)",
-					"\"${PODS_ROOT}/GoogleUtilities/Libraries\"",
-					"$(inherited)",
-					"\"${PODS_ROOT}/GoogleUtilities/Libraries\"",
-					"$(inherited)",
-					"\"${PODS_ROOT}/GoogleUtilities/Libraries\"",
-					"$(inherited)",
-					"\"${PODS_ROOT}/GoogleUtilities/Libraries\"",
-					"$(inherited)",
-					"\"${PODS_ROOT}/GoogleUtilities/Libraries\"",
-					"$(inherited)",
-					"\"${PODS_ROOT}/GoogleUtilities/Libraries\"",
-					"$(inherited)",
-					"\"${PODS_ROOT}/GoogleUtilities/Libraries\"",
-					"$(inherited)",
-					"\"${PODS_ROOT}/GoogleUtilities/Libraries\"",
-					"$(inherited)",
-					"\"${PODS_ROOT}/GoogleUtilities/Libraries\"",
-					"$(inherited)",
-					"\"${PODS_ROOT}/GoogleUtilities/Libraries\"",
-					"$(inherited)",
-					"\"${PODS_ROOT}/GoogleUtilities/Libraries\"",
-					"$(inherited)",
-					"\"${PODS_ROOT}/GoogleUtilities/Libraries\"",
-					"$(inherited)",
-					"\"${PODS_ROOT}/GoogleUtilities/Libraries\"",
-					"$(inherited)",
-					"\"${PODS_ROOT}/GoogleUtilities/Libraries\"",
-					"$(inherited)",
-					"\"${PODS_ROOT}/GoogleUtilities/Libraries\"",
-					"$(inherited)",
-					"\"${PODS_ROOT}/GoogleUtilities/Libraries\"",
 					"$(inherited)",
 					"\"${PODS_ROOT}/GoogleUtilities/Libraries\"",
 					"$(inherited)",
