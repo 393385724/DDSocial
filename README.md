@@ -15,6 +15,7 @@ A share auth wheels based on the official library content wecaht sina tencent fa
 	pod 'DDSocial/Facebook'
 	pod 'DDSocial/Twitter'
 	pod 'DDSocial/Google'
+	pod 'DDSocial/Line'
 </code></pre>
 （2）使用源文件需要配置类库的Search Paths<br />
 选择使用DDSocial目录下的模块Core是必须依赖的模块<br />
@@ -34,6 +35,7 @@ Build Settings   ->  Search Paths 两个地方添加  Framework Search Paths 和
     [[DDSocialShareHandler sharedInstance] registerPlatform:DDSSPlatformFacebook appKey:@"自己申请的key"];
     [[DDSocialShareHandler sharedInstance] registerPlatform:DDSSPlatformTwitter appKey:@"自己申请的key" appSecret:@"对应的secret"];
     [[DDSocialShareHandler sharedInstance] registerPlatform:DDSSPlatformGoogle];
+    [[DDSocialShareHandler sharedInstance] registerPlatform:DDSSPlatformLine];
     return YES;
 }
 </code></pre>
@@ -287,4 +289,37 @@ DDSocialShareWebPageProtocol//web内容分享需要实现该协议<br />
 <string>125938537776820</string>
 <key>FacebookDisplayName</key>
 <string>facebook授权页展示的名字</string>
+</code></pre>
+
+###Line开放平台(https://developers.line.me/en/docs/line-login/ios/)
+1、首先在Line开放平台申请appkey(详细步骤：https://developers.line.me/en/docs/line-login/ios/integrate-line-login/)<br />
+2、然后在xcode中配置info.plist<br />
+   （1）添加CFBundleURLTypes<br />
+   （2）添加LSApplicationQueriesSchemes白名单<br />
+   （3）添加LineSDKConfig<br />
+3、示例代码<br />
+<key>CFBundleURLTypes</key>
+<array>
+    <dict>
+        <key>CFBundleTypeRole</key>
+        <string>Editor</string>
+        <key>CFBundleURLSchemes</key>
+        <array>
+            <string>line3rdp.$(PRODUCT_BUNDLE_IDENTIFIER)</string>
+        </array>
+    </dict>
+</array>
+<key>LSApplicationQueriesSchemes</key>
+<array>
+    <string>lineauth</string>
+    <string>line3rdp.$(PRODUCT_BUNDLE_IDENTIFIER)</string>
+    <string>line</string>
+</array>
+</dict>
+
+<key>LineSDKConfig</key>
+<dict>
+    <key>ChannelID</key>
+    <string>1234567890</string>
+</dict>  
 </code></pre>
