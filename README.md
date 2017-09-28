@@ -298,6 +298,7 @@ DDSocialShareWebPageProtocol//web内容分享需要实现该协议<br />
    （2）添加LSApplicationQueriesSchemes白名单<br />
    （3）添加LineSDKConfig<br />
 3、示例代码<br />
+<pre><code>
 <key>CFBundleURLTypes</key>
 <array>
     <dict>
@@ -309,6 +310,8 @@ DDSocialShareWebPageProtocol//web内容分享需要实现该协议<br />
         </array>
     </dict>
 </array>
+</code></pre>
+<pre><code>
 <key>LSApplicationQueriesSchemes</key>
 <array>
     <string>lineauth</string>
@@ -316,10 +319,11 @@ DDSocialShareWebPageProtocol//web内容分享需要实现该协议<br />
     <string>line</string>
 </array>
 </dict>
-
+</code></pre>
+<pre><code>
 <key>LineSDKConfig</key>
 <dict>
     <key>ChannelID</key>
-    <string>1234567890</string>
+    <string>自己申请的LineID</string>
 </dict>  
 </code></pre>
