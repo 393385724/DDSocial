@@ -34,7 +34,8 @@
     [[DDSocialShareHandler sharedInstance] registerPlatform:DDSSPlatformTwitter];
     [[DDSocialShareHandler sharedInstance] registerPlatform:DDSSPlatformGoogle];
     [[DDSocialShareHandler sharedInstance] registerPlatform:DDSSPlatformLine];
-    
+    [[DDSocialShareHandler sharedInstance] registerPlatform:DDSSPlatformInstagram];
+
     return YES;
 }
 

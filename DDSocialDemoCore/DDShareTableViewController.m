@@ -22,7 +22,7 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     [self.tableView registerClass:[UITableViewCell class] forCellReuseIdentifier:@"UITableViewCell"];
-    self.sectionArray = @[@"微信朋友圈",@"微信好友",@"新浪",@"QQ好友",@"QQ空间",@"Facebook",@"Twitter",@"Line"];
+    self.sectionArray = @[@"微信朋友圈",@"微信好友",@"新浪",@"QQ好友",@"QQ空间",@"Facebook",@"Twitter",@"Line",@"Instagram"];
     self.shareContentArray = @[@"纯文本",@"图片",@"网页"];
 }
 
@@ -52,7 +52,6 @@
     DDSSPlatform platform = [self platformWithsection:indexPath.section];
     DDSSScene shareScene = [self shareSceneWithsection:indexPath.section];
     DDSSContentType contentType = [self contentTypeWithRow:indexPath.row];
-    BOOL isInstall = [DDSocialShareHandler isInstalledPlatform:platform];
     [[DDSocialShareHandler sharedInstance] shareWithPlatform:platform controller:self shareScene:shareScene contentType:contentType protocol:self handler:^(DDSSPlatform platform, DDSSScene scene, DDSSShareState state, NSError *error) {
         switch (state) {
             case DDSSShareStateBegan: {
@@ -90,6 +89,8 @@
         return DDSSPlatformTwitter;
     } else if(section == 7) {
         return DDSSPlatformLine;
+    } else if(section == 8) {
+        return DDSSPlatformInstagram;
     }
     return DDSSPlatformWeChat;
 }
@@ -109,8 +110,10 @@
         return DDSSSceneFacebook;
     } else if (section == 6) {
         return DDSSSceneTwitter;
-    } else if (section == 6) {
+    } else if (section == 7) {
         return DDSSSceneLine;
+    } else if (section == 8) {
+        return DDSSSceneInstagram;
     } else {
         return DDSSSceneWXTimeline;
     }

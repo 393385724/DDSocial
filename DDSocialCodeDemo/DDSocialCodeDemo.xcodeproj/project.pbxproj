@@ -47,6 +47,7 @@
 		9060AA311CC50516006BABE2 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9060AA301CC50516006BABE2 /* CoreGraphics.framework */; };
 		9060AA331CC50523006BABE2 /* CoreTelephony.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9060AA321CC50523006BABE2 /* CoreTelephony.framework */; };
 		9060AA351CC5052C006BABE2 /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9060AA341CC5052C006BABE2 /* Security.framework */; };
+		90A6B0AC1F97559B00D85040 /* DDInstagramHandler.m in Sources */ = {isa = PBXBuildFile; fileRef = 90A6B0AB1F97559B00D85040 /* DDInstagramHandler.m */; };
 		90C947AB1F7A59AF00F05655 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 9060A99E1CC50396006BABE2 /* LaunchScreen.storyboard */; };
 		90DDEFC41ECA87F60081E86C /* libWeiboSDK.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 90DDEFBE1ECA87F60081E86C /* libWeiboSDK.a */; };
 		90DDEFC51ECA87F60081E86C /* WeiboSDK.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 90DDEFC21ECA87F60081E86C /* WeiboSDK.bundle */; };
@@ -120,6 +121,8 @@
 		9060AA321CC50523006BABE2 /* CoreTelephony.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreTelephony.framework; path = System/Library/Frameworks/CoreTelephony.framework; sourceTree = SDKROOT; };
 		9060AA341CC5052C006BABE2 /* Security.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Security.framework; path = System/Library/Frameworks/Security.framework; sourceTree = SDKROOT; };
 		9060AAA01CC50935006BABE2 /* TencentOpenAPI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = TencentOpenAPI.framework; path = ../DDSocial/Tencent/TencentSDK/TencentOpenAPI.framework; sourceTree = "<group>"; };
+		90A6B0AA1F97559B00D85040 /* DDInstagramHandler.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DDInstagramHandler.h; sourceTree = "<group>"; };
+		90A6B0AB1F97559B00D85040 /* DDInstagramHandler.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = DDInstagramHandler.m; sourceTree = "<group>"; };
 		90DDEFBE1ECA87F60081E86C /* libWeiboSDK.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libWeiboSDK.a; sourceTree = "<group>"; };
 		90DDEFBF1ECA87F60081E86C /* WBHttpRequest+WeiboToken.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "WBHttpRequest+WeiboToken.h"; sourceTree = "<group>"; };
 		90DDEFC01ECA87F60081E86C /* WBHttpRequest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WBHttpRequest.h; sourceTree = "<group>"; };
@@ -176,6 +179,7 @@
 				7B717BC11E0BC1FE0098D5D8 /* Tencent */,
 				7B3D634C1E1106890096D290 /* Twitter */,
 				7B717BCB1E0BC1FE0098D5D8 /* Wechat */,
+				90A6B0A91F97557000D85040 /* Instagram */,
 				903668CC1F79FC8C00D5D459 /* Line */,
 			);
 			name = DDSocial;
@@ -383,6 +387,15 @@
 			name = "Supporting Files";
 			sourceTree = "<group>";
 		};
+		90A6B0A91F97557000D85040 /* Instagram */ = {
+			isa = PBXGroup;
+			children = (
+				90A6B0AA1F97559B00D85040 /* DDInstagramHandler.h */,
+				90A6B0AB1F97559B00D85040 /* DDInstagramHandler.m */,
+			);
+			path = Instagram;
+			sourceTree = "<group>";
+		};
 		90DDEFBD1ECA87F60081E86C /* libWeiboSDK */ = {
 			isa = PBXGroup;
 			children = (
@@ -572,6 +585,7 @@
 				7BF33FEB1E0AC84500A02EAA /* DDMainViewController.m in Sources */,
 				7B717BD81E0BC1FE0098D5D8 /* UIImage+Zoom.m in Sources */,
 				7BF33FED1E0AC84500A02EAA /* DDShareTableViewController.m in Sources */,
+				90A6B0AC1F97559B00D85040 /* DDInstagramHandler.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

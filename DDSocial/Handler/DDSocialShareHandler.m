@@ -20,6 +20,7 @@
 @property (nonatomic, strong) id<DDSocialHandlerProtocol> twitterHandler;
 @property (nonatomic, strong) id<DDSocialHandlerProtocol> miHandler;
 @property (nonatomic, strong) id<DDSocialHandlerProtocol> lineHandler;
+@property (nonatomic, strong) id<DDSocialHandlerProtocol> instagramHandler;
 
 @end
 
@@ -59,6 +60,8 @@
         platform = DDSSPlatformTwitter;
     } else if (scene == DDSSSceneLine) {
         platform = DDSSPlatformLine;
+    } else if (scene == DDSSSceneInstagram) {
+        platform = DDSSPlatformInstagram;
     }
     return [DDSocialShareHandler isInstalledPlatform:platform];
 }
@@ -241,6 +244,8 @@
         return NSClassFromString(@"DDGoogleHandler");
     } else if (platForm == DDSSPlatformLine) {
         return NSClassFromString(@"DDLineHandler");
+    } else if (platForm == DDSSPlatformInstagram) {
+        return NSClassFromString(@"DDInstagramHandler");
     } else {
         return nil;
     }
@@ -279,7 +284,12 @@
     } else if (platForm == DDSSPlatformLine) {
         self.lineHandler = [[DDSocialShareHandler classWithPlatForm:DDSSPlatformLine] new];
         handlerProtocol = self.lineHandler;
+        
+    } else if (platForm == DDSSPlatformInstagram) {
+        self.instagramHandler = [[DDSocialShareHandler classWithPlatForm:DDSSPlatformInstagram] new];
+        handlerProtocol = self.instagramHandler;
     }
+    
     return handlerProtocol;
 }
 
@@ -301,6 +311,8 @@
         handlerProtocol = self.googleHandler;
     } else if (platForm == DDSSPlatformLine) {
         handlerProtocol = self.lineHandler;
+    } else if (platForm == DDSSPlatformInstagram) {
+        handlerProtocol = self.instagramHandler;
     }
     return handlerProtocol;
 }

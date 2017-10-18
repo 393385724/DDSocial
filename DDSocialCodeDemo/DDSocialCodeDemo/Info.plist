@@ -140,6 +140,7 @@
 		<string>lineauth</string>
 		<string>line3rdp.$(PRODUCT_BUNDLE_IDENTIFIER)</string>
 		<string>line</string>
+		<string>instagram</string>
 	</array>
 	<key>LSRequiresIPhoneOS</key>
 	<true/>

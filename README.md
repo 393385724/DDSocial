@@ -6,6 +6,11 @@ A share auth wheels based on the official library content wecaht sina tencent fa
 ##使用配置
 1、引入类库，必须引入share模块，其他可根据自身app选择性引入<br />
 （1）使用pod形式引入
+    全部引入
+<pre><code>
+	pod 'DDSocial' 
+</code></pre>
+    单个引入
 <pre><code>
 	pod 'DDSocial/Share' 
 	pod 'DDSocial/MI'
@@ -16,6 +21,7 @@ A share auth wheels based on the official library content wecaht sina tencent fa
 	pod 'DDSocial/Twitter'
 	pod 'DDSocial/Google'
 	pod 'DDSocial/Line'
+	pod 'DDSocial/Instagram'
 </code></pre>
 （2）使用源文件需要配置类库的Search Paths<br />
 选择使用DDSocial目录下的模块Core是必须依赖的模块<br />
@@ -36,6 +42,7 @@ Build Settings   ->  Search Paths 两个地方添加  Framework Search Paths 和
     [[DDSocialShareHandler sharedInstance] registerPlatform:DDSSPlatformTwitter appKey:@"自己申请的key" appSecret:@"对应的secret"];
     [[DDSocialShareHandler sharedInstance] registerPlatform:DDSSPlatformGoogle];
     [[DDSocialShareHandler sharedInstance] registerPlatform:DDSSPlatformLine];
+    [[DDSocialShareHandler sharedInstance] registerPlatform:DDSSPlatformInstagram];
     return YES;
 }
 </code></pre>
@@ -327,3 +334,14 @@ DDSocialShareWebPageProtocol//web内容分享需要实现该协议<br />
     <string>自己申请的LineID</string>
 </dict>  
 </code></pre>
+###Instagram开放平台(目前只支持图片分享，暂不支持授权)(//https://www.instagram.com/developer/mobile-sharing/iphone-hooks/)
+1、在xcode中配置info.plist<br />
+   （1）添加LSApplicationQueriesSchemes白名单<br />
+3、示例代码<br />
+<pre><code>
+<key>LSApplicationQueriesSchemes</key>
+<array>
+    <string>instagram</string>
+</array>
+</dict>
+
