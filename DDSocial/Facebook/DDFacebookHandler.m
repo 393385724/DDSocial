@@ -169,7 +169,12 @@ const CGFloat DDFacebookImageDataMaxSize = 12 * 1024 * 1024;
                                           handler:^(FBSDKLoginManagerLoginResult *result, NSError *error) {
                                               if (error) {
                                                   if (handler) {
-                                                      handler(DDSSPlatformFacebook, DDSSAuthStateFail, nil, error);
+                                                      if (error.code == 1) {
+                                                          //SFAuthenticationErrorCanceledLogin
+                                                          handler(DDSSPlatformFacebook, DDSSAuthStateCancel, nil, error);
+                                                      } else {
+                                                          handler(DDSSPlatformFacebook, DDSSAuthStateFail, nil, error);
+                                                      }
                                                   }
                                               } else if (result.isCancelled) {
                                                   if (handler) {
