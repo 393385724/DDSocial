@@ -167,7 +167,21 @@ const CGFloat DDFacebookImageDataMaxSize = 12 * 1024 * 1024;
     [self.fbLoginManager logInWithReadPermissions:permissions
                                fromViewController:viewController
                                           handler:^(FBSDKLoginManagerLoginResult *result, NSError *error) {
-                                              if (error) {
+                                              if (result) {
+                                                  if (result.isCancelled) {
+                                                      if (handler) {
+                                                          handler(DDSSPlatformFacebook, DDSSAuthStateCancel, nil, error);
+                                                      }
+                                                  } else {
+                                                      if (handler) {
+                                                          DDAuthItem *authItem = [DDAuthItem new];
+                                                          authItem.thirdToken = result.token.tokenString;
+                                                          authItem.thirdId = result.token.userID;
+                                                          authItem.rawObject = result;
+                                                          handler(DDSSPlatformFacebook, DDSSAuthStateSuccess, authItem, nil);
+                                                      }
+                                                  }
+                                              } else {
                                                   if (handler) {
                                                       if (error.code == 1) {
                                                           //SFAuthenticationErrorCanceledLogin
@@ -175,18 +189,6 @@ const CGFloat DDFacebookImageDataMaxSize = 12 * 1024 * 1024;
                                                       } else {
                                                           handler(DDSSPlatformFacebook, DDSSAuthStateFail, nil, error);
                                                       }
-                                                  }
-                                              } else if (result.isCancelled) {
-                                                  if (handler) {
-                                                      handler(DDSSPlatformFacebook, DDSSAuthStateCancel, nil, error);
-                                                  }
-                                              } else {
-                                                  if (handler) {
-                                                      DDAuthItem *authItem = [DDAuthItem new];
-                                                      authItem.thirdToken = result.token.tokenString;
-                                                      authItem.thirdId = result.token.userID;
-                                                      authItem.rawObject = result;
-                                                      handler(DDSSPlatformFacebook, DDSSAuthStateSuccess, authItem, nil);
                                                   }
                                               }
                                           }];
