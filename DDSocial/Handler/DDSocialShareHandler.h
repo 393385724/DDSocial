@@ -63,7 +63,7 @@
  *  @endcode
  *
  *  @param platform    各应用平台
- *  @param appKey      线下申请的appKey,必传参数
+ *  @param appKey      线下申请的appKey或者appID,根据平台文档查看,必传参数
  */
 - (void)registerPlatform:(DDSSPlatform)platform
                   appKey:(NSString *)appKey;
@@ -75,7 +75,7 @@
  *  @endcode
  *
  *  @param platform    各应用平台
- *  @param appKey      线下申请的appKey,必传参数
+ *  @param appKey      线下申请的appKey或者appID,根据平台文档查看,必传参数
  *  @param appSecret   线下申请的appSecret,没有则不传
  */
 - (void)registerPlatform:(DDSSPlatform)platform
@@ -89,7 +89,7 @@
  *  @endcode
  *
  *  @param platform    各应用平台
- *  @param appKey      线下申请的appKey,必传参数
+ *  @param appKey      线下申请的appKey或者appID,根据平台文档查看,必传参数
  *  @param redirectURL 线下填写的redirectURL,没有则不传
  */
 - (void)registerPlatform:(DDSSPlatform)platform
@@ -103,7 +103,7 @@
  *  @endcode
  *
  *  @param platform    各应用平台
- *  @param appKey      线下申请的appKey,必传参数
+ *  @param appKey      线下申请的appKey或者appID,根据平台文档查看,必传参数
  *  @param appSecret   线下申请的appSecret,没有则不传
  *  @param redirectURL 线下填写的redirectURL,没有则不传
  *  @param appDescription app描述,没有则不传
