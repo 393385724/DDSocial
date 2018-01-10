@@ -34,12 +34,12 @@ Build Settings   ->  Search Paths 两个地方添加  Framework Search Paths 和
 (2)在应用启动时注册第三方
 <pre><code>
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
-    [[DDSocialShareHandler sharedInstance] registerPlatform:DDSSPlatformMI appKey:@"自己申请的key"redirectURL:@"申请时填写的URL"];
-    [[DDSocialShareHandler sharedInstance] registerPlatform:DDSSPlatformWeChat appKey:@"自己申请的key"];
-    [[DDSocialShareHandler sharedInstance] registerPlatform:DDSSPlatformSina appKey:@"自己申请的key"];
-    [[DDSocialShareHandler sharedInstance] registerPlatform:DDSSPlatformQQ appKey:@"自己申请的key"];
-    [[DDSocialShareHandler sharedInstance] registerPlatform:DDSSPlatformFacebook appKey:@"自己申请的key"];
-    [[DDSocialShareHandler sharedInstance] registerPlatform:DDSSPlatformTwitter appKey:@"自己申请的key" appSecret:@"对应的secret"];
+    [[DDSocialShareHandler sharedInstance] registerPlatform:DDSSPlatformMI appKey:@"自己申请的key或appID根据三方平台决定"redirectURL:@"申请时填写的URL"];
+    [[DDSocialShareHandler sharedInstance] registerPlatform:DDSSPlatformWeChat appKey:@"自己申请的key或appID根据三方平台决定"];
+    [[DDSocialShareHandler sharedInstance] registerPlatform:DDSSPlatformSina appKey:@"自己申请的key或appID根据三方平台决定"];
+    [[DDSocialShareHandler sharedInstance] registerPlatform:DDSSPlatformQQ appKey:@"自己申请的key或appID根据三方平台决定"];
+    [[DDSocialShareHandler sharedInstance] registerPlatform:DDSSPlatformFacebook appKey:@"自己申请的key或appID根据三方平台决定"];
+    [[DDSocialShareHandler sharedInstance] registerPlatform:DDSSPlatformTwitter appKey:@"自己申请的key或appID根据三方平台决定" appSecret:@"对应的secret"];
     [[DDSocialShareHandler sharedInstance] registerPlatform:DDSSPlatformGoogle];
     [[DDSocialShareHandler sharedInstance] registerPlatform:DDSSPlatformLine];
     [[DDSocialShareHandler sharedInstance] registerPlatform:DDSSPlatformInstagram];
