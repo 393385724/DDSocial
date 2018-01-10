@@ -188,32 +188,32 @@ DDSocialShareWebPageProtocol//web内容分享需要实现该协议<br />
    （2）添加LSApplicationQueriesSchemes白名单<br />
 3、示例代码<br />
 <pre><code>
-<key>CFBundleURLTypes</key>
-<array>
-    <dict>
-        <key>CFBundleTypeRole</key>
-        <string>Tencent</string>
-        <key>CFBundleURLName</key>
-        <string>tencentopenapi</string>
-        <key>CFBundleURLSchemes</key>
-        <array>
-            <string>替换成自己的appkey</string>
-        </array>
-    </dict>
-</array>
+&lt;key>CFBundleURLTypes&lt;/key>
+&lt;array>
+    &lt;dict>
+        &lt;key>CFBundleTypeRole&lt;/key>
+        &lt;string>Tencent&lt;/string>
+        &lt;key>CFBundleURLName&lt;/key>
+        &lt;string>tencentopenapi&lt;/string>
+        &lt;key>CFBundleURLSchemes&lt;/key>
+        &lt;array>
+            &lt;string>替换成自己的appkey&lt;/string>
+        &lt;/array>
+    &lt;/dict>
+&lt;/array>
 
-<key>LSApplicationQueriesSchemes</key>
-<array>
-    <string>mqqOpensdkSSoLogin</string>
-    <string>mqqopensdkapiV2</string>
-    <string>mqqopensdkapiV3</string>
-    <string>mqq</string>
-    <string>mqqapi</string>
-    <string>wtloginmqq2</string>
-    <string>mqzone</string>
-    <string>tim</string>
-    <string>timapiV1</string>
-</array>
+&lt;key>LSApplicationQueriesSchemes&lt;/key>
+&lt;array>
+    &lt;string>mqqOpensdkSSoLogin&lt;/string>
+    &lt;string>mqqopensdkapiV2&lt;/string>
+    &lt;string>mqqopensdkapiV3&lt;/string>
+    &lt;string>mqq&lt;/string>
+    &lt;string>mqqapi&lt;/string>
+    &lt;string>wtloginmqq2&lt;/string>
+    &lt;string>mqzone&lt;/string>
+    &lt;string>tim&lt;/string>
+    &lt;string>timapiV1&lt;/string>
+&lt;/array>
 </code></pre>
 ### 新浪微博开放平台(http://open.weibo.com/)
 1、首先在新浪微博开放平台申请appkey 可以选择配置自己的redirectURL<br />
@@ -222,29 +222,29 @@ DDSocialShareWebPageProtocol//web内容分享需要实现该协议<br />
    （2）添加LSApplicationQueriesSchemes白名单<br />
 3、示例代码<br />
 <pre><code>
-<key>CFBundleURLTypes</key>
-<array>
-    <dict>
-        <key>CFBundleTypeRole</key>
-        <string>Sina</string>
-        <key>CFBundleURLName</key>
-        <string>com.weibo</string>
-        <key>CFBundleURLSchemes</key>
-        <array>
-            <string>替换成自己的appkey</string>
-        </array>
-    </dict>
-</array>
+&lt;key>CFBundleURLTypes&lt;/key>
+&lt;array>
+    &lt;dict>
+        &lt;key>CFBundleTypeRole&lt;/key>
+        &lt;string>Sina&lt;/string>
+        &lt;key>CFBundleURLName&lt;/key>
+        &lt;string>com.weibo&lt;/string>
+        &lt;key>CFBundleURLSchemes&lt;/key>
+        &lt;array>
+            &lt;string>替换成自己的appkey&lt;/string>
+        &lt;/array>
+    &lt;/dict>
+&lt;/array>
 
-<key>LSApplicationQueriesSchemes</key>
-<array>
-    <string>sinaweibosso</string>
-    <string>sinaweibohdsso</string>
-    <string>sinaweibo</string>
-    <string>weibosdk</string>
-    <string>weibosdk2.5</string>
-    <string>sinaweibohd</string>
-</array>
+&lt;key>LSApplicationQueriesSchemes&lt;/key>
+&lt;array>
+    &lt;string>sinaweibosso&lt;/string>
+    &lt;string>sinaweibohdsso&lt;/string>
+    &lt;string>sinaweibo&lt;/string>
+    &lt;string>weibosdk&lt;/string>
+    &lt;string>weibosdk2.5&lt;/string>
+    &lt;string>sinaweibohd&lt;/string>
+&lt;/array>
 </code></pre>
 ### Google开放平台(https://developers.google.com/identity/sign-in/ios/) <br />
 1、首先在google开放平台申请appkey(详细步骤：https://developers.google.com/identity/sign-in/ios/start-integrating#before_you_begin)<br />
@@ -252,25 +252,25 @@ DDSocialShareWebPageProtocol//web内容分享需要实现该协议<br />
    （1）添加CFBundleURLTypes<br />
 3、示例代码<br />
 <pre><code>
-<key>CFBundleURLTypes</key>
-<array>
-    <dict>
-        <key>CFBundleTypeRole</key>
-        <string>Editor</string>
-        <key>CFBundleURLSchemes</key>
-        <array>
-            <string>google申请的appkey</string>
-        </array>
-    </dict>
-    <dict>
-        <key>CFBundleTypeRole</key>
-        <string>Editor</string>
-        <key>CFBundleURLSchemes</key>
-        <array>
-            <string>google申请的bundle</string>
-        </array>
-    </dict>
-</array>
+&lt;key>CFBundleURLTypes&lt;/key>
+&lt;array>
+    &lt;dict>
+        &lt;key>CFBundleTypeRole&lt;/key>
+        &lt;string>Editor&lt;/string>
+        &lt;key>CFBundleURLSchemes&lt;/key>
+        &lt;array>
+            &lt;string>google申请的appkey&lt;/string>
+        &lt;/array>
+    &lt;/dict>
+    &lt;dict>
+        &lt;key>CFBundleTypeRole&lt;/key>
+        &lt;string>Editor&lt;/string>
+        &lt;key>CFBundleURLSchemes&lt;/key>
+        &lt;array>
+            &lt;string>google申请的bundle&lt;/string>
+        &lt;/array>
+    &lt;/dict>
+&lt;/array>
 </code></pre>
 1、工程的bundleid必须和申请google的完全一致<br />
 2、google需要添加他自己生成的info.plist参见文档操作吧，参见连接:https://developers.google.com/identity/sign-in/ios/start-integrating#before_you_begin<br />
@@ -283,31 +283,31 @@ DDSocialShareWebPageProtocol//web内容分享需要实现该协议<br />
    （4）添加FacebookDisplayName<br />
 3、示例代码<br />
 <pre><code>
-<key>CFBundleURLTypes</key>
-<array>
-    <dict>
-        <key>CFBundleTypeRole</key>
-        <string>FB</string>
-        <key>CFBundleURLName</key>
-        <string>facebook</string>
-        <key>CFBundleURLSchemes</key>
-        <array>
-            <string>替换成自己的appkey</string>
-        </array>
-    </dict>
-</array>
+&lt;key>CFBundleURLTypes&lt;/key>
+&lt;array>
+    &lt;dict>
+        &lt;key>CFBundleTypeRole&lt;/key>
+        &lt;string>FB&lt;/string>
+        &lt;key>CFBundleURLName&lt;/key>
+        &lt;string>facebook&lt;/string>
+        &lt;key>CFBundleURLSchemes&lt;/key>
+        &lt;array>
+            &lt;string>替换成自己的appkey&lt;/string>
+        &lt;/array>
+    &lt;/dict>
+&lt;/array>
 
-<key>LSApplicationQueriesSchemes</key>
-<array>
-    <string>fbshareextension</string>
-    <string>fbauth2</string>
-    <string>fb-messenger-api</string>
-    <string>fbapi</string>
-</array>
-<key>FacebookAppID</key>
-<string>125938537776820</string>
-<key>FacebookDisplayName</key>
-<string>facebook授权页展示的名字</string>
+&lt;key>LSApplicationQueriesSchemes&lt;/key>
+&lt;array>
+    &lt;string>fbshareextension&lt;/string>
+    &lt;string>fbauth2&lt;/string>
+    &lt;string>fb-messenger-api&lt;/string>
+    &lt;string>fbapi&lt;/string>
+&lt;/array>
+&lt;key>FacebookAppID&lt;/key>
+&lt;string>125938537776820&lt;/string>
+&lt;key>FacebookDisplayName&lt;/key>
+&lt;string>facebook授权页展示的名字&lt;/string>
 </code></pre>
 
 ### Line开放平台(https://developers.line.me/en/docs/line-login/ios/)<br />
@@ -318,42 +318,42 @@ DDSocialShareWebPageProtocol//web内容分享需要实现该协议<br />
    （3）添加LineSDKConfig<br />
 3、示例代码<br />
 <pre><code>
-<key>CFBundleURLTypes</key>
-<array>
-    <dict>
-        <key>CFBundleTypeRole</key>
-        <string>Editor</string>
-        <key>CFBundleURLSchemes</key>
-        <array>
-            <string>line3rdp.$(PRODUCT_BUNDLE_IDENTIFIER)</string>
-        </array>
-    </dict>
-</array>
+&lt;key>CFBundleURLTypes&lt;/key>
+&lt;array>
+    &lt;dict>
+        &lt;key>CFBundleTypeRole&lt;/key>
+        &lt;string>Editor&lt;/string>
+        &lt;key>CFBundleURLSchemes&lt;/key>
+        &lt;array>
+            &lt;string>line3rdp.$(PRODUCT_BUNDLE_IDENTIFIER)&lt;/string>
+        &lt;/array>
+    &lt;/dict>
+&lt;/array>
 </code></pre>
 <pre><code>
-<key>LSApplicationQueriesSchemes</key>
-<array>
-    <string>lineauth</string>
-    <string>line3rdp.$(PRODUCT_BUNDLE_IDENTIFIER)</string>
-    <string>line</string>
-</array>
-</dict>
+&lt;key>LSApplicationQueriesSchemes&lt;/key>
+&lt;array>
+    &lt;string>lineauth&lt;/string>
+    &lt;string>line3rdp.$(PRODUCT_BUNDLE_IDENTIFIER)&lt;/string>
+    &lt;string>line&lt;/string>
+&lt;/array>
+&lt;/dict>
 </code></pre>
 <pre><code>
-<key>LineSDKConfig</key>
-<dict>
-    <key>ChannelID</key>
-    <string>自己申请的LineID</string>
-</dict>  
+&lt;key>LineSDKConfig&lt;/key>
+&lt;dict>
+    &lt;key>ChannelID&lt;/key>
+ 	&lt;string>自己申请的LineID&lt;/string>
+&lt;/dict>  
 </code></pre>
 ### Instagram开放平台(目前只支持图片分享，暂不支持授权)(//https://www.instagram.com/developer/mobile-sharing/iphone-hooks/) <br />
 1、在xcode中配置info.plist<br />
    （1）添加LSApplicationQueriesSchemes白名单<br />
 3、示例代码<br />
 <pre><code>
-<key>LSApplicationQueriesSchemes</key>
-<array>
-    <string>instagram</string>
-</array>
-</dict>
+&lt;key>LSApplicationQueriesSchemes&lt;/key>
+&lt;array>
+    &lt;string>instagram&lt;/string>
+&lt;/array>
+&lt;/dict>
 
