@@ -117,29 +117,41 @@ DDSocialShareWebPageProtocol//web内容分享需要实现该协议<br />
 ### 小米开放平台(http://dev.xiaomi.com/index)
 1、首先在小米开放平台申请appkey并配置好redirectURL<br />
 2、然后在xcode中配置info.plist<br />
-   (1)添加NSAppTransportSecurity字段<br />
+   （1）添加CFBundleURLTypes<br />
+   (2)添加NSAppTransportSecurity字段<br />
 3、示例代码<br />
 <pre><code>
-<key>NSAppTransportSecurity</key>
-<dict>
-    <key>NSAllowsArbitraryLoads</key>
-    <true/>
-    <key>NSExceptionDomains</key>
-    <dict>
-        <key>open.account.xiaomi.com</key>
-        <dict>
-            <key>NSExceptionAllowsInsecureHTTPLoads</key>
-            <true/>
-        </dict>
-        <key>www.miui.com</key>
-        <dict>
-          <key>NSIncludesSubdomains</key>
-          <true/>
-          <key>NSThirdPartyExceptionAllowsInsecureHTTPLoads</key>
-          <true/>
-        </dict>
-    </dict>
-</dict>
+&lt;dict>
+	&lt;key>CFBundleTypeRole&lt;/key>
+	&lt;string>MI&lt;/string>
+	&lt;key>CFBundleURLName&lt;/key>
+	&lt;string>xiaomi&lt;/string>
+	&lt;key>CFBundleURLSchemes&lt;/key>
+	&lt;array>
+		&lt;string>miXXXXXXXXX&lt;/string>
+	&lt;/array>
+&lt;/dict>
+
+&lt;key>NSAppTransportSecurity&lt;/key>
+&lt;dict>
+    &lt;key>NSAllowsArbitraryLoads&lt;/key>
+    &lt;true/>
+    &lt;key>NSExceptionDomains&lt;/key>
+    &lt;dict>
+        &lt;key>open.account.xiaomi.com&lt;/key>
+        &lt;dict>
+            &lt;key>NSExceptionAllowsInsecureHTTPLoads&lt;/key>
+            &lt;true/>
+        &lt;/dict>
+        &lt;key>www.miui.com&lt;/key>
+        &lt;dict>
+          &lt;key>NSIncludesSubdomains&lt;/key>
+          &lt;true/>
+          &lt;key>NSThirdPartyExceptionAllowsInsecureHTTPLoads&lt;/key>
+          &lt;true/>
+        &lt;/dict>
+    &lt;/dict>
+&lt;/dict>
 </code></pre>
 ### 微信开放平台(https://open.weixin.qq.com/)
 1、首先在微信开放平台根据自己app的bundleid申请一个appkey<br />
@@ -148,25 +160,25 @@ DDSocialShareWebPageProtocol//web内容分享需要实现该协议<br />
    （2）添加LSApplicationQueriesSchemes白名单<br />
 3、示例代码<br />
 <pre><code>
-<key>CFBundleURLTypes</key>
-<array>
-    <dict>
-        <key>CFBundleTypeRole</key>
-        <string>WeChat</string>
-        <key>CFBundleURLName</key>
-        <string>weixin</string>
-        <key>CFBundleURLSchemes</key>
-        <array>
-            <string>替换成自己的appkey</string>
-        </array>
-    </dict>
-</array>
+&lt;key>CFBundleURLTypes&lt;/key>
+&lt;array>
+    &lt;dict>
+        &lt;key>CFBundleTypeRole&lt;/key>
+        &lt;string>WeChat&lt;/string>
+        &lt;key>CFBundleURLName&lt;/key>
+        &lt;string>weixin&lt;/string>
+        &lt;key>CFBundleURLSchemes&lt;/key>
+        &lt;array>
+            &lt;string>替换成自己的appkey&lt;/string>
+        &lt;/array>
+    &lt;/dict>
+&lt;/array>
 
-<key>LSApplicationQueriesSchemes</key>
-    <array>
-        <string>weixin</string>
-        <string>weichat</string>
-    </array>
+&lt;key>LSApplicationQueriesSchemes&lt;/key>
+    &lt;array>
+        &lt;string>weixin&lt;/string>
+        &lt;string>weichat&lt;/string>
+    &lt;/array>
 </code></pre>
 
 ### QQ互联(http://connect.qq.com/)
