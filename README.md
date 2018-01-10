@@ -305,7 +305,7 @@ DDSocialShareWebPageProtocol//web内容分享需要实现该协议<br />
     &lt;string>fbapi&lt;/string>
 &lt;/array>
 &lt;key>FacebookAppID&lt;/key>
-&lt;string>125938537776820&lt;/string>
+&lt;string>替换成自己的appkey&lt;/string>
 &lt;key>FacebookDisplayName&lt;/key>
 &lt;string>facebook授权页展示的名字&lt;/string>
 </code></pre>
