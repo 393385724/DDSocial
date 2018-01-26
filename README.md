@@ -40,7 +40,7 @@ Build Settings   ->  Search Paths 两个地方添加  Framework Search Paths 和
     [[DDSocialShareHandler sharedInstance] registerPlatform:DDSSPlatformQQ appKey:@"自己申请的key或appID根据三方平台决定"];
     [[DDSocialShareHandler sharedInstance] registerPlatform:DDSSPlatformFacebook appKey:@"自己申请的key或appID根据三方平台决定"];
     [[DDSocialShareHandler sharedInstance] registerPlatform:DDSSPlatformTwitter appKey:@"自己申请的key或appID根据三方平台决定" appSecret:@"对应的secret"];
-    [[DDSocialShareHandler sharedInstance] registerPlatform:DDSSPlatformGoogle];
+    [[DDSocialShareHandler sharedInstance] registerPlatform:DDSSPlatformGoogle appKey:@"自己申请的CLIENT_ID或appID根据三方平台决定"];
     [[DDSocialShareHandler sharedInstance] registerPlatform:DDSSPlatformLine];
     [[DDSocialShareHandler sharedInstance] registerPlatform:DDSSPlatformInstagram];
     return YES;
@@ -259,15 +259,7 @@ DDSocialShareWebPageProtocol//web内容分享需要实现该协议<br />
         &lt;string>Editor&lt;/string>
         &lt;key>CFBundleURLSchemes&lt;/key>
         &lt;array>
-            &lt;string>google申请的appkey&lt;/string>
-        &lt;/array>
-    &lt;/dict>
-    &lt;dict>
-        &lt;key>CFBundleTypeRole&lt;/key>
-        &lt;string>Editor&lt;/string>
-        &lt;key>CFBundleURLSchemes&lt;/key>
-        &lt;array>
-            &lt;string>google申请的bundle&lt;/string>
+            &lt;string>REVERSED_CLIENT_ID&lt;/string>
         &lt;/array>
     &lt;/dict>
 &lt;/array>

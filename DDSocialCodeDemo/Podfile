@@ -3,7 +3,7 @@ platform :ios,'7.0'
 #inhibit_all_warnings!
 workspace 'DDSocialCodeDemo'
 target 'DDSocialCodeDemo' do
-   pod 'Google/SignIn'
+   pod 'GoogleSignIn'
    pod 'FBSDKLoginKit'
    pod 'FBSDKShareKit'
    pod 'WeiboSDK', :git => "https://github.com/sinaweibosdk/weibo_ios_sdk.git"

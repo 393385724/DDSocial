@@ -8,8 +8,7 @@
 
 #import "DDGoogleHandler.h"
 #import <UIKit/UIKit.h>
-#import <Google/SignIn.h>
-#import <GoogleSignIn/GIDSignIn.h>
+#import <GoogleSignIn/GoogleSignIn.h>
 
 #import "DDSocialHandlerProtocol.h"
 #import "DDAuthItem.h"
@@ -81,12 +80,7 @@ didDisconnectWithUser:(GIDGoogleUser *)user
                  appSecret:(NSString *)appSecret
                redirectURL:(NSString *)redirectURL
             appDescription:(NSString *)appDescription {
-    NSError* configureError;
-    [[GGLContext sharedInstance] configureWithError: &configureError];
-    NSAssert(!configureError, @"Error configuring Google services: %@", configureError);
-    if (configureError) {
-        return NO;
-    }
+    [GIDSignIn sharedInstance].clientID = appKey;
     return YES;
 }
 
@@ -110,6 +104,7 @@ didDisconnectWithUser:(GIDGoogleUser *)user
     self.authEventHandler(DDSSPlatformGoogle, DDSSAuthStateBegan, nil, nil);
     [GIDSignIn sharedInstance].delegate = self;
     [GIDSignIn sharedInstance].uiDelegate = self;
+    [GIDSignIn sharedInstance].shouldFetchBasicProfile = YES;
     [[GIDSignIn sharedInstance] signIn];
     return YES;
 }

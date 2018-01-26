@@ -32,7 +32,7 @@
     [[DDSocialShareHandler sharedInstance] registerPlatform:DDSSPlatformSina appKey:@"2045436852"];
     [[DDSocialShareHandler sharedInstance] registerPlatform:DDSSPlatformFacebook appKey:@"125938537776820"];
     [[DDSocialShareHandler sharedInstance] registerPlatform:DDSSPlatformTwitter];
-    [[DDSocialShareHandler sharedInstance] registerPlatform:DDSSPlatformGoogle];
+    [[DDSocialShareHandler sharedInstance] registerPlatform:DDSSPlatformGoogle appKey:@"223284909155-00q7in1se57mprom92n7c65c10dr058q.apps.googleusercontent.com"];
     [[DDSocialShareHandler sharedInstance] registerPlatform:DDSSPlatformLine];
     [[DDSocialShareHandler sharedInstance] registerPlatform:DDSSPlatformInstagram];
 

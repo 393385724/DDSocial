@@ -22,6 +22,16 @@
 	<array>
 		<dict>
 			<key>CFBundleTypeRole</key>
+			<string>Google</string>
+			<key>CFBundleURLName</key>
+			<string>google</string>
+			<key>CFBundleURLSchemes</key>
+			<array>
+				<string>com.googleusercontent.apps.223284909155-00q7in1se57mprom92n7c65c10dr058q</string>
+			</array>
+		</dict>
+		<dict>
+			<key>CFBundleTypeRole</key>
 			<string>WeChat</string>
 			<key>CFBundleURLName</key>
 			<string>weixin</string>

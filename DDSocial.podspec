@@ -60,7 +60,7 @@ Pod::Spec.new do |s|
 
   s.subspec 'Google' do |google|
     google.source_files = 'DDSocial/Google/*.{h,m}'
-    google.dependency 'Google/SignIn'
+    google.dependency 'GoogleSignIn'
     google.dependency 'DDSocial/Core'
   end
   
