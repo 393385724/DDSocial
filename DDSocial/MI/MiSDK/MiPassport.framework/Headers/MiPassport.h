@@ -33,8 +33,14 @@ typedef enum {
         redirectUrl:(NSString *)redirectUrl
         andDelegate:(id<MPSessionDelegate>)delegate;
 
+- (id)initWithAppId:(NSString *)appId
+        redirectUrl:(NSString *)redirectUrl
+                 pt:(NSString *)pt
+        andDelegate:(id<MPSessionDelegate>)delegate;
+
 - (void)loginWithPermissions:(NSArray *)permissions;
 - (void)applyPassCodeWithPermissions:(NSArray *)permissions;
+- (void)applyPassCodeWithPermissions:(NSArray *)permissions deviceId:(NSString *)deviceId;
 
 - (void)logOut;
 
